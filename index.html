@@ -6,15 +6,19 @@
   <title>Emir Alili – Imprenditore</title>
   <style>
     :root {
-      --bg-main: #050816;
-      --bg-alt: #0f172a;
-      --accent: #f97316;
-      --accent-soft: rgba(249,115,22,0.15);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-subtle: #1f2937;
-      --card-bg: #020617;
-      --link: #38bdf8;
+      --bg-page: #f3f4f6;
+      --bg-header: #ffffff;
+      --bg-section: #ffffff;
+      --bg-chip: #f9fafb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --accent: #ea580c;
+      --accent-soft: #fef2e2;
+      --link: #2563eb;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.06);
+      --radius-lg: 18px;
+      --radius-full: 999px;
     }
 
     * {
@@ -30,7 +34,7 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 60%, #000 100%);
+      background: var(--bg-page);
       color: var(--text-main);
       line-height: 1.6;
     }
@@ -49,17 +53,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background:
-        radial-gradient(circle at top, rgba(248,250,252,0.11) 0, transparent 45%),
-        radial-gradient(circle at 80% 20%, rgba(56,189,248,0.12) 0, transparent 40%),
-        radial-gradient(circle at 10% 80%, rgba(249,115,22,0.12) 0, transparent 45%);
     }
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 1.25rem;
     }
 
     /* HEADER */
@@ -67,124 +67,126 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 30;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to bottom, rgba(2,6,23,0.95), rgba(2,6,23,0.8), transparent);
-      border-bottom: 1px solid rgba(31,41,55,0.9);
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.9rem 0;
+      padding: 0.85rem 0;
+      gap: 1.5rem;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.75rem;
     }
 
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: conic-gradient(from 210deg, #f97316, #facc15, #38bdf8, #f97316);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px;
+    .brand-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #e5e7eb;
     }
 
-    .brand-inner {
+    .brand-avatar img {
       width: 100%;
       height: 100%;
-      border-radius: inherit;
-      background: radial-gradient(circle at 30% 20%, #111827, #020617);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      color: #e5e7eb;
+      object-fit: cover;
     }
 
     .brand-text {
       display: flex;
       flex-direction: column;
+      gap: 0.1rem;
     }
 
     .brand-text strong {
-      font-size: 1rem;
-      letter-spacing: 0.05em;
+      font-size: 0.98rem;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
     .brand-text span {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.6rem;
+      gap: 1.4rem;
       font-size: 0.9rem;
     }
 
     .nav-links a {
       position: relative;
-      padding-bottom: 0.15rem;
+      padding-bottom: 0.1rem;
+      color: #4b5563;
     }
 
-    .nav-links a.active::after,
-    .nav-links a:hover::after {
+    .nav-links a.active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .nav-links a::after {
       content: "";
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 100%;
+      width: 0;
       height: 2px;
-      background: linear-gradient(to right, #f97316, #38bdf8);
-      border-radius: 999px;
+      background: var(--accent);
+      transition: width 0.16s ease-out;
+      border-radius: var(--radius-full);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
     }
 
     .nav-cta {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
-    .nav-cta a.icon-link {
+    .icon-link {
       width: 32px;
       height: 32px;
-      border-radius: 999px;
+      border-radius: var(--radius-full);
       border: 1px solid var(--border-subtle);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      background: rgba(15,23,42,0.7);
+      font-size: 0.78rem;
+      color: #6b7280;
+      background: var(--bg-chip);
     }
 
-    .nav-cta button {
+    .btn-primary {
       border: none;
-      border-radius: 999px;
-      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-full);
+      padding: 0.5rem 1.1rem;
       font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       cursor: pointer;
-      background: linear-gradient(to right, #f97316, #ea580c);
-      color: #0b1120;
-      box-shadow: 0 10px 25px rgba(248,150,30,0.35);
+      background: var(--accent);
+      color: #ffffff;
     }
 
-    .nav-cta button:hover {
+    .btn-primary:hover {
       filter: brightness(1.06);
     }
 
@@ -192,236 +194,187 @@
       display: none;
       width: 32px;
       height: 32px;
-      border-radius: 999px;
+      border-radius: var(--radius-full);
       border: 1px solid var(--border-subtle);
-      background: rgba(15,23,42,0.8);
-      color: var(--text-main);
+      background: var(--bg-chip);
+      color: #4b5563;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
     }
 
     /* HERO */
 
     .hero {
-      padding: 4.5rem 0 3.5rem;
+      padding: 2.6rem 0 2.8rem;
     }
 
     .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-      gap: 3rem;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.6rem;
       align-items: center;
     }
 
     .hero-kicker {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       padding: 0.18rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(55,65,81,0.85);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 1.1rem;
-    }
-
-    .hero-kicker span.badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: rgba(248,150,30,0.08);
-      color: #f97316;
-      font-size: 0.7rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 4vw, 3rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      border-radius: var(--radius-full);
+      background: var(--accent-soft);
+      color: #9a3412;
+      font-size: 0.78rem;
       margin-bottom: 0.9rem;
     }
 
-    .hero-title span.accent {
-      background: linear-gradient(to right, #f97316, #facc15, #38bdf8);
-      -webkit-background-clip: text;
-      color: transparent;
+    .hero-kicker span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.7rem;
+      color: #0f172a;
+    }
+
+    .hero-title span {
+      color: var(--accent);
     }
 
     .hero-subtitle {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: var(--text-muted);
       max-width: 32rem;
-      margin-bottom: 1.9rem;
+      margin-bottom: 1.5rem;
     }
 
     .hero-subtitle strong {
-      color: #e5e7eb;
-      font-weight: 500;
+      color: #374151;
+      font-weight: 600;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 1.6rem;
+      gap: 0.85rem;
+      margin-bottom: 1.3rem;
     }
 
-    .btn-primary,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      border-radius: 999px;
-      padding: 0.7rem 1.3rem;
-      font-size: 0.9rem;
+    .btn-outline {
+      border-radius: var(--radius-full);
+      padding: 0.5rem 1.1rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      border: 1px solid transparent;
       cursor: pointer;
-      white-space: nowrap;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #374151;
     }
 
-    .btn-primary {
-      background: linear-gradient(to right, #f97316, #ea580c);
-      color: #0b1120;
-      box-shadow: 0 12px 30px rgba(248,150,30,0.35);
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-    }
-
-    .btn-secondary {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(55,65,81,0.9);
-      color: var(--text-main);
-    }
-
-    .btn-secondary span.dot {
+    .btn-outline span.dot {
       width: 7px;
       height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
+      border-radius: 50%;
+      background: #16a34a;
+      display: inline-block;
+      margin-right: 0.3rem;
     }
 
     .hero-note {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
     .hero-note span {
-      color: var(--link);
+      color: #111827;
+      font-weight: 500;
     }
 
     .hero-media {
-      position: relative;
-      isolation: isolate;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .hero-card {
-      position: relative;
-      border-radius: 1.5rem;
+      background: var(--bg-section);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem 1.25rem;
+      max-width: 340px;
+      width: 100%;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-photo-inner {
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
       overflow: hidden;
-      border: 1px solid rgba(55,65,81,0.9);
-      background:
-        radial-gradient(circle at 0 0, rgba(248,250,252,0.14) 0, transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.3) 0, transparent 65%),
-        #020617;
-      box-shadow: 0 25px 65px rgba(15,23,42,0.85);
+      border: 2px solid #e5e7eb;
+      background: #e5e7eb;
     }
 
-    .hero-image-wrap {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-    }
-
-    .hero-image-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(2,6,23,0.75), transparent 55%);
-    }
-
-    .hero-image {
+    .hero-photo-inner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.03);
-      transform-origin: center;
     }
 
-    .hero-tag {
-      position: absolute;
-      left: 1.2rem;
-      bottom: 1.2rem;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      color: var(--text-main);
-      font-size: 0.75rem;
-      border: 1px solid rgba(55,65,81,0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      z-index: 2;
+    .hero-tagline {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 0.2rem;
     }
 
-    .hero-tag span.dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
+    .hero-role {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
     }
 
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.7rem;
-      padding: 0.9rem 1rem 1.1rem;
-      background: rgba(15,23,42,0.9);
-      border-top: 1px solid rgba(31,41,55,0.9);
+      font-size: 0.78rem;
     }
 
     .hero-stat {
-      padding: 0.55rem 0.75rem;
-      border-radius: 0.9rem;
-      background: rgba(15,23,42,0.95);
-      border: 1px solid rgba(31,41,55,0.9);
-      font-size: 0.75rem;
+      background: var(--bg-chip);
+      border-radius: 12px;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid #e5e7eb;
     }
 
     .hero-stat strong {
       display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.1rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.15rem;
+      color: #111827;
     }
 
-    .hero-orbit {
-      position: absolute;
-      inset: -40px;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.6;
-      mix-blend-mode: screen;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(248,250,252,0.12) 0, transparent 55%),
-        radial-gradient(circle at 85% 20%, rgba(56,189,248,0.28) 0, transparent 55%),
-        radial-gradient(circle at 10% 85%, rgba(249,115,22,0.23) 0, transparent 55%);
-    }
-
-    /* SECTION: COSA POSSO FARE PER TE */
+    /* SECTION GENERALI */
 
     .section {
-      padding: 1.5rem 0 3.5rem;
+      padding: 0 0 3rem;
     }
 
     .section-header {
@@ -429,14 +382,14 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 1.5rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.4rem;
     }
 
     .section-title {
-      font-size: 1.25rem;
-      letter-spacing: 0.09em;
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #6b7280;
     }
 
     .section-title span {
@@ -445,201 +398,185 @@
 
     .section-subtitle {
       font-size: 0.95rem;
-      max-width: 27rem;
       color: var(--text-muted);
+      max-width: 28rem;
     }
 
-    .pill {
+    .section-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
       padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.9);
-      background: rgba(15,23,42,0.9);
-      font-size: 0.75rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-chip);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
-    .pill span.dot {
+    .section-pill span.dot {
       width: 6px;
       height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
+      border-radius: 50%;
+      background: #16a34a;
     }
+
+    /* CARDS "COSA POSSO FARE PER TE" */
 
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.4rem;
+      gap: 1.25rem;
     }
 
     .card {
-      position: relative;
-      border-radius: 1.1rem;
-      padding: 1.1rem;
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9) 0, rgba(15,23,42,0.98) 35%, #020617 100%);
-      border: 1px solid rgba(31,41,55,0.95);
-      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+      background: var(--bg-section);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.9rem;
     }
 
     .card-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.7rem;
+      align-items: baseline;
+      gap: 0.75rem;
     }
 
     .card-title {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 600;
+      color: #111827;
     }
 
     .card-badge {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.9);
-      background: rgba(15,23,42,0.9);
-      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-chip);
+      border: 1px solid var(--border-subtle);
+      color: #6b7280;
+      white-space: nowrap;
     }
 
     .card-body {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 0.75rem;
     }
 
     .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 0.3rem;
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: #6b7280;
     }
 
     .card-footer a {
-      font-weight: 500;
       color: var(--link);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
+      font-weight: 500;
     }
 
-    .card-footer a::after {
-      content: "↗";
-      font-size: 0.75rem;
-    }
-
-    /* SECTION: PROGETTI */
+    /* PROGETTI IN EVIDENZA */
 
     .projects-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 1.25rem;
     }
 
     .project {
-      position: relative;
-      border-radius: 1.1rem;
+      background: var(--bg-section);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
       overflow: hidden;
-      border: 1px solid rgba(31,41,55,0.95);
-      background: #020617;
-      box-shadow: 0 22px 55px rgba(15,23,42,0.95);
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     .project-media {
       position: relative;
       aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #020617;
+      background: #111827;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .project-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.03);
     }
 
     .project-media.logo-mdp img {
+      width: 78%;
+      height: 78%;
       object-fit: contain;
-      padding: 1.2rem;
-      background: #020617;
-      transform: none;
-    }
-
-    .project-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(2,6,23,0.9), transparent 60%);
-    }
-
-    .project-media.logo-mdp::after {
-      background: linear-gradient(to top, rgba(2,6,23,0.7), transparent 70%);
+      background: #111827;
     }
 
     .project-label {
       position: absolute;
-      left: 1rem;
-      bottom: 1rem;
-      padding: 0.25rem 0.8rem;
-      border-radius: 999px;
+      left: 0.9rem;
+      bottom: 0.8rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: rgba(17, 24, 39, 0.9);
+      color: #e5e7eb;
       font-size: 0.75rem;
-      background: rgba(15,23,42,0.95);
-      border: 1px solid rgba(55,65,81,0.95);
-      color: var(--text-main);
     }
 
     .project-body {
-      padding: 1rem 1.1rem 1.1rem;
-      font-size: 0.85rem;
+      padding: 0.9rem 1.1rem 1.1rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
     }
 
     .project-body h3 {
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-      color: var(--text-main);
+      font-size: 0.98rem;
+      color: #111827;
     }
 
     .project-actions {
-      margin-top: 0.6rem;
+      margin-top: 0.4rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
 
     .chip-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
-      padding: 0.3rem 0.7rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-chip);
       font-size: 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.95);
-      background: rgba(15,23,42,0.95);
-      color: var(--text-muted);
+      color: #4b5563;
     }
 
-    .chip-link::after {
-      content: "↗";
-      font-size: 0.75rem;
-    }
-
-    /* FOOTER / CONTATTI */
+    /* FOOTER */
 
     footer {
-      border-top: 1px solid rgba(31,41,55,0.9);
+      border-top: 1px solid var(--border-subtle);
+      background: #ffffff;
       margin-top: auto;
-      padding: 1.6rem 0 1.9rem;
-      background: radial-gradient(circle at top, rgba(15,23,42,0.95) 0, #020617 55%);
+      padding: 1.4rem 0 1.7rem;
     }
 
     .footer-inner {
@@ -647,7 +584,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1.4rem;
+      gap: 1rem;
       font-size: 0.8rem;
       color: var(--text-muted);
     }
@@ -655,48 +592,43 @@
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-    }
-
-    .footer-links a {
-      color: var(--link);
+      gap: 0.75rem;
+      align-items: baseline;
     }
 
     .footer-social {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
+      gap: 0.55rem;
     }
 
     .footer-social a {
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.9);
-      background: rgba(15,23,42,0.95);
-      color: var(--text-muted);
-      font-size: 0.8rem;
+      padding: 0.28rem 0.8rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-chip);
     }
 
     /* RESPONSIVE */
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .hero-inner {
         grid-template-columns: minmax(0, 1fr);
-        gap: 2.4rem;
       }
       .hero {
-        padding-top: 3.2rem;
+        padding-top: 2.1rem;
+      }
+      .hero-media {
+        justify-content: flex-start;
+      }
+      .hero-card {
+        max-width: 320px;
       }
       .projects-grid {
         grid-template-columns: minmax(0, 1fr);
       }
       .cards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
       }
     }
 
@@ -709,9 +641,16 @@
         display: inline-flex;
       }
       .hero {
-        padding-top: 2.4rem;
+        padding-top: 1.8rem;
       }
       .cards-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .projects-grid {
         grid-template-columns: minmax(0, 1fr);
       }
       .footer-inner {
@@ -728,8 +667,11 @@
       <div class="container">
         <nav class="nav">
           <div class="brand">
-            <div class="brand-mark">
-              <div class="brand-inner">EA</div>
+            <div class="brand-avatar">
+              <img
+                src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
+                alt="Emir Alili"
+              />
             </div>
             <div class="brand-text">
               <strong>Emir Alili</strong>
@@ -745,13 +687,9 @@
           </div>
 
           <div class="nav-cta">
-            <a class="icon-link" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              f
-            </a>
-            <a class="icon-link" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              in
-            </a>
-            <button type="button" onclick="window.location.href='contatti.html'">
+            <a class="icon-link" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">f</a>
+            <a class="icon-link" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">in</a>
+            <button class="btn-primary" type="button" onclick="window.location.href='contatti.html'">
               Contattami
             </button>
           </div>
@@ -770,12 +708,11 @@
           <div class="hero-inner">
             <div class="hero-copy">
               <div class="hero-kicker">
-                <span class="badge">●</span>
-                <span>Impresa, strategia, politica – senza filtri</span>
+                <span class="dot"></span>
+                <span>Impresa, strategia, politica. Niente fuffa.</span>
               </div>
               <h1 class="hero-title">
-                Costruisco aziende, <span class="accent">progetti</span> e
-                percorsi che cambiano davvero il futuro.
+                Costruisco aziende, <span>progetti</span> e percorsi che cambiano davvero il futuro.
               </h1>
               <p class="hero-subtitle">
                 Lavoro tra <strong>impresa</strong>, <strong>organizzazione</strong> e
@@ -787,9 +724,8 @@
                 <button class="btn-primary" type="button" onclick="window.location.href='chi-sono.html'">
                   Scopri chi sono
                 </button>
-                <button class="btn-secondary" type="button" onclick="window.location.href='cosa-faccio.html'">
-                  <span class="dot"></span>
-                  Cosa posso fare per te
+                <button class="btn-outline" type="button" onclick="window.location.href='cosa-faccio.html'">
+                  <span class="dot"></span> Cosa posso fare per te
                 </button>
               </div>
               <p class="hero-note">
@@ -798,18 +734,17 @@
             </div>
 
             <div class="hero-media">
-              <div class="hero-card">
-                <div class="hero-image-wrap">
-                  <img
-                    class="hero-image"
-                    src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
-                    alt="Emir Alili – Ritratto"
-                  />
-                  <div class="hero-tag">
-                    <span class="dot"></span>
-                    <span>Visione pratica · Zero fuffa</span>
+              <aside class="hero-card">
+                <div class="hero-photo">
+                  <div class="hero-photo-inner">
+                    <img
+                      src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
+                      alt="Emir Alili – Ritratto"
+                    />
                   </div>
                 </div>
+                <div class="hero-tagline">Dalla pratica alla strategia</div>
+                <div class="hero-role">Impresa, organizzazione, progetto politico di diaspora.</div>
                 <div class="hero-stats">
                   <div class="hero-stat">
                     <strong>Impresa</strong>
@@ -820,8 +755,7 @@
                     <span>Fondatore Macedonian Diaspora Party: progetto politico della diaspora per riformare lo Stato.</span>
                   </div>
                 </div>
-              </div>
-              <div class="hero-orbit"></div>
+              </aside>
             </div>
           </div>
         </div>
@@ -832,16 +766,14 @@
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="section-title">
-                <span>//</span> Cosa posso fare per te
-              </div>
+              <div class="section-title"><span>//</span> Cosa posso fare per te</div>
               <p class="section-subtitle">
-                Non vendo motivazione astratta. Metto sul tavolo numeri, processi
-                e decisioni concrete: dall’azienda al progetto politico.
+                Nessuna teoria astratta. Si parte dai numeri, dai problemi concreti
+                e dalle decisioni che servono per far funzionare le cose nel mondo reale.
               </p>
             </div>
             <div>
-              <div class="pill">
+              <div class="section-pill">
                 <span class="dot"></span>
                 <span>Collaborazioni selezionate, niente perdite di tempo.</span>
               </div>
@@ -855,8 +787,8 @@
                 <span class="card-badge">EA Group · EA Cleaning</span>
               </div>
               <div class="card-body">
-                Gestione operativa, costi, margini, organizzazione dei cantieri e
-                sviluppo di servizi di pulizia e facility pensati per reggere nel tempo,
+                Gestione operativa, costi, margini, organizzazione dei cantieri
+                e sviluppo di servizi di pulizia e facility pensati per reggere nel tempo,
                 non per fare il prezzo più basso.
               </div>
               <div class="card-footer">
@@ -879,7 +811,9 @@
               </div>
               <div class="card-footer">
                 <span>Logica, metodo, visione di lungo periodo.</span>
-                <a href="cosa-faccio.html">Vedi come lavoro</a>
+                <a href="cosa-faccio.html">
+                  Vedi come lavoro
+                </a>
               </div>
             </article>
 
@@ -889,9 +823,9 @@
                 <span class="card-badge">MDP</span>
               </div>
               <div class="card-body">
-                Macedonian Diaspora Party: un progetto politico nato fuori dai
-                palazzi, costruito dalla diaspora per riportare al centro
-                responsabilità, merito e partecipazione.
+                Macedonian Diaspora Party: un progetto politico nato fuori dai palazzi,
+                costruito dalla diaspora per riportare al centro responsabilità,
+                merito e partecipazione.
               </div>
               <div class="card-footer">
                 <span>Un partito di chi è dovuto emigrare.</span>
@@ -909,12 +843,10 @@
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="section-title">
-                <span>//</span> Progetti in evidenza
-              </div>
+              <div class="section-title"><span>//</span> Progetti in evidenza</div>
               <p class="section-subtitle">
                 Alcuni dei percorsi su cui sto investendo tempo, capitale ed energia.
-                Nessuna etichetta da “influencer”: solo lavoro reale, ogni giorno.
+                Tutto parte da lavoro quotidiano e responsabilità, non da slogan.
               </p>
             </div>
           </div>
@@ -934,8 +866,8 @@
                 <p>
                   EA Cleaning ed EA Group nascono dal basso, lavorando nei cantieri
                   e toccando con mano i problemi quotidiani. Oggi gestiamo clienti
-                  industriali, commerciali e residenziali con attenzione maniacale a
-                  margini, qualità e continuità del servizio.
+                  industriali, commerciali e residenziali con attenzione ai margini,
+                  alla qualità e alla continuità del servizio.
                 </p>
                 <div class="project-actions">
                   <a class="chip-link" href="https://www.eagroup-servizi.com" target="_blank" rel="noopener noreferrer">
@@ -977,7 +909,7 @@
       </section>
     </main>
 
-    <!-- FOOTER / CONTATTI -->
+    <!-- FOOTER -->
     <footer id="contatti">
       <div class="container">
         <div class="footer-inner">
@@ -1000,5 +932,6 @@
   </script>
 </body>
 </html>
+
 
 
