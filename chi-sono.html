@@ -206,54 +206,60 @@
       }
     }
 
-    /* PAGE HEADER "CHI SONO" */
+    /* PAGE HERO "CHI SONO" */
+
+    .page-hero-wrap {
+      background: linear-gradient(to right, #111827, #0f172a);
+      color: #e5e7eb;
+      border-bottom: 1px solid #020617;
+    }
 
     .page-hero {
-      padding: 1.8rem 0 1.4rem;
+      padding: 1.9rem 0 2rem;
     }
 
     .page-hero-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr);
+      gap: 1.6rem;
+      align-items: center;
     }
 
-    @media (min-width: 880px) {
-      .page-hero {
-        padding: 2.3rem 0 1.7rem;
-      }
+    @media (max-width: 880px) {
       .page-hero-inner {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
+        grid-template-columns: minmax(0, 1fr);
       }
-    }
-
-    .page-hero-title {
-      font-size: 1.6rem;
-      letter-spacing: -0.03em;
-      color: #111827;
-      margin-bottom: 0.2rem;
+      .page-hero {
+        padding: 1.6rem 0 1.8rem;
+      }
     }
 
     .page-hero-kicker {
       font-size: 0.85rem;
-      color: var(--text-muted);
       margin-bottom: 0.25rem;
+      color: #9ca3af;
     }
 
     .page-hero-kicker span {
-      color: var(--accent);
+      color: var(--accent-soft);
       font-weight: 600;
+    }
+
+    .page-hero-title {
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+      color: #f9fafb;
     }
 
     .page-hero-subtitle {
       font-size: 0.95rem;
-      color: var(--text-muted);
+      color: #d1d5db;
       max-width: 32rem;
+      margin-bottom: 0.8rem;
     }
 
-    .page-hero-meta {
+    .page-hero-highlights {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
@@ -263,20 +269,96 @@
       font-size: 0.78rem;
       padding: 0.2rem 0.75rem;
       border-radius: var(--radius-full);
-      background: var(--bg-soft);
-      border: 1px solid var(--border-subtle);
-      color: #4b5563;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
       white-space: nowrap;
+    }
+
+    .page-hero-card {
+      justify-self: center;
+      max-width: 320px;
+      width: 100%;
+      border-radius: 20px;
+      background: radial-gradient(circle at top, #1f2937, #020617);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      padding: 1rem 1.1rem 1rem;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-photo-inner {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(209, 213, 219, 0.9);
+      background: #111827;
+    }
+
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-name {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .hero-role-main {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .hero-stat-card {
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.45rem 0.5rem 0.4rem;
+      text-align: left;
+    }
+
+    .hero-stat-number {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-soft);
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-stat-label {
+      color: #9ca3af;
     }
 
     /* SEZIONI GENERALI */
 
     .section {
-      padding: 0 0 2.4rem;
+      padding: 2.1rem 0 0;
+    }
+
+    .section + .section {
+      padding-top: 1.8rem;
     }
 
     .section-header {
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
     }
 
     .section-title {
@@ -310,9 +392,21 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      padding: 1rem 1.1rem;
+      padding: 1.05rem 1.2rem;
       font-size: 0.93rem;
       color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bio-main::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #ea580c, #facc15);
     }
 
     .bio-main p + p {
@@ -321,6 +415,16 @@
 
     .bio-main strong {
       color: #111827;
+    }
+
+    .bio-main p:first-child::first-letter {
+      font-size: 2.2rem;
+      float: left;
+      line-height: 1;
+      padding-right: 0.25rem;
+      padding-top: 0.05rem;
+      font-weight: 600;
+      color: var(--accent-dark);
     }
 
     .bio-side {
@@ -334,8 +438,8 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      padding: 0.75rem 0.9rem;
-      font-size: 0.85rem;
+      padding: 0.85rem 1rem;
+      font-size: 0.86rem;
       color: var(--text-muted);
     }
 
@@ -361,6 +465,62 @@
       border: 1px solid var(--border-subtle);
     }
 
+    .quote-card {
+      margin-top: 0.4rem;
+      padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      font-size: 0.82rem;
+      color: var(--accent-dark);
+    }
+
+    /* BANDA STATISTICHE */
+
+    .stats-band {
+      margin-top: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .stats-inner {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 0.85rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .stat-item {
+      border-radius: 14px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem 0.7rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 0.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .stat-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .stat-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.05rem;
+    }
+
     /* TIMELINE */
 
     .timeline {
@@ -368,7 +528,7 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      padding: 0.9rem 1rem;
+      padding: 1rem 1.1rem;
       font-size: 0.87rem;
       color: var(--text-muted);
     }
@@ -376,19 +536,39 @@
     .timeline-list {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 0.1rem 0 0;
+      position: relative;
+    }
+
+    .timeline-list::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e5e7eb;
     }
 
     .timeline-item {
-      display: grid;
-      grid-template-columns: 80px minmax(0, 1fr);
-      gap: 0.5rem;
-      padding: 0.45rem 0;
-      border-bottom: 1px solid #f3f4f6;
+      position: relative;
+      padding-left: 2.1rem;
+      padding-bottom: 0.85rem;
     }
 
     .timeline-item:last-child {
-      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 6px;
+      top: 3px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid var(--accent);
     }
 
     .timeline-year {
@@ -397,6 +577,7 @@
       color: #6b7280;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      margin-bottom: 0.1rem;
     }
 
     .timeline-text strong {
@@ -422,6 +603,27 @@
       display: flex;
       flex-direction: column;
       gap: 0.45rem;
+    }
+
+    .area-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .area-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid #fed7aa;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-dark);
+      font-weight: 600;
     }
 
     .area-title {
@@ -492,7 +694,7 @@
     footer {
       border-top: 1px solid var(--border-subtle);
       background: #ffffff;
-      margin-top: auto;
+      margin-top: 2rem;
       padding: 1.3rem 0 1.7rem;
     }
 
@@ -538,17 +740,26 @@
       .grid-3 {
         grid-template-columns: minmax(0, 1fr);
       }
+      .stats-inner {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 640px) {
-      .page-hero {
-        padding-top: 1.6rem;
-      }
       .section {
-        padding-bottom: 2rem;
+        padding-top: 1.7rem;
+      }
+      .timeline-list::before {
+        left: 10px;
+      }
+      .timeline-dot {
+        left: 4px;
       }
       .timeline-item {
-        grid-template-columns: 1fr;
+        padding-left: 2rem;
+      }
+      .stats-inner {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
   </style>
@@ -592,31 +803,64 @@
       </div>
     </header>
 
-    <!-- PAGE HERO -->
-    <main>
+    <!-- PAGE HERO CON CARD GRAFICA -->
+    <div class="page-hero-wrap">
       <section class="page-hero">
         <div class="container">
           <div class="page-hero-inner">
             <div>
               <div class="page-hero-kicker">
-                <span>Chi sono</span> · percorso e visione
+                <span>Chi sono</span> · percorso, scelte, responsabilità
               </div>
-              <h1 class="page-hero-title">Da migrante a imprenditore, da imprenditore a leader di un progetto politico.</h1>
+              <h1 class="page-hero-title">
+                Da migrante a imprenditore, da imprenditore a leader di un progetto politico.
+              </h1>
               <p class="page-hero-subtitle">
-                La mia storia parte dal lavoro nei cantieri e arriva a un progetto di riforma di uno Stato,
-                passando per aziende, libri e impegno in comunità locali e associazioni.
+                La mia storia parte dai Balcani e arriva in Italia, passando per lavori umili,
+                aziende costruite dal basso, libri e un partito politico nato dalla diaspora.
               </p>
+              <div class="page-hero-highlights">
+                <span class="meta-pill">Fondatore · Macedonian Diaspora Party (MDP)</span>
+                <span class="meta-pill">CEO · EA Group / EA Cleaning</span>
+                <span class="meta-pill">Autore e progetti sociali</span>
+              </div>
             </div>
-            <div class="page-hero-meta">
-              <span class="meta-pill">Fondatore · Macedonian Diaspora Party (MDP)</span>
-              <span class="meta-pill">CEO · EA Group / EA Cleaning</span>
-              <span class="meta-pill">Autore · libri e progetti editoriali</span>
-            </div>
+
+            <aside class="page-hero-card">
+              <div class="hero-photo">
+                <div class="hero-photo-inner">
+                  <img
+                    src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
+                    alt="Emir Alili – Ritratto"
+                  />
+                </div>
+              </div>
+              <div class="hero-name">Emir Alili</div>
+              <div class="hero-role-main">
+                Imprenditore, autore, fondatore del Macedonian Diaspora Party.
+              </div>
+              <div class="hero-stat-grid">
+                <div class="hero-stat-card">
+                  <div class="hero-stat-number">Impresa</div>
+                  <div class="hero-stat-label">EA Group · EA Cleaning</div>
+                </div>
+                <div class="hero-stat-card">
+                  <div class="hero-stat-number">Politica</div>
+                  <div class="hero-stat-label">MDP · diaspora al centro</div>
+                </div>
+                <div class="hero-stat-card">
+                  <div class="hero-stat-number">Società</div>
+                  <div class="hero-stat-label">Libri · comunità · progetti</div>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
+    </div>
 
-      <!-- BIO PRINCIPALE -->
+    <!-- BIO PRINCIPALE -->
+    <main>
       <section class="section">
         <div class="container">
           <div class="section-header">
@@ -675,8 +919,33 @@
                   <span class="bio-tag">Progetti editoriali</span>
                   <span class="bio-tag">Associazioni e comunità locali</span>
                 </div>
+                <div class="quote-card">
+                  “Ogni ruolo ha un solo criterio: responsabilità concreta sulle persone,
+                  sui numeri e sulle conseguenze delle scelte.”
+                </div>
               </div>
             </aside>
+          </div>
+
+          <!-- BANDA STATISTICHE / KEY POINTS -->
+          <div class="stats-band">
+            <div class="stats-inner">
+              <div class="stat-item">
+                <div class="stat-label">Origine</div>
+                <div class="stat-value">Balcani</div>
+                <div class="stat-note">Cresciuto in un contesto segnato da conflitti e instabilità.</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Percorso</div>
+                <div class="stat-value">Impresa · Politica</div>
+                <div class="stat-note">Dai cantieri al progetto di riforma di uno Stato.</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Focus</div>
+                <div class="stat-value">Responsabilità</div>
+                <div class="stat-note">Numeri, coerenza e fine dell’impunità politica.</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -695,6 +964,7 @@
           <div class="timeline">
             <ul class="timeline-list">
               <li class="timeline-item">
+                <div class="timeline-dot"></div>
                 <div class="timeline-year">Origini</div>
                 <div class="timeline-text">
                   Cresco nei Balcani, in un contesto segnato da conflitti, instabilità e migrazioni.
@@ -702,6 +972,7 @@
                 </div>
               </li>
               <li class="timeline-item">
+                <div class="timeline-dot"></div>
                 <div class="timeline-year">Arrivo in Italia</div>
                 <div class="timeline-text">
                   Arrivo in Italia come tanti: da migrante che deve costruirsi tutto da capo.
@@ -709,6 +980,7 @@
                 </div>
               </li>
               <li class="timeline-item">
+                <div class="timeline-dot"></div>
                 <div class="timeline-year">Impresa</div>
                 <div class="timeline-text">
                   Trasformo quell’esperienza in impresa: nascono
@@ -717,6 +989,7 @@
                 </div>
               </li>
               <li class="timeline-item">
+                <div class="timeline-dot"></div>
                 <div class="timeline-year">Scrittura</div>
                 <div class="timeline-text">
                   Inizio a scrivere libri e progetti editoriali che raccontano radici, scelte,
@@ -725,6 +998,7 @@
                 </div>
               </li>
               <li class="timeline-item">
+                <div class="timeline-dot"></div>
                 <div class="timeline-year">Impegno civile</div>
                 <div class="timeline-text">
                   Partecipo ad attività associative, culturali e umanitarie:
@@ -733,6 +1007,7 @@
                 </div>
               </li>
               <li class="timeline-item">
+                <div class="timeline-dot"></div>
                 <div class="timeline-year">MDP</div>
                 <div class="timeline-text">
                   Fonda<strong> Macedonian Diaspora Party</strong>: un partito nato dalla diaspora
@@ -745,20 +1020,22 @@
         </div>
       </section>
 
-      <!-- AREE PRINCIPALI: IMPRESA, POLITICA, AUTORE -->
+      <!-- AREE PRINCIPALI -->
       <section class="section">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title"><span>//</span> Cosa definisce il mio lavoro</h2>
             <p class="section-subtitle">
               Tre blocchi tengono insieme il mio percorso: impresa, politica, scrittura e progetti sociali.
-              Qui come li intendo.
             </p>
           </div>
 
           <div class="grid-3">
             <article class="area-card">
-              <h3 class="area-title">Impresa</h3>
+              <div class="area-title-row">
+                <div class="area-icon">B</div>
+                <h3 class="area-title">Impresa</h3>
+              </div>
               <p>
                 Con EA Group ed EA Cleaning lavoro nei servizi e nel facility management.
                 Significa bilanci veri, turni, responsabilità su stipendi e contratti,
@@ -770,15 +1047,17 @@
             </article>
 
             <article class="area-card">
-              <h3 class="area-title">Politica</h3>
+              <div class="area-title-row">
+                <div class="area-icon">P</div>
+                <h3 class="area-title">Politica</h3>
+              </div>
               <p>
                 Macedonian Diaspora Party nasce per rompere il ciclo corruzione–clientele–impunità.
                 Non è un comitato elettorale, ma un progetto per riscrivere le regole del gioco
                 e mettere la diaspora in condizione di incidere davvero.
               </p>
               <div class="area-footer">
-                <span>Progetto di governo, non di protesta.</span>
-                <br />
+                <span>Progetto di governo, non di protesta.</span><br />
                 <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
                   Vai al sito MDP
                 </a>
@@ -786,11 +1065,14 @@
             </article>
 
             <article class="area-card">
-              <h3 class="area-title">Scrittura e sociale</h3>
+              <div class="area-title-row">
+                <div class="area-icon">S</div>
+                <h3 class="area-title">Scrittura e sociale</h3>
+              </div>
               <p>
                 Libri autobiografici e di orientamento, progetti con associazioni e comunità,
-                iniziative per giovani, migranti e realtà locali. L’obiettivo è sempre lo stesso:
-                trasformare esperienza vissuta in strumenti concreti per scegliere e agire.
+                iniziative per giovani, migranti e realtà locali. L’obiettivo è trasformare
+                esperienza vissuta in strumenti concreti per scegliere e agire.
               </p>
               <div class="area-footer">
                 <span>Parole ancorate alla realtà, non alla retorica.</span>
@@ -832,7 +1114,7 @@
                 </li>
                 <li>
                   <strong>Rispetto per chi è costretto a emigrare</strong> · la diaspora
-                  non è solo una rimesse di denaro, ma competenze e vite sospese
+                  non è solo rimesse di denaro, ma competenze e vite sospese
                   che meritano di essere ascoltate.
                 </li>
               </ul>
@@ -880,3 +1162,4 @@
   </script>
 </body>
 </html>
+
