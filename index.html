@@ -1,855 +1,997 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Emir Alili – Imprenditore, autore, formatore</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sito personale di Emir Alili: imprenditore, autore di Radici Forti – Orizzonti Lontani, formatore e promotore di progetti sociali.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emir Alili – Imprenditore</title>
   <style>
     :root {
-      --bg-main: #0f172a;
-      --bg-alt: #111827;
-      --accent: #2563eb;
-      --accent-soft: #1d4ed8;
+      --bg-main: #050816;
+      --bg-alt: #0f172a;
+      --accent: #f97316; /* arancione professionale */
+      --accent-soft: rgba(249,115,22,0.15);
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
       --card-bg: #020617;
-      --border-soft: rgba(148,163,184,0.25);
-      --max-width: 1100px;
-      --radius-lg: 18px;
-      --radius-xl: 26px;
-      --shadow-soft: 0 18px 45px rgba(15,23,42,0.55);
+      --link: #38bdf8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 60%, #000 100%);
       color: var(--text-main);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* Layout base */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(circle at top, rgba(248,250,252,0.11) 0, transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(56,189,248,0.12) 0, transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(249,115,22,0.12) 0, transparent 45%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HEADER */
+
     header {
       position: sticky;
       top: 0;
-      z-index: 40;
-      background: linear-gradient(to bottom, rgba(15,23,42,0.98), rgba(15,23,42,0.88), rgba(15,23,42,0.0));
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(148,163,184,0.25);
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(2,6,23,0.95), rgba(2,6,23,0.8), transparent);
+      border-bottom: 1px solid rgba(31,41,55,0.9);
     }
-    .nav-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 14px 18px;
+
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      padding: 0.9rem 0;
     }
+
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      font-size: 13px;
+      gap: 0.6rem;
     }
+
     .brand-mark {
-      width: 26px;
-      height: 26px;
+      width: 36px;
+      height: 36px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #60a5fa 0, #2563eb 40%, #1e40af 100%);
-      box-shadow: 0 0 0 1px rgba(191,219,254,0.25), 0 0 30px rgba(37,99,235,0.8);
-    }
-    nav ul {
-      list-style: none;
+      background: conic-gradient(from 210deg, #f97316, #facc15, #38bdf8, #f97316);
       display: flex;
-      gap: 18px;
-      font-size: 14px;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
     }
-    nav a {
+
+    .brand-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 20%, #111827, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: #e5e7eb;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
       color: var(--text-muted);
-      padding: 6px 0;
-      position: relative;
     }
-    nav a::after {
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -3px;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(to right, #60a5fa, #2563eb);
-      transition: width 0.18s ease-out;
-    }
-    nav a:hover {
-      color: #e5e7eb;
-    }
-    nav a:hover::after {
+      bottom: 0;
       width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #f97316, #38bdf8);
+      border-radius: 999px;
     }
 
-    /* Hero */
-    .hero {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 40px 18px 60px;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 40px;
+    .nav-cta {
+      display: flex;
       align-items: center;
+      gap: 0.75rem;
     }
-    .hero-badge {
+
+    .nav-cta a.icon-link {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.35), transparent 60%);
+      justify-content: center;
+      font-size: 0.75rem;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      background: rgba(15,23,42,0.7);
     }
-    .hero-badge span {
+
+    .nav-cta button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(to right, #f97316, #ea580c);
+      color: #0b1120;
+      box-shadow: 0 10px 25px rgba(248,150,30,0.35);
+    }
+
+    .nav-cta button:hover {
+      filter: brightness(1.06);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15,23,42,0.8);
+      color: var(--text-main);
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.18rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(55,65,81,0.85);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-kicker span.badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(248,150,30,0.08);
+      color: #f97316;
+      font-size: 0.7rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title span.accent {
+      background: linear-gradient(to right, #f97316, #facc15, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 1.9rem;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: 999px;
+      padding: 0.7rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #f97316, #ea580c);
+      color: #0b1120;
+      box-shadow: 0 12px 30px rgba(248,150,30,0.35);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: rgba(15,23,42,0.9);
+      border-color: rgba(55,65,81,0.9);
+      color: var(--text-main);
+    }
+
+    .btn-secondary span.dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 3px rgba(34,197,94,0.25);
-    }
-    .hero h1 {
-      font-size: clamp(32px, 5vw, 40px);
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .hero h1 span {
-      background: linear-gradient(to right, #bfdbfe, #60a5fa);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .hero-lead {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin-bottom: 22px;
-    }
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 26px;
-    }
-    .hero-tag {
-      font-size: 12px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      color: #cbd5f5;
-      background: rgba(15,23,42,0.85);
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-    .btn-primary {
-      padding: 9px 18px;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-      color: #eff6ff;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 12px 30px rgba(37,99,235,0.45);
-    }
-    .btn-primary span.arrow {
-      font-size: 16px;
-      transform: translateY(1px);
-    }
-    .btn-ghost {
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
     }
 
-    .hero-right {
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-soft);
-      background: radial-gradient(circle at top left, rgba(59,130,246,0.35), rgba(15,23,42,0.98));
-      padding: 18px 18px 20px;
-      box-shadow: var(--shadow-soft);
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-note span {
+      color: var(--link);
+    }
+
+    .hero-media {
       position: relative;
+      isolation: isolate;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(55,65,81,0.9);
+      background:
+        radial-gradient(circle at 0 0, rgba(248,250,252,0.14) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.3) 0, transparent 65%),
+        #020617;
+      box-shadow: 0 25px 65px rgba(15,23,42,0.85);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
     }
-    .hero-right::before {
+
+    .hero-image-wrap::after {
       content: "";
       position: absolute;
-      inset: -120px;
-      background: radial-gradient(circle at 10% 0, rgba(96,165,250,0.18), transparent 65%);
-      opacity: 0.7;
-      pointer-events: none;
+      inset: 0;
+      background: linear-gradient(to top, rgba(2,6,23,0.75), transparent 55%);
     }
-    .hero-book-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 10px;
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transform-origin: center;
     }
-    .hero-book {
-      display: grid;
-      grid-template-columns: 140px minmax(0, 1fr);
-      gap: 18px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-book img {
-      border-radius: 12px;
-      box-shadow: 0 18px 35px rgba(15,23,42,0.9);
-    }
-    .hero-book-title {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .hero-book-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-    .hero-book-meta {
-      font-size: 12px;
-      color: #cbd5f5;
-      margin-bottom: 14px;
-    }
-    .hero-pill {
+
+    .hero-tag {
+      position: absolute;
+      left: 1.2rem;
+      bottom: 1.2rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      font-size: 0.75rem;
+      border: 1px solid rgba(55,65,81,0.9);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,184,0.6);
-      font-size: 11px;
-      color: var(--text-muted);
+      gap: 0.45rem;
+      z-index: 2;
     }
-    .hero-pill-dot {
+
+    .hero-tag span.dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: #fbbf24;
+      background: #22c55e;
     }
 
-    /* Sezioni generali */
-    section {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 18px 52px;
-    }
-    section h2 {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-    section h2 span {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 6px;
-    }
-    .section-intro {
-      font-size: 14px;
-      color: var(--text-muted);
-      max-width: 640px;
-      margin-bottom: 22px;
-    }
-
-    .about-grid {
+    .hero-stats {
       display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
-      gap: 26px;
-    }
-    .card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      background: radial-gradient(circle at top left, rgba(30,64,175,0.6), rgba(15,23,42,0.98));
-      padding: 18px 18px 20px;
-      box-shadow: var(--shadow-soft);
-    }
-    .card-alt {
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
-    }
-    .card h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
-    .card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .about-list {
-      list-style: none;
-      margin-top: 6px;
-    }
-    .about-list li {
-      font-size: 13px;
-      color: var(--text-muted);
-      padding-left: 14px;
-      position: relative;
-      margin-bottom: 4px;
-    }
-    .about-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #60a5fa;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      padding: 0.9rem 1rem 1.1rem;
+      background: rgba(15,23,42,0.9);
+      border-top: 1px solid rgba(31,41,55,0.9);
     }
 
-    /* Cosa faccio */
-    .services-grid {
+    .hero-stat {
+      padding: 0.55rem 0.75rem;
+      border-radius: 0.9rem;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(31,41,55,0.9);
+      font-size: 0.75rem;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -40px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(248,250,252,0.12) 0, transparent 55%),
+        radial-gradient(circle at 85% 20%, rgba(56,189,248,0.28) 0, transparent 55%),
+        radial-gradient(circle at 10% 85%, rgba(249,115,22,0.23) 0, transparent 55%);
+    }
+
+    /* SECTION: COSA POSSO FARE PER TE */
+
+    .section {
+      padding: 1.5rem 0 3.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      max-width: 27rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.9);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .pill span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 1.4rem;
     }
-    .service {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      background: rgba(15,23,42,0.95);
-      padding: 18px 16px 18px;
-      box-shadow: 0 14px 35px rgba(15,23,42,0.7);
-    }
-    .service-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .service-header img {
-      width: 38px;
-      height: 38px;
-    }
-    .service h3 {
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-    .service p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .service ul {
-      margin-top: 10px;
-      list-style: none;
-    }
-    .service li {
-      font-size: 12px;
-      color: var(--text-muted);
-      padding-left: 12px;
+
+    .card {
       position: relative;
-      margin-bottom: 4px;
-    }
-    .service li::before {
-      content: "–";
-      position: absolute;
-      left: 0;
-      color: #60a5fa;
+      border-radius: 1.1rem;
+      padding: 1.1rem;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9) 0, rgba(15,23,42,0.98) 35%, #020617 100%);
+      border: 1px solid rgba(31,41,55,0.95);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
     }
 
-    /* Libri */
-    .book-section {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
-      gap: 26px;
+    .card-header {
+      display: flex;
       align-items: center;
-    }
-    .book-cover {
-      max-width: 260px;
-      margin: 0 auto;
-    }
-    .book-meta {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 6px;
-      margin-bottom: 10px;
-    }
-    .book-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .book-tag {
-      font-size: 11px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      color: #cbd5f5;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
     }
 
-    /* Contatti */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-      gap: 24px;
-      align-items: start;
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
     }
-    form {
-      display: grid;
-      gap: 10px;
-    }
-    label {
-      font-size: 13px;
+
+    .card-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.9);
       color: var(--text-muted);
-      margin-bottom: 2px;
     }
-    input, textarea {
+
+    .card-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-footer a {
+      font-weight: 500;
+      color: var(--link);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .card-footer a::after {
+      content: "↗";
+      font-size: 0.75rem;
+    }
+
+    /* SECTION: PROGETTI */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project {
+      position: relative;
+      border-radius: 1.1rem;
+      overflow: hidden;
+      border: 1px solid rgba(31,41,55,0.95);
+      background: #020617;
+      box-shadow: 0 22px 55px rgba(15,23,42,0.95);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .project-media img {
       width: 100%;
-      padding: 9px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.96);
-      color: var(--text-main);
-      font-size: 14px;
-    }
-    textarea { min-height: 120px; resize: vertical; }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #60a5fa;
-      box-shadow: 0 0 0 1px rgba(96,165,250,0.4);
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
     }
 
-    .contact-meta {
-      font-size: 13px;
+    .project-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(2,6,23,0.9), transparent 60%);
+    }
+
+    .project-label {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(55,65,81,0.95);
+      color: var(--text-main);
+    }
+
+    .project-body {
+      padding: 1rem 1.1rem 1.1rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 14px;
     }
-    .contact-item {
-      font-size: 14px;
-      margin-bottom: 8px;
+
+    .project-body h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-main);
     }
-    .contact-item span {
-      color: var(--text-muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      display: block;
-      margin-bottom: 2px;
-    }
-    .social-links {
+
+    .project-actions {
+      margin-top: 0.6rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
+      gap: 0.5rem;
     }
-    .social-links a {
-      font-size: 13px;
-      padding: 6px 11px;
+
+    .chip-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
+      border: 1px solid rgba(55,65,81,0.95);
+      background: rgba(15,23,42,0.95);
       color: var(--text-muted);
     }
+
+    .chip-link::after {
+      content: "↗";
+      font-size: 0.75rem;
+    }
+
+    /* FOOTER / CONTATTI */
 
     footer {
-      border-top: 1px solid rgba(55,65,81,0.7);
-      padding: 16px 18px 22px;
-      margin-top: 6px;
-      font-size: 12px;
+      border-top: 1px solid rgba(31,41,55,0.9);
+      margin-top: auto;
+      padding: 1.6rem 0 1.9rem;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.95) 0, #020617 55%);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.4rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      text-align: center;
     }
 
-    /* Responsive */
-    @media (max-width: 880px) {
-      nav ul { display: none; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
 
+    .footer-links a {
+      color: var(--link);
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .footer-social a {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.95);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.4rem;
+      }
       .hero {
+        padding-top: 3.2rem;
+      }
+      .projects-grid {
         grid-template-columns: minmax(0, 1fr);
-        padding-top: 26px;
       }
-      .hero-right {
-        order: -1;
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      section {
-        padding-bottom: 42px;
-      }
-      .about-grid,
-      .services-grid,
-      .book-section,
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
-    @media (max-width: 520px) {
-      .hero {
-        padding-inline: 14px;
+
+    @media (max-width: 720px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
       }
-      section {
-        padding-inline: 14px;
+      .nav-toggle {
+        display: inline-flex;
+      }
+      .hero {
+        padding-top: 2.4rem;
+      }
+      .cards-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .footer-inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-mark">
+              <div class="brand-inner">EA</div>
+            </div>
+            <div class="brand-text">
+              <strong>Emir Alili</strong>
+              <span>Imprenditore · Strategia · MDP</span>
+            </div>
+          </div>
 
-<header>
-  <div class="nav-inner">
-    <div class="brand">
-      <div class="brand-mark"></div>
-      <span>Emir Alili</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#about">Chi sono</a></li>
-        <li><a href="#work">Cosa faccio</a></li>
-        <li><a href="#book">Libro</a></li>
-        <li><a href="#contact">Contatti</a></li>
-      </ul>
-    </nav>
+          <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="chi-sono.html">Chi sono</a>
+            <a href="cosa-faccio.html">Cosa faccio</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+
+          <div class="nav-cta">
+            <a class="icon-link" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              f
+            </a>
+            <a class="icon-link" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              in
+            </a>
+            <button type="button" onclick="window.location.href='contatti.html'">
+              Contattami
+            </button>
+          </div>
+
+          <button class="nav-toggle" aria-label="Apri menu">
+            ☰
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <div class="hero-kicker">
+                <span class="badge">●</span>
+                <span>Impresa, strategia, politica – senza filtri</span>
+              </div>
+              <h1 class="hero-title">
+                Costruisco aziende, <span class="accent">progetti</span> e
+                percorsi che cambiano davvero il futuro.
+              </h1>
+              <p class="hero-subtitle">
+                Lavoro tra <strong>impresa</strong>, <strong>organizzazione</strong> e
+                <strong>impegno pubblico</strong>. Dal mondo delle pulizie e dei servizi,
+                fino alla creazione di un partito politico di diaspora
+                per riformare lo Stato macedone.
+              </p>
+              <div class="hero-actions">
+                <button class="btn-primary" type="button" onclick="window.location.href='chi-sono.html'">
+                  Scopri chi sono
+                </button>
+                <button class="btn-secondary" type="button" onclick="window.location.href='cosa-faccio.html'">
+                  <span class="dot"></span>
+                  Cosa posso fare per te
+                </button>
+              </div>
+              <p class="hero-note">
+                Progetti attivi: <span>EA Group · EA Cleaning · Macedonian Diaspora Party (MDP)</span>
+              </p>
+            </div>
+
+            <div class="hero-media">
+              <div class="hero-card">
+                <div class="hero-image-wrap">
+                  <!--
+                    Sostituisci l'URL sotto con l'immagine HERO di Weeby
+                    che hai nello screenshot (es. una foto professionale d'ufficio).
+                  -->
+                  <img
+                    class="hero-image"
+                    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+                    alt="Emir al lavoro tra impresa, strategia e politica"
+                  />
+                  <div class="hero-tag">
+                    <span class="dot"></span>
+                    <span>Visone pratica · Zero fuffa</span>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <div class="hero-stat">
+                    <strong>Impresa</strong>
+                    <span>EA Cleaning · EA Group servizi e facility per aziende, condomìni e centri produttivi.</span>
+                  </div>
+                  <div class="hero-stat">
+                    <strong>Impegno pubblico</strong>
+                    <span>Fondatore Macedonian Diaspora Party: progetto politico della diaspora per riformare lo Stato.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-orbit"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COSA POSSO FARE PER TE -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-title">
+                <span>//</span> Cosa posso fare per te
+              </div>
+              <p class="section-subtitle">
+                Non vendo motivazione astratta. Metto sul tavolo numeri, processi
+                e decisioni concrete: dall’azienda al progetto politico.
+              </p>
+            </div>
+            <div>
+              <div class="pill">
+                <span class="dot"></span>
+                <span>Collaborazioni selezionate, niente perdite di tempo.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cards-grid">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Impresa e servizi</h3>
+                <span class="card-badge">EA Group · EA Cleaning</span>
+              </div>
+              <div class="card-body">
+                Gestione operativa, costi, margini, organizzazione dei cantieri e
+                sviluppo di servizi di pulizia e facility pensati per reggere nel tempo,
+                non per fare il prezzo più basso.
+              </div>
+              <div class="card-footer">
+                <span>Business reale, non da manuale.</span>
+                <a href="https://www.eagroup-servizi.com" target="_blank" rel="noopener noreferrer">
+                  Visita EA Group
+                </a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Strategia e struttura</h3>
+                <span class="card-badge">Processi</span>
+              </div>
+              <div class="card-body">
+                Analisi dei numeri, organizzazione interna, documenti, procedure,
+                modelli e strumenti digitali per tenere insieme crescita,
+                sostenibilità e controllo.
+              </div>
+              <div class="card-footer">
+                <span>Logica, metodo, visione di lungo periodo.</span>
+                <a href="cosa-faccio.html">Vedi come lavoro</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Impegno pubblico</h3>
+                <span class="card-badge">MDP</span>
+              </div>
+              <div class="card-body">
+                Macedonian Diaspora Party: un progetto politico nato fuori dai
+                palazzi, costruito dalla diaspora per riportare al centro
+                responsabilità, merito e partecipazione.
+              </div>
+              <div class="card-footer">
+                <span>Un partito di chi è dovuto emigrare.</span>
+                <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
+                  Scopri MDP
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGETTI IN EVIDENZA -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-title">
+                <span>//</span> Progetti in evidenza
+              </div>
+              <p class="section-subtitle">
+                Alcuni dei percorsi su cui sto investendo tempo, capitale ed energia.
+                Nessuna etichetta da “influencer”: solo lavoro reale, ogni giorno.
+              </p>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project">
+              <div class="project-media">
+                <!--
+                  Sostituisci con foto Weeby legata a imprese / capannoni / pulizie professionali.
+                -->
+                <img
+                  src="https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg"
+                  alt="EA Group ed EA Cleaning: servizi professionali"
+                />
+                <span class="project-label">Servizi · EA Group / EA Cleaning</span>
+              </div>
+              <div class="project-body">
+                <h3>Servizi di pulizia e facility per aziende e condomìni</h3>
+                <p>
+                  EA Cleaning ed EA Group nascono dal basso, lavorando nei cantieri
+                  e toccando con mano i problemi quotidiani. Oggi gestiamo clienti
+                  industriali, commerciali e residenziali con attenzione maniacale a
+                  margini, qualità e continuità del servizio.
+                </p>
+                <div class="project-actions">
+                  <a class="chip-link" href="https://www.eagroup-servizi.com" target="_blank" rel="noopener noreferrer">
+                    Sito EA Group
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-media">
+                <!--
+                  Sostituisci con immagine Weeby legata a politica / assemblea / diaspora.
+                -->
+                <img
+                  src="https://images.pexels.com/photos/1181400/pexels-photo-1181400.jpeg"
+                  alt="Macedonian Diaspora Party"
+                />
+                <span class="project-label">Politica · Macedonian Diaspora Party</span>
+              </div>
+              <div class="project-body">
+                <h3>Macedonian Diaspora Party (MDP)</h3>
+                <p>
+                  Un partito fondato dalla diaspora per rompere il giro infinito
+                  di corruzione, clientele e impotenza politica. Un progetto europeo,
+                  con documenti pubblici, struttura chiara e una visione di Stato
+                  che parte dai cittadini costretti a emigrare.
+                </p>
+                <div class="project-actions">
+                  <a class="chip-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
+                    Vai al sito MDP
+                  </a>
+                  <a class="chip-link" href="https://mdp-eu.com/it/documenti" target="_blank" rel="noopener noreferrer">
+                    Documenti ufficiali
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER / CONTATTI -->
+    <footer id="contatti">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-links">
+            <span>© <span id="year"></span> Emir Alili.</span>
+            <span>Imprenditore · Strategia · Impegno pubblico.</span>
+          </div>
+          <div class="footer-social">
+            <a href="mailto:macedoni.italia@gmail.com">Email diretta</a>
+            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
-</header>
 
-<main>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div>
-      <div class="hero-badge">
-        <span></span> Imprenditore, autore, formatore
-      </div>
-      <h1>
-        Costruire futuro partendo da <span>radici forti</span>
-      </h1>
-      <p class="hero-lead">
-        Sono Emir Alili. Vengo dalla Macedonia e da oltre vent’anni vivo in Italia.
-        Ho iniziato dai lavori più umili, oggi guido imprese di servizi, scrivo libri
-        e lavoro con giovani, scuole e comunità per parlare di identità, lavoro e futuro.
-      </p>
-      <div class="hero-tags">
-        <span class="hero-tag">Impresa e gestione</span>
-        <span class="hero-tag">Orientamento per giovani</span>
-        <span class="hero-tag">Integrazione e comunità</span>
-        <span class="hero-tag">Geopolitica e attualità</span>
-      </div>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">
-          Contattami <span class="arrow">→</span>
-        </a>
-        <a href="#book" class="btn-ghost">
-          Scopri il libro
-        </a>
-      </div>
-    </div>
-
-    <aside class="hero-right">
-      <div class="hero-book-label">Ultimo progetto</div>
-      <div class="hero-book">
-        <div>
-          <img src="https://m.media-amazon.com/images/I/61M6ujzbdUL._SL1491_.jpg"
-               alt="Copertina del libro Radici Forti – Orizzonti Lontani">
-        </div>
-        <div>
-          <div class="hero-book-title">Radici Forti – Orizzonti Lontani</div>
-          <div class="hero-book-sub">
-            Un viaggio vero tra guerra, migrazione, lavoro, fede e famiglia.
-            La storia di chi parte senza niente e costruisce una nuova vita.
-          </div>
-          <div class="hero-book-meta">
-            Scritto per ragazzi, genitori, insegnanti e per chi vuole capire meglio
-            cosa significa davvero “integrazione”.
-          </div>
-          <a href="https://amzn.eu/d/5sTwhB2" target="_blank" rel="noopener" class="btn-primary" style="padding:7px 14px;font-size:13px;">
-            Vai alla pagina Amazon
-          </a>
-          <div style="margin-top:10px;">
-            <span class="hero-pill">
-              <span class="hero-pill-dot"></span>
-              Basato su esperienze reali
-            </span>
-          </div>
-        </div>
-      </div>
-    </aside>
-  </section>
-
-  <!-- CHI SONO -->
-  <section id="about">
-    <h2>
-      <span>Chi sono</span>
-      Da una valigia in mano all’impresa e ai progetti sociali
-    </h2>
-    <p class="section-intro">
-      Arrivo in Italia da giovanissimo, senza sicurezze e senza scorciatoie. Ho fatto il
-      muratore, il magazziniere, l’addetto alle pulizie. In quegli anni ho imparato a
-      conoscere l’Italia “vera”: le famiglie, le aziende, le difficoltà dei ragazzi che
-      non sanno che cosa farne del proprio futuro.
-    </p>
-
-    <div class="about-grid">
-      <article class="card card-alt">
-        <h3>La mia storia in breve</h3>
-        <p>
-          Dopo anni di lavoro dipendente decido di aprire la mia prima attività nel settore
-          dei servizi. Da lì inizia un percorso fatto di errori, notti insonni e tanta
-          pratica: gestione di squadre, clienti, bilanci, burocrazia.
-        </p>
-        <p>
-          Oggi seguo aziende, progetti sociali e iniziative con scuole e associazioni. Il mio
-          punto di partenza resta lo stesso: parlare in modo diretto, concreto, senza giri di parole.
-        </p>
-        <ul class="about-list">
-          <li>Imprenditore nel settore dei servizi e delle pulizie professionali</li>
-          <li>Autore di “Radici Forti – Orizzonti Lontani”</li>
-          <li>Formatore e relatore in scuole, associazioni e comunità</li>
-          <li>Attivo in percorsi di dialogo tra giovani, famiglie e istituzioni</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h3>Missione, competenze, valori</h3>
-        <p>
-          Tutto quello che faccio gira intorno a tre parole chiave:
-        </p>
-        <ul class="about-list">
-          <li><strong>Responsabilità</strong> – verso le persone che lavorano con me, verso i clienti, verso i ragazzi che mi ascoltano.</li>
-          <li><strong>Concretezza</strong> – niente teorie vuote: numeri, esempi, casi reali, risultati.</li>
-          <li><strong>Radici</strong> – ricordarsi sempre da dove si parte, sia come persone che come comunità.</li>
-        </ul>
-        <p style="margin-top:8px;">
-          Porto questa impostazione sia nelle aziende che nei percorsi con i giovani, nei progetti
-          sociali e in tutto il lavoro legato al dialogo tra culture e fedi diverse.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <!-- COSA FACCIO -->
-  <section id="work">
-    <h2>
-      <span>Cosa faccio</span>
-      Impresa, formazione, comunità
-    </h2>
-    <p class="section-intro">
-      Negli anni ho trasformato la mia esperienza personale in tre linee di lavoro principali:
-      gestione d’impresa, orientamento per i giovani e progetti sociali sul territorio. 
-      Qui sotto trovi le aree su cui posso portare valore concreto.
-    </p>
-
-    <div class="services-grid">
-      <article class="service">
-        <div class="service-header">
-          <img src="https://img.icons8.com/ios-filled/70/2296f3/idea.png" alt="">
-          <div>
-            <h3>Impresa e organizzazione</h3>
-            <p style="font-size:12px;color:var(--text-muted);">
-              Dalla singola attività al lavoro con squadre e collaboratori.
-            </p>
-          </div>
-        </div>
-        <p>
-          Parlo di crescita aziendale partendo da chi lavora sul campo, non dalla scrivania.
-        </p>
-        <ul>
-          <li>Gestione operativa di imprese di servizi</li>
-          <li>Organizzazione di turni, costi, margini e contratti</li>
-          <li>Rapporto con fornitori, clienti, amministratori di condominio</li>
-          <li>Costruzione di squadre affidabili e responsabilizzazione delle persone</li>
-        </ul>
-      </article>
-
-      <article class="service">
-        <div class="service-header">
-          <img src="https://img.icons8.com/ios-filled/70/2296f3/podium-with-speaker.png" alt="">
-          <div>
-            <h3>Giovani, scuola, futuro</h3>
-            <p style="font-size:12px;color:var(--text-muted);">
-              Incontri, testimonianze e percorsi operativi.
-            </p>
-          </div>
-        </div>
-        <p>
-          Lavoro con scuole, classi e gruppi informali per parlare di lavoro, orientamento e scelte concrete.
-        </p>
-        <ul>
-          <li>Incontri con studenti su scuola, lavoro e imprenditorialità</li>
-          <li>Testimonianze su migrazione, integrazione e identità</li>
-          <li>Laboratori pratici su come trasformare un’idea in progetto</li>
-          <li>Confronti diretti con genitori, insegnanti e operatori</li>
-        </ul>
-      </article>
-
-      <article class="service">
-        <div class="service-header">
-          <img src="https://img.icons8.com/ios-filled/70/2296f3/charity.png" alt="">
-          <div>
-            <h3>Comunità e progetti sociali</h3>
-            <p style="font-size:12px;color:var(--text-muted);">
-              Dialogo tra culture, fedi e generazioni.
-            </p>
-          </div>
-        </div>
-        <p>
-          Metto insieme mondi che spesso non si parlano: istituzioni, comunità straniere,
-          associazioni, volontariato.
-        </p>
-        <ul>
-          <li>Progetti di integrazione tra comunità migranti e territorio</li>
-          <li>Iniziative con moschee, associazioni e realtà giovanili</li>
-          <li>Campagne di sensibilizzazione su donazione, diritti, cittadinanza</li>
-          <li>Dialogo con amministrazioni locali e scuole</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <!-- LIBRO -->
-  <section id="book">
-    <h2>
-      <span>Libro</span>
-      Radici Forti – Orizzonti Lontani
-    </h2>
-
-    <div class="book-section">
-      <div class="book-cover">
-        <img src="https://m.media-amazon.com/images/I/61M6ujzbdUL._SL1491_.jpg"
-             alt="Copertina del libro Radici Forti – Orizzonti Lontani di Emir Alili">
-        <p class="book-meta">
-          Disponibile su Amazon in formato cartaceo. Un libro nato da incontri veri con
-          ragazzi, insegnanti, famiglie e comunità.
-        </p>
-        <a href="https://amzn.eu/d/5sTwhB2" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center;font-size:13px;">
-          Acquista su Amazon
-        </a>
-      </div>
-
-      <div>
-        <p class="section-intro" style="margin-bottom:14px;">
-          “Radici Forti – Orizzonti Lontani” non è un romanzo inventato. È una storia
-          costruita a partire da esperienze vere: guerra nei Balcani, migrazione, lavoro
-          in Italia, famiglia, fede, scontri culturali, errori, ripartenze.
-        </p>
-        <p class="section-intro" style="margin-bottom:10px;">
-          Il libro è pensato per chi vuole capire meglio che cosa vive un ragazzo che parte
-          da zero in un nuovo Paese, e per chi in Italia si sente spesso bloccato tra
-          aspettative, paure e mancanza di prospettive.
-        </p>
-        <p class="section-intro" style="margin-bottom:12px;">
-          È uno strumento di lavoro per scuole, educatori, comunità religiose e associazioni
-          che vogliono aprire discussioni vere su identità, appartenenza, responsabilità e
-          possibilità di cambiamento.
-        </p>
-
-        <div class="book-tags">
-          <span class="book-tag">Migrazione e radici</span>
-          <span class="book-tag">Giovani e futuro</span>
-          <span class="book-tag">Fede e famiglia</span>
-          <span class="book-tag">Lavoro e impresa</span>
-          <span class="book-tag">Dialogo tra culture</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section id="contact">
-    <h2>
-      <span>Contatti</span>
-      Parliamone sul serio
-    </h2>
-    <p class="section-intro">
-      Se vuoi confrontarti su un progetto, organizzare un incontro in una scuola o in una
-      associazione, oppure se ti interessa usare il libro come strumento di lavoro,
-      qui sotto trovi il modo più semplice per arrivare a me.
-    </p>
-
-    <div class="contact-grid">
-      <div class="card card-alt">
-        <form action="mailto:tuo.indirizzo@email.it" method="post" enctype="text/plain">
-          <div>
-            <label for="nome">Nome e cognome</label>
-            <input type="text" id="nome" name="Nome" required>
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="Email" required>
-          </div>
-          <div>
-            <label for="oggetto">Oggetto</label>
-            <input type="text" id="oggetto" name="Oggetto">
-          </div>
-          <div>
-            <label for="messaggio">Messaggio</label>
-            <textarea id="messaggio" name="Messaggio" required></textarea>
-          </div>
-          <div style="margin-top:4px;">
-            <button type="submit" class="btn-primary">Invia messaggio</button>
-          </div>
-        </form>
-      </div>
-
-      <div>
-        <p class="contact-meta">
-          Preferisco i confronti diretti, chiari e senza formalismi inutili. Puoi scrivermi per:
-          incontri in presenza, testimonianze, progetti con scuole o comunità, interviste, oppure
-          per condividere la tua esperienza dopo aver letto il libro.
-        </p>
-
-        <div class="contact-item">
-          <span>Email</span>
-          <!-- Sostituisci con la tua email reale -->
-          <a href="mailto:tuo.indirizzo@email.it">tuo.indirizzo@email.it</a>
-        </div>
-
-        <div class="contact-item">
-          <span>WhatsApp</span>
-          <!-- Inserisci il tuo numero reale al posto di 0000000000 -->
-          <a href="https://wa.me/390000000000" target="_blank" rel="noopener">
-            Scrivimi su WhatsApp
-          </a>
-        </div>
-
-        <div class="contact-item">
-          <span>Social</span>
-          <div class="social-links">
-            <!-- Metti i tuoi link reali al posto del simbolo # -->
-            <a href="#" target="_blank" rel="noopener">Facebook</a>
-            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="#" target="_blank" rel="noopener">YouTube</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  © <span id="year"></span> Emir Alili. Tutti i diritti riservati.
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
+  <script>
+    // anno automatico nel footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
