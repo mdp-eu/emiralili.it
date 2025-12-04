@@ -554,6 +554,10 @@
       position: relative;
       aspect-ratio: 16 / 9;
       overflow: hidden;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .project-media img {
@@ -563,11 +567,22 @@
       transform: scale(1.03);
     }
 
+    .project-media.logo-mdp img {
+      object-fit: contain;
+      padding: 1.2rem;
+      background: #020617;
+      transform: none;
+    }
+
     .project-media::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(to top, rgba(2,6,23,0.9), transparent 60%);
+    }
+
+    .project-media.logo-mdp::after {
+      background: linear-gradient(to top, rgba(2,6,23,0.7), transparent 70%);
     }
 
     .project-label {
@@ -785,7 +800,6 @@
             <div class="hero-media">
               <div class="hero-card">
                 <div class="hero-image-wrap">
-                  <!-- Hero: foto caricata su repo emiralili.it -->
                   <img
                     class="hero-image"
                     src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
@@ -906,12 +920,12 @@
           </div>
 
           <div class="projects-grid">
+            <!-- EA GROUP / EA CLEANING -->
             <article class="project">
               <div class="project-media">
-                <!-- Qui puoi sostituire con un'altra immagine dal repo se vuoi -->
                 <img
-                  src="https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg"
-                  alt="EA Group ed EA Cleaning: servizi professionali"
+                  src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/impresa-multiservizi-infografica.jpg"
+                  alt="EA Group ed EA Cleaning – Impresa multiservizi"
                 />
                 <span class="project-label">Servizi · EA Group / EA Cleaning</span>
               </div>
@@ -931,12 +945,12 @@
               </div>
             </article>
 
+            <!-- MDP -->
             <article class="project">
-              <div class="project-media">
-                <!-- Anche qui: sostituibile con foto tua caricata su GitHub -->
+              <div class="project-media logo-mdp">
                 <img
-                  src="https://images.pexels.com/photos/1181400/pexels-photo-1181400.jpeg"
-                  alt="Macedonian Diaspora Party"
+                  src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/mdp-logo.png"
+                  alt="MDP – Macedonian Diaspora Party"
                 />
                 <span class="project-label">Politica · Macedonian Diaspora Party</span>
               </div>
@@ -982,7 +996,6 @@
   </div>
 
   <script>
-    // anno automatico nel footer
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
