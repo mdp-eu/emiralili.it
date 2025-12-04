@@ -1,28 +1,855 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emir Alili</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            margin: 0;
-            padding: 40px;
-            text-align: center;
-        }
-        h1 {
-            color: #003366;
-        }
-        p {
-            font-size: 18px;
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Emir Alili – Imprenditore, autore, formatore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sito personale di Emir Alili: imprenditore, autore di Radici Forti – Orizzonti Lontani, formatore e promotore di progetti sociali.">
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-alt: #111827;
+      --accent: #2563eb;
+      --accent-soft: #1d4ed8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --card-bg: #020617;
+      --border-soft: rgba(148,163,184,0.25);
+      --max-width: 1100px;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Layout base */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: linear-gradient(to bottom, rgba(15,23,42,0.98), rgba(15,23,42,0.88), rgba(15,23,42,0.0));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+    }
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #60a5fa 0, #2563eb 40%, #1e40af 100%);
+      box-shadow: 0 0 0 1px rgba(191,219,254,0.25), 0 0 30px rgba(37,99,235,0.8);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+    }
+    nav a {
+      color: var(--text-muted);
+      padding: 6px 0;
+      position: relative;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #60a5fa, #2563eb);
+      transition: width 0.18s ease-out;
+    }
+    nav a:hover {
+      color: #e5e7eb;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 18px 60px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.35), transparent 60%);
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .hero-badge span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.25);
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 40px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero h1 span {
+      background: linear-gradient(to right, #bfdbfe, #60a5fa);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-lead {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+    .hero-tag {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: #cbd5f5;
+      background: rgba(15,23,42,0.85);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-primary {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #eff6ff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 12px 30px rgba(37,99,235,0.45);
+    }
+    .btn-primary span.arrow {
+      font-size: 16px;
+      transform: translateY(1px);
+    }
+    .btn-ghost {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .hero-right {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top left, rgba(59,130,246,0.35), rgba(15,23,42,0.98));
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background: radial-gradient(circle at 10% 0, rgba(96,165,250,0.18), transparent 65%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .hero-book-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .hero-book {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-book img {
+      border-radius: 12px;
+      box-shadow: 0 18px 35px rgba(15,23,42,0.9);
+    }
+    .hero-book-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .hero-book-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .hero-book-meta {
+      font-size: 12px;
+      color: #cbd5f5;
+      margin-bottom: 14px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #fbbf24;
+    }
+
+    /* Sezioni generali */
+    section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 18px 52px;
+    }
+    section h2 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    section h2 span {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .section-intro {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 22px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+      gap: 26px;
+    }
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top left, rgba(30,64,175,0.6), rgba(15,23,42,0.98));
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+    }
+    .card-alt {
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
+    }
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .about-list {
+      list-style: none;
+      margin-top: 6px;
+    }
+    .about-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .about-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #60a5fa;
+    }
+
+    /* Cosa faccio */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .service {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: rgba(15,23,42,0.95);
+      padding: 18px 16px 18px;
+      box-shadow: 0 14px 35px rgba(15,23,42,0.7);
+    }
+    .service-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .service-header img {
+      width: 38px;
+      height: 38px;
+    }
+    .service h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .service p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .service ul {
+      margin-top: 10px;
+      list-style: none;
+    }
+    .service li {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .service li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: #60a5fa;
+    }
+
+    /* Libri */
+    .book-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 26px;
+      align-items: center;
+    }
+    .book-cover {
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .book-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+    .book-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .book-tag {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #cbd5f5;
+    }
+
+    /* Contatti */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: start;
+    }
+    form {
+      display: grid;
+      gap: 10px;
+    }
+    label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.96);
+      color: var(--text-main);
+      font-size: 14px;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(96,165,250,0.4);
+    }
+
+    .contact-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .contact-item {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .contact-item span {
+      color: var(--text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .social-links a {
+      font-size: 13px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      color: var(--text-muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(55,65,81,0.7);
+      padding: 16px 18px 22px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      nav ul { display: none; }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 26px;
+      }
+      .hero-right {
+        order: -1;
+      }
+      section {
+        padding-bottom: 42px;
+      }
+      .about-grid,
+      .services-grid,
+      .book-section,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 520px) {
+      .hero {
+        padding-inline: 14px;
+      }
+      section {
+        padding-inline: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Sito personale di Emir Alili</h1>
-    <p>Pagina di test. Il sito vero sarà costruito qui.</p>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <span>Emir Alili</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">Chi sono</a></li>
+        <li><a href="#work">Cosa faccio</a></li>
+        <li><a href="#book">Libro</a></li>
+        <li><a href="#contact">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <div class="hero-badge">
+        <span></span> Imprenditore, autore, formatore
+      </div>
+      <h1>
+        Costruire futuro partendo da <span>radici forti</span>
+      </h1>
+      <p class="hero-lead">
+        Sono Emir Alili. Vengo dalla Macedonia e da oltre vent’anni vivo in Italia.
+        Ho iniziato dai lavori più umili, oggi guido imprese di servizi, scrivo libri
+        e lavoro con giovani, scuole e comunità per parlare di identità, lavoro e futuro.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">Impresa e gestione</span>
+        <span class="hero-tag">Orientamento per giovani</span>
+        <span class="hero-tag">Integrazione e comunità</span>
+        <span class="hero-tag">Geopolitica e attualità</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Contattami <span class="arrow">→</span>
+        </a>
+        <a href="#book" class="btn-ghost">
+          Scopri il libro
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero-right">
+      <div class="hero-book-label">Ultimo progetto</div>
+      <div class="hero-book">
+        <div>
+          <img src="https://m.media-amazon.com/images/I/61M6ujzbdUL._SL1491_.jpg"
+               alt="Copertina del libro Radici Forti – Orizzonti Lontani">
+        </div>
+        <div>
+          <div class="hero-book-title">Radici Forti – Orizzonti Lontani</div>
+          <div class="hero-book-sub">
+            Un viaggio vero tra guerra, migrazione, lavoro, fede e famiglia.
+            La storia di chi parte senza niente e costruisce una nuova vita.
+          </div>
+          <div class="hero-book-meta">
+            Scritto per ragazzi, genitori, insegnanti e per chi vuole capire meglio
+            cosa significa davvero “integrazione”.
+          </div>
+          <a href="https://amzn.eu/d/5sTwhB2" target="_blank" rel="noopener" class="btn-primary" style="padding:7px 14px;font-size:13px;">
+            Vai alla pagina Amazon
+          </a>
+          <div style="margin-top:10px;">
+            <span class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              Basato su esperienze reali
+            </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- CHI SONO -->
+  <section id="about">
+    <h2>
+      <span>Chi sono</span>
+      Da una valigia in mano all’impresa e ai progetti sociali
+    </h2>
+    <p class="section-intro">
+      Arrivo in Italia da giovanissimo, senza sicurezze e senza scorciatoie. Ho fatto il
+      muratore, il magazziniere, l’addetto alle pulizie. In quegli anni ho imparato a
+      conoscere l’Italia “vera”: le famiglie, le aziende, le difficoltà dei ragazzi che
+      non sanno che cosa farne del proprio futuro.
+    </p>
+
+    <div class="about-grid">
+      <article class="card card-alt">
+        <h3>La mia storia in breve</h3>
+        <p>
+          Dopo anni di lavoro dipendente decido di aprire la mia prima attività nel settore
+          dei servizi. Da lì inizia un percorso fatto di errori, notti insonni e tanta
+          pratica: gestione di squadre, clienti, bilanci, burocrazia.
+        </p>
+        <p>
+          Oggi seguo aziende, progetti sociali e iniziative con scuole e associazioni. Il mio
+          punto di partenza resta lo stesso: parlare in modo diretto, concreto, senza giri di parole.
+        </p>
+        <ul class="about-list">
+          <li>Imprenditore nel settore dei servizi e delle pulizie professionali</li>
+          <li>Autore di “Radici Forti – Orizzonti Lontani”</li>
+          <li>Formatore e relatore in scuole, associazioni e comunità</li>
+          <li>Attivo in percorsi di dialogo tra giovani, famiglie e istituzioni</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Missione, competenze, valori</h3>
+        <p>
+          Tutto quello che faccio gira intorno a tre parole chiave:
+        </p>
+        <ul class="about-list">
+          <li><strong>Responsabilità</strong> – verso le persone che lavorano con me, verso i clienti, verso i ragazzi che mi ascoltano.</li>
+          <li><strong>Concretezza</strong> – niente teorie vuote: numeri, esempi, casi reali, risultati.</li>
+          <li><strong>Radici</strong> – ricordarsi sempre da dove si parte, sia come persone che come comunità.</li>
+        </ul>
+        <p style="margin-top:8px;">
+          Porto questa impostazione sia nelle aziende che nei percorsi con i giovani, nei progetti
+          sociali e in tutto il lavoro legato al dialogo tra culture e fedi diverse.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- COSA FACCIO -->
+  <section id="work">
+    <h2>
+      <span>Cosa faccio</span>
+      Impresa, formazione, comunità
+    </h2>
+    <p class="section-intro">
+      Negli anni ho trasformato la mia esperienza personale in tre linee di lavoro principali:
+      gestione d’impresa, orientamento per i giovani e progetti sociali sul territorio. 
+      Qui sotto trovi le aree su cui posso portare valore concreto.
+    </p>
+
+    <div class="services-grid">
+      <article class="service">
+        <div class="service-header">
+          <img src="https://img.icons8.com/ios-filled/70/2296f3/idea.png" alt="">
+          <div>
+            <h3>Impresa e organizzazione</h3>
+            <p style="font-size:12px;color:var(--text-muted);">
+              Dalla singola attività al lavoro con squadre e collaboratori.
+            </p>
+          </div>
+        </div>
+        <p>
+          Parlo di crescita aziendale partendo da chi lavora sul campo, non dalla scrivania.
+        </p>
+        <ul>
+          <li>Gestione operativa di imprese di servizi</li>
+          <li>Organizzazione di turni, costi, margini e contratti</li>
+          <li>Rapporto con fornitori, clienti, amministratori di condominio</li>
+          <li>Costruzione di squadre affidabili e responsabilizzazione delle persone</li>
+        </ul>
+      </article>
+
+      <article class="service">
+        <div class="service-header">
+          <img src="https://img.icons8.com/ios-filled/70/2296f3/podium-with-speaker.png" alt="">
+          <div>
+            <h3>Giovani, scuola, futuro</h3>
+            <p style="font-size:12px;color:var(--text-muted);">
+              Incontri, testimonianze e percorsi operativi.
+            </p>
+          </div>
+        </div>
+        <p>
+          Lavoro con scuole, classi e gruppi informali per parlare di lavoro, orientamento e scelte concrete.
+        </p>
+        <ul>
+          <li>Incontri con studenti su scuola, lavoro e imprenditorialità</li>
+          <li>Testimonianze su migrazione, integrazione e identità</li>
+          <li>Laboratori pratici su come trasformare un’idea in progetto</li>
+          <li>Confronti diretti con genitori, insegnanti e operatori</li>
+        </ul>
+      </article>
+
+      <article class="service">
+        <div class="service-header">
+          <img src="https://img.icons8.com/ios-filled/70/2296f3/charity.png" alt="">
+          <div>
+            <h3>Comunità e progetti sociali</h3>
+            <p style="font-size:12px;color:var(--text-muted);">
+              Dialogo tra culture, fedi e generazioni.
+            </p>
+          </div>
+        </div>
+        <p>
+          Metto insieme mondi che spesso non si parlano: istituzioni, comunità straniere,
+          associazioni, volontariato.
+        </p>
+        <ul>
+          <li>Progetti di integrazione tra comunità migranti e territorio</li>
+          <li>Iniziative con moschee, associazioni e realtà giovanili</li>
+          <li>Campagne di sensibilizzazione su donazione, diritti, cittadinanza</li>
+          <li>Dialogo con amministrazioni locali e scuole</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- LIBRO -->
+  <section id="book">
+    <h2>
+      <span>Libro</span>
+      Radici Forti – Orizzonti Lontani
+    </h2>
+
+    <div class="book-section">
+      <div class="book-cover">
+        <img src="https://m.media-amazon.com/images/I/61M6ujzbdUL._SL1491_.jpg"
+             alt="Copertina del libro Radici Forti – Orizzonti Lontani di Emir Alili">
+        <p class="book-meta">
+          Disponibile su Amazon in formato cartaceo. Un libro nato da incontri veri con
+          ragazzi, insegnanti, famiglie e comunità.
+        </p>
+        <a href="https://amzn.eu/d/5sTwhB2" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center;font-size:13px;">
+          Acquista su Amazon
+        </a>
+      </div>
+
+      <div>
+        <p class="section-intro" style="margin-bottom:14px;">
+          “Radici Forti – Orizzonti Lontani” non è un romanzo inventato. È una storia
+          costruita a partire da esperienze vere: guerra nei Balcani, migrazione, lavoro
+          in Italia, famiglia, fede, scontri culturali, errori, ripartenze.
+        </p>
+        <p class="section-intro" style="margin-bottom:10px;">
+          Il libro è pensato per chi vuole capire meglio che cosa vive un ragazzo che parte
+          da zero in un nuovo Paese, e per chi in Italia si sente spesso bloccato tra
+          aspettative, paure e mancanza di prospettive.
+        </p>
+        <p class="section-intro" style="margin-bottom:12px;">
+          È uno strumento di lavoro per scuole, educatori, comunità religiose e associazioni
+          che vogliono aprire discussioni vere su identità, appartenenza, responsabilità e
+          possibilità di cambiamento.
+        </p>
+
+        <div class="book-tags">
+          <span class="book-tag">Migrazione e radici</span>
+          <span class="book-tag">Giovani e futuro</span>
+          <span class="book-tag">Fede e famiglia</span>
+          <span class="book-tag">Lavoro e impresa</span>
+          <span class="book-tag">Dialogo tra culture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section id="contact">
+    <h2>
+      <span>Contatti</span>
+      Parliamone sul serio
+    </h2>
+    <p class="section-intro">
+      Se vuoi confrontarti su un progetto, organizzare un incontro in una scuola o in una
+      associazione, oppure se ti interessa usare il libro come strumento di lavoro,
+      qui sotto trovi il modo più semplice per arrivare a me.
+    </p>
+
+    <div class="contact-grid">
+      <div class="card card-alt">
+        <form action="mailto:tuo.indirizzo@email.it" method="post" enctype="text/plain">
+          <div>
+            <label for="nome">Nome e cognome</label>
+            <input type="text" id="nome" name="Nome" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required>
+          </div>
+          <div>
+            <label for="oggetto">Oggetto</label>
+            <input type="text" id="oggetto" name="Oggetto">
+          </div>
+          <div>
+            <label for="messaggio">Messaggio</label>
+            <textarea id="messaggio" name="Messaggio" required></textarea>
+          </div>
+          <div style="margin-top:4px;">
+            <button type="submit" class="btn-primary">Invia messaggio</button>
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <p class="contact-meta">
+          Preferisco i confronti diretti, chiari e senza formalismi inutili. Puoi scrivermi per:
+          incontri in presenza, testimonianze, progetti con scuole o comunità, interviste, oppure
+          per condividere la tua esperienza dopo aver letto il libro.
+        </p>
+
+        <div class="contact-item">
+          <span>Email</span>
+          <!-- Sostituisci con la tua email reale -->
+          <a href="mailto:tuo.indirizzo@email.it">tuo.indirizzo@email.it</a>
+        </div>
+
+        <div class="contact-item">
+          <span>WhatsApp</span>
+          <!-- Inserisci il tuo numero reale al posto di 0000000000 -->
+          <a href="https://wa.me/390000000000" target="_blank" rel="noopener">
+            Scrivimi su WhatsApp
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span>Social</span>
+          <div class="social-links">
+            <!-- Metti i tuoi link reali al posto del simbolo # -->
+            <a href="#" target="_blank" rel="noopener">Facebook</a>
+            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="#" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Emir Alili. Tutti i diritti riservati.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
