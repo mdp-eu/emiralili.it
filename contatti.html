@@ -62,7 +62,7 @@
       padding: 0 1.25rem;
     }
 
-    /* HEADER – identico alle altre pagine */
+    /* HEADER */
 
     header {
       position: sticky;
@@ -367,6 +367,68 @@
       font-weight: 500;
     }
 
+    /* PER COSA CONTATTARMI */
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 880px) {
+      .purpose-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .purpose-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem 1.1rem;
+      font-size: 0.88rem;
+    }
+
+    .purpose-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 0.25rem;
+    }
+
+    .purpose-text {
+      margin-bottom: 0.35rem;
+    }
+
+    .purpose-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    .purpose-list li + li {
+      margin-top: 0.15rem;
+    }
+
+    /* NOTE PRATICHE */
+
+    .notes-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.4rem;
+      font-size: 0.88rem;
+    }
+
+    .notes-list li + li {
+      margin-top: 0.25rem;
+    }
+
+    .notes-list strong {
+      color: #111827;
+    }
+
     /* OTHER LINKS */
 
     .other-links-title {
@@ -395,7 +457,7 @@
       color: var(--accent-dark);
     }
 
-    /* FOOTER – come le altre pagine */
+    /* FOOTER */
 
     footer {
       border-top: 1px solid var(--border-subtle);
@@ -541,6 +603,69 @@
               </div>
             </div>
           </div>
+        </section>
+
+        <!-- PER COSA CONTATTARMI -->
+        <section class="section-box">
+          <div class="section-header">
+            <h2 class="section-title"><span>//</span> Per cosa puoi contattarmi</h2>
+            <p class="section-subtitle">
+              Non tutto è chiacchiera. Qui è chiaro in quali ambiti ha senso scrivermi e su cosa posso essere utile in concreto.
+            </p>
+          </div>
+
+          <div class="purpose-grid">
+            <article class="purpose-card">
+              <h3 class="purpose-title">Impresa · EA Group / EA Cleaning</h3>
+              <p class="purpose-text">
+                Confronto su gestione operativa, appalti di servizi, organizzazione del lavoro e numeri reali di un’azienda di pulizie e facility.
+              </p>
+              <ul class="purpose-list">
+                <li>– analisi costi / margini su cantieri e servizi</li>
+                <li>– impostazione turni e gestione personale</li>
+                <li>– proposte di collaborazione su progetti specifici</li>
+              </ul>
+            </article>
+
+            <article class="purpose-card">
+              <h3 class="purpose-title">Politica · Macedonian Diaspora Party</h3>
+              <p class="purpose-text">
+                Contatti dalla diaspora, cittadini in Macedonia, associazioni o gruppi che vogliono capire e partecipare al progetto MDP.
+              </p>
+              <ul class="purpose-list">
+                <li>– richieste di informazioni sul programma</li>
+                <li>– proposte di collaborazione o organizzazione locale</li>
+                <li>– segnalazioni su temi e problemi concreti</li>
+              </ul>
+            </article>
+
+            <article class="purpose-card">
+              <h3 class="purpose-title">Media, eventi, interventi pubblici</h3>
+              <p class="purpose-text">
+                Giornalisti, redazioni, associazioni, scuole, enti che vogliono approfondire temi di geopolitica, lavoro, diaspora, responsabilità politica.
+              </p>
+              <ul class="purpose-list">
+                <li>– interviste e contributi editoriali</li>
+                <li>– partecipazione a dibattiti, incontri, conferenze</li>
+                <li>– presentazioni di libri o progetti</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- NOTE PRATICHE -->
+        <section class="section-box">
+          <div class="section-header">
+            <h2 class="section-title"><span>//</span> Note pratiche</h2>
+            <p class="section-subtitle">
+              Alcune informazioni utili prima di scrivere, per rendere più semplice il contatto.
+            </p>
+          </div>
+          <ul class="notes-list">
+            <li><strong>Tempi di risposta</strong> · cerco di rispondere a tutte le richieste serie entro pochi giorni, compatibilmente con impegni aziendali e politici.</li>
+            <li><strong>Lingue</strong> · italiano, macedone, albanese; all’occorrenza anche inglese.</li>
+            <li><strong>Proposte</strong> · più la richiesta è chiara e concreta, più è facile capire se e come posso esserti utile.</li>
+          </ul>
         </section>
 
         <!-- ALTRI LINK -->
