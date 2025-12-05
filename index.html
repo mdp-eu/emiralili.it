@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emir Alili – Imprenditore, autore, leader politico</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="brand">
+        <img src="assets/logos/mdp-logo.jpg" alt="Logo Emir Alili" class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-name">Emir Alili</span>
+          <span class="brand-tagline">Imprenditore · Autore · Impegno civile</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="chi-sono.html" class="nav-link">Chi sono</a>
+        <a href="cosa-faccio.html" class="nav-link">Cosa faccio</a>
+        <a href="contatti.html" class="nav-link">Contatti</a>
+      </nav>
+
+      <button class="mobile-toggle" onclick="toggleMenu()">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>Impresa, idee e politica con i piedi per terra.</h1>
+        <p>
+          Lavoro tra aziende, progetti culturali e impegno politico. 
+          Niente slogan vuoti: solo risultati, analisi e decisioni concrete.
+        </p>
+
+        <div class="hero-actions">
+          <a href="chi-sono.html" class="btn primary">Scopri chi sono</a>
+          <a href="cosa-faccio.html" class="btn ghost">Vedi cosa faccio</a>
+        </div>
+
+        <div class="hero-meta">
+          <span>EA Cleaning · EA Group · MDP – Macedonian Diaspora Party</span>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-card">
+          <img src="assets/img/Emir servizio fotografico.jpg" alt="Emir Alili" class="hero-image" />
+          <div class="hero-card-badge">
+            <span>Impresa</span>
+            <span>Analisi geopolitica</span>
+            <span>Politica partecipata</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE PANNELLI -->
+  <section class="section">
+    <div class="container section-header">
+      <h2>Aree principali</h2>
+      <p>
+        Tre livelli che si parlano: impresa, pensiero critico e azione politica organizzata.
+      </p>
+    </div>
+
+    <div class="container cards-grid">
+      <article class="card">
+        <h3>Impresa</h3>
+        <p>
+          Gestione e sviluppo di EA Cleaning ed EA Group: servizi, numeri, efficienza
+          e organizzazione pratica del lavoro.
+        </p>
+        <a href="cosa-faccio.html" class="card-link">Vai ai progetti aziendali</a>
+      </article>
+
+      <article class="card">
+        <h3>Analisi e libri</h3>
+        <p>
+          Libri, documenti e analisi sulla geopolitica, sulla scuola, sul lavoro
+          e sul futuro delle nuove generazioni.
+        </p>
+        <a href="chi-sono.html" class="card-link">Scopri il percorso</a>
+      </article>
+
+      <article class="card">
+        <h3>MDP – Macedonian Diaspora Party</h3>
+        <p>
+          Un progetto politico costruito dalla diaspora per cambiare la Macedonia,
+          fuori dalle logiche dei partiti tradizionali.
+        </p>
+        <a href="https://mdp-eu.com" class="card-link" target="_blank" rel="noopener">
+          Vai al sito MDP
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- SEZIONE CTA -->
+  <section class="section cta">
+    <div class="container cta-inner">
+      <div>
+        <h2>Vuoi collaborare su un progetto concreto?</h2>
+        <p>
+          Aziende, amministrazioni, associazioni, media: se cerchi qualcuno che
+          non giri attorno ai problemi, ci sono.
+        </p>
+      </div>
+      <a href="contatti.html" class="btn primary">Scrivimi</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-title">Contatti rapidi</p>
+        <p>Email: <a href="mailto:info@emiralili.it">info@emiralili.it</a></p>
+        <p>Tel: <a href="tel:+393282290062">+39 328 229 0062</a></p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Online</p>
+        <p><a href="https://www.facebook.com/emir.alili.81/" target="_blank">Facebook</a></p>
+        <p><a href="https://www.linkedin.com/in/emiralili/" target="_blank">LinkedIn</a></p>
+        <p><a href="https://mdp-eu.com" target="_blank">MDP – Sito ufficiale</a></p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Note</p>
+        <p>Questo sito è uno spazio personale, non un’agenzia stampa.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2025 Emir Alili – Tutti i diritti riservati</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
