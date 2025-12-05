@@ -4,20 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emir Alili – Imprenditore, autore, leader politico</title>
+
+  <!-- Icone -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
   <style>
     :root {
-      --bg-page: #f3f4f6;
-      --bg-main: #ffffff;
-      --bg-soft: #f9fafb;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --border-subtle: #e5e7eb;
-      --accent: #ea580c;
-      --accent-dark: #9a3412;
-      --link: #2563eb;
+      --bg-page: #0f172a;
+      --bg-main: #0b1120;
+      --bg-card: #020617;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.12);
+      --accent-dark: #ea580c;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
       --radius-lg: 18px;
       --radius-full: 999px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 28px 80px rgba(15, 23, 42, 0.8);
+      --max-width: 1080px;
     }
 
     * {
@@ -33,7 +41,7 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: var(--bg-page);
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
       color: var(--text-main);
       line-height: 1.6;
     }
@@ -56,48 +64,55 @@
 
     .container {
       width: 100%;
-      max-width: 1120px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding: 18px 16px 42px;
     }
 
     /* HEADER */
 
-    header {
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.97),
+        rgba(15, 23, 42, 0.8),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
     }
 
-    .nav {
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.7rem 0;
-      gap: 0.75rem;
+      gap: 12px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 10px;
       min-width: 0;
     }
 
-    .brand-avatar {
+    .brand-mark {
       width: 40px;
       height: 40px;
-      border-radius: 50%;
+      border-radius: 999px;
       overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      background: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
       flex-shrink: 0;
     }
 
-    .brand-avatar img {
+    .brand-mark img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -106,132 +121,181 @@
     .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 0.08rem;
       min-width: 0;
     }
 
-    .brand-text strong {
-      font-size: 0.96rem;
-      letter-spacing: 0.12em;
+    .brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
-    .brand-text span {
-      font-size: 0.78rem;
+    .brand-subtitle {
+      font-size: 11px;
       color: var(--text-muted);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .nav-links {
-      display: none;
+    .nav {
+      display: flex;
       align-items: center;
-      gap: 1.4rem;
-      font-size: 0.9rem;
+      gap: 18px;
     }
 
-    .nav-links a {
+    .nav a {
+      font-size: 13px;
+      padding: 4px 0;
       position: relative;
-      padding-bottom: 0.08rem;
-      color: #4b5563;
+      color: var(--text-muted);
       font-weight: 500;
     }
 
-    .nav-links a.active {
-      color: var(--text-main);
-      font-weight: 600;
+    .nav a:hover,
+    .nav a.active {
+      color: #f9fafb;
     }
 
-    .nav-links a::after {
+    .nav a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -4px;
       width: 0;
       height: 2px;
-      background: var(--accent);
-      border-radius: var(--radius-full);
-      transition: width 0.16s ease-out;
+      border-radius: 999px;
+      background: linear-gradient(to right, #fb923c, #f97316);
+      transition: width 0.18s ease;
     }
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
+    .nav a:hover::after,
+    .nav a.active::after {
+      width: 20px;
     }
 
     .nav-cta {
-      display: none;
+      display: flex;
       align-items: center;
-      gap: 0.6rem;
     }
 
     .btn-header {
       border-radius: var(--radius-full);
-      padding: 0.45rem 1rem;
-      font-size: 0.78rem;
+      padding: 7px 14px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      color: #374151;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
       cursor: pointer;
-      white-space: nowrap;
     }
 
     .btn-header:hover {
-      border-color: var(--accent);
-      color: var(--accent-dark);
+      border-color: rgba(249, 115, 22, 0.9);
+      color: #e5e7eb;
     }
 
+    /* NAV MOBILE */
+
     .nav-toggle {
-      display: inline-flex;
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      color: #4b5563;
-      font-size: 1rem;
       cursor: pointer;
     }
 
-    .nav.mobile-open {
-      flex-direction: column;
-      align-items: flex-start;
+    .nav-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      position: relative;
     }
 
-    .nav.mobile-open .nav-links,
-    .nav.mobile-open .nav-cta {
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .nav-toggle span::before {
+      top: -5px;
+    }
+
+    .nav-toggle span::after {
+      top: 5px;
+    }
+
+    .nav-mobile {
+      display: none;
+      border-top: 1px solid rgba(30, 64, 175, 0.3);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .nav-mobile-links {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 8px 16px 12px;
       display: flex;
-      width: 100%;
-    }
-
-    .nav.mobile-open .nav-links {
-      margin-top: 0.6rem;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0.55rem;
+      gap: 6px;
     }
 
-    .nav.mobile-open .nav-cta {
-      margin-top: 0.5rem;
+    .nav-mobile a {
+      font-size: 14px;
+      padding: 9px 10px;
+      border-radius: 999px;
+      text-align: center;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--text-muted);
     }
 
-    /* LAYOUT PRINCIPALE (stile matteorenzi.it) */
+    .nav-mobile a.active,
+    .nav-mobile a:hover {
+      border-color: rgba(249, 115, 22, 0.9);
+      color: #f9fafb;
+    }
+
+    .nav-mobile.open {
+      display: block;
+    }
+
+    @media (max-width: 820px) {
+      .nav,
+      .nav-cta {
+        display: none;
+      }
+      .nav-toggle {
+        display: flex;
+      }
+    }
+
+    /* LAYOUT PRINCIPALE */
 
     main {
-      padding: 1.8rem 0 3.2rem;
+      padding-top: 18px;
+      padding-bottom: 40px;
     }
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+      gap: 22px;
       align-items: flex-start;
     }
 
@@ -239,211 +303,272 @@
       .layout {
         grid-template-columns: minmax(0, 1fr);
       }
-      main {
-        padding-top: 1.4rem;
-      }
     }
-
-    /* COLONNA CONTENUTI */
 
     .content-column {
       display: flex;
       flex-direction: column;
-      gap: 1.8rem;
+      gap: 14px;
     }
 
-    .hero-block {
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 45%, #92400e 100%);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      padding: 1.4rem 1.5rem;
-      color: #fff7ed;
+    /* HERO */
+
+    .hero {
+      padding-bottom: 4px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-      gap: 1.4rem;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 18px;
       align-items: center;
     }
 
-    .hero-text-kicker {
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.9;
-      margin-bottom: 0.35rem;
-    }
-
-    .hero-text-title {
-      font-size: 1.6rem;
-      line-height: 1.2;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-text-subtitle {
-      font-size: 0.95rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-text-subtitle strong {
-      color: #fffbeb;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-
-    .btn-hero-primary {
-      border-radius: var(--radius-full);
-      padding: 0.55rem 1.4rem;
-      font-size: 0.84rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: none;
-      background: #fefce8;
-      color: #7c2d12;
-      cursor: pointer;
-    }
-
-    .btn-hero-secondary {
-      border-radius: var(--radius-full);
-      padding: 0.55rem 1.25rem;
-      font-size: 0.84rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid rgba(254, 243, 199, 0.9);
-      background: transparent;
-      color: #fef3c7;
-      cursor: pointer;
-    }
-
-    .hero-photo-wrapper {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .hero-photo-card {
-      background: rgba(255, 251, 235, 0.12);
-      border-radius: 999px;
-      padding: 0.35rem;
-      border: 1px solid rgba(254, 243, 199, 0.7);
-    }
-
-    .hero-photo-inner {
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: #e5e7eb;
-      border: 2px solid #fef3c7;
-    }
-
-    .hero-photo-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @media (max-width: 720px) {
-      .hero-block {
+    @media (max-width: 820px) {
+      .hero-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      .hero-photo-wrapper {
-        justify-content: flex-start;
-      }
     }
 
-    /* BLOCCO “CHI È EMIR” */
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      background: rgba(15, 23, 42, 0.85);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-kicker span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-title {
+      font-size: clamp(24px, 4vw, 30px);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, #fb923c, #fde68a);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #f97316, #ea580c);
+      color: #0b1120;
+      box-shadow: 0 18px 40px rgba(248, 113, 22, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 60px rgba(248, 113, 22, 0.55);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(249, 115, 22, 0.9);
+      color: #e5e7eb;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.7);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      max-width: calc(100% - 24px);
+    }
+
+    .hero-badge span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    /* BOX / SEZIONI */
 
     .section-box {
-      background: var(--bg-main);
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      padding: 1.35rem 1.4rem;
+      padding: 14px 16px;
     }
 
     .section-header {
-      margin-bottom: 0.9rem;
+      margin-bottom: 8px;
     }
 
     .section-title {
-      font-size: 0.86rem;
-      letter-spacing: 0.18em;
+      font-size: 11px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .section-title span {
       color: var(--accent);
-      margin-right: 0.3rem;
     }
 
     .section-subtitle {
-      font-size: 0.95rem;
+      font-size: 13px;
       color: var(--text-muted);
+      margin-top: 4px;
     }
 
     .about-text {
-      font-size: 0.9rem;
+      font-size: 13px;
       color: var(--text-main);
     }
 
     .about-text p + p {
-      margin-top: 0.55rem;
+      margin-top: 8px;
     }
 
     .about-text strong {
-      color: var(--accent-dark);
+      color: #fed7aa;
     }
 
     .about-roles {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.7rem;
-      margin-top: 1rem;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .about-role {
       border-radius: 14px;
-      background: var(--bg-soft);
-      border: 1px solid var(--border-subtle);
-      padding: 0.7rem 0.8rem;
-      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 8px 10px;
+      font-size: 12px;
     }
 
     .about-role-title {
       font-weight: 600;
-      margin-bottom: 0.15rem;
-      color: var(--text-main);
+      margin-bottom: 2px;
     }
 
     .about-role-text {
+      font-size: 12px;
       color: var(--text-muted);
-      font-size: 0.84rem;
     }
-
-    /* BLOCCO “AREE DI IMPEGNO” – tipo lista notizie */
 
     .items-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-top: 0.2rem;
-      font-size: 0.9rem;
+      gap: 10px;
+      margin-top: 4px;
+      font-size: 13px;
     }
 
     .item-row {
       display: grid;
-      grid-template-columns: 110px minmax(0, 1fr);
-      column-gap: 1rem;
-      row-gap: 0.2rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border-subtle);
+      grid-template-columns: 120px minmax(0, 1fr);
+      column-gap: 14px;
+      row-gap: 4px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
     }
 
     .item-row:last-child {
@@ -452,126 +577,133 @@
     }
 
     .item-meta {
-      font-size: 0.8rem;
+      font-size: 10px;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
 
     .item-main-title {
       font-weight: 600;
-      margin-bottom: 0.15rem;
+      margin-bottom: 2px;
+      font-size: 13px;
     }
 
     .item-main-text {
-      font-size: 0.88rem;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
     .item-link {
-      margin-top: 0.25rem;
-      font-size: 0.84rem;
-      color: var(--link);
+      margin-top: 4px;
+      font-size: 12px;
+      color: #f97316;
       font-weight: 500;
     }
 
-    /* BLOCCO “IN PRIMO PIANO” */
+    @media (max-width: 640px) {
+      .item-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
 
     .highlight-cards {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.9rem;
-      margin-top: 0.4rem;
+      gap: 8px;
+      margin-top: 6px;
     }
 
     .highlight-card {
       border-radius: 14px;
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      padding: 0.8rem 0.85rem;
-      font-size: 0.88rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 9px 10px;
+      font-size: 13px;
     }
 
     .highlight-title {
       font-weight: 600;
-      margin-bottom: 0.2rem;
-      color: var(--text-main);
+      margin-bottom: 3px;
     }
 
     .highlight-text {
       color: var(--text-muted);
-      margin-bottom: 0.35rem;
+      margin-bottom: 6px;
+      font-size: 12px;
     }
 
     .highlight-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-      font-size: 0.82rem;
+      gap: 6px;
+      font-size: 12px;
     }
 
     .chip-link {
       display: inline-flex;
       align-items: center;
-      padding: 0.22rem 0.7rem;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #020617;
+      gap: 6px;
       color: var(--text-main);
-      gap: 0.35rem;
     }
 
     .chip-link::before {
       content: "↗";
-      font-size: 0.78rem;
+      font-size: 11px;
     }
 
-    /* COLONNA LATERALE (stile sidebar Renzi) */
+    /* SIDEBAR */
 
     .sidebar {
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
+      gap: 14px;
     }
 
     .sidebar-box {
-      background: var(--bg-main);
+      background: radial-gradient(circle at top left, #020617 0, #020617 55%);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      padding: 1.2rem 1.3rem;
-      font-size: 0.88rem;
+      padding: 12px 14px;
+      font-size: 13px;
     }
 
     .sidebar-title {
-      font-size: 0.9rem;
+      font-size: 14px;
       font-weight: 600;
-      margin-bottom: 0.3rem;
+      margin-bottom: 4px;
     }
 
     .sidebar-subtitle {
-      font-size: 0.85rem;
+      font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 0.7rem;
+      margin-bottom: 10px;
     }
 
     .sidebar-field {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-      margin-bottom: 0.6rem;
+      gap: 3px;
+      margin-bottom: 8px;
     }
 
     .sidebar-label {
-      font-size: 0.8rem;
+      font-size: 11px;
       color: var(--text-muted);
     }
 
     .sidebar-input {
-      padding: 0.4rem 0.55rem;
+      padding: 6px 8px;
       border-radius: 8px;
-      border: 1px solid var(--border-subtle);
-      font-size: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 13px;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
       outline: none;
     }
 
@@ -580,148 +712,140 @@
     }
 
     .btn-sidebar {
-      margin-top: 0.4rem;
+      margin-top: 4px;
       border-radius: var(--radius-full);
-      padding: 0.5rem 1.1rem;
-      font-size: 0.82rem;
+      padding: 7px 14px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       border: none;
       background: var(--accent);
-      color: #ffffff;
+      color: #0b1120;
       cursor: pointer;
     }
 
     .sidebar-links {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.85rem;
+      gap: 4px;
+      font-size: 13px;
     }
 
     .sidebar-links a {
-      color: var(--link);
+      color: #f97316;
       font-weight: 500;
     }
 
     .sidebar-social {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.6rem;
+      gap: 6px;
+      margin-top: 6px;
     }
 
     .sidebar-social a {
-      padding: 0.28rem 0.8rem;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      font-size: 0.82rem;
-      color: #374151;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .sidebar-social i {
+      font-size: 12px;
     }
 
     /* FOOTER */
 
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      background: #ffffff;
+    .site-footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
       margin-top: auto;
-      padding: 1.3rem 0 1.7rem;
     }
 
     .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 16px 18px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.9rem;
-      font-size: 0.8rem;
+      gap: 10px;
+      font-size: 11px;
       color: var(--text-muted);
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.7rem;
+      gap: 6px;
       align-items: baseline;
     }
 
     .footer-social {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 6px;
     }
 
     .footer-social a {
-      padding: 0.26rem 0.75rem;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-    }
-
-    @media (min-width: 880px) {
-      .nav-links {
-        display: flex;
-      }
-      .nav-cta {
-        display: flex;
-      }
-      .nav-toggle {
-        display: none;
-      }
-      .nav {
-        flex-direction: row;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .section-box {
-        padding: 1.1rem 1.1rem;
-      }
-      .sidebar-box {
-        padding: 1rem 1.05rem;
-      }
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
     }
   </style>
 </head>
 <body>
   <div class="page">
     <!-- HEADER -->
-    <header>
-      <div class="container">
-        <nav class="nav" id="nav">
-          <div class="brand">
-            <div class="brand-avatar">
-              <img
-                src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
-                alt="Emir Alili"
-              />
-            </div>
-            <div class="brand-text">
-              <strong>Emir Alili</strong>
-              <span>Imprenditore, autore, leader politico</span>
-            </div>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">
+            <img
+              src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
+              alt="Emir Alili"
+            />
           </div>
-
-          <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="chi-sono.html">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="contatti.html">Contatti</a>
+          <div class="brand-text">
+            <span class="brand-title">Emir Alili</span>
+            <span class="brand-subtitle">Imprenditore · autore · leader politico</span>
           </div>
+        </a>
 
-          <div class="nav-cta">
-            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-              Contatti
-            </button>
-          </div>
-
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
-            ☰
-          </button>
+        <nav class="nav">
+          <a href="index.html" class="active">Home</a>
+          <a href="chi-sono.html">Chi sono</a>
+          <a href="cosa-faccio.html">Cosa faccio</a>
+          <a href="contatti.html">Contatti</a>
         </nav>
+
+        <div class="nav-cta">
+          <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
+            Contatti
+          </button>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span>
+        </button>
       </div>
+
+      <nav class="nav-mobile" id="navMobile">
+        <div class="nav-mobile-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="chi-sono.html">Chi sono</a>
+          <a href="cosa-faccio.html">Cosa faccio</a>
+          <a href="contatti.html">Contatti</a>
+        </div>
+      </nav>
     </header>
 
     <!-- MAIN -->
@@ -731,32 +855,49 @@
           <!-- COLONNA PRINCIPALE -->
           <div class="content-column">
             <!-- HERO -->
-            <section class="hero-block">
-              <div>
-                <div class="hero-text-kicker">IMPRESA · POLITICA · IMPEGNO CIVILE</div>
-                <h1 class="hero-text-title">
-                  Costruisco aziende, progetti e percorsi per cambiare davvero la realtà.
-                </h1>
-                <p class="hero-text-subtitle">
-                  Imprenditore, autore, fondatore di un partito politico di diaspora.
-                  Il filo conduttore è sempre lo stesso: <strong>responsabilità e risultati</strong>.
-                </p>
-                <div class="hero-actions">
-                  <button class="btn-hero-primary" type="button" onclick="window.location.href='chi-sono.html'">
-                    Chi sono
-                  </button>
-                  <button class="btn-hero-secondary" type="button" onclick="window.location.href='cosa-faccio.html'">
-                    Progetti e attività
-                  </button>
+            <section class="hero">
+              <div class="hero-grid">
+                <div>
+                  <div class="hero-kicker">
+                    <span></span>
+                    <span>Impresa · Politica · Impegno civile</span>
+                  </div>
+                  <h1 class="hero-title">
+                    Costruisco aziende, progetti e percorsi
+                    <span class="hero-highlight">per cambiare davvero la realtà.</span>
+                  </h1>
+                  <p class="hero-subtitle">
+                    Imprenditore, autore e fondatore di un partito politico di diaspora.
+                    Il filo conduttore è sempre lo stesso:
+                    <strong>responsabilità e risultati</strong>.
+                  </p>
+                  <div class="hero-cta">
+                    <button class="btn-primary" type="button" onclick="window.location.href='chi-sono.html'">
+                      <i class="fa-solid fa-user"></i>
+                      Chi sono
+                    </button>
+                    <button class="btn-ghost" type="button" onclick="window.location.href='cosa-faccio.html'">
+                      <i class="fa-solid fa-diagram-project"></i>
+                      Progetti e attività
+                    </button>
+                  </div>
+                  <div class="hero-meta">
+                    <span>Impresa e servizi · EA Group / EA Cleaning</span>
+                    <span>Politica · Macedonian Diaspora Party (MDP)</span>
+                    <span>Progetti sociali e culturali in Romagna</span>
+                  </div>
                 </div>
-              </div>
-              <div class="hero-photo-wrapper">
-                <div class="hero-photo-card">
-                  <div class="hero-photo-inner">
+
+                <div class="hero-card">
+                  <div class="hero-photo">
                     <img
                       src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
                       alt="Emir Alili – Ritratto"
                     />
+                  </div>
+                  <div class="hero-badge">
+                    <span></span>
+                    Dal lavoro nei cantieri ai progetti politici di lungo periodo.
                   </div>
                 </div>
               </div>
@@ -767,7 +908,7 @@
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> Chi è Emir</h2>
                 <p class="section-subtitle">
-                  Una biografia fatta di lavoro, migrazione, responsabilità diretta.
+                  Una biografia fatta di lavoro, migrazione e responsabilità diretta.
                 </p>
               </div>
               <div class="about-text">
@@ -810,7 +951,7 @@
               </div>
             </section>
 
-            <!-- AREE DI IMPEGNO (lista tipo news) -->
+            <!-- AREE DI IMPEGNO -->
             <section class="section-box">
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> Aree di impegno</h2>
@@ -840,8 +981,8 @@
                     <div class="item-main-title">Macedonian Diaspora Party</div>
                     <p class="item-main-text">
                       Un partito costruito dalla diaspora per rompere il circuito
-                      corruzione–clientele–impunità. Visione di Stato, riforme strutturali,
-                      partecipazione diretta dei cittadini all’estero.
+                      corruzione–clientele–impunità. Visione di Stato, riforme strutturali
+                      e partecipazione diretta dei cittadini all’estero.
                     </p>
                     <a class="item-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
                       Scopri MDP e i documenti ufficiali
@@ -948,9 +1089,15 @@
                 Per richieste, proposte e collaborazioni.
               </p>
               <div class="sidebar-social">
-                <a href="mailto:info@emiralili.it">Email</a>
-                <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-                <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:info@emiralili.it">
+                  <i class="fa-solid fa-envelope"></i> Email
+                </a>
+                <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                </a>
               </div>
             </section>
           </aside>
@@ -959,18 +1106,16 @@
     </main>
 
     <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-links">
-            <span>© <span id="year"></span> Emir Alili.</span>
-            <span>Imprenditore · autore · leader politico.</span>
-          </div>
-          <div class="footer-social">
-            <a href="mailto:info@emiralili.it">Email diretta</a>
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <span>© <span id="year"></span> Emir Alili.</span>
+          <span>Imprenditore · autore · leader politico.</span>
+        </div>
+        <div class="footer-social">
+          <a href="mailto:info@emiralili.it">Email diretta</a>
+          <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </footer>
@@ -979,12 +1124,14 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const nav = document.getElementById("nav");
     const navToggle = document.getElementById("navToggle");
+    const navMobile = document.getElementById("navMobile");
 
-    navToggle.addEventListener("click", () => {
-      nav.classList.toggle("mobile-open");
-    });
+    if (navToggle && navMobile) {
+      navToggle.addEventListener("click", () => {
+        navMobile.classList.toggle("open");
+      });
+    }
   </script>
 </body>
 </html>
