@@ -15,22 +15,45 @@
       --accent: #ea580c;
       --accent-dark: #9a3412;
       --accent-soft: #fef2e2;
+      --link: #2563eb;
       --radius-lg: 18px;
       --radius-full: 999px;
       --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       background: var(--bg-page);
       color: var(--text-main);
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
     .container {
       width: 100%;
@@ -39,98 +62,263 @@
       padding: 0 1.25rem;
     }
 
-    /* HEADER */
+    /* HEADER – identico alle altre pagine */
+
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,255,255,.98);
+      background: rgba(255, 255, 255, 0.98);
       border-bottom: 1px solid var(--border-subtle);
       backdrop-filter: blur(12px);
     }
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: .75rem 0;
-      gap: .75rem;
+      padding: 0.7rem 0;
+      gap: 0.75rem;
     }
-    .brand { display: flex; align-items: center; gap: .65rem; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      min-width: 0;
+    }
+
     .brand-avatar {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       overflow: hidden;
       border: 1px solid var(--border-subtle);
+      background: #e5e7eb;
+      flex-shrink: 0;
     }
-    .brand-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .brand-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+      min-width: 0;
+    }
+
     .brand-text strong {
-      font-size: .95rem;
-      letter-spacing: .12em;
+      font-size: 0.96rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
-    .brand-text span { font-size: .78rem; color: var(--text-muted); }
 
-    .nav-links { display: none; gap: 1.4rem; font-size: .9rem; }
-    .nav-links a { color: #4b5563; position: relative; }
-    .nav-links a.active { font-weight: 600; }
+    .brand-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-    .nav-cta { display: none; }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.08rem;
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    .nav-links a.active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: var(--radius-full);
+      transition: width 0.16s ease-out;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
     .btn-header {
       border-radius: var(--radius-full);
-      padding: .45rem 1rem;
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       border: 1px solid var(--border-subtle);
       background: var(--bg-soft);
-      font-size: .78rem;
-      text-transform: uppercase;
+      color: #374151;
       cursor: pointer;
+      white-space: nowrap;
     }
+
+    .btn-header:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
     .nav-toggle {
       display: inline-flex;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid var(--border-subtle);
       align-items: center;
       justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
       background: var(--bg-soft);
+      color: #4b5563;
+      font-size: 1rem;
       cursor: pointer;
     }
 
-    @media(min-width: 880px) {
-      .nav-links { display: flex; }
-      .nav-cta { display: flex; }
-      .nav-toggle { display: none; }
+    .nav.mobile-open {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    /* HERO */
+    .nav.mobile-open .nav-links,
+    .nav.mobile-open .nav-cta {
+      display: flex;
+      width: 100%;
+    }
+
+    .nav.mobile-open .nav-links {
+      margin-top: 0.6rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.55rem;
+    }
+
+    .nav.mobile-open .nav-cta {
+      margin-top: 0.5rem;
+    }
+
+    @media (min-width: 880px) {
+      .nav-links {
+        display: flex;
+      }
+      .nav-cta {
+        display: flex;
+      }
+      .nav-toggle {
+        display: none;
+      }
+      .nav {
+        flex-direction: row;
+      }
+    }
+
+    /* HERO CONTATTI */
+
     .hero-wrap {
-      background: radial-gradient(circle at top left, #1f2937, #020617);
+      background: radial-gradient(circle at top left, #1f2937 0%, #020617 55%);
       color: #e5e7eb;
-      padding: 2.4rem 0 2.6rem;
+      border-bottom: 1px solid #020617;
+    }
+
+    .hero {
+      padding: 2.1rem 0 2.3rem;
       text-align: center;
     }
+
     .hero-title {
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: .6rem;
+      font-size: 1.9rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      color: #f9fafb;
     }
+
     .hero-subtitle {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #d1d5db;
-      max-width: 36rem;
+      max-width: 32rem;
       margin: 0 auto;
     }
 
+    /* CONTENUTO PRINCIPALE */
+
+    main {
+      padding: 2.1rem 0 3rem;
+    }
+
+    .section-box {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.5rem 1.6rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.7rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.1rem;
+      text-align: left;
+    }
+
+    .section-title {
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title span {
+      color: var(--accent);
+      margin-right: 0.3rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+    }
+
     /* CONTATTI GRID */
+
     .contacts-grid {
-      margin-top: 2rem;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.5rem;
     }
-    @media(max-width: 880px) {
-      .contacts-grid { grid-template-columns: 1fr; }
+
+    @media (max-width: 880px) {
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .contact-card {
@@ -138,10 +326,11 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      padding: 1.7rem 1.4rem;
+      padding: 1.6rem 1.4rem;
       text-align: center;
       transition: 0.2s ease;
     }
+
     .contact-card:hover {
       border-color: var(--accent);
       transform: translateY(-3px);
@@ -158,6 +347,7 @@
       justify-content: center;
       margin: 0 auto 1rem;
     }
+
     .contact-icon svg {
       width: 32px;
       height: 32px;
@@ -168,170 +358,230 @@
       font-size: 1rem;
       font-weight: 600;
       color: #111827;
-      margin-bottom: .4rem;
+      margin-bottom: 0.4rem;
     }
+
     .contact-value a {
-      font-size: .92rem;
+      font-size: 0.92rem;
       color: var(--link);
       font-weight: 500;
     }
 
     /* OTHER LINKS */
-    .other-links {
-      margin: 2.4rem 0 3rem;
-    }
-    .other-links h3 {
-      font-size: .9rem;
-      letter-spacing: .15em;
+
+    .other-links-title {
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #6b7280;
-      margin-bottom: .9rem;
+      margin-bottom: 0.9rem;
     }
-    .other-links a {
+
+    .other-links-list a {
       display: inline-block;
-      padding: .6rem 1rem;
-      background: var(--bg-main);
+      padding: 0.6rem 1rem;
+      background: var(--bg-soft);
       border-radius: var(--radius-full);
       border: 1px solid var(--border-subtle);
-      margin-right: .6rem;
-      margin-bottom: .6rem;
-      font-size: .85rem;
-      transition: .15s;
+      margin-right: 0.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+      transition: 0.15s;
+      color: #374151;
     }
-    .other-links a:hover {
+
+    .other-links-list a:hover {
       border-color: var(--accent);
       color: var(--accent-dark);
     }
 
-    /* FOOTER */
+    /* FOOTER – come le altre pagine */
+
     footer {
       border-top: 1px solid var(--border-subtle);
-      background: #fff;
-      padding: 1.3rem 0;
+      background: #ffffff;
       margin-top: auto;
+      padding: 1.3rem 0 1.7rem;
     }
+
     .footer-inner {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
-      font-size: .8rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      gap: .7rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: baseline;
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-social a {
+      padding: 0.26rem 0.75rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-soft);
     }
   </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="container">
-      <nav class="nav">
-        <div class="brand">
-          <div class="brand-avatar">
-            <img src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg" />
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="container">
+        <nav class="nav" id="nav">
+          <div class="brand">
+            <div class="brand-avatar">
+              <img
+                src="assets/img/Emir%20primo%20piano.jpg"
+                alt="Emir Alili"
+              />
+            </div>
+            <div class="brand-text">
+              <strong>Emir Alili</strong>
+              <span>Imprenditore · autore · leader politico</span>
+            </div>
           </div>
-          <div class="brand-text">
-            <strong>Emir Alili</strong>
-            <span>Imprenditore · autore · leader politico</span>
+
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="chi-sono.html">Chi sono</a>
+            <a href="cosa-faccio.html">Cosa faccio</a>
+            <a href="contatti.html" class="active">Contatti</a>
+          </div>
+
+          <div class="nav-cta">
+            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
+              Contatti
+            </button>
+          </div>
+
+          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
+            ☰
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero-wrap">
+      <section class="hero">
+        <div class="container">
+          <h1 class="hero-title">Contatti diretti</h1>
+          <p class="hero-subtitle">
+            Canali ufficiali per comunicare con me in modo rapido e trasparente.
+            Nessun filtro, nessun intermediario.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- CONTENUTO -->
+    <main>
+      <div class="container">
+        <!-- CARD CONTATTI -->
+        <section class="section-box">
+          <div class="section-header">
+            <h2 class="section-title"><span>//</span> Canali principali</h2>
+            <p class="section-subtitle">
+              Se hai bisogno di confrontarti su un progetto concreto, su questioni politiche o su temi legati a impresa e lavoro, questi sono i riferimenti diretti.
+            </p>
+          </div>
+
+          <div class="contacts-grid">
+            <!-- EMAIL -->
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 4h16a2 2 0 012 2v1l-10 6L2 7V6a2 2 0 012-2zm-2 5v9a2 2 0 002 2h16a2 2 0 002-2V9l-10 6L2 9z"/>
+                </svg>
+              </div>
+              <div class="contact-title">Email diretta</div>
+              <div class="contact-value">
+                <a href="mailto:info@emiralili.it">info@emiralili.it</a>
+              </div>
+            </div>
+
+            <!-- TELEFONO -->
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.2c1.1.4 2.4.7 3.6.7a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.3a1 1 0 011 1c0 1.2.2 2.5.7 3.6a1 1 0 01-.2 1l-2.2 2.2z"/>
+                </svg>
+              </div>
+              <div class="contact-title">Telefono / WhatsApp</div>
+              <div class="contact-value">
+                <a href="tel:+393282290062">+39 328 229 0062</a>
+              </div>
+            </div>
+
+            <!-- SOCIAL -->
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M13 3h3a1 1 0 011 1v3h-3.1a1 1 0 00-.9 1v3h3.5a1 1 0 011 1.1l-.4 3a1 1 0 01-1 .9H13v5h-3v-5H7a1 1 0 01-1-1v-3h3v-3.8A4.2 4.2 0 0113 3z"/>
+                </svg>
+              </div>
+              <div class="contact-title">Social ufficiali</div>
+              <div class="contact-value">
+                <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a><br />
+                <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ALTRI LINK -->
+        <section class="section-box">
+          <div class="other-links-title">// Altri canali utili</div>
+          <div class="other-links-list">
+            <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Group / EA Cleaning</a>
+            <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Sito ufficiale MDP</a>
+            <a href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">Documenti ufficiali MDP</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-links">
+            <span>© <span id="year"></span> Emir Alili.</span>
+            <span>Imprenditore · autore · leader politico.</span>
+          </div>
+          <div class="footer-social">
+            <a href="mailto:info@emiralili.it">Email</a>
+            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
-
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="chi-sono.html">Chi sono</a>
-          <a href="cosa-faccio.html">Cosa faccio</a>
-          <a class="active" href="contatti.html">Contatti</a>
-        </div>
-
-        <div class="nav-cta">
-          <button class="btn-header" onclick="window.location.href='contatti.html'">Contatti</button>
-        </div>
-
-        <button class="nav-toggle">☰</button>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <div class="hero-wrap">
-    <div class="container">
-      <h1 class="hero-title">Contatti diretti</h1>
-      <p class="hero-subtitle">
-        Canali ufficiali per comunicare con me in modo rapido e trasparente.
-        Nessun filtro, nessun intermediario.
-      </p>
-    </div>
+      </div>
+    </footer>
   </div>
-
-  <!-- CONTENUTO -->
-  <main>
-    <div class="container">
-      <div class="contacts-grid">
-
-        <!-- EMAIL -->
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M4 4h16a2 2 0 012 2v1l-10 6L2 7V6a2 2 0 012-2zm-2 5v9a2 2 0 002 2h16a2 2 0 002-2V9l-10 6L2 9z"/>
-            </svg>
-          </div>
-          <div class="contact-title">Email diretta</div>
-          <div class="contact-value">
-            <a href="mailto:info@emiralili.it">info@emiralili.it</a>
-          </div>
-        </div>
-
-        <!-- TELEFONO -->
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.2c1.1.4 2.4.7 3.6.7a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.3a1 1 0 011 1c0 1.2.2 2.5.7 3.6a1 1 0 01-.2 1l-2.2 2.2z"/>
-            </svg>
-          </div>
-          <div class="contact-title">Telefono / WhatsApp</div>
-          <div class="contact-value">
-            <a href="tel:+393282290062">+39 328 229 0062</a>
-          </div>
-        </div>
-
-        <!-- SOCIAL -->
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M13 3h3a1 1 0 011 1v3h-3.1a1 1 0 00-.9 1v3h3.5a1 1 0 011 1.1l-.4 3a1 1 0 01-1 .9H13v5h-3v-5H7a1 1 0 01-1-1v-3h3v-3.8A4.2 4.2 0 0113 3z"/>
-            </svg>
-          </div>
-          <div class="contact-title">Social ufficiali</div>
-          <div class="contact-value">
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank">Facebook</a><br>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank">LinkedIn</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- OTHER LINKS -->
-      <div class="other-links">
-        <h3>Altri canali utili</h3>
-        <a href="https://www.eacleaning.it" target="_blank">EA Group / EA Cleaning</a>
-        <a href="https://mdp-eu.com" target="_blank">Sito ufficiale MDP</a>
-        <a href="https://mdp-eu.com/documenti.html" target="_blank">Documenti ufficiali MDP</a>
-      </div>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <span>© <span id="year"></span> Emir Alili</span>
-        <span>Imprenditore · autore · leader politico</span>
-      </div>
-    </div>
-  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const nav = document.getElementById("nav");
+    const navToggle = document.getElementById("navToggle");
+
+    navToggle.addEventListener("click", () => {
+      nav.classList.toggle("mobile-open");
+    });
   </script>
 </body>
 </html>
