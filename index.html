@@ -395,8 +395,8 @@
       font-weight: 500;
       border: 1px solid transparent;
       cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease,
-        background 0.12s ease, border-color 0.12s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease, border-color 0.15s ease;
     }
 
     .btn-primary {
@@ -656,6 +656,48 @@
       font-size: 11px;
     }
 
+    /* NUMERI / STATS */
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 720px) {
+      .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .stat-card {
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 10px 12px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fef3c7;
+      margin-bottom: 3px;
+    }
+
+    .stat-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
     /* SIDEBAR */
 
     .sidebar {
@@ -800,6 +842,37 @@
       border: 1px solid rgba(148, 163, 184, 0.7);
       background: rgba(15, 23, 42, 0.9);
     }
+
+    /* MICRO-ANIMAZIONI CARD */
+
+    .section-box,
+    .highlight-card,
+    .about-role,
+    .sidebar-box {
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .section-box:hover,
+    .highlight-card:hover,
+    .about-role:hover,
+    .sidebar-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.9);
+      border-color: rgba(249, 115, 22, 0.7);
+    }
+
+    /* EFFETTO ENTRATA SCROLL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -855,7 +928,7 @@
           <!-- COLONNA PRINCIPALE -->
           <div class="content-column">
             <!-- HERO -->
-            <section class="hero">
+            <section class="hero reveal">
               <div class="hero-grid">
                 <div>
                   <div class="hero-kicker">
@@ -904,7 +977,7 @@
             </section>
 
             <!-- CHI È EMIR -->
-            <section class="section-box">
+            <section class="section-box reveal">
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> Chi è Emir</h2>
                 <p class="section-subtitle">
@@ -952,7 +1025,7 @@
             </section>
 
             <!-- AREE DI IMPEGNO -->
-            <section class="section-box">
+            <section class="section-box reveal">
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> Aree di impegno</h2>
                 <p class="section-subtitle">
@@ -1008,7 +1081,7 @@
             </section>
 
             <!-- PROGETTI IN EVIDENZA -->
-            <section class="section-box">
+            <section class="section-box reveal">
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> In primo piano</h2>
                 <p class="section-subtitle">
@@ -1049,10 +1122,38 @@
                 </article>
               </div>
             </section>
+
+            <!-- NUMERI -->
+            <section class="section-box reveal">
+              <div class="section-header">
+                <h2 class="section-title"><span>//</span> Numeri</h2>
+                <p class="section-subtitle">
+                  Una sintesi concreta del lavoro che porto avanti ogni giorno.
+                </p>
+              </div>
+
+              <div class="stats-grid">
+                <div class="stat-card">
+                  <div class="stat-label">Anni in Italia</div>
+                  <div class="stat-value" data-target="20">0</div>
+                  <div class="stat-note">Percorso da lavoratore a imprenditore</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Cantieri gestiti</div>
+                  <div class="stat-value" data-target="26">0</div>
+                  <div class="stat-note">EA Cleaning / EA Group</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Paesi di diaspora</div>
+                  <div class="stat-value" data-target="10">0</div>
+                  <div class="stat-note">Coinvolti nel progetto MDP</div>
+                </div>
+              </div>
+            </section>
           </div>
 
           <!-- SIDEBAR -->
-          <aside class="sidebar">
+          <aside class="sidebar reveal">
             <section class="sidebar-box">
               <h3 class="sidebar-title">Restiamo in contatto</h3>
               <p class="sidebar-subtitle">
@@ -1122,16 +1223,71 @@
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", () => {
+      // anno footer
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    const navToggle = document.getElementById("navToggle");
-    const navMobile = document.getElementById("navMobile");
+      // menu mobile
+      const navToggle = document.getElementById("navToggle");
+      const navMobile = document.getElementById("navMobile");
+      if (navToggle && navMobile) {
+        navToggle.addEventListener("click", () => {
+          navMobile.classList.toggle("open");
+        });
+      }
 
-    if (navToggle && navMobile) {
-      navToggle.addEventListener("click", () => {
-        navMobile.classList.toggle("open");
-      });
-    }
+      // effetto entrata scroll
+      const revealEls = document.querySelectorAll(".reveal");
+      if (revealEls.length) {
+        const revealObserver = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        revealEls.forEach(el => revealObserver.observe(el));
+      }
+
+      // animazione numeri
+      const statsGrid = document.querySelector(".stats-grid");
+      const statValues = document.querySelectorAll(".stat-value");
+      if (statsGrid && statValues.length) {
+        const runCounters = () => {
+          statValues.forEach(counter => {
+            const target = Number(counter.dataset.target || 0);
+            let current = 0;
+            const step = Math.max(1, Math.round(target / 60));
+            const interval = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(interval);
+              }
+              counter.textContent = current;
+            }, 16);
+          });
+        };
+
+        const obs = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                runCounters();
+                obs.disconnect();
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+        obs.observe(statsGrid);
+      }
+    });
   </script>
 </body>
 </html>
