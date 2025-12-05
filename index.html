@@ -3,8 +3,679 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emir Alili – Impresa, idee e politica</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Home – Emir Alili</title>
+  <style>
+    :root {
+      --bg-page: #f3f4f6;
+      --bg-main: #ffffff;
+      --bg-soft: #f9fafb;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --accent: #ea580c;
+      --accent-dark: #9a3412;
+      --accent-soft: #fef2e2;
+      --link: #2563eb;
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* HEADER – uguale per tutto il sito */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      min-width: 0;
+    }
+
+    .brand-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .brand-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+      min-width: 0;
+    }
+
+    .brand-text strong {
+      font-size: 0.96rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.08rem;
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    .nav-links a.active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: var(--radius-full);
+      transition: width 0.16s ease-out;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-header {
+      border-radius: var(--radius-full);
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-soft);
+      color: #374151;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-header:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-soft);
+      color: #4b5563;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .nav.mobile-open {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav.mobile-open .nav-links,
+    .nav.mobile-open .nav-cta {
+      display: flex;
+      width: 100%;
+    }
+
+    .nav.mobile-open .nav-links {
+      margin-top: 0.6rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.55rem;
+    }
+
+    .nav.mobile-open .nav-cta {
+      margin-top: 0.5rem;
+    }
+
+    @media (min-width: 880px) {
+      .nav-links {
+        display: flex;
+      }
+      .nav-cta {
+        display: flex;
+      }
+      .nav-toggle {
+        display: none;
+      }
+      .nav {
+        flex-direction: row;
+      }
+    }
+
+    /* HERO A FASCIA CON FOTO + CARD */
+
+    .hero-wrap {
+      background: radial-gradient(circle at top left, #1f2937 0%, #020617 55%);
+      color: #e5e7eb;
+      border-bottom: 1px solid #020617;
+    }
+
+    .hero {
+      padding: 2rem 0 2.2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        padding: 1.7rem 0 2rem;
+      }
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-kicker span {
+      color: #fed7aa;
+      font-weight: 600;
+      margin-right: 0.3rem;
+    }
+
+    .hero-title {
+      font-size: 1.9rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      color: #f9fafb;
+    }
+
+    .hero-title span {
+      color: #fed7aa;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: #d1d5db;
+      max-width: 34rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.22rem 0.8rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(107, 114, 128, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn-primary {
+      border-radius: var(--radius-full);
+      padding: 0.55rem 1.5rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      border-radius: var(--radius-full);
+      padding: 0.55rem 1.2rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: transparent;
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .hero-card {
+      max-width: 340px;
+      width: 100%;
+      justify-self: center;
+      border-radius: 22px;
+      background: radial-gradient(circle at top, #1f2937 0%, #020617 70%);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.75);
+      padding: 1.1rem 1.2rem 1.15rem;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-photo-inner {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(209, 213, 219, 0.95);
+      background: #111827;
+    }
+
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-name {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .hero-role-main {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.45rem;
+      font-size: 0.75rem;
+    }
+
+    .hero-stat-card {
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.45rem 0.5rem 0.4rem;
+    }
+
+    .hero-stat-number {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fed7aa;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-stat-label {
+      color: #9ca3af;
+    }
+
+    .hero-social-row {
+      margin-top: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .hero-social-icons {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .social-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .social-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: #e5e7eb;
+    }
+
+    /* CONTENUTO PRINCIPALE */
+
+    main {
+      padding: 2.1rem 0 3rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.05fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        padding-top: 1.7rem;
+      }
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .content-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.7rem;
+    }
+
+    .section-box {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.25rem 1.35rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .section-header {
+      margin-bottom: 0.9rem;
+    }
+
+    .section-title {
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title span {
+      color: var(--accent);
+      margin-right: 0.3rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+    }
+
+    /* AREE DI LAVORO CON ICONE */
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.7rem;
+    }
+
+    @media (max-width: 880px) {
+      .areas-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .area-card {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 0.9rem 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .area-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .area-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid #fed7aa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--accent-dark);
+    }
+
+    .area-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .area-footer {
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .area-footer a {
+      color: var(--link);
+      font-weight: 500;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .sidebar-box {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.1rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .sidebar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--text-main);
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    .sidebar-list li + li {
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-list strong {
+      color: #111827;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .sidebar-links a {
+      color: var(--link);
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: #ffffff;
+      margin-top: auto;
+      padding: 1.3rem 0 1.7rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: baseline;
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-social a {
+      padding: 0.26rem 0.75rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-soft);
+    }
+  </style>
 </head>
 <body>
   <div class="page">
@@ -19,6 +690,7 @@
                 alt="Emir Alili"
               />
             </div>
+
             <div class="brand-text">
               <strong>Emir Alili</strong>
               <span>Imprenditore, autore, leader politico</span>
@@ -52,7 +724,7 @@
           <div class="hero-grid">
             <div>
               <div class="hero-kicker">
-                <span>Home</span> impresa, idee e politica con i piedi per terra
+                <span>Home</span> impresa, analisi e politica con i piedi per terra
               </div>
               <h1 class="hero-title">
                 Impresa, analisi e politica <span>senza slogan e senza filtri</span>.
@@ -86,14 +758,14 @@
                   />
                 </div>
               </div>
-              <div class="hero-name">Impresa · analisi · politica organizzata</div>
+              <div class="hero-name">Impresa · idee · politica organizzata</div>
               <div class="hero-role-main">
-                Tre livelli che si parlano: azienda, pensiero critico e azione politica.
+                Tre livelli che si parlano: azienda, pensiero critico, progetto politico.
               </div>
               <div class="hero-stat-grid">
                 <div class="hero-stat-card">
                   <div class="hero-stat-number">Impresa</div>
-                  <div class="hero-stat-label">EA Group / EA Cleaning</div>
+                  <div class="hero-stat-label">EA Group · EA Cleaning</div>
                 </div>
                 <div class="hero-stat-card">
                   <div class="hero-stat-number">Analisi</div>
@@ -130,7 +802,7 @@
       </section>
     </div>
 
-    <!-- CONTENUTO PRINCIPALE -->
+    <!-- CONTENUTO -->
     <main>
       <div class="container">
         <div class="layout">
@@ -141,7 +813,7 @@
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> Aree principali</h2>
                 <p class="section-subtitle">
-                  Tre blocchi tengono insieme tutto il lavoro: impresa, analisi e libri, progetto politico.
+                  Tre blocchi tengono insieme il lavoro: impresa, analisi e libri, progetto politico.
                 </p>
               </div>
 
@@ -156,13 +828,13 @@
                     <h3 class="area-title">Impresa · EA Group / EA Cleaning</h3>
                   </div>
                   <p>
-                    Servizi di pulizia e facility management per aziende e condomìni.
-                    Il focus è su organizzazione dei cantieri, controllo dei costi e qualità del servizio.
+                    Servizi di pulizia e facility management per aziende, condomìni e realtà produttive.
+                    Focus su organizzazione dei cantieri, controllo dei costi e qualità del servizio.
                   </p>
                   <div class="area-footer">
-                    <span>Impresa come strumento di dignità e lavoro reale.</span><br />
+                    <span>Impresa come strumento di dignità, non solo di fatturato.</span><br />
                     <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">
-                      Visita EA Group / EA Cleaning
+                      Vai al sito EA Group / EA Cleaning
                     </a>
                   </div>
                 </article>
@@ -178,7 +850,7 @@
                   </div>
                   <p>
                     Scrittura e analisi su scuola, lavoro, geopolitica, futuro delle nuove generazioni
-                    e ruolo della diaspora. Progetti con associazioni, comunità locali e realtà umanitarie.
+                    e ruolo della diaspora. Collaborazione con associazioni, comunità locali e realtà umanitarie.
                   </p>
                   <div class="area-footer">
                     <span>Parole ancorate alla realtà, non alla retorica.</span>
@@ -209,19 +881,19 @@
               </div>
             </section>
 
-            <!-- CTA COLLABORAZIONI -->
+            <!-- CTA COLLABORAZIONE -->
             <section class="section-box">
               <div class="section-header">
                 <h2 class="section-title"><span>//</span> Vuoi lavorare su qualcosa di concreto?</h2>
                 <p class="section-subtitle">
                   Aziende, amministrazioni, associazioni, media: se cerchi qualcuno che non giri attorno
-                  ai problemi, ma li affronti con numeri, responsabilità e decisioni chiare, possiamo parlarne.
+                  ai problemi ma li affronti con numeri, responsabilità e decisioni chiare, possiamo parlarne.
                 </p>
               </div>
               <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.9rem;">
                 Valuto collaborazioni solo se hanno un impatto reale: organizzazione del lavoro,
-                progetti per i giovani, proposte politiche serie, percorsi di riforma istituzionale,
-                iniziative sociali legate a scuola, lavoro, diaspora, comunità locali.
+                progetti per i giovani, percorsi di riforma istituzionale, iniziative sociali
+                legate a scuola, lavoro, diaspora, comunità locali.
               </p>
               <div class="hero-actions">
                 <button class="btn-primary" type="button" onclick="window.location.href='contatti.html'">
@@ -289,4 +961,3 @@
   </script>
 </body>
 </html>
-
