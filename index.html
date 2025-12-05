@@ -4,1290 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emir Alili – Imprenditore, autore, leader politico</title>
-
-  <!-- Icone -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-
-  <style>
-    :root {
-      --bg-page: #0f172a;
-      --bg-main: #0b1120;
-      --bg-card: #020617;
-      --accent: #f97316;
-      --accent-soft: rgba(249, 115, 22, 0.12);
-      --accent-dark: #ea580c;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.25);
-      --radius-lg: 18px;
-      --radius-full: 999px;
-      --shadow-soft: 0 28px 80px rgba(15, 23, 42, 0.8);
-      --max-width: 1080px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 16px 42px;
-    }
-
-    /* HEADER */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.97),
-        rgba(15, 23, 42, 0.8),
-        transparent
-      );
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-    }
-
-    .header-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: #020617;
-      flex-shrink: 0;
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .brand-title {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .brand-subtitle {
-      font-size: 11px;
-      color: var(--text-muted);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .nav a {
-      font-size: 13px;
-      padding: 4px 0;
-      position: relative;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: #f9fafb;
-    }
-
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(to right, #fb923c, #f97316);
-      transition: width 0.18s ease;
-    }
-
-    .nav a:hover::after,
-    .nav a.active::after {
-      width: 20px;
-    }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-    }
-
-    .btn-header {
-      border-radius: var(--radius-full);
-      padding: 7px 14px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .btn-header:hover {
-      border-color: rgba(249, 115, 22, 0.9);
-      color: #e5e7eb;
-    }
-
-    /* NAV MOBILE */
-
-    .nav-toggle {
-      display: none;
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .nav-toggle span {
-      width: 18px;
-      height: 2px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      position: relative;
-    }
-
-    .nav-toggle span::before,
-    .nav-toggle span::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 18px;
-      height: 2px;
-      border-radius: 999px;
-      background: #e5e7eb;
-    }
-
-    .nav-toggle span::before {
-      top: -5px;
-    }
-
-    .nav-toggle span::after {
-      top: 5px;
-    }
-
-    .nav-mobile {
-      display: none;
-      border-top: 1px solid rgba(30, 64, 175, 0.3);
-      background: rgba(15, 23, 42, 0.96);
-    }
-
-    .nav-mobile-links {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 8px 16px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .nav-mobile a {
-      font-size: 14px;
-      padding: 9px 10px;
-      border-radius: 999px;
-      text-align: center;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      color: var(--text-muted);
-    }
-
-    .nav-mobile a.active,
-    .nav-mobile a:hover {
-      border-color: rgba(249, 115, 22, 0.9);
-      color: #f9fafb;
-    }
-
-    .nav-mobile.open {
-      display: block;
-    }
-
-    @media (max-width: 820px) {
-      .nav,
-      .nav-cta {
-        display: none;
-      }
-      .nav-toggle {
-        display: flex;
-      }
-    }
-
-    /* LAYOUT PRINCIPALE */
-
-    main {
-      padding-top: 18px;
-      padding-bottom: 40px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
-      gap: 22px;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 880px) {
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .content-column {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    /* HERO */
-
-    .hero {
-      padding-bottom: 4px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 18px;
-      align-items: center;
-    }
-
-    @media (max-width: 820px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(249, 115, 22, 0.5);
-      background: rgba(15, 23, 42, 0.85);
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .hero-kicker span {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .hero-title {
-      font-size: clamp(24px, 4vw, 30px);
-      line-height: 1.18;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .hero-highlight {
-      background: linear-gradient(to right, #fb923c, #fde68a);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      max-width: 34rem;
-      margin-bottom: 16px;
-    }
-
-    .hero-subtitle strong {
-      color: #e5e7eb;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 8px 15px;
-      border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        background 0.15s ease, border-color 0.15s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(to right, #f97316, #ea580c);
-      color: #0b1120;
-      box-shadow: 0 18px 40px rgba(248, 113, 22, 0.45);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 26px 60px rgba(248, 113, 22, 0.55);
-    }
-
-    .btn-ghost {
-      border-color: rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.8);
-      color: var(--text-muted);
-    }
-
-    .btn-ghost:hover {
-      border-color: rgba(249, 115, 22, 0.9);
-      color: #e5e7eb;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 12px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .hero-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-meta span::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.7);
-    }
-
-    .hero-card {
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: var(--shadow-soft);
-      padding: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-photo {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(15, 23, 42, 0.9);
-    }
-
-    .hero-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-      max-width: calc(100% - 24px);
-    }
-
-    .hero-badge span {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    /* BOX / SEZIONI */
-
-    .section-box {
-      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 14px 16px;
-    }
-
-    .section-header {
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-title span {
-      color: var(--accent);
-    }
-
-    .section-subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .about-text {
-      font-size: 13px;
-      color: var(--text-main);
-    }
-
-    .about-text p + p {
-      margin-top: 8px;
-    }
-
-    .about-text strong {
-      color: #fed7aa;
-    }
-
-    .about-roles {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .about-role {
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 8px 10px;
-      font-size: 12px;
-    }
-
-    .about-role-title {
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .about-role-text {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 4px;
-      font-size: 13px;
-    }
-
-    .item-row {
-      display: grid;
-      grid-template-columns: 120px minmax(0, 1fr);
-      column-gap: 14px;
-      row-gap: 4px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
-    }
-
-    .item-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .item-meta {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .item-main-title {
-      font-weight: 600;
-      margin-bottom: 2px;
-      font-size: 13px;
-    }
-
-    .item-main-text {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .item-link {
-      margin-top: 4px;
-      font-size: 12px;
-      color: #f97316;
-      font-weight: 500;
-    }
-
-    @media (max-width: 640px) {
-      .item-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .highlight-cards {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .highlight-card {
-      border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      padding: 9px 10px;
-      font-size: 13px;
-    }
-
-    .highlight-title {
-      font-weight: 600;
-      margin-bottom: 3px;
-    }
-
-    .highlight-text {
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      font-size: 12px;
-    }
-
-    .highlight-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 12px;
-    }
-
-    .chip-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: #020617;
-      gap: 6px;
-      color: var(--text-main);
-    }
-
-    .chip-link::before {
-      content: "↗";
-      font-size: 11px;
-    }
-
-    /* NUMERI / STATS */
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    @media (max-width: 720px) {
-      .stats-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .stat-card {
-      border-radius: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.95);
-      padding: 10px 12px;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .stat-value {
-      font-size: 22px;
-      font-weight: 700;
-      color: #fef3c7;
-      margin-bottom: 3px;
-    }
-
-    .stat-note {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* SIDEBAR */
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .sidebar-box {
-      background: radial-gradient(circle at top left, #020617 0, #020617 55%);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 12px 14px;
-      font-size: 13px;
-    }
-
-    .sidebar-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .sidebar-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .sidebar-field {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      margin-bottom: 8px;
-    }
-
-    .sidebar-label {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .sidebar-input {
-      padding: 6px 8px;
-      border-radius: 8px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      font-size: 13px;
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-main);
-      outline: none;
-    }
-
-    .sidebar-input:focus {
-      border-color: var(--accent);
-    }
-
-    .btn-sidebar {
-      margin-top: 4px;
-      border-radius: var(--radius-full);
-      padding: 7px 14px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border: none;
-      background: var(--accent);
-      color: #0b1120;
-      cursor: pointer;
-    }
-
-    .sidebar-links {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 13px;
-    }
-
-    .sidebar-links a {
-      color: #f97316;
-      font-weight: 500;
-    }
-
-    .sidebar-social {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .sidebar-social a {
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 12px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .sidebar-social i {
-      font-size: 12px;
-    }
-
-    /* FOOTER */
-
-    .site-footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.35);
-      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
-      margin-top: auto;
-    }
-
-    .footer-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 14px 16px 18px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: baseline;
-    }
-
-    .footer-social {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .footer-social a {
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    /* MICRO-ANIMAZIONI CARD */
-
-    .section-box,
-    .highlight-card,
-    .about-role,
-    .sidebar-box {
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-    }
-
-    .section-box:hover,
-    .highlight-card:hover,
-    .about-role:hover,
-    .sidebar-box:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.9);
-      border-color: rgba(249, 115, 22, 0.7);
-    }
-
-    /* EFFETTO ENTRATA SCROLL */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page">
-    <!-- HEADER -->
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="index.html" class="brand">
-          <div class="brand-mark">
-            <img
-              src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
-              alt="Emir Alili"
-            />
-          </div>
-          <div class="brand-text">
-            <span class="brand-title">Emir Alili</span>
-            <span class="brand-subtitle">Imprenditore · autore · leader politico</span>
-          </div>
-        </a>
-
-        <nav class="nav">
-          <a href="index.html" class="active">Home</a>
-          <a href="chi-sono.html">Chi sono</a>
-          <a href="cosa-faccio.html">Cosa faccio</a>
-          <a href="contatti.html">Contatti</a>
-        </nav>
-
-        <div class="nav-cta">
-          <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-            Contatti
-          </button>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="brand">
+        <img src="assets/logos/mdp-logo.jpg" alt="Logo Emir Alili" class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-name">Emir Alili</span>
+          <span class="brand-tagline">Imprenditore · Autore · Impegno civile</span>
         </div>
-
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
-          <span></span>
-        </button>
       </div>
 
-      <nav class="nav-mobile" id="navMobile">
-        <div class="nav-mobile-links">
-          <a href="index.html" class="active">Home</a>
-          <a href="chi-sono.html">Chi sono</a>
-          <a href="cosa-faccio.html">Cosa faccio</a>
-          <a href="contatti.html">Contatti</a>
-        </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="chi-sono.html" class="nav-link">Chi sono</a>
+        <a href="cosa-faccio.html" class="nav-link">Cosa faccio</a>
+        <a href="contatti.html" class="nav-link">Contatti</a>
       </nav>
-    </header>
 
-    <!-- MAIN -->
-    <main>
-      <div class="container">
-        <div class="layout">
-          <!-- COLONNA PRINCIPALE -->
-          <div class="content-column">
-            <!-- HERO -->
-            <section class="hero reveal">
-              <div class="hero-grid">
-                <div>
-                  <div class="hero-kicker">
-                    <span></span>
-                    <span>Impresa · Politica · Impegno civile</span>
-                  </div>
-                  <h1 class="hero-title">
-                    Costruisco aziende, progetti e percorsi
-                    <span class="hero-highlight">per cambiare davvero la realtà.</span>
-                  </h1>
-                  <p class="hero-subtitle">
-                    Imprenditore, autore e fondatore di un partito politico di diaspora.
-                    Il filo conduttore è sempre lo stesso:
-                    <strong>responsabilità e risultati</strong>.
-                  </p>
-                  <div class="hero-cta">
-                    <button class="btn-primary" type="button" onclick="window.location.href='chi-sono.html'">
-                      <i class="fa-solid fa-user"></i>
-                      Chi sono
-                    </button>
-                    <button class="btn-ghost" type="button" onclick="window.location.href='cosa-faccio.html'">
-                      <i class="fa-solid fa-diagram-project"></i>
-                      Progetti e attività
-                    </button>
-                  </div>
-                  <div class="hero-meta">
-                    <span>Impresa e servizi · EA Group / EA Cleaning</span>
-                    <span>Politica · Macedonian Diaspora Party (MDP)</span>
-                    <span>Progetti sociali e culturali in Romagna</span>
-                  </div>
-                </div>
+      <button class="mobile-toggle" onclick="toggleMenu()">
+        ☰
+      </button>
+    </div>
+  </header>
 
-                <div class="hero-card">
-                  <div class="hero-photo">
-                    <img
-                      src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/495583811_3981877272128095_386489399484653202_n.jpg"
-                      alt="Emir Alili – Ritratto"
-                    />
-                  </div>
-                  <div class="hero-badge">
-                    <span></span>
-                    Dal lavoro nei cantieri ai progetti politici di lungo periodo.
-                  </div>
-                </div>
-              </div>
-            </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>Impresa, idee e politica con i piedi per terra.</h1>
+        <p>
+          Lavoro tra aziende, progetti culturali e impegno politico. 
+          Niente slogan vuoti: solo risultati, analisi e decisioni concrete.
+        </p>
 
-            <!-- CHI È EMIR -->
-            <section class="section-box reveal">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Chi è Emir</h2>
-                <p class="section-subtitle">
-                  Una biografia fatta di lavoro, migrazione e responsabilità diretta.
-                </p>
-              </div>
-              <div class="about-text">
-                <p>
-                  Sono arrivato dal basso, lavorando nei cantieri e nei servizi,
-                  vivendo sulla pelle cosa significa doversi reinventare in un altro Paese.
-                  Da lì ho costruito aziende, progetti culturali e un percorso politico che
-                  non nasce nei salotti, ma tra chi ogni giorno
-                  <strong>fa i conti con la realtà</strong>.
-                </p>
-                <p>
-                  Il mio lavoro tiene insieme numeri, organizzazione e visione di lungo periodo:
-                  impresa sostenibile, Stato funzionante, dignità per chi oggi è costretto a emigrare.
-                </p>
-              </div>
+        <div class="hero-actions">
+          <a href="chi-sono.html" class="btn primary">Scopri chi sono</a>
+          <a href="cosa-faccio.html" class="btn ghost">Vedi cosa faccio</a>
+        </div>
 
-              <div class="about-roles">
-                <div class="about-role">
-                  <div class="about-role-title">Leader politico</div>
-                  <div class="about-role-text">
-                    Fondatore del Macedonian Diaspora Party, il primo progetto politico
-                    nato dalla diaspora per cambiare il Paese di origine con
-                    regole chiare, responsabilità immediata e partecipazione reale.
-                  </div>
-                </div>
-                <div class="about-role">
-                  <div class="about-role-title">Imprenditore</div>
-                  <div class="about-role-text">
-                    EA Group ed EA Cleaning: servizi di pulizia e facility management
-                    costruiti su processi, controllo dei costi e qualità, non sugli slogan.
-                  </div>
-                </div>
-                <div class="about-role">
-                  <div class="about-role-title">Autore e impegno umanitario</div>
-                  <div class="about-role-text">
-                    Libri, progetti sociali e attività con associazioni e comunità locali
-                    per trasformare esperienza personale in strumenti concreti per gli altri.
-                  </div>
-                </div>
-              </div>
-            </section>
+        <div class="hero-meta">
+          <span>EA Cleaning · EA Group · MDP – Macedonian Diaspora Party</span>
+        </div>
+      </div>
 
-            <!-- AREE DI IMPEGNO -->
-            <section class="section-box reveal">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Aree di impegno</h2>
-                <p class="section-subtitle">
-                  Dove metto tempo, energie e responsabilità oggi.
-                </p>
-              </div>
-
-              <div class="items-list">
-                <article class="item-row">
-                  <div class="item-meta">Impresa · EA Group</div>
-                  <div>
-                    <div class="item-main-title">Servizi di pulizia e facility per aziende e condomìni</div>
-                    <p class="item-main-text">
-                      Gestione operativa, costi, margini e organizzazione dei cantieri.
-                      Servizi pensati per reggere nel tempo, non per vincere al ribasso.
-                    </p>
-                    <a class="item-link" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">
-                      Vai al sito EA Group
-                    </a>
-                  </div>
-                </article>
-
-                <article class="item-row">
-                  <div class="item-meta">Politica · MDP</div>
-                  <div>
-                    <div class="item-main-title">Macedonian Diaspora Party</div>
-                    <p class="item-main-text">
-                      Un partito costruito dalla diaspora per rompere il circuito
-                      corruzione–clientele–impunità. Visione di Stato, riforme strutturali
-                      e partecipazione diretta dei cittadini all’estero.
-                    </p>
-                    <a class="item-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
-                      Scopri MDP e i documenti ufficiali
-                    </a>
-                  </div>
-                </article>
-
-                <article class="item-row">
-                  <div class="item-meta">Libri · Progetti sociali</div>
-                  <div>
-                    <div class="item-main-title">Scrittura, comunità, formazione</div>
-                    <p class="item-main-text">
-                      Libri autobiografici e di orientamento, iniziative con associazioni,
-                      centri culturali e realtà umanitarie per trasformare storie personali
-                      in percorsi utili a chi arriva dopo.
-                    </p>
-                    <a class="item-link" href="chi-sono.html">
-                      Approfondisci nella sezione “Chi sono”
-                    </a>
-                  </div>
-                </article>
-              </div>
-            </section>
-
-            <!-- PROGETTI IN EVIDENZA -->
-            <section class="section-box reveal">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> In primo piano</h2>
-                <p class="section-subtitle">
-                  Alcuni progetti che oggi sono al centro del mio lavoro.
-                </p>
-              </div>
-
-              <div class="highlight-cards">
-                <article class="highlight-card">
-                  <div class="highlight-title">EA Cleaning / EA Group</div>
-                  <p class="highlight-text">
-                    Impresa multiservizi che nasce dal lavoro sul campo.
-                    Seguiamo realtà industriali, commerciali e residenziali con
-                    attenzione a qualità, continuità e sostenibilità economica.
-                  </p>
-                  <div class="highlight-actions">
-                    <a class="chip-link" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">
-                      Visita il sito
-                    </a>
-                  </div>
-                </article>
-
-                <article class="highlight-card">
-                  <div class="highlight-title">Macedonian Diaspora Party (MDP)</div>
-                  <p class="highlight-text">
-                    Progetto politico nato fuori dai palazzi, dai cittadini costretti a emigrare.
-                    Obiettivo: riportare lo Stato sotto il controllo di chi lavora e paga le conseguenze
-                    delle scelte politiche, senza immunità.
-                  </p>
-                  <div class="highlight-actions">
-                    <a class="chip-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
-                      Vai al sito MDP
-                    </a>
-                    <a class="chip-link" href="https://mdp-eu.com/it/documenti" target="_blank" rel="noopener noreferrer">
-                      Leggi i documenti ufficiali
-                    </a>
-                  </div>
-                </article>
-              </div>
-            </section>
-
-            <!-- NUMERI -->
-            <section class="section-box reveal">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Numeri</h2>
-                <p class="section-subtitle">
-                  Una sintesi concreta del lavoro che porto avanti ogni giorno.
-                </p>
-              </div>
-
-              <div class="stats-grid">
-                <div class="stat-card">
-                  <div class="stat-label">Anni in Italia</div>
-                  <div class="stat-value" data-target="20">0</div>
-                  <div class="stat-note">Percorso da lavoratore a imprenditore</div>
-                </div>
-                <div class="stat-card">
-                  <div class="stat-label">Cantieri gestiti</div>
-                  <div class="stat-value" data-target="26">0</div>
-                  <div class="stat-note">EA Cleaning / EA Group</div>
-                </div>
-                <div class="stat-card">
-                  <div class="stat-label">Paesi di diaspora</div>
-                  <div class="stat-value" data-target="10">0</div>
-                  <div class="stat-note">Coinvolti nel progetto MDP</div>
-                </div>
-              </div>
-            </section>
+      <div class="hero-media">
+        <div class="hero-card">
+          <!-- FOTO PRINCIPALE HOME -->
+          <img src="assets/img/Emir servizio fotografico.jpg" alt="Emir Alili" class="hero-image" />
+          <div class="hero-card-badge">
+            <span>Impresa</span>
+            <span>Analisi geopolitica</span>
+            <span>Politica partecipata</span>
           </div>
-
-          <!-- SIDEBAR -->
-          <aside class="sidebar reveal">
-            <section class="sidebar-box">
-              <h3 class="sidebar-title">Restiamo in contatto</h3>
-              <p class="sidebar-subtitle">
-                Per aggiornamenti su impresa, politica e progetti sociali.
-              </p>
-
-              <div class="sidebar-field">
-                <label class="sidebar-label" for="email">Indirizzo email</label>
-                <input class="sidebar-input" type="email" id="email" placeholder="nome@esempio.com" />
-              </div>
-              <div class="sidebar-field">
-                <label class="sidebar-label" for="city">Città / Paese</label>
-                <input class="sidebar-input" type="text" id="city" placeholder="Dove vivi" />
-              </div>
-
-              <button class="btn-sidebar" type="button">
-                Iscriviti agli aggiornamenti
-              </button>
-            </section>
-
-            <section class="sidebar-box">
-              <h3 class="sidebar-title">Link rapidi</h3>
-              <div class="sidebar-links">
-                <a href="chi-sono.html">Biografia completa</a>
-                <a href="cosa-faccio.html">Cosa faccio oggi</a>
-                <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Macedonian Diaspora Party</a>
-                <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Cleaning / EA Group</a>
-              </div>
-            </section>
-
-            <section class="sidebar-box">
-              <h3 class="sidebar-title">Contatti diretti</h3>
-              <p class="sidebar-subtitle">
-                Per richieste, proposte e collaborazioni.
-              </p>
-              <div class="sidebar-social">
-                <a href="mailto:info@emiralili.it">
-                  <i class="fa-solid fa-envelope"></i> Email
-                </a>
-                <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-brands fa-facebook-f"></i> Facebook
-                </a>
-                <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-                </a>
-              </div>
-            </section>
-          </aside>
         </div>
       </div>
-    </main>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-links">
-          <span>© <span id="year"></span> Emir Alili.</span>
-          <span>Imprenditore · autore · leader politico.</span>
-        </div>
-        <div class="footer-social">
-          <a href="mailto:info@emiralili.it">Email diretta</a>
-          <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
+  <!-- SEZIONE PANNELLI -->
+  <section class="section">
+    <div class="container section-header">
+      <h2>Aree principali</h2>
+      <p>
+        Tre livelli che si parlano: impresa, pensiero critico e azione politica organizzata.
+      </p>
+    </div>
+
+    <div class="container cards-grid">
+      <article class="card">
+        <h3>Impresa</h3>
+        <p>
+          Gestione e sviluppo di EA Cleaning ed EA Group: servizi, numeri, efficienza
+          e organizzazione pratica del lavoro.
+        </p>
+        <a href="cosa-faccio.html" class="card-link">Vai ai progetti aziendali</a>
+      </article>
+
+      <article class="card">
+        <h3>Analisi e libri</h3>
+        <p>
+          Libri, documenti e analisi sulla geopolitica, sulla scuola, sul lavoro
+          e sul futuro delle nuove generazioni.
+        </p>
+        <a href="chi-sono.html" class="card-link">Scopri il percorso</a>
+      </article>
+
+      <article class="card">
+        <h3>MDP – Macedonian Diaspora Party</h3>
+        <p>
+          Un progetto politico costruito dalla diaspora per cambiare la Macedonia,
+          fuori dalle logiche dei partiti tradizionali.
+        </p>
+        <a href="https://mdp-eu.com" class="card-link" target="_blank" rel="noopener">
+          Vai al sito MDP
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- SEZIONE CTA -->
+  <section class="section cta">
+    <div class="container cta-inner">
+      <div>
+        <h2>Vuoi collaborare su un progetto concreto?</h2>
+        <p>
+          Aziende, amministrazioni, associazioni, media: se cerchi qualcuno che
+          non giri attorno ai problemi, ci sono.
+        </p>
       </div>
-    </footer>
-  </div>
+      <a href="contatti.html" class="btn primary">Scrivimi</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-title">Contatti rapidi</p>
+        <p>Email: <a href="mailto:info@emiralili.it">info@emiralili.it</a></p>
+        <p>Tel: <a href="tel:+393282290062">+39 328 229 0062</a></p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Online</p>
+        <p><a href="https://www.facebook.com/emir.alili.81/" target="_blank">Facebook</a></p>
+        <p><a href="https://www.linkedin.com/in/emiralili/" target="_blank">LinkedIn</a></p>
+        <p><a href="https://mdp-eu.com" target="_blank">MDP – Sito ufficiale</a></p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Note</p>
+        <p>Questo sito è uno spazio personale, non un’agenzia stampa.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2025 Emir Alili – Tutti i diritti riservati</p>
+    </div>
+  </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // anno footer
-      const yearEl = document.getElementById("year");
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      // menu mobile
-      const navToggle = document.getElementById("navToggle");
-      const navMobile = document.getElementById("navMobile");
-      if (navToggle && navMobile) {
-        navToggle.addEventListener("click", () => {
-          navMobile.classList.toggle("open");
-        });
-      }
-
-      // effetto entrata scroll
-      const revealEls = document.querySelectorAll(".reveal");
-      if (revealEls.length) {
-        const revealObserver = new IntersectionObserver(
-          entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.15 }
-        );
-        revealEls.forEach(el => revealObserver.observe(el));
-      }
-
-      // animazione numeri
-      const statsGrid = document.querySelector(".stats-grid");
-      const statValues = document.querySelectorAll(".stat-value");
-      if (statsGrid && statValues.length) {
-        const runCounters = () => {
-          statValues.forEach(counter => {
-            const target = Number(counter.dataset.target || 0);
-            let current = 0;
-            const step = Math.max(1, Math.round(target / 60));
-            const interval = setInterval(() => {
-              current += step;
-              if (current >= target) {
-                current = target;
-                clearInterval(interval);
-              }
-              counter.textContent = current;
-            }, 16);
-          });
-        };
-
-        const obs = new IntersectionObserver(
-          entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                runCounters();
-                obs.disconnect();
-              }
-            });
-          },
-          { threshold: 0.3 }
-        );
-        obs.observe(statsGrid);
-      }
-    });
+    function toggleMenu() {
+      document.querySelector('.nav').classList.toggle('open');
+    }
   </script>
 </body>
 </html>
+
