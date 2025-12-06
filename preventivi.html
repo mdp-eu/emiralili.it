@@ -11,7 +11,7 @@
     }
 
     .tool-box {
-      max-width: 1100px;
+      max-width: 920px;
       margin: 0 auto;
     }
 
@@ -142,91 +142,6 @@
       flex-wrap: wrap;
       gap: 0.6rem;
     }
-
-    /* Archivio preventivi */
-    .archive-box {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .archive-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: #111827;
-    }
-
-    .archive-subtitle {
-      font-size: 0.82rem;
-      color: #6b7280;
-      margin-bottom: 0.8rem;
-    }
-
-    .archive-table-wrap {
-      overflow-x: auto;
-      border-radius: 12px;
-      border: 1px solid var(--border-subtle);
-      background: #ffffff;
-    }
-
-    table.archive-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-    }
-
-    table.archive-table thead {
-      background: var(--bg-soft);
-    }
-
-    table.archive-table th,
-    table.archive-table td {
-      padding: 0.55rem 0.7rem;
-      text-align: left;
-      border-bottom: 1px solid #e5e7eb;
-      white-space: nowrap;
-    }
-
-    table.archive-table th {
-      font-weight: 600;
-      color: #374151;
-    }
-
-    table.archive-table td {
-      color: #4b5563;
-    }
-
-    table.archive-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .archive-empty {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      padding: 0.7rem 0;
-    }
-
-    .btn-table {
-      font-size: 0.76rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      padding: 0.25rem 0.6rem;
-      cursor: pointer;
-      background: #ffffff;
-    }
-
-    .btn-table:hover {
-      border-color: var(--accent);
-      color: var(--accent-dark);
-    }
-
-    @media (max-width: 600px) {
-      table.archive-table th,
-      table.archive-table td {
-        padding: 0.45rem 0.5rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -278,20 +193,20 @@
                 Calcolatore rapido per <span>preventivi EA Cleaning</span>.
               </h1>
               <p class="hero-subtitle">
-                Inserisci pochi parametri base, salva i preventivi con i dati del cliente,
-                tieni uno storico consultabile come un piccolo gestionale interno.
+                Inserisci pochi parametri base e ottieni ore mensili, costi vivi aziendali
+                e prezzo finale al cliente. Lo usi solo tu, come foglio di lavoro veloce.
               </p>
               <div class="hero-pills">
-                <span class="pill">Dati cliente</span>
                 <span class="pill">Frequenza · ore · km</span>
-                <span class="pill">Costi vivi + margine</span>
+                <span class="pill">Costo orario dipendente</span>
+                <span class="pill">Prodotti · commissione · ricarico</span>
               </div>
             </div>
 
             <aside class="hero-card">
               <div class="hero-name">EA Cleaning – strumento di lavoro</div>
               <div class="hero-role-main">
-                Preventivi strutturati, numerati e archiviati in locale.
+                Costi vivi separati: lavoro, auto, prodotti, commissioni.
               </div>
               <div class="hero-stat-grid">
                 <div class="hero-stat-card">
@@ -320,8 +235,7 @@
           <div class="section-header">
             <h2 class="section-title"><span>//</span> Dati preventivo e cliente</h2>
             <p class="section-subtitle">
-              Ogni preventivo ha un numero progressivo, una data e i dati minimi del cliente.
-              Questi campi vengono salvati insieme ai calcoli, così puoi ritrovare e riaprire tutto.
+              Numero progressivo, data e nome cliente vengono stampati anche nel PDF.
             </p>
           </div>
 
@@ -331,10 +245,10 @@
               <!-- Numero preventivo -->
               <div class="tool-field">
                 <label class="tool-label" for="numPreventivo">Numero preventivo</label>
-                <p class="tool-hint">Generato in automatico in forma AAAA-XXX.</p>
+                <p class="tool-hint">Generato in automatico in forma AAAA-XXX (puoi modificarlo).</p>
                 <div class="tool-input-row">
-                  <input class="tool-input" type="text" id="numPreventivo" readonly />
-                  <span class="tool-suffix">solo lettura</span>
+                  <input class="tool-input" type="text" id="numPreventivo" />
+                  <span class="tool-suffix">es. 2025-001</span>
                 </div>
               </div>
 
@@ -357,41 +271,13 @@
               </div>
 
               <div class="tool-field">
-                <label class="tool-label" for="clienteReferente">Referente</label>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="text" id="clienteReferente" placeholder="Nome e cognome referente" />
-                </div>
+                <label class="tool-label" for="clienteNote">Note interne (facoltative)</label>
+                <textarea class="tool-textarea" id="clienteNote" placeholder="Es. chiavi in amministrazione, accesso da cancello laterale, ecc."></textarea>
               </div>
             </aside>
           </div>
 
-          <div class="tool-grid" style="margin-bottom:2rem;">
-            <div>
-              <div class="tool-field">
-                <label class="tool-label" for="clienteIndirizzo">Indirizzo cantiere</label>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="text" id="clienteIndirizzo" placeholder="Via, n., scala, piano" />
-                </div>
-              </div>
-            </div>
-            <aside>
-              <div class="tool-field">
-                <label class="tool-label" for="clienteCitta">Città</label>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="text" id="clienteCitta" placeholder="Comune / frazione" />
-                </div>
-              </div>
-            </aside>
-          </div>
-
-          <div class="tool-field">
-            <label class="tool-label" for="clienteNote">Note interne</label>
-            <p class="tool-hint">Dettagli operativi, accordi particolari, condizioni.</p>
-            <textarea class="tool-textarea" id="clienteNote" placeholder="Es. chiavi in amministrazione, accesso da cancello laterale, ecc."></textarea>
-          </div>
-
-          <!-- PARAMETRI DI LAVORO -->
-          <div class="section-header" style="margin-top:2rem;">
+          <div class="section-header">
             <h2 class="section-title"><span>//</span> Parametri di lavoro</h2>
             <p class="section-subtitle">
               I parametri definiscono i costi vivi aziendali: dipendenti, auto, prodotti e
@@ -478,13 +364,17 @@
               <div class="tool-buttons">
                 <button class="btn-primary" type="button" id="calcolaBtn">Calcola preventivo</button>
                 <button class="btn-outline" type="button" id="resetBtn">Reset</button>
-                <button class="btn-outline" type="button" id="salvaBtn">Salva preventivo</button>
-                <button class="btn-outline" type="button" id="nuovoBtn">Nuovo preventivo</button>
               </div>
             </div>
 
-            <!-- COLONNA RISULTATI -->
+            <!-- COLONNA RISULTATI + INTESTAZIONE PDF -->
             <aside class="tool-results" id="pdfArea">
+              <div style="margin-bottom:0.8rem; font-size:0.85rem;">
+                <strong>Preventivo EA Cleaning</strong><br>
+                Nr: <span id="pdfNum"></span> · Data: <span id="pdfData"></span><br>
+                Cliente: <span id="pdfCliente"></span>
+              </div>
+
               <div class="tool-results-title">Risultato preventivo mensile</div>
               <div class="tool-results-grid">
                 <div class="tool-result-row">
@@ -563,34 +453,6 @@
           <div class="tool-buttons">
             <button class="btn-outline" type="button" id="pdfBtn">Esporta preventivo in PDF</button>
           </div>
-
-          <!-- ARCHIVIO PREVENTIVI -->
-          <div class="archive-box">
-            <div class="archive-title">Archivio preventivi (solo sul dispositivo)</div>
-            <p class="archive-subtitle">
-              I preventivi salvati vengono memorizzati nel browser tramite localStorage. 
-              Puoi riaprirli, modificarli e ristamparli. Non è un database centrale, è uno strumento di lavoro locale.
-            </p>
-            <div class="archive-table-wrap">
-              <table class="archive-table">
-                <thead>
-                  <tr>
-                    <th>Nr.</th>
-                    <th>Data</th>
-                    <th>Cliente</th>
-                    <th>Prezzo mensile</th>
-                    <th>Azioni</th>
-                  </tr>
-                </thead>
-                <tbody id="archiveBody">
-                  <!-- righe generate da JS -->
-                </tbody>
-              </table>
-            </div>
-            <div id="archiveEmpty" class="archive-empty" style="display:none;">
-              Nessun preventivo salvato. Compila i dati e usa "Salva preventivo".
-            </div>
-          </div>
         </section>
       </div>
     </main>
@@ -622,50 +484,93 @@
     const nav = document.getElementById("nav");
     const navToggle = document.getElementById("navToggle");
     if (nav && navToggle) {
-      navToggle.addEventListener("click", () => {
+      navToggle.addEventListener("click", function () {
         nav.classList.toggle("mobile-open");
       });
     }
 
-    // --- RIFERIMENTI INPUT PARAMETRI ---
-    const commissioneInput = document.getElementById("commissionePerc");
-    const freqInput = document.getElementById("freq");
-    const oreIntInput = document.getElementById("oreInt");
-    const kmIntInput = document.getElementById("kmInt");
-    const costoOraSelect = document.getElementById("costoOra");
-    const margineInput = document.getElementById("marginePerc");
+    // Nuovi campi intestazione
+    var numPreventivoInput = document.getElementById("numPreventivo");
+    var dataPreventivoInput = document.getElementById("dataPreventivo");
+    var clienteNomeInput = document.getElementById("clienteNome");
+    var clienteNoteInput = document.getElementById("clienteNote");
 
-    // Dati preventivo + cliente
-    const numPreventivoInput = document.getElementById("numPreventivo");
-    const dataPreventivoInput = document.getElementById("dataPreventivo");
-    const clienteNomeInput = document.getElementById("clienteNome");
-    const clienteReferenteInput = document.getElementById("clienteReferente");
-    const clienteIndirizzoInput = document.getElementById("clienteIndirizzo");
-    const clienteCittaInput = document.getElementById("clienteCitta");
-    const clienteNoteInput = document.getElementById("clienteNote");
+    var pdfNumSpan = document.getElementById("pdfNum");
+    var pdfDataSpan = document.getElementById("pdfData");
+    var pdfClienteSpan = document.getElementById("pdfCliente");
 
-    // Output
-    const oreMeseSpan = document.getElementById("oreMese");
-    const costoLavoroSpan = document.getElementById("costoLavoro");
-    const costoAutoSpan = document.getElementById("costoAuto");
-    const costoProdottiSpan = document.getElementById("costoProdotti");
-    const costoTotaleBaseSpan = document.getElementById("costoTotaleBase");
-    const prezzoBaseSpan = document.getElementById("prezzoBase");
-    const commissioneEuroSpan = document.getElementById("commissioneEuro");
-    const costoTotaleSpan = document.getElementById("costoTotale");
-    const prezzoMeseSpan = document.getElementById("prezzoMese");
-    const tariffaOraSpan = document.getElementById("tariffaOra");
-    const margineEuroSpan = document.getElementById("margineEuro");
-    const margineEffSpan = document.getElementById("margineEff");
+    function getTodayISO() {
+      var d = new Date();
+      var yyyy = d.getFullYear();
+      var mm = String(d.getMonth() + 1).padStart(2, "0");
+      var dd = String(d.getDate()).padStart(2, "0");
+      return yyyy + "-" + mm + "-" + dd;
+    }
 
-    // Archivio
-    const archiveBody = document.getElementById("archiveBody");
-    const archiveEmpty = document.getElementById("archiveEmpty");
+    function getNextNumeroPreventivo() {
+      var year = new Date().getFullYear();
+      var key = "eaLastPreventivoNumberSimple";
+      var last = localStorage.getItem(key);
+      if (!last || last.indexOf(year + "-") !== 0) {
+        var nuovo = year + "-001";
+        localStorage.setItem(key, nuovo);
+        return nuovo;
+      }
+      var parts = last.split("-");
+      var seq = parseInt(parts[1], 10) || 0;
+      seq = seq + 1;
+      var next = String(seq);
+      while (next.length < 3) next = "0" + next;
+      var nuovo = parts[0] + "-" + next;
+      localStorage.setItem(key, nuovo);
+      return nuovo;
+    }
 
-    const calcolaBtn = document.getElementById("calcolaBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const salvaBtn = document.getElementById("salvaBtn");
-    const nuovoBtn = document.getElementById("nuovoBtn");
+    function syncPdfHeader() {
+      if (pdfNumSpan) pdfNumSpan.textContent = numPreventivoInput.value || "";
+      if (pdfDataSpan) pdfDataSpan.textContent = dataPreventivoInput.value || "";
+      if (pdfClienteSpan) pdfClienteSpan.textContent = clienteNomeInput.value || "";
+    }
+
+    // Inizializza numero e data se vuoti
+    if (numPreventivoInput && !numPreventivoInput.value) {
+      numPreventivoInput.value = getNextNumeroPreventivo();
+    }
+    if (dataPreventivoInput && !dataPreventivoInput.value) {
+      dataPreventivoInput.value = getTodayISO();
+    }
+    syncPdfHeader();
+
+    if (numPreventivoInput) {
+      numPreventivoInput.addEventListener("input", syncPdfHeader);
+    }
+    if (dataPreventivoInput) {
+      dataPreventivoInput.addEventListener("input", syncPdfHeader);
+    }
+    if (clienteNomeInput) {
+      clienteNomeInput.addEventListener("input", syncPdfHeader);
+    }
+
+    // Campi originali del calcolatore
+    var commissioneInput = document.getElementById("commissionePerc");
+    var freqInput = document.getElementById("freq");
+    var oreIntInput = document.getElementById("oreInt");
+    var kmIntInput = document.getElementById("kmInt");
+    var costoOraSelect = document.getElementById("costoOra");
+    var margineInput = document.getElementById("marginePerc");
+
+    var oreMeseSpan = document.getElementById("oreMese");
+    var costoLavoroSpan = document.getElementById("costoLavoro");
+    var costoAutoSpan = document.getElementById("costoAuto");
+    var costoProdottiSpan = document.getElementById("costoProdotti");
+    var costoTotaleBaseSpan = document.getElementById("costoTotaleBase");
+    var prezzoBaseSpan = document.getElementById("prezzoBase");
+    var commissioneEuroSpan = document.getElementById("commissioneEuro");
+    var costoTotaleSpan = document.getElementById("costoTotale");
+    var prezzoMeseSpan = document.getElementById("prezzoMese");
+    var tariffaOraSpan = document.getElementById("tariffaOra");
+    var margineEuroSpan = document.getElementById("margineEuro");
+    var margineEffSpan = document.getElementById("margineEff");
 
     function formatEuro(val) {
       return val.toFixed(2).replace(".", ",") + " €";
@@ -679,71 +584,33 @@
       return val.toFixed(1).replace(".", ",") + " %";
     }
 
-    function getTodayISO() {
-      const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth() + 1).padStart(2, "0");
-      const dd = String(d.getDate()).padStart(2, "0");
-      return `${yyyy}-${mm}-${dd}`;
-    }
-
-    function getNextNumeroPreventivo() {
-      const year = new Date().getFullYear();
-      const last = localStorage.getItem("eaLastPreventivoNumber");
-      if (!last || !last.startsWith(String(year))) {
-        const nuovo = `${year}-001`;
-        localStorage.setItem("eaLastPreventivoNumber", nuovo);
-        return nuovo;
-      }
-      const [anno, seq] = last.split("-");
-      const next = String(parseInt(seq, 10) + 1).padStart(3, "0");
-      const nuovo = `${anno}-${next}`;
-      localStorage.setItem("eaLastPreventivoNumber", nuovo);
-      return nuovo;
-    }
-
-    function getPreventiviFromStorage() {
-      try {
-        const raw = localStorage.getItem("eaPreventivi");
-        if (!raw) return [];
-        return JSON.parse(raw);
-      } catch (e) {
-        console.error("Errore lettura preventivi", e);
-        return [];
-      }
-    }
-
-    function savePreventiviToStorage(list) {
-      localStorage.setItem("eaPreventivi", JSON.stringify(list));
-    }
-
     function calcola() {
-      const freq = parseFloat(freqInput.value) || 0;
-      const oreInt = parseFloat(oreIntInput.value) || 0;
-      const kmInt = parseFloat(kmIntInput.value) || 0;
-      const costoOra = parseFloat(costoOraSelect.value) || 0;
-      const marginePerc = parseFloat(margineInput.value) || 0;
-      const commissionePerc = parseFloat(commissioneInput.value) || 0;
+      var freq = parseFloat(freqInput.value) || 0;
+      var oreInt = parseFloat(oreIntInput.value) || 0;
+      var kmInt = parseFloat(kmIntInput.value) || 0;
+      var costoOra = parseFloat(costoOraSelect.value) || 0;
+      var marginePerc = parseFloat(margineInput.value) || 0;
+      var commissionePerc = parseFloat(commissioneInput.value) || 0;
 
-      const oreMese = freq * oreInt * 4.33;
-      const costoLavoro = oreMese * costoOra;
-      const costoAuto = kmInt * 0.30 * freq * 4.33;
+      var oreMese = freq * oreInt * 4.33;
+      var costoLavoro = oreMese * costoOra;
+      var costoAuto = kmInt * 0.30 * freq * 4.33;
 
-      const baseCost = costoLavoro + costoAuto;
-      const costoProdotti = baseCost * 0.07;
-      const costoTotaleBase = baseCost + costoProdotti;
+      var baseCost = costoLavoro + costoAuto;
+      var costoProdotti = baseCost * 0.07;
+      var costoTotaleBase = baseCost + costoProdotti;
 
-      const margineFactor = 1 + (marginePerc > 0 ? marginePerc / 100 : 0);
-      const prezzoBase = costoTotaleBase * margineFactor;
+      var margineFactor = 1 + (marginePerc > 0 ? marginePerc / 100 : 0);
+      var prezzoBase = costoTotaleBase * margineFactor;
 
-      const commissioneEuro = commissionePerc > 0 ? prezzoBase * (commissionePerc / 100) : 0;
-      const costoTotale = costoTotaleBase + commissioneEuro;
+      var commissioneEuro = commissionePerc > 0 ? prezzoBase * (commissionePerc / 100) : 0;
+      var costoTotale = costoTotaleBase + commissioneEuro;
 
-      const prezzoMese = prezzoBase + commissioneEuro;
+      var prezzoMese = prezzoBase + commissioneEuro;
 
-      const tariffaOra = oreMese > 0 ? prezzoMese / oreMese : 0;
-      const margineEuro = prezzoMese - costoTotale;
-      const margineEff = prezzoMese > 0 ? (margineEuro / prezzoMese) * 100 : 0;
+      var tariffaOra = oreMese > 0 ? prezzoMese / oreMese : 0;
+      var margineEuro = prezzoMese - costoTotale;
+      var margineEff = prezzoMese > 0 ? (margineEuro / prezzoMese) * 100 : 0;
 
       oreMeseSpan.textContent = formatOre(oreMese);
       costoLavoroSpan.textContent = formatEuro(costoLavoro);
@@ -758,31 +625,12 @@
       margineEuroSpan.textContent = formatEuro(margineEuro);
       margineEffSpan.textContent = formatPerc(margineEff);
 
-      return {
-        freq,
-        oreInt,
-        kmInt,
-        costoOra,
-        marginePerc,
-        commissionePerc,
-        oreMese,
-        costoLavoro,
-        costoAuto,
-        costoProdotti,
-        costoTotaleBase,
-        prezzoBase,
-        commissioneEuro,
-        costoTotale,
-        prezzoMese,
-        tariffaOra,
-        margineEuro,
-        margineEff
-      };
+      // aggiorna intestazione PDF (numero/data/cliente li abbiano già, qui non serve)
     }
 
-    calcolaBtn.addEventListener("click", calcola);
+    document.getElementById("calcolaBtn").addEventListener("click", calcola);
 
-    resetBtn.addEventListener("click", () => {
+    document.getElementById("resetBtn").addEventListener("click", function () {
       commissioneInput.value = "";
       freqInput.value = 2;
       oreIntInput.value = 2;
@@ -792,217 +640,29 @@
       calcola();
     });
 
-    [commissioneInput, freqInput, oreIntInput, kmIntInput, costoOraSelect, margineInput].forEach(el => {
+    [commissioneInput, freqInput, oreIntInput, kmIntInput, costoOraSelect, margineInput].forEach(function (el) {
       el.addEventListener("input", calcola);
     });
 
-    function renderArchivio() {
-      const list = getPreventiviFromStorage();
-      archiveBody.innerHTML = "";
-      if (!list.length) {
-        archiveEmpty.style.display = "block";
-        return;
-      }
-      archiveEmpty.style.display = "none";
-
-      list
-        .sort((a, b) => a.numero.localeCompare(b.numero))
-        .forEach(prev => {
-          const tr = document.createElement("tr");
-
-          const tdNum = document.createElement("td");
-          tdNum.textContent = prev.numero;
-          tr.appendChild(tdNum);
-
-          const tdData = document.createElement("td");
-          tdData.textContent = prev.data || "";
-          tr.appendChild(tdData);
-
-          const tdCliente = document.createElement("td");
-          tdCliente.textContent = prev.cliente && prev.cliente.nome
-            ? prev.cliente.nome
-            : "";
-          tr.appendChild(tdCliente);
-
-          const tdPrezzo = document.createElement("td");
-          const prezzo = prev.risultati && typeof prev.risultati.prezzoMese === "number"
-            ? formatEuro(prev.risultati.prezzoMese)
-            : "0,00 €";
-          tdPrezzo.textContent = prezzo;
-          tr.appendChild(tdPrezzo);
-
-          const tdAzioni = document.createElement("td");
-          const btnApri = document.createElement("button");
-          btnApri.textContent = "Apri";
-          btnApri.className = "btn-table";
-          btnApri.dataset.action = "open";
-          btnApri.dataset.numero = prev.numero;
-
-          const btnElimina = document.createElement("button");
-          btnElimina.textContent = "Elimina";
-          btnElimina.className = "btn-table";
-          btnElimina.style.marginLeft = "0.3rem";
-          btnElimina.dataset.action = "delete";
-          btnElimina.dataset.numero = prev.numero;
-
-          tdAzioni.appendChild(btnApri);
-          tdAzioni.appendChild(btnElimina);
-          tr.appendChild(tdAzioni);
-
-          archiveBody.appendChild(tr);
-        });
-    }
-
-    archiveBody.addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      const action = btn.dataset.action;
-      const numero = btn.dataset.numero;
-      if (!action || !numero) return;
-
-      const list = getPreventiviFromStorage();
-      const index = list.findIndex(p => p.numero === numero);
-      if (index === -1) return;
-
-      if (action === "open") {
-        const prev = list[index];
-        // Carica dati in form
-        numPreventivoInput.value = prev.numero || "";
-        dataPreventivoInput.value = prev.data || "";
-        if (prev.cliente) {
-          clienteNomeInput.value = prev.cliente.nome || "";
-          clienteReferenteInput.value = prev.cliente.referente || "";
-          clienteIndirizzoInput.value = prev.cliente.indirizzo || "";
-          clienteCittaInput.value = prev.cliente.citta || "";
-          clienteNoteInput.value = prev.cliente.note || "";
-        }
-
-        if (prev.parametri) {
-          commissioneInput.value = prev.parametri.commissionePerc ?? "";
-          freqInput.value = prev.parametri.freq ?? 0;
-          oreIntInput.value = prev.parametri.oreInt ?? 0;
-          kmIntInput.value = prev.parametri.kmInt ?? 0;
-          costoOraSelect.value = String(prev.parametri.costoOra ?? 14);
-          margineInput.value = prev.parametri.marginePerc ?? "";
-        }
-        // Aggiorna risultati visivi
-        if (prev.risultati) {
-          oreMeseSpan.textContent = formatOre(prev.risultati.oreMese ?? 0);
-          costoLavoroSpan.textContent = formatEuro(prev.risultati.costoLavoro ?? 0);
-          costoAutoSpan.textContent = formatEuro(prev.risultati.costoAuto ?? 0);
-          costoProdottiSpan.textContent = formatEuro(prev.risultati.costoProdotti ?? 0);
-          costoTotaleBaseSpan.textContent = formatEuro(prev.risultati.costoTotaleBase ?? 0);
-          prezzoBaseSpan.textContent = formatEuro(prev.risultati.prezzoBase ?? 0);
-          commissioneEuroSpan.textContent = formatEuro(prev.risultati.commissioneEuro ?? 0);
-          costoTotaleSpan.textContent = formatEuro(prev.risultati.costoTotale ?? 0);
-          prezzoMeseSpan.textContent = formatEuro(prev.risultati.prezzoMese ?? 0);
-          tariffaOraSpan.textContent = (prev.risultati.tariffaOra ?? 0).toFixed(2).replace(".", ",") + " €/h";
-          margineEuroSpan.textContent = formatEuro(prev.risultati.margineEuro ?? 0);
-          margineEffSpan.textContent = formatPerc(prev.risultati.margineEff ?? 0);
-        } else {
-          calcola();
-        }
-      } else if (action === "delete") {
-        if (!confirm("Eliminare definitivamente questo preventivo dall'archivio locale?")) return;
-        list.splice(index, 1);
-        savePreventiviToStorage(list);
-        renderArchivio();
-      }
-    });
-
-    salvaBtn.addEventListener("click", () => {
-      const numero = numPreventivoInput.value.trim();
-      if (!numero) {
-        alert("Numero preventivo non valido.");
-        return;
-      }
-
-      // calcola per avere risultati aggiornati
-      const risultati = calcola();
-
-      const preventivo = {
-        numero,
-        data: dataPreventivoInput.value || getTodayISO(),
-        cliente: {
-          nome: clienteNomeInput.value.trim(),
-          referente: clienteReferenteInput.value.trim(),
-          indirizzo: clienteIndirizzoInput.value.trim(),
-          citta: clienteCittaInput.value.trim(),
-          note: clienteNoteInput.value.trim()
-        },
-        parametri: {
-          commissionePerc: risultati.commissionePerc,
-          freq: risultati.freq,
-          oreInt: risultati.oreInt,
-          kmInt: risultati.kmInt,
-          costoOra: risultati.costoOra,
-          marginePerc: risultati.marginePerc
-        },
-        risultati
-      };
-
-      const list = getPreventiviFromStorage();
-      const existingIndex = list.findIndex(p => p.numero === numero);
-      if (existingIndex >= 0) {
-        list[existingIndex] = preventivo;
-      } else {
-        list.push(preventivo);
-      }
-      savePreventiviToStorage(list);
-      renderArchivio();
-      alert("Preventivo salvato nell'archivio locale.");
-    });
-
-    nuovoBtn.addEventListener("click", () => {
-      numPreventivoInput.value = getNextNumeroPreventivo();
-      dataPreventivoInput.value = getTodayISO();
-      clienteNomeInput.value = "";
-      clienteReferenteInput.value = "";
-      clienteIndirizzoInput.value = "";
-      clienteCittaInput.value = "";
-      clienteNoteInput.value = "";
-      commissioneInput.value = "";
-      freqInput.value = 2;
-      oreIntInput.value = 2;
-      kmIntInput.value = 0;
-      costoOraSelect.value = "14";
-      margineInput.value = "";
-      calcola();
-    });
-
-    // Primo calcolo iniziale + setup numero e data se vuoti
-    if (!numPreventivoInput.value) {
-      numPreventivoInput.value = getNextNumeroPreventivo();
-    }
-    if (!dataPreventivoInput.value) {
-      dataPreventivoInput.value = getTodayISO();
-    }
+    // Primo calcolo iniziale
     calcola();
-    renderArchivio();
 
     // PDF export
-const pdfBtn = document.getElementById("pdfBtn");
-const pdfArea = document.getElementById("pdfArea");
+    var pdfBtn = document.getElementById("pdfBtn");
+    var pdfArea = document.getElementById("pdfArea");
 
-if (pdfBtn && pdfArea) {
-  pdfBtn.addEventListener("click", () => {
-    const opt = {
-      margin:       10,
-      filename:     (numPreventivoInput.value || 'preventivo-ea-cleaning') + '.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    // piccolo check per evitare di esportare davvero il vuoto
-    if (!pdfArea.innerText.trim()) {
-      alert("L'area del preventivo risulta vuota. Controlla di aver fatto il calcolo prima di esportare.");
-      return;
+    if (pdfBtn && pdfArea) {
+      pdfBtn.addEventListener("click", function () {
+        var opt = {
+          margin:       10,
+          filename:     (numPreventivoInput.value || 'preventivo-ea-cleaning') + '.pdf',
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2 },
+          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().from(pdfArea).set(opt).save();
+      });
     }
-
-    html2pdf()
-      .set(opt)
-      .from(pdfArea)
-      .save();
-  });
-}
+  </script>
+</body>
+</html>
