@@ -475,8 +475,8 @@
     </footer>
   </div>
 
-  <!-- Libreria per esportare in PDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Libreria jsPDF per generare il PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -489,7 +489,7 @@
       });
     }
 
-    // Nuovi campi intestazione
+    // Campi intestazione
     var numPreventivoInput = document.getElementById("numPreventivo");
     var dataPreventivoInput = document.getElementById("dataPreventivo");
     var clienteNomeInput = document.getElementById("clienteNome");
@@ -551,7 +551,7 @@
       clienteNomeInput.addEventListener("input", syncPdfHeader);
     }
 
-    // Campi originali del calcolatore
+    // Campi calcolatore
     var commissioneInput = document.getElementById("commissionePerc");
     var freqInput = document.getElementById("freq");
     var oreIntInput = document.getElementById("oreInt");
@@ -624,8 +624,6 @@
       tariffaOraSpan.textContent = tariffaOra.toFixed(2).replace(".", ",") + " €/h";
       margineEuroSpan.textContent = formatEuro(margineEuro);
       margineEffSpan.textContent = formatPerc(margineEff);
-
-      // aggiorna intestazione PDF (numero/data/cliente li abbiano già, qui non serve)
     }
 
     document.getElementById("calcolaBtn").addEventListener("click", calcola);
@@ -647,20 +645,141 @@
     // Primo calcolo iniziale
     calcola();
 
-    // PDF export
+    // PDF export con layout grafico
     var pdfBtn = document.getElementById("pdfBtn");
-    var pdfArea = document.getElementById("pdfArea");
 
-    if (pdfBtn && pdfArea) {
+    if (pdfBtn) {
       pdfBtn.addEventListener("click", function () {
-        var opt = {
-          margin:       10,
-          filename:     (numPreventivoInput.value || 'preventivo-ea-cleaning') + '.pdf',
-          image:        { type: 'jpeg', quality: 0.98 },
-          html2canvas:  { scale: 2 },
-          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().from(pdfArea).set(opt).save();
+        calcola();
+        syncPdfHeader();
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+
+        let marginLeft = 15;
+        let marginRight = 195;
+        let y = 20;
+
+        // HEADER GRAFICO
+        doc.setFillColor(243, 244, 246); // grigio chiaro
+        doc.roundedRect(marginLeft - 5, y - 10, 180, 24, 3, 3, "F");
+
+        doc.setFontSize(14);
+        doc.setTextColor(15, 23, 42); // quasi nero
+        doc.text("EA Cleaning – Preventivo servizi di pulizia", marginLeft, y);
+        y += 7;
+
+        doc.setFontSize(11);
+        doc.text("Nr: " + (numPreventivoInput.value || ""), marginLeft, y);
+        doc.text("Data: " + (dataPreventivoInput.value || ""), marginLeft + 60, y);
+        y += 6;
+
+        doc.text("Cliente: " + (clienteNomeInput.value || ""), marginLeft, y);
+        y += 10;
+
+        // Note interne (se presenti)
+        if (clienteNoteInput.value) {
+          doc.setFontSize(10);
+          doc.setTextColor(55, 65, 81);
+          const noteLines = doc.splitTextToSize("Note interne: " + clienteNoteInput.value, 180);
+          doc.text(noteLines, marginLeft, y);
+          y += noteLines.length * 5 + 4;
+        }
+
+        // PICCOLA SEZIONE PARAMETRI
+        doc.setFontSize(12);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Parametri di lavoro", marginLeft, y);
+        y += 5;
+
+        doc.setDrawColor(209, 213, 219);
+        doc.line(marginLeft - 2, y, marginRight, y);
+        y += 5;
+
+        doc.setFontSize(9);
+        doc.setTextColor(75, 85, 99);
+
+        function addParam(label, value) {
+          doc.text(label, marginLeft, y);
+          doc.text(String(value || ""), marginLeft + 70, y);
+          y += 4.5;
+        }
+
+        addParam("Frequenza settimanale", (freqInput.value || "0") + " interventi/sett.");
+        addParam("Durata per intervento", (oreIntInput.value || "0") + " ore/intervento");
+        addParam("Km per intervento", (kmIntInput.value || "0") + " km/intervento");
+        addParam("Costo orario aziendale", (costoOraSelect.value || "0") + " €/h");
+        addParam("Commissione procacciatore", (commissioneInput.value || "0") + " %");
+        addParam("Margine desiderato", (margineInput.value || "0") + " %");
+
+        y += 6;
+
+        // TABELLA COSTI / RICAVI
+        doc.setFontSize(12);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Riepilogo economico mensile", marginLeft, y);
+        y += 5;
+
+        doc.setDrawColor(148, 163, 184);
+        doc.setFillColor(248, 250, 252);
+        doc.rect(marginLeft - 2, y, 182, 8, "FD");
+
+        doc.setFontSize(9);
+        doc.setTextColor(55, 65, 81);
+        doc.text("Voce", marginLeft, y + 5.5);
+        doc.text("Importo", marginRight - 40, y + 5.5, { align: "right" });
+        y += 10;
+
+        function addRow(label, valueText, type) {
+          if (y > 270) {
+            doc.addPage();
+            y = 20;
+          }
+
+          // Riga orizzontale
+          doc.setDrawColor(229, 231, 235);
+          doc.line(marginLeft - 2, y - 3, marginRight, y - 3);
+
+          // Colore testo
+          if (type === "cost") {
+            doc.setTextColor(185, 28, 28); // rosso
+          } else if (type === "rev") {
+            doc.setTextColor(22, 163, 74); // verde
+          } else {
+            doc.setTextColor(55, 65, 81);
+          }
+
+          doc.setFontSize(9);
+          doc.text(label, marginLeft, y);
+          doc.text(valueText || "", marginRight, y, { align: "right" });
+
+          y += 5;
+        }
+
+        // RIGHE TABELLA (cost in rosso, ricavi/margini in verde)
+        addRow("Ore totali mese", oreMeseSpan.textContent, "neutral");
+
+        addRow("Costo lavoro mese", costoLavoroSpan.textContent, "cost");
+        addRow("Costo auto mese", costoAutoSpan.textContent, "cost");
+        addRow("Costo prodotti (7%)", costoProdottiSpan.textContent, "cost");
+        addRow("Costo totale aziendale (senza commissione)", costoTotaleBaseSpan.textContent, "cost");
+        addRow("Commissione procacciatore", commissioneEuroSpan.textContent, "cost");
+        addRow("Costo totale aziendale (con commissione)", costoTotaleSpan.textContent, "cost");
+
+        y += 3;
+        doc.setDrawColor(156, 163, 175);
+        doc.line(marginLeft - 2, y, marginRight, y);
+        y += 6;
+
+        addRow("Prezzo base al cliente (senza commissione)", prezzoBaseSpan.textContent, "rev");
+        addRow("Prezzo mensile al cliente (con commissione)", prezzoMeseSpan.textContent, "rev");
+        addRow("Tariffa oraria di preventivo", tariffaOraSpan.textContent, "rev");
+        addRow("Margine in valore assoluto", margineEuroSpan.textContent, "rev");
+        addRow("Margine effettivo", margineEffSpan.textContent, "rev");
+
+        // Salvataggio
+        const fileName = (numPreventivoInput.value || "preventivo-ea-cleaning") + ".pdf";
+        doc.save(fileName);
       });
     }
   </script>
