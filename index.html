@@ -922,7 +922,14 @@
             </button>
           </div>
 
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
+          <!-- MENU MOBILE CON TOGGLE DIRETTO -->
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Menu"
+            id="navToggle"
+            onclick="document.getElementById('nav').classList.toggle('mobile-open');"
+          >
             ☰
           </button>
         </nav>
@@ -1309,16 +1316,6 @@
       sliderInner.addEventListener('mouseleave', startAutoSlide);
 
       startAutoSlide();
-    })();
-
-    // Nav toggle mobile
-    (function () {
-      const nav = document.getElementById('nav');
-      const toggle = document.getElementById('navToggle');
-      if (!nav || !toggle) return;
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('mobile-open');
-      });
     })();
 
     // Anno footer
