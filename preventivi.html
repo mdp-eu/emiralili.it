@@ -756,7 +756,7 @@
           y += 5;
         }
 
-        // RIGHE TABELLA (cost in rosso, ricavi/margini in verde)
+        // RIGHE TABELLA
         addRow("Ore totali mese", oreMeseSpan.textContent, "neutral");
 
         addRow("Costo lavoro mese", costoLavoroSpan.textContent, "cost");
@@ -776,6 +776,22 @@
         addRow("Tariffa oraria di preventivo", tariffaOraSpan.textContent, "rev");
         addRow("Margine in valore assoluto", margineEuroSpan.textContent, "rev");
         addRow("Margine effettivo", margineEffSpan.textContent, "rev");
+
+        // RIQUADRO FINALE – TOTALE DA PREVENTIVARE
+        if (y > 260) {
+          doc.addPage();
+          y = 20;
+        }
+        y += 8;
+
+        doc.setFillColor(22, 163, 74); // verde
+        doc.setDrawColor(22, 163, 74);
+        doc.roundedRect(marginLeft - 2, y - 7, 182, 12, 2, 2, "F");
+
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(11);
+        doc.text("Totale mensile da preventivare al cliente", marginLeft, y - 1);
+        doc.text(prezzoMeseSpan.textContent || "", marginRight, y - 1, { align: "right" });
 
         // Salvataggio
         const fileName = (numPreventivoInput.value || "preventivo-ea-cleaning") + ".pdf";
