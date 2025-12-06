@@ -3,427 +3,345 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strumento preventivi – Emir Alili</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Calcolo preventivo pulizie</title>
   <style>
-    main {
-      padding: 2.1rem 0 3rem;
+    :root {
+      --bg-page: #f3f4f6;
+      --bg-main: #ffffff;
+      --bg-soft: #f9fafb;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --accent: #ea580c;
+      --accent-dark: #9a3412;
+      --accent-soft: #fef2e2;
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
     }
 
-    .tool-box {
-      max-width: 920px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    .tool-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 1.5rem;
-      margin-top: 1rem;
+    .card {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.6rem 1.8rem;
     }
 
-    @media (max-width: 880px) {
-      .tool-grid {
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 1.4rem;
+      margin-bottom: 1.3rem;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .tool-field {
-      margin-bottom: 0.9rem;
-    }
-
-    .tool-label {
+    label {
       display: block;
       font-size: 0.86rem;
       font-weight: 500;
-      color: #111827;
-      margin-bottom: 0.2rem;
-    }
-
-    .tool-hint {
-      font-size: 0.78rem;
-      color: #6b7280;
       margin-bottom: 0.25rem;
     }
 
-    .tool-input-row {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
+    .hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
     }
 
-    .tool-input {
-      flex: 1;
+    input[type="number"],
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
       border-radius: 10px;
       border: 1px solid var(--border-subtle);
-      padding: 0.45rem 0.6rem;
-      font-size: 0.9rem;
-      outline: none;
-      background: #ffffff;
-    }
-
-    .tool-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(234, 88, 12, 0.15);
-    }
-
-    .tool-suffix {
-      font-size: 0.8rem;
-      color: #6b7280;
-      white-space: nowrap;
-    }
-
-    .tool-note {
-      font-size: 0.76rem;
-      color: #6b7280;
-      margin-top: 0.2rem;
-    }
-
-    .tool-results {
       background: var(--bg-soft);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 1rem 1rem 0.9rem;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    .tool-results-title {
       font-size: 0.9rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 0.4rem;
     }
 
-    .tool-results-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.35rem;
-      margin-top: 0.2rem;
-    }
-
-    .tool-result-row {
+    .actions {
+      margin-top: 0.4rem;
+      margin-bottom: 1.2rem;
       display: flex;
-      justify-content: space-between;
       gap: 0.7rem;
+      flex-wrap: wrap;
     }
 
-    .tool-result-label {
-      color: #6b7280;
-    }
-
-    .tool-result-value {
+    button {
+      border-radius: var(--radius-full);
+      padding: 0.5rem 1.4rem;
+      font-size: 0.86rem;
       font-weight: 600;
-      color: #111827;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
     }
 
-    .tool-result-highlight {
-      margin-top: 0.45rem;
-      padding-top: 0.45rem;
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: var(--bg-soft);
+      color: #374151;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .results {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .results h2 {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .results-table tr + tr {
       border-top: 1px dashed var(--border-subtle);
     }
 
-    .tool-result-highlight .tool-result-value {
-      color: var(--accent-dark);
+    .results-table td {
+      padding: 0.25rem 0;
     }
 
-    .tool-buttons {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
+    .results-table td:first-child {
+      color: var(--text-muted);
+    }
+
+    .results-table td:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .results-table .strong td:last-child {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .pill-note {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0.45rem 0.7rem;
+      border-radius: 10px;
+      background: var(--accent-soft);
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- HEADER (uguale alle altre pagine, senza link nel menu) -->
-    <header>
-      <div class="container">
-        <nav class="nav" id="nav">
-          <div class="brand">
-            <div class="brand-avatar">
-              <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili" />
-            </div>
-            <div class="brand-text">
-              <strong>Emir Alili</strong>
-              <span>Imprenditore, autore, leader politico</span>
-            </div>
-          </div>
+    <div class="card">
+      <h1>Schema rapido preventivo pulizie</h1>
+      <p class="subtitle">
+        Inserisci i dati base del cantiere: il tool calcola costo interno, costo auto,
+        incidenza materiali al 7% e prezzo finale al cliente con il margine impostato.
+      </p>
 
-          <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="chi-sono.html">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="contatti.html">Contatti</a>
-          </div>
-
-          <div class="nav-cta">
-            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-              Contatti
-            </button>
-          </div>
-
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
-            ☰
-          </button>
-        </nav>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <div class="hero-wrap">
-      <section class="hero">
-        <div class="container">
-          <div class="hero-grid">
-            <div>
-              <div class="hero-kicker">
-                <span>Strumento interno</span> preventivi pulizie
-              </div>
-              <h1 class="hero-title">
-                Calcolatore rapido per <span>preventivi EA Cleaning</span>.
-              </h1>
-              <p class="hero-subtitle">
-                Inserisci pochi parametri base e ottieni ore mensili, costo aziendale,
-                prezzo da proporre al cliente e margine. Lo usi solo tu, come foglio di lavoro veloce.
-              </p>
-              <div class="hero-pills">
-                <span class="pill">Mq · frequenza · ore</span>
-                <span class="pill">Costo orario aziendale</span>
-                <span class="pill">Margine desiderato</span>
-              </div>
-            </div>
-
-            <aside class="hero-card">
-              <div class="hero-name">EA Cleaning – strumento di lavoro</div>
-              <div class="hero-role-main">
-                I numeri base per costruire preventivi coerenti e veloci.
-              </div>
-              <div class="hero-stat-grid">
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">11,32 €</div>
-                  <div class="hero-stat-label">Costo orario dipendente (base)</div>
-                </div>
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">4,33</div>
-                  <div class="hero-stat-label">Settimane/mese per i calcoli</div>
-                </div>
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">40 %</div>
-                  <div class="hero-stat-label">Margine target suggerito</div>
-                </div>
-              </div>
-            </aside>
-          </div>
+      <div class="grid">
+        <div>
+          <label for="cliente">Cliente / cantiere</label>
+          <input type="text" id="cliente" placeholder="Es. Condominio Via Roma 10" />
         </div>
-      </section>
+
+        <div>
+          <label for="ore">Ore totali mese</label>
+          <input type="number" id="ore" min="0" step="0.1" placeholder="Es. 12" />
+          <p class="hint">Somma di tutte le ore mensili previste sul cantiere.</p>
+        </div>
+
+        <div>
+          <label for="costoOrario">Costo orario interno (€)</label>
+          <input type="number" id="costoOrario" min="0" step="0.01" placeholder="Es. 11.32" />
+          <p class="hint">Costo aziendale reale del personale (es. 11,32 €/h).</p>
+        </div>
+
+        <div>
+          <label for="margine">Margine desiderato (%)</label>
+          <input type="number" id="margine" min="0" step="1" placeholder="Es. 40" />
+          <p class="hint">Ricarico sul costo totale (lavoro + auto + materiali).</p>
+        </div>
+
+        <div>
+          <label for="km">Km totali mese</label>
+          <input type="number" id="km" min="0" step="0.1" placeholder="Es. 60" />
+          <p class="hint">Spostamenti complessivi auto per questo cliente.</p>
+        </div>
+
+        <div>
+          <label>Costo auto impostato</label>
+          <input type="text" value="0,30 €/km" disabled />
+          <p class="hint">Viene applicato automaticamente: km × 0,30 €.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary" type="button" onclick="calcolaPreventivo()">
+          Calcola
+        </button>
+        <button class="btn-ghost" type="button" onclick="resetForm()">
+          Azzera
+        </button>
+      </div>
+
+      <div class="results" id="results" style="display:none;">
+        <h2>Risultato sintetico</h2>
+        <table class="results-table">
+          <tr>
+            <td>Costo lavoro (ore × costo orario)</td>
+            <td id="outCostoLavoro">0,00 €</td>
+          </tr>
+          <tr>
+            <td>Costo auto (km × 0,30 €)</td>
+            <td id="outCostoAuto">0,00 €</td>
+          </tr>
+          <tr>
+            <td>Subtotale lavoro + auto</td>
+            <td id="outSubtotale">0,00 €</td>
+          </tr>
+          <tr>
+            <td>Materiali (7% su lavoro + auto)</td>
+            <td id="outMateriali">0,00 €</td>
+          </tr>
+          <tr class="strong">
+            <td>Totale costo aziendale (interno)</td>
+            <td id="outTotaleCosto">0,00 €</td>
+          </tr>
+          <tr>
+            <td>Margine applicato</td>
+            <td id="outMargineEuro">0,00 €</td>
+          </tr>
+          <tr class="strong">
+            <td>Prezzo mensile al cliente</td>
+            <td id="outPrezzoCliente">0,00 €</td>
+          </tr>
+          <tr>
+            <td>Tariffa oraria cliente</td>
+            <td id="outTariffaCliente">0,00 €/h</td>
+          </tr>
+        </table>
+
+        <p class="pill-note" id="noteCliente"></p>
+      </div>
     </div>
-
-    <!-- CONTENUTO -->
-    <main>
-      <div class="container">
-        <section class="section-box tool-box">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Parametri di lavoro</h2>
-            <p class="section-subtitle">
-              Puoi usare i valori standard EA Cleaning o modificarli caso per caso.
-              Il calcolo è pensato per i preventivi mensili ricorrenti.
-            </p>
-          </div>
-
-          <div class="tool-grid">
-            <!-- COLONNA INPUT -->
-            <div>
-              <div class="tool-field">
-                <label class="tool-label" for="mq">Metri quadri del cantiere</label>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="mq" placeholder="Es. 800" />
-                  <span class="tool-suffix">mq (facoltativo)</span>
-                </div>
-                <p class="tool-note">Serve solo per promemoria, non entra nel calcolo.</p>
-              </div>
-
-              <div class="tool-field">
-                <label class="tool-label" for="freq">Frequenza settimanale</label>
-                <p class="tool-hint">Numero interventi a settimana.</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="freq" value="2" step="0.5" />
-                  <span class="tool-suffix">interv./sett.</span>
-                </div>
-              </div>
-
-              <div class="tool-field">
-                <label class="tool-label" for="oreInt">Durata per intervento</label>
-                <p class="tool-hint">Ore totali di tutte le persone presenti (se sono 2 persone per 1h, inserisci 2).</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="oreInt" value="2" step="0.25" />
-                  <span class="tool-suffix">ore / intervento</span>
-                </div>
-              </div>
-
-              <div class="tool-field">
-                <label class="tool-label" for="costoOra">Costo orario aziendale</label>
-                <p class="tool-hint">Dipendenti EA Cleaning: 11,32 €/h. Subappalti o collaboratori puoi cambiarlo.</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="costoOra" value="11.32" step="0.01" />
-                  <span class="tool-suffix">€/h costo</span>
-                </div>
-              </div>
-
-              <div class="tool-field">
-                <label class="tool-label" for="marginePerc">Margine desiderato</label>
-                <p class="tool-hint">Percentuale di margine sul prezzo finale al cliente.</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="marginePerc" value="40" step="1" />
-                  <span class="tool-suffix">% margine</span>
-                </div>
-              </div>
-
-              <div class="tool-buttons">
-                <button class="btn-primary" type="button" id="calcolaBtn">Calcola preventivo</button>
-                <button class="btn-outline" type="button" id="resetBtn">Reset</button>
-              </div>
-            </div>
-
-            <!-- COLONNA RISULTATI -->
-            <aside class="tool-results">
-              <div class="tool-results-title">Risultato preventivo mensile</div>
-              <div class="tool-results-grid">
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Ore totali mese</span>
-                  <span class="tool-result-value" id="oreMese">0,00 h</span>
-                </div>
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Costo aziendale mese</span>
-                  <span class="tool-result-value" id="costoMese">0,00 €</span>
-                </div>
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Prezzo mensile al cliente</span>
-                  <span class="tool-result-value" id="prezzoMese">0,00 €</span>
-                </div>
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Tariffa oraria di preventivo</span>
-                  <span class="tool-result-value" id="tariffaOra">0,00 €/h</span>
-                </div>
-
-                <div class="tool-result-highlight">
-                  <div class="tool-result-row">
-                    <span class="tool-result-label">Margine in valore assoluto</span>
-                    <span class="tool-result-value" id="margineEuro">0,00 €</span>
-                  </div>
-                  <div class="tool-result-row">
-                    <span class="tool-result-label">Margine effettivo</span>
-                    <span class="tool-result-value" id="margineEff">0,0 %</span>
-                  </div>
-                </div>
-              </div>
-              <p class="tool-note" style="margin-top:0.7rem;">
-                Formula: ore mese = frequenza × ore/intervento × 4,33.<br />
-                Prezzo cliente = costo mese / (1 − margine%). Tariffa oraria = prezzo cliente / ore mese.
-              </p>
-            </aside>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-links">
-            <span>© <span id="year"></span> Emir Alili.</span>
-            <span>Strumento interno preventivi EA Cleaning.</span>
-          </div>
-          <div class="footer-social">
-            <a href="mailto:info@emiralili.it">Email</a>
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const nav = document.getElementById("nav");
-    const navToggle = document.getElementById("navToggle");
-    if (nav && navToggle) {
-      navToggle.addEventListener("click", () => {
-        nav.classList.toggle("mobile-open");
-      });
+    function formatEuro(value) {
+      return value.toLocaleString("it-IT", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }) + " €";
     }
 
-    const freqInput = document.getElementById("freq");
-    const oreIntInput = document.getElementById("oreInt");
-    const costoOraInput = document.getElementById("costoOra");
-    const margineInput = document.getElementById("marginePerc");
+    function calcolaPreventivo() {
+      const ore = parseFloat(document.getElementById("ore").value) || 0;
+      const costoOrario = parseFloat(document.getElementById("costoOrario").value) || 0;
+      const marginePerc = parseFloat(document.getElementById("margine").value) || 0;
+      const km = parseFloat(document.getElementById("km").value) || 0;
+      const cliente = document.getElementById("cliente").value.trim();
 
-    const oreMeseSpan = document.getElementById("oreMese");
-    const costoMeseSpan = document.getElementById("costoMese");
-    const prezzoMeseSpan = document.getElementById("prezzoMese");
-    const tariffaOraSpan = document.getElementById("tariffaOra");
-    const margineEuroSpan = document.getElementById("margineEuro");
-    const margineEffSpan = document.getElementById("margineEff");
+      // 1) Costo lavoro
+      const costoLavoro = ore * costoOrario;
 
-    function formatEuro(val) {
-      return val.toFixed(2).replace(".", ",") + " €";
+      // 2) Costo auto: 0,30 €/km
+      const costoAuto = km * 0.30;
+
+      // 3) Subtotale lavoro + auto
+      const subtotale = costoLavoro + costoAuto;
+
+      // 4) Materiali 7% sul subtotale
+      const materiali = subtotale * 0.07;
+
+      // 5) Totale costo aziendale interno
+      const totaleCosto = subtotale + materiali;
+
+      // 6) Applicazione margine sul costo totale
+      const prezzoCliente = totaleCosto * (1 + marginePerc / 100);
+
+      // 7) Tariffa oraria al cliente
+      const tariffaCliente = ore > 0 ? prezzoCliente / ore : 0;
+
+      // Output
+      document.getElementById("outCostoLavoro").textContent = formatEuro(costoLavoro);
+      document.getElementById("outCostoAuto").textContent = formatEuro(costoAuto);
+      document.getElementById("outSubtotale").textContent = formatEuro(subtotale);
+      document.getElementById("outMateriali").textContent = formatEuro(materiali);
+      document.getElementById("outTotaleCosto").textContent = formatEuro(totaleCosto);
+
+      const margineEuro = prezzoCliente - totaleCosto;
+      document.getElementById("outMargineEuro").textContent = formatEuro(margineEuro);
+      document.getElementById("outPrezzoCliente").textContent = formatEuro(prezzoCliente);
+      document.getElementById("outTariffaCliente").textContent =
+        tariffaCliente.toLocaleString("it-IT", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }) + " €/h";
+
+      const note = cliente
+        ? `Cliente: ${cliente}. Prezzo mensile suggerito: ${formatEuro(prezzoCliente)}.`
+        : `Prezzo mensile suggerito al cliente: ${formatEuro(prezzoCliente)}.`;
+
+      document.getElementById("noteCliente").textContent = note;
+
+      document.getElementById("results").style.display = "block";
     }
 
-    function formatOre(val) {
-      return val.toFixed(2).replace(".", ",") + " h";
+    function resetForm() {
+      document.getElementById("cliente").value = "";
+      document.getElementById("ore").value = "";
+      document.getElementById("costoOrario").value = "";
+      document.getElementById("margine").value = "";
+      document.getElementById("km").value = "";
+      document.getElementById("results").style.display = "none";
     }
-
-    function formatPerc(val) {
-      return val.toFixed(1).replace(".", ",") + " %";
-    }
-
-    function calcola() {
-      const freq = parseFloat(freqInput.value) || 0;
-      const oreInt = parseFloat(oreIntInput.value) || 0;
-      const costoOra = parseFloat(costoOraInput.value) || 0;
-      const marginePerc = parseFloat(margineInput.value) || 0;
-
-      const oreMese = freq * oreInt * 4.33;
-      const costoMese = oreMese * costoOra;
-
-      let prezzoMese = 0;
-      if (marginePerc < 100) {
-        prezzoMese = costoMese / (1 - marginePerc / 100);
-      }
-
-      const tariffaOra = oreMese > 0 ? prezzoMese / oreMese : 0;
-      const margineEuro = prezzoMese - costoMese;
-      const margineEff = prezzoMese > 0 ? (margineEuro / prezzoMese) * 100 : 0;
-
-      oreMeseSpan.textContent = formatOre(oreMese);
-      costoMeseSpan.textContent = formatEuro(costoMese);
-      prezzoMeseSpan.textContent = formatEuro(prezzoMese);
-      tariffaOraSpan.textContent = tariffaOra.toFixed(2).replace(".", ",") + " €/h";
-      margineEuroSpan.textContent = formatEuro(margineEuro);
-      margineEffSpan.textContent = formatPerc(margineEff);
-    }
-
-    document.getElementById("calcolaBtn").addEventListener("click", calcola);
-
-    document.getElementById("resetBtn").addEventListener("click", () => {
-      document.getElementById("mq").value = "";
-      freqInput.value = 2;
-      oreIntInput.value = 2;
-      costoOraInput.value = 11.32;
-      margineInput.value = 40;
-      calcola();
-    });
-
-    // Ricalcola automaticamente quando cambi i valori
-    [freqInput, oreIntInput, costoOraInput, margineInput].forEach(el => {
-      el.addEventListener("input", calcola);
-    });
-
-    // Primo calcolo iniziale
-    calcola();
   </script>
 </body>
 </html>
+
