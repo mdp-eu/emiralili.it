@@ -981,21 +981,28 @@
     renderArchivio();
 
     // PDF export
-    const pdfBtn = document.getElementById("pdfBtn");
-    const pdfArea = document.getElementById("pdfArea");
+const pdfBtn = document.getElementById("pdfBtn");
+const pdfArea = document.getElementById("pdfArea");
 
-    if (pdfBtn && pdfArea) {
-      pdfBtn.addEventListener("click", () => {
-        const opt = {
-          margin:       10,
-          filename:     (numPreventivoInput.value || 'preventivo-ea-cleaning') + '.pdf',
-          image:        { type: 'jpeg', quality: 0.98 },
-          html2canvas:  { scale: 2 },
-          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().from(pdfArea).set(opt).save();
-      });
+if (pdfBtn && pdfArea) {
+  pdfBtn.addEventListener("click", () => {
+    const opt = {
+      margin:       10,
+      filename:     (numPreventivoInput.value || 'preventivo-ea-cleaning') + '.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // piccolo check per evitare di esportare davvero il vuoto
+    if (!pdfArea.innerText.trim()) {
+      alert("L'area del preventivo risulta vuota. Controlla di aver fatto il calcolo prima di esportare.");
+      return;
     }
-  </script>
-</body>
-</html>
+
+    html2pdf()
+      .set(opt)
+      .from(pdfArea)
+      .save();
+  });
+}
