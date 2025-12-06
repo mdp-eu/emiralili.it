@@ -184,13 +184,13 @@
                 Calcolatore rapido per <span>preventivi EA Cleaning</span>.
               </h1>
               <p class="hero-subtitle">
-                Inserisci pochi parametri base e ottieni ore mensili, costo aziendale,
-                prezzo da proporre al cliente e margine. Lo usi solo tu, come foglio di lavoro veloce.
+                Inserisci pochi parametri base e ottieni ore mensili, costi vivi aziendali
+                e prezzo da proporre al cliente con il tuo ricarico.
               </p>
               <div class="hero-pills">
                 <span class="pill">Frequenza · ore · km</span>
                 <span class="pill">Costo orario aziendale</span>
-                <span class="pill">Margine + commissioni</span>
+                <span class="pill">Prodotti · commissioni · margine</span>
               </div>
             </div>
 
@@ -201,16 +201,16 @@
               </div>
               <div class="hero-stat-grid">
                 <div class="hero-stat-card">
-                  <div class="hero-stat-number">11,32 €</div>
-                  <div class="hero-stat-label">Costo orario dipendente (riferimento)</div>
+                  <div class="hero-stat-number">12–16 €</div>
+                  <div class="hero-stat-label">Range costo orario aziendale</div>
                 </div>
                 <div class="hero-stat-card">
                   <div class="hero-stat-number">4,33</div>
                   <div class="hero-stat-label">Settimane/mese per i calcoli</div>
                 </div>
                 <div class="hero-stat-card">
-                  <div class="hero-stat-number">40 %</div>
-                  <div class="hero-stat-label">Margine target suggerito</div>
+                  <div class="hero-stat-number">0,30 €</div>
+                  <div class="hero-stat-label">Costo auto / km</div>
                 </div>
               </div>
             </aside>
@@ -226,8 +226,8 @@
           <div class="section-header">
             <h2 class="section-title"><span>//</span> Parametri di lavoro</h2>
             <p class="section-subtitle">
-              Puoi usare i valori standard EA Cleaning o modificarli caso per caso.
-              Il calcolo è pensato per i preventivi mensili ricorrenti.
+              I costi vivi aziendali sono: lavoro, km, prodotti (15%) e commissione procacciatore.
+              Il ricarico aziendale lo inserisci tu come margine finale.
             </p>
           </div>
 
@@ -237,13 +237,13 @@
               <!-- COMMISSIONE PROCACCIATORE -->
               <div class="tool-field">
                 <label class="tool-label" for="commissionPerc">Commissione procacciatore</label>
-                <p class="tool-hint">Percentuale sul prezzo mensile al cliente (se presente).</p>
+                <p class="tool-hint">Percentuale sul prezzo mensile al cliente. È un costo aziendale.</p>
                 <div class="tool-input-row">
                   <input class="tool-input" type="number" id="commissionPerc" placeholder="Es. 10" step="0.1" />
                   <span class="tool-suffix">% (facoltativo)</span>
                 </div>
                 <p class="tool-note">
-                  Se compilato, verrà calcolata la commissione mensile e il netto dopo commissione.
+                  Se compilato, la commissione viene aggiunta ai costi vivi e inclusa nel prezzo al cliente.
                 </p>
               </div>
 
@@ -292,11 +292,14 @@
                 </div>
               </div>
 
+              <!-- MARGINE DI RICARICO -->
               <div class="tool-field">
-                <label class="tool-label" for="marginePerc">Margine desiderato</label>
-                <p class="tool-hint">Percentuale di margine sul prezzo finale al cliente (prima della commissione).</p>
+                <label class="tool-label" for="marginePerc">Margine di ricarico</label>
+                <p class="tool-hint">
+                  Percentuale di ricarico aziendale sul prezzo finale al cliente. Lascialo vuoto se vuoi solo i costi vivi.
+                </p>
                 <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="marginePerc" value="40" step="1" />
+                  <input class="tool-input" type="number" id="marginePerc" placeholder="Es. 40" step="1" />
                   <span class="tool-suffix">% margine</span>
                 </div>
               </div>
@@ -315,26 +318,36 @@
                   <span class="tool-result-label">Ore totali mese</span>
                   <span class="tool-result-value" id="oreMese">0,00 h</span>
                 </div>
+
                 <div class="tool-result-row">
-                  <span class="tool-result-label">Costo aziendale mese (lavoro + auto)</span>
-                  <span class="tool-result-value" id="costoMese">0,00 €</span>
+                  <span class="tool-result-label">Costo lavoro mese</span>
+                  <span class="tool-result-value" id="costoLavoro">0,00 €</span>
                 </div>
                 <div class="tool-result-row">
-                  <span class="tool-result-label">Prezzo mensile al cliente (con +15% costi fissi)</span>
+                  <span class="tool-result-label">Costo auto mese</span>
+                  <span class="tool-result-value" id="costoAuto">0,00 €</span>
+                </div>
+                <div class="tool-result-row">
+                  <span class="tool-result-label">Costo prodotti (15% lavoro+auto)</span>
+                  <span class="tool-result-value" id="costoProdotti">0,00 €</span>
+                </div>
+                <div class="tool-result-row">
+                  <span class="tool-result-label">Commissione procacciatore</span>
+                  <span class="tool-result-value" id="commissionEuro">0,00 €</span>
+                </div>
+
+                <div class="tool-result-row">
+                  <span class="tool-result-label">Costo aziendale mese (tutti i costi vivi)</span>
+                  <span class="tool-result-value" id="costoMese">0,00 €</span>
+                </div>
+
+                <div class="tool-result-row">
+                  <span class="tool-result-label">Prezzo mensile al cliente</span>
                   <span class="tool-result-value" id="prezzoMese">0,00 €</span>
                 </div>
                 <div class="tool-result-row">
                   <span class="tool-result-label">Tariffa oraria di preventivo</span>
                   <span class="tool-result-value" id="tariffaOra">0,00 €/h</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Commissione procacciatore</span>
-                  <span class="tool-result-value" id="commissionEuro">0,00 €</span>
-                </div>
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Prezzo netto dopo commissione</span>
-                  <span class="tool-result-value" id="prezzoNetto">0,00 €</span>
                 </div>
 
                 <div class="tool-result-highlight">
@@ -349,10 +362,14 @@
                 </div>
               </div>
               <p class="tool-note" style="margin-top:0.7rem;">
-                Formula: ore mese = frequenza × ore/intervento × 4,33.<br />
-                Costo mese = costo lavoro + costo auto (km × 0,30 × freq × 4,33).<br />
-                Prezzo cliente = [costo mese / (1 − margine%)] × 1,15.<br />
-                Commissione = prezzo cliente × commissione%. Netto = prezzo cliente − commissione.
+                Formula base: ore mese = frequenza × ore/intervento × 4,33.<br />
+                Costo lavoro = ore mese × costo orario.<br />
+                Costo auto = km/intervento × frequenza × 4,33 × 0,30 €/km.<br />
+                Costo prodotti = 15% di (costo lavoro + costo auto).<br />
+                Costi vivi senza commissione = lavoro + auto + prodotti.<br />
+                Se commissione% = C e margine% = M:<br />
+                Prezzo cliente = costi vivi senza commissione / (1 − (C + M)/100).<br />
+                Commissione = prezzo × C%. Costi vivi totali = costi vivi senza commissione + commissione.
               </p>
             </aside>
           </div>
@@ -397,13 +414,15 @@
     const margineInput = document.getElementById("marginePerc");
 
     const oreMeseSpan = document.getElementById("oreMese");
+    const costoLavoroSpan = document.getElementById("costoLavoro");
+    const costoAutoSpan = document.getElementById("costoAuto");
+    const costoProdottiSpan = document.getElementById("costoProdotti");
     const costoMeseSpan = document.getElementById("costoMese");
     const prezzoMeseSpan = document.getElementById("prezzoMese");
     const tariffaOraSpan = document.getElementById("tariffaOra");
     const margineEuroSpan = document.getElementById("margineEuro");
     const margineEffSpan = document.getElementById("margineEff");
     const commissionEuroSpan = document.getElementById("commissionEuro");
-    const prezzoNettoSpan = document.getElementById("prezzoNetto");
 
     function formatEuro(val) {
       return val.toFixed(2).replace(".", ",") + " €";
@@ -430,39 +449,43 @@
       // ore totali mese
       const oreMese = freq * oreInt * settimane;
 
-      // costo lavoro
+      // costi base
       const costoLavoroMese = oreMese * costoOra;
-
-      // km mensili e costo auto
       const kmMese = kmInt * freq * settimane;
       const costoAutoMese = kmMese * 0.30;
+      const costoProdottiMese = (costoLavoroMese + costoAutoMese) * 0.15;
 
-      // costo totale aziendale (lavoro + auto)
-      const costoMese = costoLavoroMese + costoAutoMese;
+      const costiSenzaCommissione = costoLavoroMese + costoAutoMese + costoProdottiMese;
 
-      // prezzo cliente con margine + 15% costi fissi
-      let prezzoBase = 0;
-      if (marginePerc < 100) {
-        prezzoBase = costoMese / (1 - marginePerc / 100);
+      // calcolo prezzo cliente tenendo conto che
+      // commissione% e margine% sono entrambi sul prezzo finale
+      const totalePerc = commissionPerc + marginePerc;
+      let prezzoMese = 0;
+      if (totalePerc < 100) {
+        prezzoMese = costiSenzaCommissione / (1 - totalePerc / 100);
+      } else {
+        // sicurezza: se qualcuno mette valori assurdi, almeno non esplode
+        prezzoMese = costiSenzaCommissione;
       }
-      const prezzoMese = prezzoBase * 1.15; // +15% fisso
 
-      // commissione procacciatore
       const commissionEuro = prezzoMese * (commissionPerc / 100);
-      const prezzoNetto = prezzoMese - commissionEuro;
+      const costiViviTotali = costiSenzaCommissione + commissionEuro;
 
-      const tariffaOra = oreMese > 0 ? prezzoMese / oreMese : 0;
-      const margineEuro = prezzoMese - costoMese;
+      const margineEuro = prezzoMese - costiViviTotali;
       const margineEff = prezzoMese > 0 ? (margineEuro / prezzoMese) * 100 : 0;
+      const tariffaOra = oreMese > 0 ? prezzoMese / oreMese : 0;
 
+      // output
       oreMeseSpan.textContent = formatOre(oreMese);
-      costoMeseSpan.textContent = formatEuro(costoMese);
+      costoLavoroSpan.textContent = formatEuro(costoLavoroMese);
+      costoAutoSpan.textContent = formatEuro(costoAutoMese);
+      costoProdottiSpan.textContent = formatEuro(costoProdottiMese);
+      commissionEuroSpan.textContent = formatEuro(commissionEuro);
+      costoMeseSpan.textContent = formatEuro(costiViviTotali);
       prezzoMeseSpan.textContent = formatEuro(prezzoMese);
       tariffaOraSpan.textContent = tariffaOra.toFixed(2).replace(".", ",") + " €/h";
       margineEuroSpan.textContent = formatEuro(margineEuro);
       margineEffSpan.textContent = formatPerc(margineEff);
-      commissionEuroSpan.textContent = formatEuro(commissionEuro);
-      prezzoNettoSpan.textContent = formatEuro(prezzoNetto);
     }
 
     document.getElementById("calcolaBtn").addEventListener("click", calcola);
@@ -473,7 +496,7 @@
       oreIntInput.value = 2;
       kmIntInput.value = 0;
       costoOraSelect.value = "12";
-      margineInput.value = 40;
+      margineInput.value = "";
       calcola();
     });
 
@@ -488,4 +511,3 @@
   </script>
 </body>
 </html>
-
