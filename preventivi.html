@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strumento preventivi – Emir Alili</title>
+
+  <!-- PWA: colore barra e manifest -->
+  <meta name="theme-color" content="#ea580c" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+
   <link rel="stylesheet" href="style.css" />
   <style>
     main {
@@ -796,6 +802,21 @@
         // Salvataggio
         const fileName = (numPreventivoInput.value || "preventivo-ea-cleaning") + ".pdf";
         doc.save(fileName);
+      });
+    }
+  </script>
+
+  <!-- PWA: registrazione service worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function (reg) {
+            console.log('Service worker registrato:', reg.scope);
+          })
+          .catch(function (err) {
+            console.log('Service worker non registrato:', err);
+          });
       });
     }
   </script>
