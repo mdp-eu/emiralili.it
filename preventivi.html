@@ -149,11 +149,11 @@
         </div>
         <h1 class="page-title">Area preventivi</h1>
         <p class="page-subtitle">
-          Strumento interno EA Cleaning per calcolo, approvazione e archivio preventivi.
+          Strumento interno EA Cleaning per calcolo, simulazione e archivio preventivi.
         </p>
 
         <div class="tool-grid">
-          <!-- SINISTRA -->
+          <!-- SINISTRA: DATI + PARAMETRI -->
           <section class="panel">
             <div class="panel-title">Dati cliente</div>
 
@@ -234,19 +234,19 @@
             <div class="field-group">
               <div class="checkbox-row">
                 <input id="flagSubappalto" type="checkbox" />
-                <span>Subappalto (costo 16 €/h, prezzo 26 €/h)</span>
+                <span>Subappalto (costo 16 €/h, prezzo target 26 €/h)</span>
               </div>
             </div>
 
             <div class="field-group">
               <div class="checkbox-row">
                 <input id="flagCostoInterno" type="checkbox" checked />
-                <span>Costo orario interno</span>
+                <span>Costo orario interno (ricavo minimo orario)</span>
               </div>
               <div class="row-2">
                 <input id="costoOrarioInterno" class="input" type="number" min="0" step="0.5" value="23" />
                 <div style="display:flex;align-items:center;font-size:0.9rem;color:var(--text-muted);">
-                  €/h (ricavo minimo orario)
+                  €/h (default 23 €/h)
                 </div>
               </div>
             </div>
@@ -272,7 +272,7 @@
 
             <div class="buttons-row">
               <button id="btnCalcola" class="btn btn-primary">Calcola preventivo</button>
-              <button id="btnPdfInterno" class="btn btn-outline" disabled>Esporta PDF (interno)</button>
+              <button id="btnPdfInterno" class="btn btn-outline" disabled>PDF interno</button>
               <button id="btnPdfCliente" class="btn btn-outline" disabled>PDF cliente</button>
             </div>
 
@@ -284,7 +284,7 @@
             </div>
           </section>
 
-          <!-- DESTRA -->
+          <!-- DESTRA: RIEPILOGO -->
           <section class="panel">
             <div class="panel-title">Riepilogo economico mensile</div>
 
@@ -315,7 +315,7 @@
               </div>
 
               <div class="results-row">
-                <span class="results-label">Tariffa oraria (netta)</span>
+                <span class="results-label">Tariffa oraria netta (target)</span>
                 <span id="prezzoOrarioRes" class="results-value positive">0,00 €/h</span>
               </div>
               <div class="results-row">
@@ -338,6 +338,49 @@
             </div>
           </section>
         </div>
+
+        <!-- SIMULATORE AUMENTO TEMPO DI LAVORO -->
+        <section class="panel" id="simulatore-panel" style="display:none; margin-top: 0.5rem;">
+          <div class="panel-title">Simulatore aumento tempo di lavoro</div>
+          <p class="panel-subtitle">
+            Partendo dal preventivo calcolato, mantiene fisso il ricavo lavoro (solo ore) e ti mostra
+            come cambiano costi, margine e guadagno orario se aumenti i minuti per intervento.
+          </p>
+
+          <div class="field-group">
+            <label class="field-label">Ricavo lavoro attuale (solo ore)</label>
+            <span id="sim-prezzo-attuale">0,00 €</span>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Ore mensili attuali</label>
+            <span id="sim-ore-attuali">0,00 h</span>
+          </div>
+
+          <hr style="margin: 1.2rem 0; border: 0; border-top: 1px solid #e5e7eb;" />
+
+          <div class="field-group">
+            <label class="field-label" for="sim-minuti">Nuova durata intervento</label>
+            <div class="row-2">
+              <input id="sim-minuti" class="input" type="number" min="1" step="5" placeholder="Es. 75" />
+              <div style="display:flex;align-items:center;font-size:0.9rem;color:var(--text-muted);">
+                minuti per intervento
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="sim-calcola" class="btn btn-primary" style="margin-top: 0.6rem;">
+            Simula con questo tempo
+          </button>
+
+          <div id="sim-risultati" style="margin-top: 1.3rem; font-size: 0.9rem;">
+            <p><strong>Nuove ore mensili:</strong> <span id="sim-ore-nuove">0,00 h</span></p>
+            <p><strong>Nuovo costo totale aziendale:</strong> <span id="sim-costo-nuovo">0,00 €</span></p>
+            <p><strong>Nuovo guadagno netto:</strong> <span id="sim-guadagno-nuovo">0,00 €</span></p>
+            <p><strong>Nuovo guadagno netto orario:</strong> <span id="sim-guadagno-orario-nuovo">0,00 €/h</span></p>
+            <p><strong>Nuovo margine netto %:</strong> <span id="sim-margine-nuovo">0,0 %</span></p>
+          </div>
+        </section>
 
         <!-- STORICO -->
         <section class="panel storico-panel">
@@ -402,24 +445,37 @@
     const btnReset = document.getElementById("btnReset");
     const storicoListEl = document.getElementById("storicoList");
 
+    // SIMULATORE
+    const simPanel = document.getElementById("simulatore-panel");
+    const simPrezzoAttualeSpan = document.getElementById("sim-prezzo-attuale");
+    const simOreAttualiSpan = document.getElementById("sim-ore-attuali");
+    const simMinutiInput = document.getElementById("sim-minuti");
+    const simCalcolaBtn = document.getElementById("sim-calcola");
+    const simOreNuoveSpan = document.getElementById("sim-ore-nuove");
+    const simCostoNuovoSpan = document.getElementById("sim-costo-nuovo");
+    const simGuadagnoNuovoSpan = document.getElementById("sim-guadagno-nuovo");
+    const simGuadagnoOrarioNuovoSpan = document.getElementById("sim-guadagno-orario-nuovo");
+    const simMargineNuovoSpan = document.getElementById("sim-margine-nuovo");
+
     const STORAGE_KEY = "eaPreventiviStorico";
     const STORAGE_NEXT_NUM = "eaPreventivoNextNumero";
 
-    let ultimoPreventivo = null;
+    let ultimoPreventivo = null;   // oggetto completo (per PDF e storico)
 
     // ---- utility ----
     function parseNum(el, def) {
-      const v = typeof el === "number" ? el : parseFloat(String(el.value).replace(",", "."));
+      const raw = (typeof el === "number") ? el : (el && el.value !== undefined ? el.value : el);
+      const v = parseFloat(String(raw).replace(",", "."));
       return isNaN(v) ? def : v;
     }
-    function formatEuro(v) {
-      return (v || 0).toFixed(2).replace(".", ",") + " €";
+    function formatEuro(val) {
+      return (val || 0).toFixed(2).replace(".", ",") + " €";
     }
-    function formatOre(v) {
-      return (v || 0).toFixed(2).replace(".", ",") + " h";
+    function formatOre(val) {
+      return (val || 0).toFixed(2).replace(".", ",") + " h";
     }
-    function formatPerc(v) {
-      return (v || 0).toFixed(1).replace(".", ",") + " %";
+    function formatPerc(val) {
+      return (val || 0).toFixed(1).replace(".", ",") + " %";
     }
     function todayISO() {
       const d = new Date();
@@ -458,6 +514,15 @@
       guadagnoNettoSpan.textContent = formatEuro(0);
       guadagnoPercSpan.textContent = formatPerc(0);
       prezzoTotaleClienteSpan.textContent = formatEuro(0);
+
+      simPanel.style.display = "none";
+      simPrezzoAttualeSpan.textContent = formatEuro(0);
+      simOreAttualiSpan.textContent = formatOre(0);
+      simOreNuoveSpan.textContent = formatOre(0);
+      simCostoNuovoSpan.textContent = formatEuro(0);
+      simGuadagnoNuovoSpan.textContent = formatEuro(0);
+      simGuadagnoOrarioNuovoSpan.textContent = "0,00 €/h";
+      simMargineNuovoSpan.textContent = formatPerc(0);
     }
     function loadStorico() {
       try {
@@ -571,6 +636,14 @@
 
       ultimoPreventivo = p;
       setButtonsEnabled(true);
+
+      if (p.parametri && p.parametri.ricavoLavoroNum && p.parametri.oreMeseNum) {
+        simPrezzoAttualeSpan.textContent = formatEuro(p.parametri.ricavoLavoroNum);
+        simOreAttualiSpan.textContent = formatOre(p.parametri.oreMeseNum);
+        simPanel.style.display = "block";
+      } else {
+        simPanel.style.display = "none";
+      }
     }
 
     // ---- CALCOLO CON PROVVIGIONE CORRETTA ----
@@ -610,15 +683,14 @@
       if (a >= 1) {
         prezzoTotaleCliente = tariffaTarget * oreMese + extraFissi;
       } else {
-        // (P - provv - extraFissi)/oreMese = tariffaTarget  ->  P = (tariffaTarget*oreMese + extraFissi)/(1-a)
         prezzoTotaleCliente = (tariffaTarget * oreMese + extraFissi) / (1 - a);
       }
 
       const costoProvvigione = prezzoTotaleCliente * a;
       const costoTotaleAziendale = costoLavoro + costoProdotti + costoAttrezzature + costoProvvigione;
 
-      const ricavoOre = tariffaTarget * oreMese;             // ciò che rimane tolti provvigione+prodotti+attrezzature
-      const guadagnoNetto = ricavoOre - costoLavoro;         // margine dopo aver pagato il lavoro
+      const ricavoOre = tariffaTarget * oreMese;     // ricavo lavoro (solo ore)
+      const guadagnoNetto = ricavoOre - costoLavoro; // margine dopo lavoro
       const guadagnoPerc = prezzoTotaleCliente > 0
         ? (guadagnoNetto / prezzoTotaleCliente) * 100
         : 0;
@@ -631,7 +703,7 @@
       costoProvvigioneSpan.textContent = formatEuro(costoProvvigione);
       costoTotaleSpan.textContent = formatEuro(costoTotaleAziendale);
       prezzoOrarioResSpan.textContent =
-        tariffaTarget.toFixed(2).replace(".", ",") + " €/h";  // 23 o 26 netti
+        tariffaTarget.toFixed(2).replace(".", ",") + " €/h";
       ricavoLavoroSpan.textContent = formatEuro(ricavoOre);
       guadagnoNettoSpan.textContent = formatEuro(guadagnoNetto);
       guadagnoPercSpan.textContent = formatPerc(guadagnoPerc);
@@ -658,7 +730,9 @@
           prezzoOrarioTarget: tariffaTarget,
           costoLavoroOrario,
           attrezzatureAttive: hasAttrezz,
-          costoAttrezzature
+          costoAttrezzature,
+          oreMeseNum: oreMese,
+          ricavoLavoroNum: ricavoOre
         },
         risultati: {
           oreMese: formatOre(oreMese),
@@ -674,6 +748,11 @@
           prezzoTotaleCliente: formatEuro(prezzoTotaleCliente)
         }
       };
+
+      // alimenta simulatore
+      simPrezzoAttualeSpan.textContent = formatEuro(ricavoOre);
+      simOreAttualiSpan.textContent = formatOre(oreMese);
+      simPanel.style.display = "block";
     }
 
     // ---- PDF interno ----
@@ -705,7 +784,7 @@
       row("Costo attrezzature", p.risultati.costoAttrezzature, "red");
       row("Provvigione", p.risultati.costoProvvigione, "red");
       row("Costo totale aziendale", p.risultati.costoTotale, "red");
-      row("Tariffa oraria (netta)", p.risultati.prezzoOrario, "green");
+      row("Tariffa oraria netta (target)", p.risultati.prezzoOrario, "green");
       row("Ricavo lavoro (solo ore)", p.risultati.ricavoLavoro, "green");
       row("Guadagno netto", p.risultati.guadagnoNetto, "green");
       row("Guadagno netto %", p.risultati.guadagnoPerc, "green");
@@ -758,6 +837,50 @@
 
       doc.save((p.numero || "preventivo") + "_cliente.pdf");
     }
+
+    // ---- SIMULATORE: AUMENTO TEMPO DI LAVORO ----
+    simCalcolaBtn.addEventListener("click", () => {
+      if (!ultimoPreventivo || !ultimoPreventivo.parametri) {
+        alert("Prima calcola un preventivo.");
+        return;
+      }
+
+      const minuti = parseNum(simMinutiInput, 0);
+      if (!minuti || minuti <= 0) {
+        alert("Inserisci i minuti di durata intervento.");
+        return;
+      }
+
+      const interventi = ultimoPreventivo.parametri.interventi || 0;
+      if (!interventi || interventi <= 0) {
+        alert("Controlla il numero di interventi settimanali.");
+        return;
+      }
+
+      const orePerInterventoNuove = minuti / 60;
+      const oreMeseNuove = interventi * orePerInterventoNuove * 4.33;
+
+      const costoLavoroOrario = ultimoPreventivo.parametri.costoLavoroOrario || COSTO_REALE_INTERNO;
+      const costoLavoroNuovo = oreMeseNuove * costoLavoroOrario;
+      const costoProdottiNuovo = costoLavoroNuovo * 0.10;
+      const costoAttrezzatureNuovo = ultimoPreventivo.parametri.costoAttrezzature || 0;
+
+      const prezzoFissoLavoro = ultimoPreventivo.parametri.ricavoLavoroNum || 0;
+
+      const costoTotaleNuovo = costoLavoroNuovo + costoProdottiNuovo + costoAttrezzatureNuovo;
+      const guadagnoNuovo = prezzoFissoLavoro - costoTotaleNuovo;
+      const guadagnoOrarioNuovo = oreMeseNuove > 0 ? guadagnoNuovo / oreMeseNuove : 0;
+      const margineNuovoPerc = prezzoFissoLavoro > 0
+        ? (guadagnoNuovo / prezzoFissoLavoro) * 100
+        : 0;
+
+      simOreNuoveSpan.textContent = formatOre(oreMeseNuove);
+      simCostoNuovoSpan.textContent = formatEuro(costoTotaleNuovo);
+      simGuadagnoNuovoSpan.textContent = formatEuro(guadagnoNuovo);
+      simGuadagnoOrarioNuovoSpan.textContent =
+        (guadagnoOrarioNuovo || 0).toFixed(2).replace(".", ",") + " €/h";
+      simMargineNuovoSpan.textContent = formatPerc(margineNuovoPerc);
+    });
 
     // ---- EVENTI ----
     flagProvvigione.addEventListener("change", () => {
