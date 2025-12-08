@@ -239,14 +239,47 @@
     .sim-panel {
       margin-top: 24px;
     }
+
+    /* Tabella margine extra */
+    .margin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.86rem;
+    }
+
+    .margin-table th,
+    .margin-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      text-align: right;
+    }
+
+    .margin-table th:first-child,
+    .margin-table td:first-child {
+      text-align: left;
+    }
+
+    .margin-table th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+
+    .margin-table .mt-danger {
+      color: #b91c1c;
+    }
+
+    .margin-table .mt-success {
+      color: #065f46;
+    }
   </style>
 </head>
 <body>
 <div class="page">
   <!-- HEADER -->
   <header>
-    <!-- Sostituisci src con il percorso reale del logo EA Cleaning -->
-    <img src="assets/logo-ea-cleaning.png" alt="EA Cleaning – Cleaning Services">
+    <!-- Percorso corretto del logo -->
+    <img src="assets/img/logo-ea-cleaning.png" alt="EA Cleaning – Cleaning Services">
     <h1>Area preventivi</h1>
     <p>Calcolo completo del preventivo + simulatore ore di lavoro</p>
   </header>
@@ -512,6 +545,79 @@
       </section>
     </div>
   </div>
+
+  <!-- PANNELLO FINALE: TABELLA MARGINE SU DATI GIÀ ESISTENTI -->
+  <section class="panel sim-panel" style="margin-top:24px;">
+    <div class="panel-header">
+      <div class="panel-title">Tabella margine da fatturato e minuti</div>
+      <div class="panel-sub">
+        Inserisci il fatturato mensile, i minuti settimanali di lavoro totali e il costo lordo orario del dipendente.
+        I minuti vengono moltiplicati per 4,33 per stimare il mese.
+      </div>
+    </div>
+
+    <div class="tool-field">
+      <label class="tool-label" for="tabFatturato">Fatturato mensile cliente</label>
+      <div class="tool-inline">
+        <input class="tool-input" type="number" id="tabFatturatoInput" placeholder="Es. 450">
+        <span class="tool-suffix">€ / mese</span>
+      </div>
+    </div>
+
+    <div class="tool-field">
+      <label class="tool-label" for="tabMinuti">Tempo di lavoro totale</label>
+      <div class="tool-inline">
+        <input class="tool-input" type="number" id="tabMinutiInput" placeholder="Es. 80">
+        <span class="tool-suffix">minuti / settimana</span>
+      </div>
+      <p class="tool-note">
+        Somma di tutti gli interventi della settimana. Verrà moltiplicata per 4,33 per ottenere i minuti mensili.
+      </p>
+    </div>
+
+    <div class="tool-field">
+      <label class="tool-label" for="tabCostoDip">Costo lordo orario dipendente</label>
+      <div class="tool-inline">
+        <input class="tool-input" type="number" id="tabCostoDipInput" placeholder="Es. 11.32" step="0.01">
+        <span class="tool-suffix">€/h</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" type="button" id="tabCalcolaBtn">Calcola margine</button>
+    </div>
+
+    <table class="margin-table">
+      <thead>
+        <tr>
+          <th>Voce</th>
+          <th>Valore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ore mensili di lavoro</td>
+          <td id="tabOreMese">0,00 h</td>
+        </tr>
+        <tr>
+          <td>Ricavo orario cliente</td>
+          <td id="tabRicavoOrario" class="mt-success">0,00 €/h</td>
+        </tr>
+        <tr>
+          <td>Costo dipendente mensile</td>
+          <td id="tabCostoDipMese" class="mt-danger">0,00 €</td>
+        </tr>
+        <tr>
+          <td>Margine totale</td>
+          <td id="tabMargineTot" class="mt-success">0,00 €</td>
+        </tr>
+        <tr>
+          <td>Margine orario reale</td>
+          <td id="tabMargineOrario" class="mt-success">0,00 €/h</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </div>
 
 <script>
@@ -545,6 +651,17 @@
   const simMinutiInput = document.getElementById("simMinuti");
   const simOreNuoveSpan = document.getElementById("simOreNuove");
   const simGuadagnoOrarioSpan = document.getElementById("simGuadagnoOrario");
+
+  // Tabella margine finale
+  const tabFatturatoInput = document.getElementById("tabFatturatoInput");
+  const tabMinutiInput = document.getElementById("tabMinutiInput");
+  const tabCostoDipInput = document.getElementById("tabCostoDipInput");
+  const tabOreMeseSpan = document.getElementById("tabOreMese");
+  const tabRicavoOrarioSpan = document.getElementById("tabRicavoOrario");
+  const tabCostoDipMeseSpan = document.getElementById("tabCostoDipMese");
+  const tabMargineTotSpan = document.getElementById("tabMargineTot");
+  const tabMargineOrarioSpan = document.getElementById("tabMargineOrario");
+  const tabCalcolaBtn = document.getElementById("tabCalcolaBtn");
 
   let simValoreMensileLavoro = 0;
   let simOreBase = 0;
@@ -591,11 +708,9 @@
       return;
     }
 
-    // Netto orario target: interno o subappalto
     const isSub = flagSubappalto.checked;
     const nettoTarget = isSub ? 26 : costoOrarioNetto;
 
-    // Controllo somma percentuali
     if (provvPerc + prodPerc >= 1) {
       warningMsg.style.display = "block";
       prezzoTotaleSpan.textContent = "0,00 €";
@@ -608,11 +723,6 @@
       subExtraBox.style.display = "none";
       return;
     }
-
-    // Formula:
-    // (Prezzo * (1 - provv - prod) - attrezzatureMese) / oreMese = nettoTarget
-    // => Prezzo * (1 - provv - prod) = nettoTarget * oreMese + attrezzatureMese
-    // => Prezzo = [nettoTarget * oreMese + attrezzatureMese] / (1 - provv - prod)
 
     const den = 1 - provvPerc - prodPerc;
     const prezzoTotale =
@@ -633,7 +743,6 @@
     nettoTotaleSpan.textContent = fmtEuro(nettoTotale);
     nettoOrarioSpan.textContent = fmtEuroH(nettoOrario);
 
-    // Subappalto: costo collaboratore 16 €/h
     if (isSub) {
       const costoSub = 16 * oreMese;
       const margineSub = nettoTotale - costoSub;
@@ -647,9 +756,7 @@
       subExtraBox.style.display = "none";
     }
 
-    // Impostiamo la base per la simulazione:
-    // Simulatore usa SOLO lavoro: costo orario interno target × oreMese (non prodotti, non provvigione, non attrezzature)
-    const baseNettoSim = costoOrarioNetto; // 23 di default
+    const baseNettoSim = costoOrarioNetto;
     simOreBase = oreMese;
     simValoreMensileLavoro = baseNettoSim * oreMese;
 
@@ -685,6 +792,15 @@
     simOreNuoveSpan.textContent = "0,00 h";
     simGuadagnoOrarioSpan.textContent = "0,00 €/h";
     simMinutiInput.value = "";
+
+    tabFatturatoInput.value = "";
+    tabMinutiInput.value = "";
+    tabCostoDipInput.value = "";
+    tabOreMeseSpan.textContent = "0,00 h";
+    tabRicavoOrarioSpan.textContent = "0,00 €/h";
+    tabCostoDipMeseSpan.textContent = "0,00 €";
+    tabMargineTotSpan.textContent = "0,00 €";
+    tabMargineOrarioSpan.textContent = "0,00 €/h";
   });
 
   document.getElementById("simCalcolaBtn").addEventListener("click", function () {
@@ -707,6 +823,37 @@
 
     simOreNuoveSpan.textContent = fmtOre(nuoveOreMensili);
     simGuadagnoOrarioSpan.textContent = fmtEuroH(nuovoGuadagnoOrario);
+  });
+
+  // Calcolo tabella margine finale (minuti settimanali × 4,33)
+  tabCalcolaBtn.addEventListener("click", function () {
+    const fatt = parseFloat(tabFatturatoInput.value) || 0;
+    const minSett = parseFloat(tabMinutiInput.value) || 0;   // minuti settimanali
+    const costoDip = parseFloat(tabCostoDipInput.value) || 0;
+
+    if (fatt <= 0 || minSett <= 0 || costoDip < 0) {
+      tabOreMeseSpan.textContent = "0,00 h";
+      tabRicavoOrarioSpan.textContent = "0,00 €/h";
+      tabCostoDipMeseSpan.textContent = "0,00 €";
+      tabMargineTotSpan.textContent = "0,00 €";
+      tabMargineOrarioSpan.textContent = "0,00 €/h";
+      return;
+    }
+
+    // da minuti settimanali a ore mensili
+    const minutiMese = minSett * 4.33;
+    const oreMese = minutiMese / 60;
+
+    const ricavoOrario = fatt / oreMese;
+    const costoDipMese = costoDip * oreMese;
+    const margineTot = fatt - costoDipMese;
+    const margineOrario = margineTot / oreMese;
+
+    tabOreMeseSpan.textContent = fmtOre(oreMese);
+    tabRicavoOrarioSpan.textContent = fmtEuroH(ricavoOrario);
+    tabCostoDipMeseSpan.textContent = fmtEuro(costoDipMese);
+    tabMargineTotSpan.textContent = fmtEuro(margineTot);
+    tabMargineOrarioSpan.textContent = fmtEuroH(margineOrario);
   });
 </script>
 </body>
