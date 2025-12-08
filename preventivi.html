@@ -3,795 +3,462 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Area preventivi – Emir Alili</title>
-
-  <!-- PWA / icone -->
-  <meta name="theme-color" content="#0b4f79" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="/assets/icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="/assets/icons/icon-512.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-
-  <!-- Stili globali del sito -->
-  <link rel="stylesheet" href="style.css" />
+  <title>Area preventivi – EA Cleaning</title>
 
   <style>
-    main {
-      padding: 2.1rem 0 3rem;
+    :root {
+      --bg-page:#f3f4f6;
+      --bg-main:#ffffff;
+      --bg-soft:#f9fafb;
+      --text-main:#0f172a;
+      --text-muted:#6b7280;
+      --border-subtle:#e5e7eb;
+      --accent:#1d4ed8;
+      --danger:#b91c1c;
+      --positive:#16a34a;
+      --radius-lg:18px;
+      --radius-full:999px;
+      --shadow-soft:0 18px 45px rgba(15,23,42,0.08);
     }
-
-    /* Logo EA Cleaning centrato */
-    .logo-preventivi {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 1.5rem 0 0.5rem;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg-page);
+      color:var(--text-main);
+      line-height:1.5;
     }
-
-    .logo-preventivi img {
-      max-width: 220px;
-      height: auto;
-      display: block;
+    img{max-width:100%;display:block}
+    .page{min-height:100vh;display:flex;flex-direction:column}
+    .container{
+      width:100%;max-width:960px;margin:0 auto;
+      padding:1.8rem 1.25rem 3rem;
     }
-
-    /* Piccoli aggiustamenti specifici di pagina, coerenti col resto del sito */
-    .page-title-center {
-      text-align: center;
-      margin-bottom: 0.4rem;
-      font-size: 1.8rem;
+    .logo-wrap{display:flex;justify-content:center;margin:0.5rem 0 0}
+    .logo-wrap img{max-width:210px;height:auto}
+    .page-title{
+      text-align:center;margin-top:0.5rem;margin-bottom:0.25rem;
+      font-size:2rem;letter-spacing:0.03em;
     }
-
-    .page-subtitle-center {
-      text-align: center;
-      font-size: 0.95rem;
-      color: #6b7280;
-      margin-bottom: 1.5rem;
+    .page-subtitle{
+      text-align:center;font-size:0.95rem;
+      color:var(--text-muted);margin-bottom:2rem;
     }
-
-    .panel {
-      background: #ffffff;
-      border-radius: 22px;
-      padding: 1.4rem 1.4rem 1.5rem;
-      box-shadow: 0 22px 45px rgba(15, 23, 42, 0.06);
-      margin-bottom: 1.3rem;
+    .panel{
+      background:var(--bg-main);border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-soft);
+      padding:1.4rem 1.3rem 1.8rem;margin-bottom:1.3rem;
     }
-
-    .panel-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-      color: #111827;
+    .panel-title{font-size:1.05rem;font-weight:600;margin-bottom:0.9rem}
+    .panel-subtitle{font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem}
+    .tool-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.45fr) minmax(0,1.1fr);
+      gap:1.5rem;margin-top:0.5rem;
     }
-
-    .panel-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 0.9rem 1rem;
+    @media (max-width:880px){.tool-grid{grid-template-columns:minmax(0,1fr)}}
+    .field-group{margin-bottom:1rem}
+    .field-label{
+      display:block;font-size:0.87rem;font-weight:500;margin-bottom:0.3rem;
     }
-
-    @media (max-width: 720px) {
-      .panel-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .field-label span{font-weight:400;color:var(--text-muted);margin-left:0.2rem}
+    .input,textarea{
+      width:100%;border-radius:999px;border:1px solid var(--border-subtle);
+      padding:0.6rem 0.9rem;font-size:0.95rem;outline:none;
+      transition:border-color .15s,box-shadow .15s;background:#fff;
     }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
+    textarea{min-height:90px;border-radius:1rem;resize:vertical}
+    .input:focus,textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(37,99,235,.15);
     }
-
-    .field-label {
-      font-size: 0.86rem;
-      font-weight: 500;
-      color: #111827;
+    .input[disabled]{background:#f1f5f9;color:#9ca3af;cursor:not-allowed}
+    .row-2{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0.8rem;
     }
-
-    .field-sublabel {
-      font-size: 0.78rem;
-      color: #6b7280;
+    @media (max-width:640px){.row-2{grid-template-columns:minmax(0,1fr)}}
+    .checkbox-row{
+      display:flex;align-items:center;gap:0.45rem;
+      margin-top:0.15rem;margin-bottom:0.5rem;font-size:0.9rem;
     }
-
-    .field-input,
-    .field-textarea {
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      padding: 0.5rem 0.8rem;
-      font-size: 0.9rem;
-      outline: none;
-      background: #f9fafb;
+    .checkbox-row input[type="checkbox"]{width:17px;height:17px}
+    .checkbox-row span{color:var(--text-main)}
+    .buttons-row{
+      display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:0.9rem;
     }
-
-    .field-textarea {
-      border-radius: 18px;
-      min-height: 80px;
-      resize: vertical;
+    .btn{
+      border-radius:var(--radius-full);border:1px solid transparent;
+      padding:0.6rem 1.4rem;font-size:0.93rem;font-weight:600;
+      letter-spacing:0.04em;text-transform:uppercase;
+      cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .08s;
+      white-space:nowrap;
     }
-
-    .field-input:focus,
-    .field-textarea:focus {
-      border-color: #0b4f79;
-      background: #ffffff;
-      box-shadow: 0 0 0 1px rgba(11, 79, 121, 0.15);
+    .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn-primary:active{transform:translateY(1px)}
+    .btn-outline{background:#fff;color:var(--accent);border-color:var(--border-subtle)}
+    .btn-outline.dashed{border-style:dashed}
+    .btn-neutral{background:#fff;color:var(--text-muted);border-color:var(--border-subtle)}
+    .btn:disabled{opacity:.42;cursor:not-allowed;transform:none}
+    .results-grid{display:grid;grid-template-columns:minmax(0,1.2fr);gap:0.8rem}
+    .results-row{display:flex;justify-content:space-between;font-size:0.95rem}
+    .results-label{color:var(--text-main)}
+    .results-value{font-weight:500;margin-left:0.6rem}
+    .results-value.negative{color:var(--danger)}
+    .results-value.positive{color:var(--positive)}
+    .total-banner{
+      margin-top:1.3rem;border-radius:1.2rem;
+      background:linear-gradient(90deg,#059669,#22c55e);
+      color:#fff;padding:0.75rem 1.1rem 0.9rem;
+      display:flex;justify-content:space-between;align-items:center;
+      font-weight:600;font-size:1rem;
     }
-
-    .field-inline {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
+    .total-banner span:nth-child(2){font-size:1.15rem}
+    .storico-panel{margin-top:0.3rem}
+    .storico-list{
+      margin-top:0.9rem;border-top:1px solid var(--border-subtle);
+      padding-top:0.6rem;display:flex;flex-direction:column;gap:0.65rem;
+      font-size:0.9rem;
     }
-
-    .field-inline span.suffix {
-      font-size: 0.8rem;
-      color: #6b7280;
-      white-space: nowrap;
+    .storico-item{
+      display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+      gap:0.5rem;padding:0.55rem 0.2rem;border-bottom:1px solid #e5e7eb;
     }
-
-    .field-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.88rem;
+    .storico-main{display:flex;flex-direction:column;gap:0.1rem}
+    .storico-title{font-weight:600;font-size:0.9rem}
+    .storico-meta{font-size:0.8rem;color:var(--text-muted)}
+    .storico-actions{display:flex;flex-wrap:wrap;gap:0.4rem}
+    .storico-actions .btn{
+      font-size:0.78rem;padding:0.35rem 0.9rem;
+      text-transform:none;letter-spacing:0;
     }
-
-    .field-checkbox input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-    }
-
-    .panel-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.1rem;
-    }
-
-    .btn-primary {
-      border-radius: 999px;
-      padding: 0.55rem 1.5rem;
-      border: none;
-      background: #005f9f;
-      color: #ffffff;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      background: #004676;
-    }
-
-    .btn-outline {
-      border-radius: 999px;
-      padding: 0.55rem 1.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid #d1d5db;
-      background: #ffffff;
-      cursor: pointer;
-    }
-
-    .btn-outline:hover {
-      background: #f3f4f6;
-    }
-
-    .btn-dashed {
-      border-radius: 999px;
-      padding: 0.55rem 1.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px dashed #9ca3af;
-      background: #ffffff;
-      cursor: pointer;
-    }
-
-    .btn-dashed:hover {
-      background: #f9fafb;
-    }
-
-    .btn-xs {
-      font-size: 0.78rem;
-      border-radius: 999px;
-      padding: 0.25rem 0.8rem;
-      border: 1px solid #d1d5db;
-      background: #ffffff;
-      cursor: pointer;
-    }
-
-    .btn-xs.btn-danger {
-      border-color: #dc2626;
-      color: #b91c1c;
-    }
-
-    .btn-xs.btn-danger:hover {
-      background: #fef2f2;
-    }
-
-    .results-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 0.3rem 1rem;
-      font-size: 0.88rem;
-    }
-
-    @media (max-width: 720px) {
-      .results-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.4rem;
-    }
-
-    .result-label {
-      color: #4b5563;
-    }
-
-    .result-value {
-      font-weight: 600;
-    }
-
-    .result-value.red {
-      color: #b91c1c;
-    }
-
-    .result-value.green {
-      color: #15803d;
-    }
-
-    .total-bar {
-      margin-top: 0.9rem;
-      border-radius: 16px;
-      padding: 0.6rem 1rem;
-      background: linear-gradient(90deg, #0165b5, #059669);
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.95rem;
-    }
-
-    .storico-panel-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .storico-description {
-      font-size: 0.8rem;
-      color: #6b7280;
-      margin-bottom: 0.7rem;
-    }
-
-    .storico-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.55rem 0;
-      border-top: 1px solid #e5e7eb;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-    }
-
-    .storico-main .storico-title {
-      font-weight: 600;
-      margin-bottom: 0.1rem;
-    }
-
-    .storico-main .storico-meta {
-      color: #6b7280;
-      font-size: 0.78rem;
-      display: flex;
-      gap: 0.7rem;
-    }
-
-    .storico-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem;
-      justify-content: flex-end;
+    .btn-danger{
+      border-color:rgba(185,28,28,.18);
+      color:var(--danger);background:#fff;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <nav class="nav" id="nav">
-          <div class="brand">
-            <div class="brand-avatar">
-              <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili" />
-            </div>
-            <div class="brand-text">
-              <strong>Emir Alili</strong>
-              <span>Imprenditore, autore, leader politico</span>
-            </div>
-          </div>
-
-          <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="chi-sono.html">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="contatti.html">Contatti</a>
-          </div>
-
-          <div class="nav-cta">
-            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-              Contatti
-            </button>
-          </div>
-
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
-            ☰
-          </button>
-        </nav>
-      </div>
-    </header>
-
-    <!-- CONTENUTO -->
     <main>
       <div class="container">
-        <section class="section-box">
+        <!-- LOGO + TITOLO -->
+        <div class="logo-wrap">
+          <!-- metti il path reale del logo -->
+          <img src="/assets/logos/Logo EA Cleaning.png" alt="EA Cleaning – Cleaning Services" />
+        </div>
+        <h1 class="page-title">Area preventivi</h1>
+        <p class="page-subtitle">
+          Strumento interno EA Cleaning per calcolo, approvazione e archivio preventivi.
+        </p>
 
-          <!-- LOGO EA CLEANING -->
-          <div class="logo-preventivi">
-            <img src="assets/logos/Logo%20EA%20Cleaning.png" alt="EA Cleaning Services" />
-          </div>
-
-          <h1 class="page-title-center">Area preventivi</h1>
-          <p class="page-subtitle-center">
-            Strumento interno per calcolo, approvazione e archivio dei preventivi mensili EA Cleaning.
-          </p>
-
-          <!-- DATI CLIENTE -->
+        <div class="tool-grid">
+          <!-- SINISTRA -->
           <section class="panel">
             <div class="panel-title">Dati cliente</div>
-            <div class="panel-grid">
-              <div class="field">
-                <label for="numPreventivo" class="field-label">Numero preventivo</label>
-                <input type="text" id="numPreventivo" class="field-input" />
+
+            <div class="row-2">
+              <div class="field-group">
+                <label class="field-label" for="numPreventivo">Numero preventivo</label>
+                <input id="numPreventivo" class="input" type="text" readonly />
               </div>
-              <div class="field">
-                <label for="dataPreventivo" class="field-label">Data preventivo</label>
-                <input type="date" id="dataPreventivo" class="field-input" />
-              </div>
-              <div class="field">
-                <label for="ragioneSociale" class="field-label">Ragione sociale / Cliente</label>
-                <input type="text" id="ragioneSociale" class="field-input" />
-              </div>
-              <div class="field">
-                <label for="indirizzo" class="field-label">Indirizzo</label>
-                <input type="text" id="indirizzo" class="field-input" />
-              </div>
-              <div class="field">
-                <label for="telefono" class="field-label">Telefono</label>
-                <input type="text" id="telefono" class="field-input" />
-              </div>
-              <div class="field">
-                <label for="email" class="field-label">Email</label>
-                <input type="email" id="email" class="field-input" />
-              </div>
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="oggettoPreventivo" class="field-label">Oggetto preventivo</label>
-                <input type="text" id="oggettoPreventivo" class="field-input" />
-              </div>
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="descrizione" class="field-label">Descrizione</label>
-                <textarea id="descrizione" class="field-textarea"></textarea>
+              <div class="field-group">
+                <label class="field-label" for="dataPreventivo">Data preventivo</label>
+                <input id="dataPreventivo" class="input" type="date" />
               </div>
             </div>
-          </section>
 
-          <!-- PARAMETRI DI LAVORO -->
-          <section class="panel">
+            <div class="field-group">
+              <label class="field-label" for="clienteNome">Ragione sociale / Cliente</label>
+              <input id="clienteNome" class="input" type="text" />
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="clienteIndirizzo">Indirizzo</label>
+              <input id="clienteIndirizzo" class="input" type="text" />
+            </div>
+
+            <div class="row-2">
+              <div class="field-group">
+                <label class="field-label" for="clienteTelefono">Telefono</label>
+                <input id="clienteTelefono" class="input" type="text" />
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="clienteEmail">Email</label>
+                <input id="clienteEmail" class="input" type="email" />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="oggettoPreventivo">Oggetto preventivo</label>
+              <input id="oggettoPreventivo" class="input" type="text" />
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="descrizionePreventivo">Descrizione</label>
+              <textarea id="descrizionePreventivo"></textarea>
+            </div>
+
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:1.2rem 0 1rem;" />
+
             <div class="panel-title">Parametri di lavoro</div>
 
-            <div class="panel-grid">
-              <div class="field">
-                <label for="interventiSett" class="field-label">Interventi settimanali</label>
-                <div class="field-inline">
-                  <input type="number" id="interventiSett" class="field-input" value="1" step="0.5" />
-                  <span class="suffix">n° / settimana</span>
-                </div>
+            <div class="row-2">
+              <div class="field-group">
+                <label class="field-label" for="interventiSett">
+                  Interventi settimanali <span>n° / settimana</span>
+                </label>
+                <input id="interventiSett" class="input" type="number" min="0" step="0.5" value="1" />
               </div>
-
-              <div class="field">
-                <label for="oreIntervento" class="field-label">Ore per intervento</label>
-                <div class="field-inline">
-                  <input type="number" id="oreIntervento" class="field-input" value="1" step="0.25" />
-                  <span class="suffix">ore</span>
-                </div>
+              <div class="field-group">
+                <label class="field-label" for="oreIntervento">
+                  Ore per intervento <span>ore</span>
+                </label>
+                <input id="oreIntervento" class="input" type="number" min="0" step="0.25" value="1" />
               </div>
+            </div>
 
-              <div class="field" style="grid-column: 1 / -1;">
-                <label class="field-label">Provvigione agente / intermediario</label>
-                <div class="field-checkbox">
-                  <input type="checkbox" id="flagProvvigione" />
-                  <label for="flagProvvigione">Provvigione attiva</label>
-                </div>
-                <div class="field-inline" style="margin-top:0.3rem;">
-                  <input type="number" id="provvigionePerc" class="field-input" value="0" />
-                  <span class="suffix">% sul prezzo finale</span>
-                </div>
+            <div class="field-group">
+              <div class="checkbox-row">
+                <input id="flagProvvigione" type="checkbox" />
+                <span>Provvigione agente / intermediario</span>
               </div>
-
-              <div class="field">
-                <div class="field-checkbox">
-                  <input type="checkbox" id="flagSubappalto" />
-                  <label for="flagSubappalto">Subappalto (costo 16 €/h)</label>
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="field-checkbox">
-                  <input type="checkbox" id="flagCostoInterno" />
-                  <label for="flagCostoInterno">Costo orario interno</label>
-                </div>
-                <div class="field-inline" style="margin-top:0.3rem;">
-                  <input type="number" id="costoOrarioInterno" class="field-input" value="23" />
-                  <span class="suffix">€/h</span>
-                </div>
-                <div class="field-sublabel">
-                  Per il lavoro interno il costo orario base è 23 €/h (modificabile).
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="field-label">Costo prodotti</label>
-                <div class="field-sublabel">10% automatico sul costo lavoro.</div>
-              </div>
-
-              <div class="field">
-                <div class="field-checkbox">
-                  <input type="checkbox" id="flagAttrezzature" />
-                  <label for="flagAttrezzature">Attrezzature / noleggi</label>
-                </div>
-                <div class="field-inline" style="margin-top:0.3rem;">
-                  <input type="number" id="costoAttrezzature" class="field-input" value="0" />
-                  <span class="suffix">€/mese</span>
+              <div class="row-2">
+                <input id="provvigionePerc" class="input" type="number" min="0" step="0.5" value="0" disabled />
+                <div style="display:flex;align-items:center;font-size:0.9rem;color:var(--text-muted);">
+                  % sul prezzo finale
                 </div>
               </div>
             </div>
 
-            <div class="panel-buttons">
-              <button type="button" class="btn-primary" id="calcolaBtn">Calcola preventivo</button>
-              <button type="button" class="btn-outline" id="pdfInternoBtn">Esporta PDF (interno)</button>
-              <button type="button" class="btn-outline" id="pdfClienteBtn">PDF cliente</button>
-              <button type="button" class="btn-dashed" id="approvaBtn">Approva (salva storico)</button>
-              <button type="button" class="btn-outline" id="resetBtn">Reset</button>
+            <div class="field-group">
+              <div class="checkbox-row">
+                <input id="flagSubappalto" type="checkbox" />
+                <span>Subappalto (costo 16 €/h, prezzo 26 €/h)</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="checkbox-row">
+                <input id="flagCostoInterno" type="checkbox" checked />
+                <span>Costo orario interno</span>
+              </div>
+              <div class="row-2">
+                <input id="costoOrarioInterno" class="input" type="number" min="0" step="0.5" value="23" />
+                <div style="display:flex;align-items:center;font-size:0.9rem;color:var(--text-muted);">
+                  €/h (ricavo minimo orario)
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">
+                Costo prodotti <span>10% automatico sul costo lavoro</span>
+              </label>
+            </div>
+
+            <div class="field-group">
+              <div class="checkbox-row">
+                <input id="flagAttrezzature" type="checkbox" />
+                <span>Attrezzature / noleggi</span>
+              </div>
+              <div class="row-2">
+                <input id="costoAttrezzature" class="input" type="number" min="0" step="1" value="0" disabled />
+                <div style="display:flex;align-items:center;font-size:0.9rem;color:var(--text-muted);">
+                  €/mese
+                </div>
+              </div>
+            </div>
+
+            <div class="buttons-row">
+              <button id="btnCalcola" class="btn btn-primary">Calcola preventivo</button>
+              <button id="btnPdfInterno" class="btn btn-outline" disabled>Esporta PDF (interno)</button>
+              <button id="btnPdfCliente" class="btn btn-outline" disabled>PDF cliente</button>
+            </div>
+
+            <div class="buttons-row">
+              <button id="btnApprova" class="btn btn-outline dashed" disabled>
+                Approva (salva storico)
+              </button>
+              <button id="btnReset" class="btn btn-neutral">Reset</button>
             </div>
           </section>
 
-          <!-- RIEPILOGO ECONOMICO -->
+          <!-- DESTRA -->
           <section class="panel">
             <div class="panel-title">Riepilogo economico mensile</div>
+
             <div class="results-grid">
-              <div class="result-row">
-                <span class="result-label">Ore totali mese</span>
-                <span class="result-value" id="oreMese">0,00 h</span>
+              <div class="results-row">
+                <span class="results-label">Ore totali mese</span>
+                <span id="oreMese" class="results-value">0,00 h</span>
+              </div>
+              <div class="results-row">
+                <span class="results-label">Costo lavoro</span>
+                <span id="costoLavoro" class="results-value negative">0,00 €</span>
+              </div>
+              <div class="results-row">
+                <span class="results-label">Costo prodotti (10%)</span>
+                <span id="costoProdotti" class="results-value negative">0,00 €</span>
+              </div>
+              <div class="results-row">
+                <span class="results-label">Costo attrezzature</span>
+                <span id="costoAttrezzatureRes" class="results-value negative">0,00 €</span>
+              </div>
+              <div class="results-row">
+                <span class="results-label">Provvigione</span>
+                <span id="costoProvvigione" class="results-value negative">0,00 €</span>
+              </div>
+              <div class="results-row">
+                <span class="results-label">Costo totale aziendale</span>
+                <span id="costoTotale" class="results-value negative">0,00 €</span>
               </div>
 
-              <div class="result-row">
-                <span class="result-label">Costo lavoro</span>
-                <span class="result-value red" id="costoLavoro">0,00 €</span>
+              <div class="results-row">
+                <span class="results-label">Tariffa oraria (netta)</span>
+                <span id="prezzoOrarioRes" class="results-value positive">0,00 €/h</span>
               </div>
-
-              <div class="result-row">
-                <span class="result-label">Costo prodotti (10%)</span>
-                <span class="result-value red" id="costoProdotti">0,00 €</span>
+              <div class="results-row">
+                <span class="results-label">Ricavo lavoro (solo ore)</span>
+                <span id="ricavoLavoro" class="results-value positive">0,00 €</span>
               </div>
-
-              <div class="result-row">
-                <span class="result-label">Costo attrezzature</span>
-                <span class="result-value red" id="costoAttrezzatureRes">0,00 €</span>
+              <div class="results-row">
+                <span class="results-label">Guadagno netto</span>
+                <span id="guadagnoNetto" class="results-value positive">0,00 €</span>
               </div>
-
-              <div class="result-row">
-                <span class="result-label">Provvigione</span>
-                <span class="result-value red" id="costoProvvigione">0,00 €</span>
-              </div>
-
-              <div class="result-row">
-                <span class="result-label">Costo totale aziendale</span>
-                <span class="result-value red" id="costoTotale">0,00 €</span>
-              </div>
-
-              <div class="result-row">
-                <span class="result-label">Tariffa oraria</span>
-                <span class="result-value green" id="prezzoOrarioRes">0,00 €/h</span>
-              </div>
-
-              <div class="result-row">
-                <span class="result-label">Ricavo lavoro (solo ore)</span>
-                <span class="result-value green" id="ricavoLavoro">0,00 €</span>
-              </div>
-
-              <div class="result-row">
-                <span class="result-label">Guadagno netto</span>
-                <span class="result-value green" id="guadagnoNetto">0,00 €</span>
-              </div>
-
-              <div class="result-row">
-                <span class="result-label">Guadagno netto %</span>
-                <span class="result-value green" id="guadagnoPerc">0,0 %</span>
+              <div class="results-row">
+                <span class="results-label">Guadagno netto %</span>
+                <span id="guadagnoPerc" class="results-value positive">0,0 %</span>
               </div>
             </div>
 
-            <div class="total-bar">
+            <div class="total-banner">
               <span>Totale mensile da proporre al cliente</span>
               <span id="prezzoTotaleCliente">0,00 €</span>
             </div>
           </section>
+        </div>
 
-          <!-- STORICO PREVENTIVI -->
-          <section class="panel">
-            <div class="storico-panel-title">Preventivi storici (solo su questo dispositivo)</div>
-            <p class="storico-description">
-              Ogni preventivo approvato viene salvato localmente. Puoi riaprirlo,
-              ristampare i PDF o eliminarlo.
+        <!-- STORICO -->
+        <section class="panel storico-panel">
+          <div class="panel-title">Preventivi storici (solo su questo dispositivo)</div>
+          <p class="panel-subtitle">
+            Ogni preventivo approvato viene salvato localmente. Puoi riaprirlo, ristampare i PDF o eliminarlo.
+          </p>
+          <div id="storicoList" class="storico-list">
+            <p style="font-size:0.85rem;color:var(--text-muted);">
+              Nessun preventivo salvato. Dopo averlo calcolato, usa “Approva (salva storico)”.
             </p>
-            <div id="storicoList"></div>
-          </section>
+          </div>
         </section>
       </div>
     </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-links">
-            <span>© <span id="year"></span> Emir Alili.</span>
-            <span>Strumento interno preventivi EA Cleaning.</span>
-          </div>
-          <div class="footer-social">
-            <a href="mailto:info@emiralili.it">Email</a>
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 
-  <!-- jsPDF per i PDF -->
+  <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>
-    // Anno footer
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const { jsPDF } = window.jspdf;
 
-    // Menu mobile
-    const nav = document.getElementById("nav");
-    const navToggle = document.getElementById("navToggle");
-    if (nav && navToggle) {
-      navToggle.addEventListener("click", function () {
-        nav.classList.toggle("mobile-open");
-      });
-    }
+    const COSTO_REALE_INTERNO = 16; // €/h costo reale dipendente
 
-    // ========= UTILITÀ DI FORMATO =========
-    function formatEuro(val) {
-      return val.toFixed(2).replace(".", ",") + " €";
-    }
+    // ---- DOM ----
+    const numPreventivoInput = document.getElementById("numPreventivo");
+    const dataPreventivoInput = document.getElementById("dataPreventivo");
+    const clienteNomeInput = document.getElementById("clienteNome");
+    const clienteIndirizzoInput = document.getElementById("clienteIndirizzo");
+    const clienteTelefonoInput = document.getElementById("clienteTelefono");
+    const clienteEmailInput = document.getElementById("clienteEmail");
+    const oggettoPreventivoInput = document.getElementById("oggettoPreventivo");
+    const descrizionePreventivoInput = document.getElementById("descrizionePreventivo");
 
-    function formatOre(val) {
-      return val.toFixed(2).replace(".", ",") + " h";
-    }
-
-    function formatPerc(val) {
-      return val.toFixed(1).replace(".", ",") + " %";
-    }
-
-    // ========= RIFERIMENTI CAMPI =========
-
-    // Dati cliente
-    const numPreventivoInput     = document.getElementById("numPreventivo");
-    const dataPreventivoInput    = document.getElementById("dataPreventivo");
-    const ragioneSocialeInput    = document.getElementById("ragioneSociale");
-    const indirizzoInput         = document.getElementById("indirizzo");
-    const telefonoInput          = document.getElementById("telefono");
-    const emailInput             = document.getElementById("email");
-    const oggettoInput           = document.getElementById("oggettoPreventivo");
-    const descrizioneInput       = document.getElementById("descrizione");
-
-    // Parametri di lavoro
-    const interventiSettInput    = document.getElementById("interventiSett");
-    const oreInterventoInput     = document.getElementById("oreIntervento");
-
-    const flagProvvigione        = document.getElementById("flagProvvigione");
-    const provvigionePercInput   = document.getElementById("provvigionePerc");
-
-    const flagSubappalto         = document.getElementById("flagSubappalto");
-
-    const flagCostoInterno       = document.getElementById("flagCostoInterno");
-    const costoOrarioInput       = document.getElementById("costoOrarioInterno");
-
-    const flagAttrezzature       = document.getElementById("flagAttrezzature");
+    const interventiSettInput = document.getElementById("interventiSett");
+    const oreInterventoInput = document.getElementById("oreIntervento");
+    const flagProvvigione = document.getElementById("flagProvvigione");
+    const provvigionePercInput = document.getElementById("provvigionePerc");
+    const flagSubappalto = document.getElementById("flagSubappalto");
+    const flagCostoInterno = document.getElementById("flagCostoInterno");
+    const costoOrarioInternoInput = document.getElementById("costoOrarioInterno");
+    const flagAttrezzature = document.getElementById("flagAttrezzature");
     const costoAttrezzatureInput = document.getElementById("costoAttrezzature");
 
-    // Risultati
-    const oreMeseSpan              = document.getElementById("oreMese");
-    const costoLavoroSpan          = document.getElementById("costoLavoro");
-    const costoProdottiSpan        = document.getElementById("costoProdotti");
+    const oreMeseSpan = document.getElementById("oreMese");
+    const costoLavoroSpan = document.getElementById("costoLavoro");
+    const costoProdottiSpan = document.getElementById("costoProdotti");
     const costoAttrezzatureResSpan = document.getElementById("costoAttrezzatureRes");
-    const costoProvvigioneSpan     = document.getElementById("costoProvvigione");
-    const costoTotaleSpan          = document.getElementById("costoTotale");
-    const prezzoOrarioResSpan      = document.getElementById("prezzoOrarioRes");
-    const ricavoLavoroSpan         = document.getElementById("ricavoLavoro");
-    const guadagnoNettoSpan        = document.getElementById("guadagnoNetto");
-    const guadagnoPercSpan         = document.getElementById("guadagnoPerc");
-    const prezzoTotaleClienteSpan  = document.getElementById("prezzoTotaleCliente");
+    const costoProvvigioneSpan = document.getElementById("costoProvvigione");
+    const costoTotaleSpan = document.getElementById("costoTotale");
+    const prezzoOrarioResSpan = document.getElementById("prezzoOrarioRes");
+    const ricavoLavoroSpan = document.getElementById("ricavoLavoro");
+    const guadagnoNettoSpan = document.getElementById("guadagnoNetto");
+    const guadagnoPercSpan = document.getElementById("guadagnoPerc");
+    const prezzoTotaleClienteSpan = document.getElementById("prezzoTotaleCliente");
 
-    // Storico
+    const btnCalcola = document.getElementById("btnCalcola");
+    const btnPdfInterno = document.getElementById("btnPdfInterno");
+    const btnPdfCliente = document.getElementById("btnPdfCliente");
+    const btnApprova = document.getElementById("btnApprova");
+    const btnReset = document.getElementById("btnReset");
     const storicoListEl = document.getElementById("storicoList");
-    const STORAGE_KEY   = "eaPreventiviStorico_v1";
 
-    // Pulsanti
-    const calcolaBtn     = document.getElementById("calcolaBtn");
-    const pdfInternoBtn  = document.getElementById("pdfInternoBtn");
-    const pdfClienteBtn  = document.getElementById("pdfClienteBtn");
-    const approvaBtn     = document.getElementById("approvaBtn");
-    const resetBtn       = document.getElementById("resetBtn");
+    const STORAGE_KEY = "eaPreventiviStorico";
+    const STORAGE_NEXT_NUM = "eaPreventivoNextNumero";
 
-    // ========= NUMERO E DATA PREVENTIVO =========
+    let ultimoPreventivo = null;
 
-    function getTodayISO() {
+    // ---- utility ----
+    function parseNum(el, def) {
+      const v = typeof el === "number" ? el : parseFloat(String(el.value).replace(",", "."));
+      return isNaN(v) ? def : v;
+    }
+    function formatEuro(v) {
+      return (v || 0).toFixed(2).replace(".", ",") + " €";
+    }
+    function formatOre(v) {
+      return (v || 0).toFixed(2).replace(".", ",") + " h";
+    }
+    function formatPerc(v) {
+      return (v || 0).toFixed(1).replace(".", ",") + " %";
+    }
+    function todayISO() {
       const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth() + 1).padStart(2, "0");
-      const dd = String(d.getDate()).padStart(2, "0");
-      return `${yyyy}-${mm}-${dd}`;
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return d.getFullYear() + "-" + m + "-" + day;
     }
 
-    function getNextNumeroPreventivo() {
+    function initNumeroPreventivo() {
       const year = new Date().getFullYear();
-      const key  = "eaLastPreventivoNumber_v1";
-      const last = localStorage.getItem(key);
-
-      if (!last || last.indexOf(year + "-") !== 0) {
-        const nuovo = `${year}-001`;
-        localStorage.setItem(key, nuovo);
-        return nuovo;
-      }
-
-      const parts = last.split("-");
-      let seq = parseInt(parts[1], 10) || 0;
-      seq += 1;
-      const nuovo = `${parts[0]}-${String(seq).padStart(3, "0")}`;
-      localStorage.setItem(key, nuovo);
-      return nuovo;
+      let next = parseInt(localStorage.getItem(STORAGE_NEXT_NUM) || "1", 10);
+      if (isNaN(next) || next < 1) next = 1;
+      numPreventivoInput.value = year + "-" + String(next).padStart(3, "0");
     }
-
-    // Inizializza numero e data se vuoti
-    if (!numPreventivoInput.value) {
-      numPreventivoInput.value = getNextNumeroPreventivo();
+    function incrementNumeroPreventivo() {
+      let next = parseInt(localStorage.getItem(STORAGE_NEXT_NUM) || "1", 10);
+      if (isNaN(next) || next < 1) next = 1;
+      next++;
+      localStorage.setItem(STORAGE_NEXT_NUM, String(next));
+      initNumeroPreventivo();
     }
-    if (!dataPreventivoInput.value) {
-      dataPreventivoInput.value = getTodayISO();
+    function setButtonsEnabled(on) {
+      btnPdfInterno.disabled = !on;
+      btnPdfCliente.disabled = !on;
+      btnApprova.disabled = !on;
     }
-
-    // ========= LOGICA CALCOLO =========
-    //
-    // Regole:
-    // - oreMese = interventiSett * oreIntervento * 4,33
-    // - lavoro interno:
-    //      guadagnoTargetOrario = costoOrarioInterno (default 23)
-    //      costoLavoro = 0
-    //      profitTarget = guadagnoTargetOrario * oreMese
-    // - subappalto:
-    //      costoSubappaltoOrario = 16
-    //      guadagnoTargetOrario  = 10
-    //      costoLavoro  = 16 * oreMese
-    //      profitTarget = 10 * oreMese
-    // - baseLordoLavoro:
-    //      interno:       profitTarget
-    //      subappalto:    (16 + 10) * oreMese = 26 €/h * ore
-    // - costoProdotti = 10% di baseLordoLavoro
-    // - costoAttrezzature = campo (se attivo)
-    // - baseSenzaProv = costoLavoro + costoProdotti + costoAttrezzature + profitTarget
-    // - provvigione p% sul prezzo finale:
-    //      prezzoFinale * (1 - p) = baseSenzaProv
-    //      prezzoFinale = baseSenzaProv / (1 - p)
-    //      provvigioneEuro = prezzoFinale * p
-    // - costoTotaleAziendale = costoLavoro + costoProdotti + attrezzature + provvigione
-    // - guadagnoNetto = prezzoFinale - costoTotaleAziendale = profitTarget
-
-    function calcolaPreventivo() {
-      const interventiSett = parseFloat(interventiSettInput.value) || 0;
-      const oreIntervento  = parseFloat(oreInterventoInput.value) || 0;
-
-      const oreMese = interventiSett * oreIntervento * 4.33;
-
-      const provvigioneAttiva = flagProvvigione.checked;
-      const provPerc          = provvigioneAttiva ? (parseFloat(provvigionePercInput.value) || 0) : 0;
-
-      const subappaltoAttivo  = flagSubappalto.checked;
-      const costoInternoFlag  = flagCostoInterno.checked;
-      let   costoInternoOra   = parseFloat(costoOrarioInput.value) || 23;
-
-      if (!costoInternoFlag) {
-        costoInternoOra = 23;
-        costoOrarioInput.value = "23";
-      }
-
-      const attrezzatureAttive = flagAttrezzature.checked;
-      const costoAttrezzature  = attrezzatureAttive ? (parseFloat(costoAttrezzatureInput.value) || 0) : 0;
-
-      const costoSubOra   = 16;
-      const margineSubOra = 10;
-
-      let costoLavoro     = 0;
-      let profitTarget    = 0;
-      let baseLordoLavoro = 0;
-
-      if (subappaltoAttivo) {
-        costoLavoro     = costoSubOra * oreMese;
-        profitTarget    = margineSubOra * oreMese;
-        baseLordoLavoro = (costoSubOra + margineSubOra) * oreMese; // 26 €/h
-      } else {
-        profitTarget    = costoInternoOra * oreMese;
-        baseLordoLavoro = profitTarget;
-        costoLavoro     = 0;
-      }
-
-      const costoProdotti = baseLordoLavoro * 0.10;
-
-      const baseSenzaProv = costoLavoro + costoProdotti + costoAttrezzature + profitTarget;
-
-      let prezzoFinale    = baseSenzaProv;
-      let provvigioneEuro = 0;
-
-      if (provvigioneAttiva && provPerc > 0) {
-        const p = provPerc / 100;
-        prezzoFinale    = baseSenzaProv / (1 - p);
-        provvigioneEuro = prezzoFinale * p;
-      }
-
-      const costoTotale   = costoLavoro + costoProdotti + costoAttrezzature + provvigioneEuro;
-      const guadagnoNetto = prezzoFinale - costoTotale;
-      const guadagnoPerc  = prezzoFinale > 0 ? (guadagnoNetto / prezzoFinale) * 100 : 0;
-      const tariffaOraria = oreMese > 0 ? prezzoFinale / oreMese : 0;
-      const ricavoLavoro  = baseLordoLavoro;
-
-      oreMeseSpan.textContent              = formatOre(oreMese);
-      costoLavoroSpan.textContent          = formatEuro(costoLavoro);
-      costoProdottiSpan.textContent        = formatEuro(costoProdotti);
-      costoAttrezzatureResSpan.textContent = formatEuro(costoAttrezzature);
-      costoProvvigioneSpan.textContent     = formatEuro(provvigioneEuro);
-      costoTotaleSpan.textContent          = formatEuro(costoTotale);
-      prezzoOrarioResSpan.textContent      = tariffaOraria.toFixed(2).replace(".", ",") + " €/h";
-      ricavoLavoroSpan.textContent         = formatEuro(ricavoLavoro);
-      guadagnoNettoSpan.textContent        = formatEuro(guadagnoNetto);
-      guadagnoPercSpan.textContent         = formatPerc(guadagnoPerc);
-      prezzoTotaleClienteSpan.textContent  = formatEuro(prezzoFinale);
+    function resetRiepilogo() {
+      oreMeseSpan.textContent = formatOre(0);
+      costoLavoroSpan.textContent = formatEuro(0);
+      costoProdottiSpan.textContent = formatEuro(0);
+      costoAttrezzatureResSpan.textContent = formatEuro(0);
+      costoProvvigioneSpan.textContent = formatEuro(0);
+      costoTotaleSpan.textContent = formatEuro(0);
+      prezzoOrarioResSpan.textContent = "0,00 €/h";
+      ricavoLavoroSpan.textContent = formatEuro(0);
+      guadagnoNettoSpan.textContent = formatEuro(0);
+      guadagnoPercSpan.textContent = formatPerc(0);
+      prezzoTotaleClienteSpan.textContent = formatEuro(0);
     }
-
-    // ========= RESET =========
-    function resetCampi() {
-      interventiSettInput.value  = 1;
-      oreInterventoInput.value   = 1;
-
-      flagProvvigione.checked    = false;
-      provvigionePercInput.value = 0;
-
-      flagSubappalto.checked     = false;
-
-      flagCostoInterno.checked   = false;
-      costoOrarioInput.value     = 23;
-
-      flagAttrezzature.checked   = false;
-      costoAttrezzatureInput.value = 0;
-
-      calcolaPreventivo();
-    }
-
-    // ========= STORICO LOCALSTORAGE =========
-
     function loadStorico() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -801,410 +468,364 @@
         return [];
       }
     }
-
     function saveStorico(lista) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
     }
-
     function renderStorico() {
       const lista = loadStorico();
       if (!lista.length) {
         storicoListEl.innerHTML =
-          '<p style="font-size:0.8rem; color:#6b7280;">Nessun preventivo salvato. Dopo il calcolo usa "Approva (salva storico)".</p>';
+          '<p style="font-size:0.85rem;color:var(--text-muted);">Nessun preventivo salvato. Dopo averlo calcolato, usa “Approva (salva storico)”.</p>';
         return;
       }
-
-      storicoListEl.innerHTML = "";
-
-      lista.forEach((p, index) => {
-        const row = document.createElement("div");
-        row.className = "storico-row";
-        row.innerHTML = `
+      let html = "";
+      lista.forEach((p, idx) => {
+        html += `
+        <div class="storico-item" data-index="${idx}">
           <div class="storico-main">
-            <div class="storico-title">
-              <strong>${p.numero}</strong> – ${p.cliente || "Cliente senza nome"}
-            </div>
+            <div class="storico-title">${p.numero} – ${p.cliente || "Cliente"}</div>
             <div class="storico-meta">
-              <span>${p.data}</span>
-              <span>${formatEuro(p.prezzoTotale)}</span>
+              Data: ${p.data || "-"} • Totale: ${p.risultati ? p.risultati.prezzoTotaleCliente : "-"}
             </div>
           </div>
           <div class="storico-actions">
-            <button type="button" class="btn-xs" data-idx="${index}" data-action="open">Apri</button>
-            <button type="button" class="btn-xs" data-idx="${index}" data-action="pdf-int">PDF interno</button>
-            <button type="button" class="btn-xs" data-idx="${index}" data-action="pdf-cli">PDF cliente</button>
-            <button type="button" class="btn-xs btn-danger" data-idx="${index}" data-action="delete">Elimina</button>
+            <button class="btn btn-outline btn-open" data-index="${idx}">Apri</button>
+            <button class="btn btn-outline btn-pdf-int" data-index="${idx}">PDF interno</button>
+            <button class="btn btn-outline btn-pdf-cli" data-index="${idx}">PDF cliente</button>
+            <button class="btn btn-danger btn-del" data-index="${idx}">Elimina</button>
           </div>
-        `;
-        storicoListEl.appendChild(row);
+        </div>`;
+      });
+      storicoListEl.innerHTML = html;
+
+      storicoListEl.querySelectorAll(".btn-open").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          const p = loadStorico()[idx];
+          if (p) caricaPreventivoInForm(p);
+        });
+      });
+      storicoListEl.querySelectorAll(".btn-pdf-int").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          const p = loadStorico()[idx];
+          if (p) generaPdfInterno(p);
+        });
+      });
+      storicoListEl.querySelectorAll(".btn-pdf-cli").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          const p = loadStorico()[idx];
+          if (p) generaPdfCliente(p);
+        });
+      });
+      storicoListEl.querySelectorAll(".btn-del").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          const listaNow = loadStorico();
+          listaNow.splice(idx, 1);
+          saveStorico(listaNow);
+          renderStorico();
+        });
       });
     }
 
-    function parseEuro(text) {
-      if (!text) return 0;
-      return parseFloat(
-        text
-          .replace("€", "")
-          .replace(/\./g, "")
-          .replace(",", ".")
-          .trim()
-      ) || 0;
+    function caricaPreventivoInForm(p) {
+      numPreventivoInput.value = p.numero || "";
+      dataPreventivoInput.value = p.data || todayISO();
+      clienteNomeInput.value = p.cliente || "";
+      clienteIndirizzoInput.value = p.indirizzo || "";
+      clienteTelefonoInput.value = p.telefono || "";
+      clienteEmailInput.value = p.email || "";
+      oggettoPreventivoInput.value = p.oggetto || "";
+      descrizionePreventivoInput.value = p.descrizione || "";
+
+      if (p.parametri) {
+        interventiSettInput.value = p.parametri.interventi ?? 0;
+        oreInterventoInput.value = p.parametri.oreIntervento ?? 0;
+        flagProvvigione.checked = !!p.parametri.provvigioneAttiva;
+        provvigionePercInput.disabled = !flagProvvigione.checked;
+        provvigionePercInput.value = p.parametri.provvigionePerc ?? 0;
+        flagSubappalto.checked = !!p.parametri.subappalto;
+        flagCostoInterno.checked = !!p.parametri.costoInternoAttivo;
+        costoOrarioInternoInput.disabled = !flagCostoInterno.checked;
+        costoOrarioInternoInput.value = p.parametri.prezzoOrarioTarget ?? 23;
+        flagAttrezzature.checked = !!p.parametri.attrezzatureAttive;
+        costoAttrezzatureInput.disabled = !flagAttrezzature.checked;
+        costoAttrezzatureInput.value = p.parametri.costoAttrezzature ?? 0;
+      }
+
+      if (p.risultati) {
+        oreMeseSpan.textContent = p.risultati.oreMese;
+        costoLavoroSpan.textContent = p.risultati.costoLavoro;
+        costoProdottiSpan.textContent = p.risultati.costoProdotti;
+        costoAttrezzatureResSpan.textContent = p.risultati.costoAttrezzature;
+        costoProvvigioneSpan.textContent = p.risultati.costoProvvigione;
+        costoTotaleSpan.textContent = p.risultati.costoTotale;
+        prezzoOrarioResSpan.textContent = p.risultati.prezzoOrario;
+        ricavoLavoroSpan.textContent = p.risultati.ricavoLavoro;
+        guadagnoNettoSpan.textContent = p.risultati.guadagnoNetto;
+        guadagnoPercSpan.textContent = p.risultati.guadagnoPerc;
+        prezzoTotaleClienteSpan.textContent = p.risultati.prezzoTotaleCliente;
+      }
+
+      ultimoPreventivo = p;
+      setButtonsEnabled(true);
     }
 
-    function approvaPreventivo() {
-      calcolaPreventivo();
+    // ---- CALCOLO CON PROVVIGIONE CORRETTA ----
+    function calcolaPreventivo() {
+      const interventi = parseNum(interventiSettInput, 0);
+      const oreIntervento = parseNum(oreInterventoInput, 0);
+      const oreMese = interventi * oreIntervento * 4.33;
 
-      const lista = loadStorico();
+      if (oreMese <= 0) {
+        resetRiepilogo();
+        setButtonsEnabled(false);
+        ultimoPreventivo = null;
+        return;
+      }
 
-      const record = {
-        numero: numPreventivoInput.value || "",
-        data: dataPreventivoInput.value || "",
-        cliente: ragioneSocialeInput.value || "",
-        indirizzo: indirizzoInput.value || "",
-        telefono: telefonoInput.value || "",
-        email: emailInput.value || "",
-        oggetto: oggettoInput.value || "",
-        descrizione: descrizioneInput.value || "",
-        interventiSett: parseFloat(interventiSettInput.value) || 0,
-        oreIntervento: parseFloat(oreInterventoInput.value) || 0,
-        provvigioneAttiva: flagProvvigione.checked,
-        provPerc: parseFloat(provvigionePercInput.value) || 0,
-        subappaltoAttivo: flagSubappalto.checked,
-        costoInternoFlag: flagCostoInterno.checked,
-        costoInternoOra: parseFloat(costoOrarioInput.value) || 23,
-        attrezzatureAttive: flagAttrezzature.checked,
-        costoAttrezzature: parseFloat(costoAttrezzatureInput.value) || 0,
-        oreMese: oreMeseSpan.textContent,
-        costoLavoro: costoLavoroSpan.textContent,
-        costoProdotti: costoProdottiSpan.textContent,
-        costoAttrezzatureRes: costoAttrezzatureResSpan.textContent,
-        costoProvvigione: costoProvvigioneSpan.textContent,
-        costoTotale: costoTotaleSpan.textContent,
-        prezzoOrarioRes: prezzoOrarioResSpan.textContent,
-        ricavoLavoro: ricavoLavoroSpan.textContent,
-        guadagnoNetto: guadagnoNettoSpan.textContent,
-        guadagnoPerc: guadagnoPercSpan.textContent,
-        prezzoTotaleClienteText: prezzoTotaleClienteSpan.textContent,
-        prezzoTotale: parseEuro(prezzoTotaleClienteSpan.textContent)
+      const hasProvv = flagProvvigione.checked;
+      const provvPerc = hasProvv ? parseNum(provvigionePercInput, 0) : 0;
+      const a = hasProvv ? provvPerc / 100 : 0;
+
+      const hasSub = flagSubappalto.checked;
+      const hasCostoInterno = flagCostoInterno.checked;
+      const hasAttrezz = flagAttrezzature.checked;
+
+      const tariffaTarget = hasSub
+        ? 26
+        : (hasCostoInterno ? parseNum(costoOrarioInternoInput, 23) : 23);
+
+      const costoAttrezzature = hasAttrezz ? parseNum(costoAttrezzatureInput, 0) : 0;
+
+      const costoLavoroOrario = hasSub ? 16 : COSTO_REALE_INTERNO;
+      const costoLavoro = oreMese * costoLavoroOrario;
+
+      const costoProdotti = costoLavoro * 0.10;
+      const extraFissi = costoProdotti + costoAttrezzature;
+
+      let prezzoTotaleCliente;
+      if (a >= 1) {
+        prezzoTotaleCliente = tariffaTarget * oreMese + extraFissi;
+      } else {
+        // (P - provv - extraFissi)/oreMese = tariffaTarget  ->  P = (tariffaTarget*oreMese + extraFissi)/(1-a)
+        prezzoTotaleCliente = (tariffaTarget * oreMese + extraFissi) / (1 - a);
+      }
+
+      const costoProvvigione = prezzoTotaleCliente * a;
+      const costoTotaleAziendale = costoLavoro + costoProdotti + costoAttrezzature + costoProvvigione;
+
+      const ricavoOre = tariffaTarget * oreMese;             // ciò che rimane tolti provvigione+prodotti+attrezzature
+      const guadagnoNetto = ricavoOre - costoLavoro;         // margine dopo aver pagato il lavoro
+      const guadagnoPerc = prezzoTotaleCliente > 0
+        ? (guadagnoNetto / prezzoTotaleCliente) * 100
+        : 0;
+
+      // UI
+      oreMeseSpan.textContent = formatOre(oreMese);
+      costoLavoroSpan.textContent = formatEuro(costoLavoro);
+      costoProdottiSpan.textContent = formatEuro(costoProdotti);
+      costoAttrezzatureResSpan.textContent = formatEuro(costoAttrezzature);
+      costoProvvigioneSpan.textContent = formatEuro(costoProvvigione);
+      costoTotaleSpan.textContent = formatEuro(costoTotaleAziendale);
+      prezzoOrarioResSpan.textContent =
+        tariffaTarget.toFixed(2).replace(".", ",") + " €/h";  // 23 o 26 netti
+      ricavoLavoroSpan.textContent = formatEuro(ricavoOre);
+      guadagnoNettoSpan.textContent = formatEuro(guadagnoNetto);
+      guadagnoPercSpan.textContent = formatPerc(guadagnoPerc);
+      prezzoTotaleClienteSpan.textContent = formatEuro(prezzoTotaleCliente);
+
+      setButtonsEnabled(true);
+
+      ultimoPreventivo = {
+        numero: numPreventivoInput.value.trim(),
+        data: dataPreventivoInput.value,
+        cliente: clienteNomeInput.value.trim(),
+        indirizzo: clienteIndirizzoInput.value.trim(),
+        telefono: clienteTelefonoInput.value.trim(),
+        email: clienteEmailInput.value.trim(),
+        oggetto: oggettoPreventivoInput.value.trim(),
+        descrizione: descrizionePreventivoInput.value.trim(),
+        parametri: {
+          interventi,
+          oreIntervento,
+          provvigioneAttiva: hasProvv,
+          provvigionePerc: provvPerc,
+          subappalto: hasSub,
+          costoInternoAttivo: hasCostoInterno,
+          prezzoOrarioTarget: tariffaTarget,
+          costoLavoroOrario,
+          attrezzatureAttive: hasAttrezz,
+          costoAttrezzature
+        },
+        risultati: {
+          oreMese: formatOre(oreMese),
+          costoLavoro: formatEuro(costoLavoro),
+          costoProdotti: formatEuro(costoProdotti),
+          costoAttrezzature: formatEuro(costoAttrezzature),
+          costoProvvigione: formatEuro(costoProvvigione),
+          costoTotale: formatEuro(costoTotaleAziendale),
+          prezzoOrario: tariffaTarget.toFixed(2).replace(".", ",") + " €/h",
+          ricavoLavoro: formatEuro(ricavoOre),
+          guadagnoNetto: formatEuro(guadagnoNetto),
+          guadagnoPerc: formatPerc(guadagnoPerc),
+          prezzoTotaleCliente: formatEuro(prezzoTotaleCliente)
+        }
       };
-
-      lista.push(record);
-      saveStorico(lista);
-      renderStorico();
-
-      numPreventivoInput.value = getNextNumeroPreventivo();
     }
 
-    // ========= PDF =========
-
-    function getJsPdf() {
-      return window.jspdf.jsPDF;
-    }
-
-    function generaPdfInternoDaValori(
-      numero, data, cliente, indirizzo, telefono, email,
-      oggetto, descrizione
-    ) {
-      const jsPDF = getJsPdf();
-      const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
-
-      let y = 20;
-      const marginLeft = 15;
-      const marginRight = 195;
-
-      doc.setFontSize(16);
-      doc.text("EA Cleaning – Preventivo interno", marginLeft, y);
-      y += 7;
-
+    // ---- PDF interno ----
+    function generaPdfInterno(p) {
+      if (!p || !p.risultati) return;
+      const doc = new jsPDF();
+      doc.setFontSize(14);
+      doc.text("EA Cleaning – Preventivo interno", 14, 18);
       doc.setFontSize(11);
-      doc.text("Nr: " + (numero || ""), marginLeft, y);
-      doc.text("Data: " + (data || ""), marginLeft + 70, y);
+      doc.text("Nr: " + (p.numero || ""), 14, 26);
+      doc.text("Data: " + (p.data || ""), 196, 26, { align: "right" });
+      doc.text("Cliente: " + (p.cliente || "-"), 14, 34);
+      if (p.oggetto) doc.text("Oggetto: " + p.oggetto, 14, 42);
+
+      let y = 58;
+      doc.text("Riepilogo economico mensile", 14, y);
       y += 6;
-
-      doc.text("Cliente: " + (cliente || ""), marginLeft, y);
-      y += 5;
-      if (indirizzo) {
-        doc.text("Indirizzo: " + indirizzo, marginLeft, y);
-        y += 5;
-      }
-      if (telefono) {
-        doc.text("Telefono: " + telefono, marginLeft, y);
-        y += 5;
-      }
-      if (email) {
-        doc.text("Email: " + email, marginLeft, y);
+      const row = (label, value, color) => {
+        doc.setTextColor(0,0,0);
+        doc.text(label, 14, y);
+        if (color==="red") doc.setTextColor(180,20,20);
+        if (color==="green") doc.setTextColor(20,130,60);
+        doc.text(value, 196, y, { align:"right" });
         y += 6;
-      }
+      };
+      row("Ore totali mese", p.risultati.oreMese, null);
+      row("Costo lavoro", p.risultati.costoLavoro, "red");
+      row("Costo prodotti (10%)", p.risultati.costoProdotti, "red");
+      row("Costo attrezzature", p.risultati.costoAttrezzature, "red");
+      row("Provvigione", p.risultati.costoProvvigione, "red");
+      row("Costo totale aziendale", p.risultati.costoTotale, "red");
+      row("Tariffa oraria (netta)", p.risultati.prezzoOrario, "green");
+      row("Ricavo lavoro (solo ore)", p.risultati.ricavoLavoro, "green");
+      row("Guadagno netto", p.risultati.guadagnoNetto, "green");
+      row("Guadagno netto %", p.risultati.guadagnoPerc, "green");
 
-      if (oggetto) {
-        doc.setFontSize(12);
-        doc.text("Oggetto: " + oggetto, marginLeft, y);
-        y += 6;
-      }
+      y += 4;
+      doc.setFillColor(5,150,80);
+      doc.setTextColor(255,255,255);
+      doc.roundedRect(14, y, 182, 10, 2, 2, "F");
+      doc.text("Totale mensile da proporre al cliente", 18, y+7);
+      doc.text(p.risultati.prezzoTotaleCliente, 192, y+7, { align:"right" });
 
-      if (descrizione) {
-        doc.setFontSize(10);
-        const descLines = doc.splitTextToSize("Descrizione: " + descrizione, marginRight - marginLeft);
-        doc.text(descLines, marginLeft, y);
-        y += descLines.length * 5 + 5;
-      }
+      doc.save((p.numero || "preventivo") + "_interno.pdf");
+    }
 
-      doc.setFontSize(12);
-      doc.text("Riepilogo economico mensile", marginLeft, y);
-      y += 5;
+    // ---- PDF cliente ----
+    function generaPdfCliente(p) {
+      if (!p || !p.risultati) return;
+      const doc = new jsPDF();
+      doc.setFontSize(14);
+      doc.text("EA Cleaning – Preventivo servizi di pulizia", 14, 18);
+      doc.setFontSize(11);
+      doc.text("Nr: " + (p.numero || ""), 14, 26);
+      doc.text("Data: " + (p.data || ""), 196, 26, { align:"right" });
 
-      doc.setDrawColor(220, 220, 220);
-      doc.line(marginLeft, y, marginRight, y);
+      doc.text("Spett.le", 14, 38);
+      doc.text(p.cliente || "-", 14, 44);
+      if (p.indirizzo) doc.text(p.indirizzo, 14, 50);
+
+      let y = 64;
+      doc.text("Proposta economica", 14, y);
       y += 4;
 
-      function row(label, spanId, colorType) {
-        if (y > 270) {
-          doc.addPage();
-          y = 20;
-        }
-        const valText = document.getElementById(spanId).textContent || "0,00 €";
-        if (colorType === "cost") {
-          doc.setTextColor(185, 28, 28);
-        } else if (colorType === "rev") {
-          doc.setTextColor(22, 163, 74);
-        } else {
-          doc.setTextColor(55, 65, 81);
-        }
-        doc.setFontSize(10);
-        doc.text(label, marginLeft, y);
-        doc.text(valText, marginRight, y, { align: "right" });
-        y += 4.5;
-      }
+      doc.setDrawColor(0,0,0);
+      doc.rect(14, y, 182, 8);
+      doc.text("Totale mensile servizi di pulizia", 16, y+5);
+      doc.rect(14, y+8, 182, 10);
+      doc.text(p.risultati.prezzoTotaleCliente, 194, y+15, { align:"right" });
 
-      row("Ore totali mese", "oreMese", "neutral");
-      row("Costo lavoro", "costoLavoro", "cost");
-      row("Costo prodotti (10%)", "costoProdotti", "cost");
-      row("Costo attrezzature", "costoAttrezzatureRes", "cost");
-      row("Provvigione", "costoProvvigione", "cost");
-      row("Costo totale aziendale", "costoTotale", "cost");
-      y += 2;
-      doc.line(marginLeft, y, marginRight, y);
-      y += 4;
-      row("Tariffa oraria", "prezzoOrarioRes", "rev");
-      row("Ricavo lavoro (solo ore)", "ricavoLavoro", "rev");
-      row("Guadagno netto", "guadagnoNetto", "rev");
-      row("Guadagno netto %", "guadagnoPerc", "rev");
-
-      y += 8;
-      doc.setFillColor(22, 163, 74);
-      doc.setTextColor(255, 255, 255);
-      doc.roundedRect(marginLeft, y - 7, 180, 12, 2, 2, "F");
-      doc.setFontSize(11);
-      doc.text("Totale mensile da proporre al cliente", marginLeft + 3, y - 1);
-      const totText = prezzoTotaleClienteSpan.textContent || "0,00 €";
-      doc.text(totText, marginRight - 3, y - 1, { align: "right" });
-
-      const fileName = (numero || "preventivo-interno") + "_interno.pdf";
-      doc.save(fileName);
-    }
-
-    function generaPdfClienteDaValori(
-      numero, data, cliente, indirizzo, telefono, email,
-      oggetto, descrizione, prezzoTotale
-    ) {
-      const jsPDF = getJsPdf();
-      const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
-
-      let y = 20;
-      const marginLeft = 20;
-      const marginRight = 190;
-
-      doc.setFontSize(16);
-      doc.text("EA Cleaning – Preventivo servizi di pulizia", marginLeft, y);
-      y += 8;
-
-      doc.setFontSize(11);
-      doc.text("Nr: " + (numero || ""), marginLeft, y);
-      doc.text("Data: " + (data || ""), marginLeft + 80, y);
-      y += 8;
-
-      doc.setFontSize(11);
-      doc.text("Spett.le " + (cliente || ""), marginLeft, y);
-      y += 5;
-      if (indirizzo) {
-        doc.text(indirizzo, marginLeft, y);
-        y += 5;
-      }
-      if (telefono) {
-        doc.text("Tel: " + telefono, marginLeft, y);
-        y += 5;
-      }
-      if (email) {
-        doc.text("Email: " + email, marginLeft, y);
-        y += 7;
-      }
-
-      if (oggetto) {
-        doc.setFontSize(12);
-        doc.text("Oggetto: " + oggetto, marginLeft, y);
-        y += 7;
-      }
-
-      if (descrizione) {
-        doc.setFontSize(10);
-        const descLines = doc.splitTextToSize(descrizione, marginRight - marginLeft);
-        doc.text(descLines, marginLeft, y);
-        y += descLines.length * 5 + 8;
-      }
-
-      doc.setFontSize(12);
-      doc.text("Proposta economica", marginLeft, y);
-      y += 6;
-
-      doc.setDrawColor(200, 200, 200);
-      doc.rect(marginLeft, y, 150, 14);
-      doc.setFontSize(11);
-      doc.text("Totale mensile servizi di pulizia", marginLeft + 3, y + 5);
-      doc.text(prezzoTotale || "0,00 €", marginLeft + 3, y + 11);
-
-      y += 22;
+      const fy = 105;
       doc.setFontSize(9);
-      doc.setTextColor(107, 114, 128);
+      doc.setTextColor(120,120,120);
       doc.text(
         "Il presente preventivo è valido 30 giorni dalla data di emissione salvo diverse indicazioni.",
-        marginLeft,
-        y
+        14, fy
       );
-      y += 5;
       doc.text(
         "Restiamo a disposizione per eventuali chiarimenti e per un sopralluogo dettagliato.",
-        marginLeft,
-        y
+        14, fy+5
       );
 
-      const fileName = (numero || "preventivo-cliente") + "_cliente.pdf";
-      doc.save(fileName);
+      doc.save((p.numero || "preventivo") + "_cliente.pdf");
     }
 
-    function generaPdfInternoCorrente() {
-      generaPdfInternoDaValori(
-        numPreventivoInput.value,
-        dataPreventivoInput.value,
-        ragioneSocialeInput.value,
-        indirizzoInput.value,
-        telefonoInput.value,
-        emailInput.value,
-        oggettoInput.value,
-        descrizioneInput.value
-      );
-    }
+    // ---- EVENTI ----
+    flagProvvigione.addEventListener("change", () => {
+      provvigionePercInput.disabled = !flagProvvigione.checked;
+      if (!flagProvvigione.checked) provvigionePercInput.value = "0";
+    });
+    flagAttrezzature.addEventListener("change", () => {
+      costoAttrezzatureInput.disabled = !flagAttrezzature.checked;
+      if (!flagAttrezzature.checked) costoAttrezzatureInput.value = "0";
+    });
+    flagCostoInterno.addEventListener("change", () => {
+      costoOrarioInternoInput.disabled = !flagCostoInterno.checked;
+    });
 
-    function generaPdfClienteCorrente() {
-      const prezzoText = prezzoTotaleClienteSpan.textContent || "0,00 €";
-      generaPdfClienteDaValori(
-        numPreventivoInput.value,
-        dataPreventivoInput.value,
-        ragioneSocialeInput.value,
-        indirizzoInput.value,
-        telefonoInput.value,
-        emailInput.value,
-        oggettoInput.value,
-        descrizioneInput.value,
-        prezzoText
-      );
-    }
-
-    // ========= EVENT LISTENERS =========
-
-    calcolaBtn.addEventListener("click", calcolaPreventivo);
-    resetBtn.addEventListener("click", resetCampi);
-    approvaBtn.addEventListener("click", approvaPreventivo);
-
-    pdfInternoBtn.addEventListener("click", function () {
+    btnCalcola.addEventListener("click", e => {
+      e.preventDefault();
       calcolaPreventivo();
-      generaPdfInternoCorrente();
+    });
+    btnPdfInterno.addEventListener("click", e => {
+      e.preventDefault();
+      if (ultimoPreventivo) generaPdfInterno(ultimoPreventivo);
+    });
+    btnPdfCliente.addEventListener("click", e => {
+      e.preventDefault();
+      if (ultimoPreventivo) generaPdfCliente(ultimoPreventivo);
+    });
+    btnApprova.addEventListener("click", e => {
+      e.preventDefault();
+      if (!ultimoPreventivo || !ultimoPreventivo.risultati) return;
+      const lista = loadStorico();
+      lista.push({ ...ultimoPreventivo, id: Date.now() });
+      saveStorico(lista);
+      renderStorico();
+      incrementNumeroPreventivo();
+    });
+    btnReset.addEventListener("click", e => {
+      e.preventDefault();
+      clienteNomeInput.value = "";
+      clienteIndirizzoInput.value = "";
+      clienteTelefonoInput.value = "";
+      clienteEmailInput.value = "";
+      oggettoPreventivoInput.value = "";
+      descrizionePreventivoInput.value = "";
+      interventiSettInput.value = "1";
+      oreInterventoInput.value = "1";
+      flagProvvigione.checked = false;
+      provvigionePercInput.disabled = true;
+      provvigionePercInput.value = "0";
+      flagSubappalto.checked = false;
+      flagCostoInterno.checked = true;
+      costoOrarioInternoInput.disabled = false;
+      costoOrarioInternoInput.value = "23";
+      flagAttrezzature.checked = false;
+      costoAttrezzatureInput.disabled = true;
+      costoAttrezzatureInput.value = "0";
+      resetRiepilogo();
+      setButtonsEnabled(false);
+      ultimoPreventivo = null;
     });
 
-    pdfClienteBtn.addEventListener("click", function () {
-      calcolaPreventivo();
-      generaPdfClienteCorrente();
-    });
-
-    [
-      interventiSettInput,
-      oreInterventoInput,
-      provvigionePercInput,
-      costoOrarioInput,
-      costoAttrezzatureInput,
-      flagProvvigione,
-      flagSubappalto,
-      flagCostoInterno,
-      flagAttrezzature
-    ].forEach(el => {
-      el.addEventListener("input", calcolaPreventivo);
-      el.addEventListener("change", calcolaPreventivo);
-    });
-
-    storicoListEl.addEventListener("click", function (e) {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      const index  = parseInt(btn.dataset.idx, 10);
-      const action = btn.dataset.action;
-      const lista  = loadStorico();
-      const rec    = lista[index];
-      if (!rec) return;
-
-      if (action === "delete") {
-        lista.splice(index, 1);
-        saveStorico(lista);
-        renderStorico();
-      } else if (action === "open") {
-        numPreventivoInput.value   = rec.numero;
-        dataPreventivoInput.value  = rec.data;
-        ragioneSocialeInput.value  = rec.cliente;
-        indirizzoInput.value       = rec.indirizzo;
-        telefonoInput.value        = rec.telefono;
-        emailInput.value           = rec.email;
-        oggettoInput.value         = rec.oggetto;
-        descrizioneInput.value     = rec.descrizione;
-
-        interventiSettInput.value  = rec.interventiSett;
-        oreInterventoInput.value   = rec.oreIntervento;
-        flagProvvigione.checked    = rec.provvigioneAttiva;
-        provvigionePercInput.value = rec.provPerc;
-        flagSubappalto.checked     = rec.subappaltoAttivo;
-        flagCostoInterno.checked   = rec.costoInternoFlag;
-        costoOrarioInput.value     = rec.costoInternoOra;
-        flagAttrezzature.checked   = rec.attrezzatureAttive;
-        costoAttrezzatureInput.value = rec.costoAttrezzature;
-
-        calcolaPreventivo();
-      } else if (action === "pdf-int") {
-        calcolaPreventivo();
-        generaPdfInternoDaValori(
-          rec.numero,
-          rec.data,
-          rec.cliente,
-          rec.indirizzo,
-          rec.telefono,
-          rec.email,
-          rec.oggetto,
-          rec.descrizione
-        );
-      } else if (action === "pdf-cli") {
-        calcolaPreventivo();
-        generaPdfClienteDaValori(
-          rec.numero,
-          rec.data,
-          rec.cliente,
-          rec.indirizzo,
-          rec.telefono,
-          rec.email,
-          rec.oggetto,
-          rec.descrizione,
-          rec.prezzoTotaleClienteText || formatEuro(rec.prezzoTotale)
-        );
-      }
-    });
-
-    // calcolo e storico iniziali
-    calcolaPreventivo();
-    renderStorico();
+    // ---- INIT ----
+    (function init(){
+      dataPreventivoInput.value = todayISO();
+      initNumeroPreventivo();
+      renderStorico();
+      resetRiepilogo();
+      setButtonsEnabled(false);
+    })();
   </script>
 </body>
 </html>
