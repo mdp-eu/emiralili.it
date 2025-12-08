@@ -3,583 +3,488 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strumento preventivi – Emir Alili</title>
+  <title>Area preventivi – EA Cleaning</title>
 
-  <!-- PWA: colore barra e manifest -->
-<meta name="theme-color" content="#ea580c" />
-<link rel="manifest" href="manifest.json" />
-<link rel="icon" href="/assets/icons/icon-192.png" />
-<link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-
-  <link rel="stylesheet" href="style.css" />
   <style>
-    main {
-      padding: 2.1rem 0 3rem;
+    :root {
+      --bg-page: #f3f4f6;
+      --bg-main: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --accent: #0ea5e9;
+      --accent-dark: #0369a1;
+      --accent-soft: #e0f2fe;
+      --radius-lg: 18px;
+      --radius-md: 10px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
     }
 
-    .tool-box {
-      max-width: 920px;
-      margin: 0 auto;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .tool-grid {
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 960px;
+      background: var(--bg-main);
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+      padding: 1.8rem 1.6rem 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .shell {
+        padding: 2.2rem 2.4rem 2.4rem;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .logo-wrap img {
+      max-width: 210px;
+      height: auto;
+    }
+
+    .title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
       gap: 1.5rem;
-      margin-top: 1rem;
     }
 
     @media (max-width: 880px) {
-      .tool-grid {
+      .grid {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .tool-field {
-      margin-bottom: 0.9rem;
+    .panel {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 1.1rem 1.1rem 1.3rem;
+      background: #ffffff;
     }
 
-    .tool-label {
-      display: block;
-      font-size: 0.86rem;
-      font-weight: 500;
-      color: #111827;
-      margin-bottom: 0.2rem;
+    .panel + .panel {
+      margin-top: 1rem;
     }
 
-    .tool-hint {
-      font-size: 0.78rem;
-      color: #6b7280;
-      margin-bottom: 0.25rem;
-    }
-
-    .tool-input-row {
+    .panel-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
       display: flex;
-      gap: 0.4rem;
       align-items: center;
+      gap: 0.4rem;
     }
 
-    .tool-input,
-    .tool-select,
-    .tool-textarea {
-      flex: 1;
-      border-radius: 10px;
+    .panel-title span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .field {
+      margin-bottom: 0.7rem;
+    }
+
+    .field-half-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+    }
+
+    .label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 0.18rem;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.22rem;
+    }
+
+    .input,
+    .textarea {
+      width: 100%;
+      border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
       padding: 0.45rem 0.6rem;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
       background: #ffffff;
     }
 
-    .tool-textarea {
+    .textarea {
       min-height: 70px;
       resize: vertical;
     }
 
-    .tool-input:focus,
-    .tool-select:focus,
-    .tool-textarea:focus {
+    .input:focus,
+    .textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(234, 88, 12, 0.15);
+      box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.14);
     }
 
-    .tool-suffix {
-      font-size: 0.8rem;
-      color: #6b7280;
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.83rem;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+    }
+
+    .inline-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .suffix {
+      font-size: 0.78rem;
+      color: var(--text-muted);
       white-space: nowrap;
     }
 
-    .tool-note {
+    .note {
       font-size: 0.76rem;
-      color: #6b7280;
-      margin-top: 0.2rem;
+      color: var(--text-muted);
+      margin-top: 0.12rem;
     }
 
-    .tool-results {
-      background: var(--bg-soft);
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .results-panel {
+      background: var(--bg-main);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
-      padding: 1rem 1rem 0.9rem;
-      font-size: 0.86rem;
-      color: var(--text-muted);
+      padding: 1rem 1.1rem 1.2rem;
     }
 
-    .tool-results-title {
-      font-size: 0.9rem;
+    .results-title {
+      font-size: 0.96rem;
       font-weight: 600;
-      color: #111827;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
     }
 
-    .tool-results-grid {
+    .results-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.35rem;
-      margin-top: 0.2rem;
+      gap: 0.3rem;
+      font-size: 0.86rem;
     }
 
-    .tool-result-row {
+    .result-row {
       display: flex;
       justify-content: space-between;
       gap: 0.7rem;
     }
 
-    .tool-result-label {
-      color: #6b7280;
+    .result-label {
+      color: var(--text-muted);
     }
 
-    .tool-result-value {
+    .result-value {
       font-weight: 600;
-      color: #111827;
     }
 
-    .tool-result-highlight {
-      margin-top: 0.45rem;
-      padding-top: 0.45rem;
+    .result-cost {
+      color: #b91c1c;
+    }
+
+    .result-revenue {
+      color: #15803d;
+    }
+
+    .results-divider {
+      margin: 0.5rem 0;
       border-top: 1px dashed var(--border-subtle);
     }
 
-    .tool-result-highlight .tool-result-value {
+    .results-main-total {
+      margin-top: 0.7rem;
+      padding: 0.6rem 0.7rem;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
       color: var(--accent-dark);
     }
 
-    .tool-buttons {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
+    .results-main-total span:last-child {
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <nav class="nav" id="nav">
-          <div class="brand">
-            <div class="brand-avatar">
-              <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili" />
-            </div>
-            <div class="brand-text">
-              <strong>Emir Alili</strong>
-              <span>Imprenditore, autore, leader politico</span>
-            </div>
-          </div>
-
-          <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="chi-sono.html">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="contatti.html">Contatti</a>
-          </div>
-
-          <div class="nav-cta">
-            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-              Contatti
-            </button>
-          </div>
-
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
-            ☰
-          </button>
-        </nav>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <div class="hero-wrap">
-      <section class="hero">
-        <div class="container">
-          <div class="hero-grid">
-            <div>
-              <div class="hero-kicker">
-                <span>Strumento interno</span> preventivi pulizie
-              </div>
-              <h1 class="hero-title">
-                Calcolatore rapido per <span>preventivi EA Cleaning</span>.
-              </h1>
-              <p class="hero-subtitle">
-                Inserisci pochi parametri base e ottieni ore mensili, costi vivi aziendali
-                e prezzo finale al cliente. Lo usi solo tu, come foglio di lavoro veloce.
-              </p>
-              <div class="hero-pills">
-                <span class="pill">Frequenza · ore · km</span>
-                <span class="pill">Costo orario dipendente</span>
-                <span class="pill">Prodotti · commissione · ricarico</span>
-              </div>
-            </div>
-
-            <aside class="hero-card">
-              <div class="hero-name">EA Cleaning – strumento di lavoro</div>
-              <div class="hero-role-main">
-                Costi vivi separati: lavoro, auto, prodotti, commissioni.
-              </div>
-              <div class="hero-stat-grid">
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">12 / 14 / 16 €</div>
-                  <div class="hero-stat-label">Costi orari dipendenti / collaboratori</div>
-                </div>
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">0,30 €/km</div>
-                  <div class="hero-stat-label">Costo auto standard</div>
-                </div>
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">7 %</div>
-                  <div class="hero-stat-label">Prodotti su lavoro + auto</div>
-                </div>
-              </div>
-            </aside>
-          </div>
+    <div class="shell">
+      <!-- INTESTAZIONE -->
+      <header class="header">
+        <div class="logo-wrap">
+          <img src="/assets/logos/Logo EA Cleaning.png" alt="EA Cleaning – Cleaning Services" />
         </div>
-      </section>
+        <h1 class="title">Area preventivi</h1>
+        <p class="subtitle">Strumento interno per il calcolo rapido dei preventivi mensili.</p>
+      </header>
+
+      <div class="grid">
+        <!-- COLONNA SINISTRA: DATI + COSTI -->
+        <div>
+          <!-- DATI CLIENTE -->
+          <section class="panel">
+            <div class="panel-title">Dati cliente <span>(intestazione preventivo)</span></div>
+
+            <div class="field">
+              <label class="label" for="ragioneSociale">Ragione sociale / Cliente</label>
+              <input class="input" id="ragioneSociale" type="text" placeholder="Es. Condominio Giardino, Arancione S.r.l." />
+            </div>
+
+            <div class="field-half-grid field">
+              <div>
+                <label class="label" for="indirizzo">Indirizzo</label>
+                <input class="input" id="indirizzo" type="text" placeholder="Via, civico, città" />
+              </div>
+              <div>
+                <label class="label" for="telefono">Telefono</label>
+                <input class="input" id="telefono" type="text" placeholder="+39 ..." />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="email">Email</label>
+              <input class="input" id="email" type="email" placeholder="esempio@mail.com" />
+            </div>
+
+            <div class="field">
+              <label class="label" for="oggetto">Oggetto preventivo</label>
+              <input class="input" id="oggetto" type="text" placeholder="Es. Servizio di pulizia scale condominiali" />
+            </div>
+
+            <div class="field">
+              <label class="label" for="descrizione">Descrizione libera</label>
+              <textarea class="textarea" id="descrizione" placeholder="Note operative, dettagli del servizio, esclusioni, ecc."></textarea>
+            </div>
+          </section>
+
+          <!-- COSTI LAVORO -->
+          <section class="panel" style="margin-top:1rem;">
+            <div class="panel-title">Parametri di lavoro <span>(base di calcolo)</span></div>
+
+            <div class="field-half-grid field">
+              <div>
+                <label class="label" for="interventiSett">Numero interventi settimanali</label>
+                <input class="input" id="interventiSett" type="number" min="0" step="0.5" value="2" />
+              </div>
+              <div>
+                <label class="label" for="oreIntervento">Ore per intervento</label>
+                <input class="input" id="oreIntervento" type="number" min="0" step="0.25" value="2" />
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="checkbox-row">
+                <input type="checkbox" id="flagProvvigione" />
+                <label for="flagProvvigione">Provvigione agente / intermediatore</label>
+              </div>
+              <div class="inline-row">
+                <input class="input" id="provvigionePerc" type="number" min="0" step="0.5" placeholder="Es. 10" disabled />
+                <span class="suffix">% sul totale fatturato</span>
+              </div>
+              <p class="note">
+                Se attivo, la provvigione viene trattata come costo aggiuntivo sul prezzo finale.
+              </p>
+            </div>
+
+            <div class="field">
+              <div class="checkbox-row">
+                <input type="checkbox" id="flagSubappalto" />
+                <label for="flagSubappalto">Lavoro in subappalto (costo 16 €/h esterno)</label>
+              </div>
+              <p class="note">
+                Se il lavoro è in subappalto, il costo base considerato è 16 €/h + 10 €/h di margine minimo (totale 26 €/h).
+              </p>
+            </div>
+
+            <div class="field">
+              <div class="checkbox-row">
+                <input type="checkbox" id="flagCostoPersonalizzato" />
+                <label for="flagCostoPersonalizzato">Costo orario personalizzato</label>
+              </div>
+              <div class="inline-row">
+                <input class="input" id="costoOrario" type="number" min="0" step="0.5" value="23" />
+                <span class="suffix">€/h costo di riferimento</span>
+              </div>
+              <p class="note">
+                Di base il costo orario è 23 €/h. Se attivi subappalto, verrà ignorato e usato il profilo 26 €/h (16 + 10).
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label">Costo prodotti</label>
+              <p class="hint">Applicato automaticamente un 10% fisso sul costo lavoro.</p>
+            </div>
+
+            <div class="field">
+              <div class="checkbox-row">
+                <input type="checkbox" id="flagAttrezzature" />
+                <label for="flagAttrezzature">Aggiungi costo attrezzature / noleggi</label>
+              </div>
+              <div class="inline-row">
+                <input class="input" id="costoAttrezzature" type="number" min="0" step="1" placeholder="Es. 50" disabled />
+                <span class="suffix">€/mese</span>
+              </div>
+            </div>
+
+            <div class="buttons">
+              <button type="button" class="btn-primary" id="calcolaBtn">
+                Calcola preventivo
+              </button>
+              <button type="button" class="btn-outline" id="resetBtn">
+                Reset campi
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <!-- COLONNA DESTRA: RISULTATI -->
+        <div>
+          <section class="results-panel">
+            <div class="results-title">Riepilogo economico mensile</div>
+
+            <div class="results-grid">
+              <div class="result-row">
+                <span class="result-label">Ore totali mese</span>
+                <span class="result-value" id="oreMese">0,00 h</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Costo lavoro (interno/subappalto)</span>
+                <span class="result-value result-cost" id="costoLavoro">0,00 €</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Costo prodotti (10%)</span>
+                <span class="result-value result-cost" id="costoProdotti">0,00 €</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Costo attrezzature</span>
+                <span class="result-value result-cost" id="costoAttrezzatureRes">0,00 €</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Provvigione</span>
+                <span class="result-value result-cost" id="costoProvvigione">0,00 €</span>
+              </div>
+
+              <div class="results-divider"></div>
+
+              <div class="result-row">
+                <span class="result-label">Costo totale aziendale</span>
+                <span class="result-value result-cost" id="costoTotale">0,00 €</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Tariffa oraria di preventivo</span>
+                <span class="result-value result-revenue" id="prezzoOrario">0,00 €/h</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Ricavo complessivo (solo lavoro)</span>
+                <span class="result-value result-revenue" id="ricavoLavoro">0,00 €</span>
+              </div>
+            </div>
+
+            <div class="results-main-total">
+              <span>Totale mensile da proporre al cliente</span>
+              <span id="prezzoTotaleCliente">0,00 €</span>
+            </div>
+
+          </section>
+        </div>
+      </div>
     </div>
-
-    <!-- CONTENUTO -->
-    <main>
-      <div class="container">
-        <section class="section-box tool-box">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Dati preventivo e cliente</h2>
-            <p class="section-subtitle">
-              Numero progressivo, data e nome cliente vengono stampati anche nel PDF.
-            </p>
-          </div>
-
-          <!-- DATI PREVENTIVO + CLIENTE -->
-          <div class="tool-grid" style="margin-bottom:1.5rem;">
-            <div>
-              <!-- Numero preventivo -->
-              <div class="tool-field">
-                <label class="tool-label" for="numPreventivo">Numero preventivo</label>
-                <p class="tool-hint">Generato in automatico in forma AAAA-XXX (puoi modificarlo).</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="text" id="numPreventivo" />
-                  <span class="tool-suffix">es. 2025-001</span>
-                </div>
-              </div>
-
-              <!-- Data preventivo -->
-              <div class="tool-field">
-                <label class="tool-label" for="dataPreventivo">Data preventivo</label>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="date" id="dataPreventivo" />
-                </div>
-              </div>
-            </div>
-
-            <aside>
-              <!-- Cliente -->
-              <div class="tool-field">
-                <label class="tool-label" for="clienteNome">Cliente / Ragione sociale</label>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="text" id="clienteNome" placeholder="Es. Condominio Giardino, Arancione S.r.l." />
-                </div>
-              </div>
-
-              <div class="tool-field">
-                <label class="tool-label" for="clienteNote">Note interne (facoltative)</label>
-                <textarea class="tool-textarea" id="clienteNote" placeholder="Es. chiavi in amministrazione, accesso da cancello laterale, ecc."></textarea>
-              </div>
-            </aside>
-          </div>
-
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Parametri di lavoro</h2>
-            <p class="section-subtitle">
-              I parametri definiscono i costi vivi aziendali: dipendenti, auto, prodotti e
-              commissioni. Il margine di ricarico viene applicato sopra questi costi.
-            </p>
-          </div>
-
-          <div class="tool-grid">
-            <!-- COLONNA INPUT -->
-            <div>
-              <!-- Commissione procacciatore -->
-              <div class="tool-field">
-                <label class="tool-label" for="commissionePerc">Commissione procacciatore</label>
-                <p class="tool-hint">Percentuale sul prezzo mensile al cliente (facoltativa).</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="commissionePerc" placeholder="Es. 10" />
-                  <span class="tool-suffix">% (facoltativo)</span>
-                </div>
-                <p class="tool-note">
-                  La commissione viene calcolata sul prezzo base al cliente e
-                  sommata ai costi aziendali come costo vivo.
-                </p>
-              </div>
-
-              <!-- Frequenza -->
-              <div class="tool-field">
-                <label class="tool-label" for="freq">Frequenza settimanale</label>
-                <p class="tool-hint">Numero interventi a settimana.</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="freq" value="2" step="0.5" />
-                  <span class="tool-suffix">interv./sett.</span>
-                </div>
-              </div>
-
-              <!-- Durata per intervento -->
-              <div class="tool-field">
-                <label class="tool-label" for="oreInt">Durata per intervento</label>
-                <p class="tool-hint">Ore totali di tutte le persone presenti (se sono 2 persone per 1h, inserisci 2).</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="oreInt" value="2" step="0.25" />
-                  <span class="tool-suffix">ore / intervento</span>
-                </div>
-              </div>
-
-              <!-- Km per intervento -->
-              <div class="tool-field">
-                <label class="tool-label" for="kmInt">Km per intervento</label>
-                <p class="tool-hint">Km totali andata + ritorno per ogni intervento.</p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="kmInt" value="0" step="0.1" />
-                  <span class="tool-suffix">km / intervento</span>
-                </div>
-                <p class="tool-note">
-                  Il costo auto è calcolato a 0,30 €/km × frequenza × 4,33.
-                </p>
-              </div>
-
-              <!-- Costo orario -->
-              <div class="tool-field">
-                <label class="tool-label" for="costoOra">Costo orario aziendale</label>
-                <p class="tool-hint">Seleziona il costo aziendale dipendente: 12, 14 o 16 €/h in base al profilo.</p>
-                <div class="tool-input-row">
-                  <select class="tool-select" id="costoOra">
-                    <option value="12">12,00 €/h</option>
-                    <option value="14" selected>14,00 €/h</option>
-                    <option value="16">16,00 €/h</option>
-                  </select>
-                  <span class="tool-suffix">€/h costo</span>
-                </div>
-              </div>
-
-              <!-- Margine desiderato -->
-              <div class="tool-field">
-                <label class="tool-label" for="marginePerc">Margine desiderato</label>
-                <p class="tool-hint">
-                  Percentuale di ricarico sui costi aziendali (lavoro + auto + prodotti + commissione).
-                </p>
-                <div class="tool-input-row">
-                  <input class="tool-input" type="number" id="marginePerc" placeholder="Es. 40" />
-                  <span class="tool-suffix">% margine</span>
-                </div>
-              </div>
-
-              <div class="tool-buttons">
-                <button class="btn-primary" type="button" id="calcolaBtn">Calcola preventivo</button>
-                <button class="btn-outline" type="button" id="resetBtn">Reset</button>
-              </div>
-            </div>
-
-            <!-- COLONNA RISULTATI + INTESTAZIONE PDF -->
-            <aside class="tool-results" id="pdfArea">
-              <div style="margin-bottom:0.8rem; font-size:0.85rem;">
-                <strong>Preventivo EA Cleaning</strong><br>
-                Nr: <span id="pdfNum"></span> · Data: <span id="pdfData"></span><br>
-                Cliente: <span id="pdfCliente"></span>
-              </div>
-
-              <div class="tool-results-title">Risultato preventivo mensile</div>
-              <div class="tool-results-grid">
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Ore totali mese</span>
-                  <span class="tool-result-value" id="oreMese">0,00 h</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Costo lavoro mese</span>
-                  <span class="tool-result-value" id="costoLavoro">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Costo auto mese</span>
-                  <span class="tool-result-value" id="costoAuto">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Costo prodotti (7%)</span>
-                  <span class="tool-result-value" id="costoProdotti">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Costo totale aziendale (senza commissione)</span>
-                  <span class="tool-result-value" id="costoTotaleBase">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Prezzo base al cliente (senza commissione)</span>
-                  <span class="tool-result-value" id="prezzoBase">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Commissione procacciatore</span>
-                  <span class="tool-result-value" id="commissioneEuro">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Costo totale aziendale (con commissione)</span>
-                  <span class="tool-result-value" id="costoTotale">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Prezzo mensile al cliente (con commissione)</span>
-                  <span class="tool-result-value" id="prezzoMese">0,00 €</span>
-                </div>
-
-                <div class="tool-result-row">
-                  <span class="tool-result-label">Tariffa oraria di preventivo</span>
-                  <span class="tool-result-value" id="tariffaOra">0,00 €/h</span>
-                </div>
-
-                <div class="tool-result-highlight">
-                  <div class="tool-result-row">
-                    <span class="tool-result-label">Margine in valore assoluto</span>
-                    <span class="tool-result-value" id="margineEuro">0,00 €</span>
-                  </div>
-                  <div class="tool-result-row">
-                    <span class="tool-result-label">Margine effettivo</span>
-                    <span class="tool-result-value" id="margineEff">0,0 %</span>
-                  </div>
-                </div>
-              </div>
-              <p class="tool-note" style="margin-top:0.7rem;">
-                Formula: ore mese = frequenza × ore/intervento × 4,33.<br />
-                Costo lavoro = ore mese × costo orario.<br />
-                Costo auto = km/intervento × 0,30 €/km × frequenza × 4,33.<br />
-                Prodotti = 7% di (costo lavoro + costo auto).<br />
-                Prezzo base cliente = (costi senza commissione) × (1 + margine%).<br />
-                Commissione = prezzo base × commissione%. Prezzo finale = prezzo base + commissione.<br />
-                Margine effettivo calcolato sul prezzo finale e sui costi totali (inclusa commissione).
-              </p>
-            </aside>
-          </div>
-
-          <div class="tool-buttons">
-            <button class="btn-outline" type="button" id="pdfBtn">Esporta preventivo in PDF</button>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-links">
-            <span>©️ <span id="year"></span> Emir Alili.</span>
-            <span>Strumento interno preventivi EA Cleaning.</span>
-          </div>
-          <div class="footer-social">
-            <a href="mailto:info@emiralili.it">Email</a>
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 
-  <!-- Libreria jsPDF per generare il PDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const nav = document.getElementById("nav");
-    const navToggle = document.getElementById("navToggle");
-    if (nav && navToggle) {
-      navToggle.addEventListener("click", function () {
-        nav.classList.toggle("mobile-open");
-      });
-    }
-
-    // Campi intestazione
-    var numPreventivoInput = document.getElementById("numPreventivo");
-    var dataPreventivoInput = document.getElementById("dataPreventivo");
-    var clienteNomeInput = document.getElementById("clienteNome");
-    var clienteNoteInput = document.getElementById("clienteNote");
-
-    var pdfNumSpan = document.getElementById("pdfNum");
-    var pdfDataSpan = document.getElementById("pdfData");
-    var pdfClienteSpan = document.getElementById("pdfCliente");
-
-    function getTodayISO() {
-      var d = new Date();
-      var yyyy = d.getFullYear();
-      var mm = String(d.getMonth() + 1).padStart(2, "0");
-      var dd = String(d.getDate()).padStart(2, "0");
-      return yyyy + "-" + mm + "-" + dd;
-    }
-
-    function getNextNumeroPreventivo() {
-      var year = new Date().getFullYear();
-      var key = "eaLastPreventivoNumberSimple";
-      var last = localStorage.getItem(key);
-      if (!last || last.indexOf(year + "-") !== 0) {
-        var nuovo = year + "-001";
-        localStorage.setItem(key, nuovo);
-        return nuovo;
-      }
-      var parts = last.split("-");
-      var seq = parseInt(parts[1], 10) || 0;
-      seq = seq + 1;
-      var next = String(seq);
-      while (next.length < 3) next = "0" + next;
-      var nuovo = parts[0] + "-" + next;
-      localStorage.setItem(key, nuovo);
-      return nuovo;
-    }
-
-    function syncPdfHeader() {
-      if (pdfNumSpan) pdfNumSpan.textContent = numPreventivoInput.value || "";
-      if (pdfDataSpan) pdfDataSpan.textContent = dataPreventivoInput.value || "";
-      if (pdfClienteSpan) pdfClienteSpan.textContent = clienteNomeInput.value || "";
-    }
-
-    // Inizializza numero e data se vuoti
-    if (numPreventivoInput && !numPreventivoInput.value) {
-      numPreventivoInput.value = getNextNumeroPreventivo();
-    }
-    if (dataPreventivoInput && !dataPreventivoInput.value) {
-      dataPreventivoInput.value = getTodayISO();
-    }
-    syncPdfHeader();
-
-    if (numPreventivoInput) {
-      numPreventivoInput.addEventListener("input", syncPdfHeader);
-    }
-    if (dataPreventivoInput) {
-      dataPreventivoInput.addEventListener("input", syncPdfHeader);
-    }
-    if (clienteNomeInput) {
-      clienteNomeInput.addEventListener("input", syncPdfHeader);
-    }
-
-    // Campi calcolatore
-    var commissioneInput = document.getElementById("commissionePerc");
-    var freqInput = document.getElementById("freq");
-    var oreIntInput = document.getElementById("oreInt");
-    var kmIntInput = document.getElementById("kmInt");
-    var costoOraSelect = document.getElementById("costoOra");
-    var margineInput = document.getElementById("marginePerc");
-
-    var oreMeseSpan = document.getElementById("oreMese");
-    var costoLavoroSpan = document.getElementById("costoLavoro");
-    var costoAutoSpan = document.getElementById("costoAuto");
-    var costoProdottiSpan = document.getElementById("costoProdotti");
-    var costoTotaleBaseSpan = document.getElementById("costoTotaleBase");
-    var prezzoBaseSpan = document.getElementById("prezzoBase");
-    var commissioneEuroSpan = document.getElementById("commissioneEuro");
-    var costoTotaleSpan = document.getElementById("costoTotale");
-    var prezzoMeseSpan = document.getElementById("prezzoMese");
-    var tariffaOraSpan = document.getElementById("tariffaOra");
-    var margineEuroSpan = document.getElementById("margineEuro");
-    var margineEffSpan = document.getElementById("margineEff");
-
+    // Utility formattazione
     function formatEuro(val) {
       return val.toFixed(2).replace(".", ",") + " €";
     }
@@ -588,239 +493,128 @@
       return val.toFixed(2).replace(".", ",") + " h";
     }
 
-    function formatPerc(val) {
-      return val.toFixed(1).replace(".", ",") + " %";
-    }
+    // Campi
+    const interventiSettInput = document.getElementById("interventiSett");
+    const oreInterventoInput = document.getElementById("oreIntervento");
+    const flagProvvigione = document.getElementById("flagProvvigione");
+    const provvigionePercInput = document.getElementById("provvigionePerc");
+    const flagSubappalto = document.getElementById("flagSubappalto");
+    const flagCostoPersonalizzato = document.getElementById("flagCostoPersonalizzato");
+    const costoOrarioInput = document.getElementById("costoOrario");
+    const flagAttrezzature = document.getElementById("flagAttrezzature");
+    const costoAttrezzatureInput = document.getElementById("costoAttrezzature");
+
+    // Risultati
+    const oreMeseSpan = document.getElementById("oreMese");
+    const costoLavoroSpan = document.getElementById("costoLavoro");
+    const costoProdottiSpan = document.getElementById("costoProdotti");
+    const costoAttrezzatureResSpan = document.getElementById("costoAttrezzatureRes");
+    const costoProvvigioneSpan = document.getElementById("costoProvvigione");
+    const costoTotaleSpan = document.getElementById("costoTotale");
+    const prezzoOrarioSpan = document.getElementById("prezzoOrario");
+    const ricavoLavoroSpan = document.getElementById("ricavoLavoro");
+    const prezzoTotaleClienteSpan = document.getElementById("prezzoTotaleCliente");
+
+    // Abilitazioni campi in base ai flag
+    flagProvvigione.addEventListener("change", () => {
+      provvigionePercInput.disabled = !flagProvvigione.checked;
+      if (!flagProvvigione.checked) provvigionePercInput.value = "";
+    });
+
+    flagAttrezzature.addEventListener("change", () => {
+      costoAttrezzatureInput.disabled = !flagAttrezzature.checked;
+      if (!flagAttrezzature.checked) costoAttrezzatureInput.value = "";
+    });
+
+    flagCostoPersonalizzato.addEventListener("change", () => {
+      costoOrarioInput.disabled = !flagCostoPersonalizzato.checked;
+      if (!flagCostoPersonalizzato.checked) costoOrarioInput.value = 23;
+    });
 
     function calcola() {
-      var freq = parseFloat(freqInput.value) || 0;
-      var oreInt = parseFloat(oreIntInput.value) || 0;
-      var kmInt = parseFloat(kmIntInput.value) || 0;
-      var costoOra = parseFloat(costoOraSelect.value) || 0;
-      var marginePerc = parseFloat(margineInput.value) || 0;
-      var commissionePerc = parseFloat(commissioneInput.value) || 0;
+      const interventiSett = parseFloat(interventiSettInput.value) || 0;
+      const oreIntervento = parseFloat(oreInterventoInput.value) || 0;
+      const provvigionePerc = flagProvvigione.checked
+        ? parseFloat(provvigionePercInput.value) || 0
+        : 0;
+      const costoAttrezzature = flagAttrezzature.checked
+        ? parseFloat(costoAttrezzatureInput.value) || 0
+        : 0;
 
-      var oreMese = freq * oreInt * 4.33;
-      var costoLavoro = oreMese * costoOra;
-      var costoAuto = kmInt * 0.30 * freq * 4.33;
+      // Ore mensili
+      const oreMese = interventiSett * oreIntervento * 4.33;
 
-      var baseCost = costoLavoro + costoAuto;
-      var costoProdotti = baseCost * 0.07;
-      var costoTotaleBase = baseCost + costoProdotti;
+      // Costo orario / profilo
+      let costoOrarioBase;
+      let prezzoOrario;
 
-      var margineFactor = 1 + (marginePerc > 0 ? marginePerc / 100 : 0);
-      var prezzoBase = costoTotaleBase * margineFactor;
+      if (flagSubappalto.checked) {
+        // Subappalto: 16 € costo + 10 € margine minimo = 26 €/h prezzo base
+        costoOrarioBase = 16;
+        prezzoOrario = 26;
+      } else {
+        // Lavoro interno: costo base = costo orario inserito
+        const costoRif = parseFloat(costoOrarioInput.value) || 23;
+        costoOrarioBase = costoRif;
+        prezzoOrario = costoRif;
+      }
 
-      var commissioneEuro = commissionePerc > 0 ? prezzoBase * (commissionePerc / 100) : 0;
-      var costoTotale = costoTotaleBase + commissioneEuro;
+      // Se c'è provvigione, viene trattata come costo sul totale
+      const ricavoLavoro = oreMese * prezzoOrario;
+      const costoProdotti = (oreMese * costoOrarioBase) * 0.10;
+      let costoProvvigione = 0;
 
-      var prezzoMese = prezzoBase + commissioneEuro;
+      let prezzoTotaleCliente = ricavoLavoro + costoProdotti + costoAttrezzature;
 
-      var tariffaOra = oreMese > 0 ? prezzoMese / oreMese : 0;
-      var margineEuro = prezzoMese - costoTotale;
-      var margineEff = prezzoMese > 0 ? (margineEuro / prezzoMese) * 100 : 0;
+      if (provvigionePerc > 0) {
+        costoProvvigione = prezzoTotaleCliente * (provvigionePerc / 100);
+        prezzoTotaleCliente += costoProvvigione;
+      }
 
+      const costoLavoro = oreMese * costoOrarioBase;
+      const costoTotale = costoLavoro + costoProdotti + costoAttrezzature + costoProvvigione;
+
+      // Output
       oreMeseSpan.textContent = formatOre(oreMese);
       costoLavoroSpan.textContent = formatEuro(costoLavoro);
-      costoAutoSpan.textContent = formatEuro(costoAuto);
       costoProdottiSpan.textContent = formatEuro(costoProdotti);
-      costoTotaleBaseSpan.textContent = formatEuro(costoTotaleBase);
-      prezzoBaseSpan.textContent = formatEuro(prezzoBase);
-      commissioneEuroSpan.textContent = formatEuro(commissioneEuro);
+      costoAttrezzatureResSpan.textContent = formatEuro(costoAttrezzature);
+      costoProvvigioneSpan.textContent = formatEuro(costoProvvigione);
       costoTotaleSpan.textContent = formatEuro(costoTotale);
-      prezzoMeseSpan.textContent = formatEuro(prezzoMese);
-      tariffaOraSpan.textContent = tariffaOra.toFixed(2).replace(".", ",") + " €/h";
-      margineEuroSpan.textContent = formatEuro(margineEuro);
-      margineEffSpan.textContent = formatPerc(margineEff);
+      prezzoOrarioSpan.textContent = prezzoOrario.toFixed(2).replace(".", ",") + " €/h";
+      ricavoLavoroSpan.textContent = formatEuro(ricavoLavoro);
+      prezzoTotaleClienteSpan.textContent = formatEuro(prezzoTotaleCliente);
     }
 
     document.getElementById("calcolaBtn").addEventListener("click", calcola);
 
-    document.getElementById("resetBtn").addEventListener("click", function () {
-      commissioneInput.value = "";
-      freqInput.value = 2;
-      oreIntInput.value = 2;
-      kmIntInput.value = 0;
-      costoOraSelect.value = "14";
-      margineInput.value = "";
-      calcola();
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      interventiSettInput.value = 2;
+      oreInterventoInput.value = 2;
+      flagProvvigione.checked = false;
+      provvigionePercInput.value = "";
+      provvigionePercInput.disabled = true;
+      flagSubappalto.checked = false;
+      flagCostoPersonalizzato.checked = false;
+      costoOrarioInput.disabled = true;
+      costoOrarioInput.value = 23;
+      flagAttrezzature.checked = false;
+      costoAttrezzatureInput.value = "";
+      costoAttrezzatureInput.disabled = true;
+
+      oreMeseSpan.textContent = "0,00 h";
+      costoLavoroSpan.textContent = "0,00 €";
+      costoProdottiSpan.textContent = "0,00 €";
+      costoAttrezzatureResSpan.textContent = "0,00 €";
+      costoProvvigioneSpan.textContent = "0,00 €";
+      costoTotaleSpan.textContent = "0,00 €";
+      prezzoOrarioSpan.textContent = "0,00 €/h";
+      ricavoLavoroSpan.textContent = "0,00 €";
+      prezzoTotaleClienteSpan.textContent = "0,00 €";
     });
 
-    [commissioneInput, freqInput, oreIntInput, kmIntInput, costoOraSelect, margineInput].forEach(function (el) {
-      el.addEventListener("input", calcola);
-    });
-
-    // Primo calcolo iniziale
+    // Primo calcolo di default
     calcola();
-
-    // PDF export con layout grafico
-    var pdfBtn = document.getElementById("pdfBtn");
-
-    if (pdfBtn) {
-      pdfBtn.addEventListener("click", function () {
-        calcola();
-        syncPdfHeader();
-
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
-
-        let marginLeft = 15;
-        let marginRight = 195;
-        let y = 20;
-
-        // HEADER GRAFICO
-        doc.setFillColor(243, 244, 246); // grigio chiaro
-        doc.roundedRect(marginLeft - 5, y - 10, 180, 24, 3, 3, "F");
-
-        doc.setFontSize(14);
-        doc.setTextColor(15, 23, 42); // quasi nero
-        doc.text("EA Cleaning – Preventivo servizi di pulizia", marginLeft, y);
-        y += 7;
-
-        doc.setFontSize(11);
-        doc.text("Nr: " + (numPreventivoInput.value || ""), marginLeft, y);
-        doc.text("Data: " + (dataPreventivoInput.value || ""), marginLeft + 60, y);
-        y += 6;
-
-        doc.text("Cliente: " + (clienteNomeInput.value || ""), marginLeft, y);
-        y += 10;
-
-        // Note interne (se presenti)
-        if (clienteNoteInput.value) {
-          doc.setFontSize(10);
-          doc.setTextColor(55, 65, 81);
-          const noteLines = doc.splitTextToSize("Note interne: " + clienteNoteInput.value, 180);
-          doc.text(noteLines, marginLeft, y);
-          y += noteLines.length * 5 + 4;
-        }
-
-        // PICCOLA SEZIONE PARAMETRI
-        doc.setFontSize(12);
-        doc.setTextColor(15, 23, 42);
-        doc.text("Parametri di lavoro", marginLeft, y);
-        y += 5;
-
-        doc.setDrawColor(209, 213, 219);
-        doc.line(marginLeft - 2, y, marginRight, y);
-        y += 5;
-
-        doc.setFontSize(9);
-        doc.setTextColor(75, 85, 99);
-
-        function addParam(label, value) {
-          doc.text(label, marginLeft, y);
-          doc.text(String(value || ""), marginLeft + 70, y);
-          y += 4.5;
-        }
-
-        addParam("Frequenza settimanale", (freqInput.value || "0") + " interventi/sett.");
-        addParam("Durata per intervento", (oreIntInput.value || "0") + " ore/intervento");
-        addParam("Km per intervento", (kmIntInput.value || "0") + " km/intervento");
-        addParam("Costo orario aziendale", (costoOraSelect.value || "0") + " €/h");
-        addParam("Commissione procacciatore", (commissioneInput.value || "0") + " %");
-        addParam("Margine desiderato", (margineInput.value || "0") + " %");
-
-        y += 6;
-
-        // TABELLA COSTI / RICAVI
-        doc.setFontSize(12);
-        doc.setTextColor(15, 23, 42);
-        doc.text("Riepilogo economico mensile", marginLeft, y);
-        y += 5;
-
-        doc.setDrawColor(148, 163, 184);
-        doc.setFillColor(248, 250, 252);
-        doc.rect(marginLeft - 2, y, 182, 8, "FD");
-
-        doc.setFontSize(9);
-        doc.setTextColor(55, 65, 81);
-        doc.text("Voce", marginLeft, y + 5.5);
-        doc.text("Importo", marginRight - 40, y + 5.5, { align: "right" });
-        y += 10;
-
-        function addRow(label, valueText, type) {
-          if (y > 270) {
-            doc.addPage();
-            y = 20;
-          }
-
-          // Riga orizzontale
-          doc.setDrawColor(229, 231, 235);
-          doc.line(marginLeft - 2, y - 3, marginRight, y - 3);
-
-          // Colore testo
-          if (type === "cost") {
-            doc.setTextColor(185, 28, 28); // rosso
-          } else if (type === "rev") {
-            doc.setTextColor(22, 163, 74); // verde
-          } else {
-            doc.setTextColor(55, 65, 81);
-          }
-
-          doc.setFontSize(9);
-          doc.text(label, marginLeft, y);
-          doc.text(valueText || "", marginRight, y, { align: "right" });
-
-          y += 5;
-        }
-
-        // RIGHE TABELLA
-        addRow("Ore totali mese", oreMeseSpan.textContent, "neutral");
-
-        addRow("Costo lavoro mese", costoLavoroSpan.textContent, "cost");
-        addRow("Costo auto mese", costoAutoSpan.textContent, "cost");
-        addRow("Costo prodotti (7%)", costoProdottiSpan.textContent, "cost");
-        addRow("Costo totale aziendale (senza commissione)", costoTotaleBaseSpan.textContent, "cost");
-        addRow("Commissione procacciatore", commissioneEuroSpan.textContent, "cost");
-        addRow("Costo totale aziendale (con commissione)", costoTotaleSpan.textContent, "cost");
-
-        y += 3;
-        doc.setDrawColor(156, 163, 175);
-        doc.line(marginLeft - 2, y, marginRight, y);
-        y += 6;
-
-        addRow("Prezzo base al cliente (senza commissione)", prezzoBaseSpan.textContent, "rev");
-        addRow("Prezzo mensile al cliente (con commissione)", prezzoMeseSpan.textContent, "rev");
-        addRow("Tariffa oraria di preventivo", tariffaOraSpan.textContent, "rev");
-        addRow("Margine in valore assoluto", margineEuroSpan.textContent, "rev");
-        addRow("Margine effettivo", margineEffSpan.textContent, "rev");
-
-        // RIQUADRO FINALE – TOTALE DA PREVENTIVARE
-        if (y > 260) {
-          doc.addPage();
-          y = 20;
-        }
-        y += 8;
-
-        doc.setFillColor(22, 163, 74); // verde
-        doc.setDrawColor(22, 163, 74);
-        doc.roundedRect(marginLeft - 2, y - 7, 182, 12, 2, 2, "F");
-
-        doc.setTextColor(255, 255, 255);
-        doc.setFontSize(11);
-        doc.text("Totale mensile da preventivare al cliente", marginLeft, y - 1);
-        doc.text(prezzoMeseSpan.textContent || "", marginRight, y - 1, { align: "right" });
-
-        // Salvataggio
-        const fileName = (numPreventivoInput.value || "preventivo-ea-cleaning") + ".pdf";
-        doc.save(fileName);
-      });
-    }
-  </script>
-
-  <!-- PWA: registrazione service worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(function (reg) {
-            console.log('Service worker registrato:', reg.scope);
-          })
-          .catch(function (err) {
-            console.log('Service worker non registrato:', err);
-          });
-      });
-    }
   </script>
 </body>
 </html>
