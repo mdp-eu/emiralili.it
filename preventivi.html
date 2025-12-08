@@ -279,7 +279,7 @@
   <!-- HEADER -->
   <header>
     <!-- Percorso corretto del logo -->
-    <img src="assets/logos/Logo%20EA%20Cleaning.png" alt="EA Cleaning – Cleaning Services">
+    <img src="assets/img/logo-ea-cleaning.png" alt="EA Cleaning – Cleaning Services">
     <h1>Area preventivi</h1>
     <p>Calcolo completo del preventivo + simulatore ore di lavoro</p>
   </header>
@@ -653,16 +653,15 @@
   const simGuadagnoOrarioSpan = document.getElementById("simGuadagnoOrario");
 
   // Tabella margine finale
-  const tabFatturatoInput  = document.getElementById("tabFatturatoInput");
-  const tabMinutiInput     = document.getElementById("tabMinutiInput");      // minuti per intervento
-  const tabFrequenzaInput  = document.getElementById("tabFrequenzaInput");   // quante volte a settimana
-  const tabCostoDipInput   = document.getElementById("tabCostoDipInput");
-  const tabOreMeseSpan     = document.getElementById("tabOreMese");
-  const tabRicavoOrarioSpan= document.getElementById("tabRicavoOrario");
-  const tabCostoDipMeseSpan= document.getElementById("tabCostoDipMese");
-  const tabMargineTotSpan  = document.getElementById("tabMargineTot");
+  const tabFatturatoInput = document.getElementById("tabFatturatoInput");
+  const tabMinutiInput = document.getElementById("tabMinutiInput");
+  const tabCostoDipInput = document.getElementById("tabCostoDipInput");
+  const tabOreMeseSpan = document.getElementById("tabOreMese");
+  const tabRicavoOrarioSpan = document.getElementById("tabRicavoOrario");
+  const tabCostoDipMeseSpan = document.getElementById("tabCostoDipMese");
+  const tabMargineTotSpan = document.getElementById("tabMargineTot");
   const tabMargineOrarioSpan = document.getElementById("tabMargineOrario");
-  const tabCalcolaBtn      = document.getElementById("tabCalcolaBtn");
+  const tabCalcolaBtn = document.getElementById("tabCalcolaBtn");
 
   let simValoreMensileLavoro = 0;
   let simOreBase = 0;
@@ -796,7 +795,6 @@
 
     tabFatturatoInput.value = "";
     tabMinutiInput.value = "";
-    tabFrequenzaInput.value = "";
     tabCostoDipInput.value = "";
     tabOreMeseSpan.textContent = "0,00 h";
     tabRicavoOrarioSpan.textContent = "0,00 €/h";
@@ -827,36 +825,37 @@
     simGuadagnoOrarioSpan.textContent = fmtEuroH(nuovoGuadagnoOrario);
   });
 
-  // Calcolo tabella margine finale:
-  // minuti per intervento × frequenza settimanale × 4,33
+  // Calcolo tabella margine finale (minuti settimanali × 4,33)
   tabCalcolaBtn.addEventListener("click", function () {
-    const fatt      = parseFloat(tabFatturatoInput.value)  || 0;
-    const minInterv = parseFloat(tabMinutiInput.value)     || 0;   // minuti per intervento
-    const freqSett  = parseFloat(tabFrequenzaInput.value)  || 0;   // volte a settimana
-    const costoDip  = parseFloat(tabCostoDipInput.value)   || 0;
+    const fatt = parseFloat(tabFatturatoInput.value) || 0;
+    const minSett = parseFloat(tabMinutiInput.value) || 0;   // minuti settimanali
+    const costoDip = parseFloat(tabCostoDipInput.value) || 0;
 
-    if (fatt <= 0 || minInterv <= 0 || freqSett <= 0 || costoDip < 0) {
-      tabOreMeseSpan.textContent       = "0,00 h";
-      tabRicavoOrarioSpan.textContent  = "0,00 €/h";
-      tabCostoDipMeseSpan.textContent  = "0,00 €";
-      tabMargineTotSpan.textContent    = "0,00 €";
+    if (fatt <= 0 || minSett <= 0 || costoDip < 0) {
+      tabOreMeseSpan.textContent = "0,00 h";
+      tabRicavoOrarioSpan.textContent = "0,00 €/h";
+      tabCostoDipMeseSpan.textContent = "0,00 €";
+      tabMargineTotSpan.textContent = "0,00 €";
       tabMargineOrarioSpan.textContent = "0,00 €/h";
       return;
     }
 
-    const minutiSett = minInterv * freqSett;
-    const minutiMese = minutiSett * 4.33;
-    const oreMese    = minutiMese / 60;
+    // da minuti settimanali a ore mensili
+    const minutiMese = minSett * 4.33;
+    const oreMese = minutiMese / 60;
 
-    const ricavoOrario  = fatt / oreMese;
-    const costoDipMese  = costoDip * oreMese;
-    const margineTot    = fatt - costoDipMese;
+    const ricavoOrario = fatt / oreMese;
+    const costoDipMese = costoDip * oreMese;
+    const margineTot = fatt - costoDipMese;
     const margineOrario = margineTot / oreMese;
 
-    tabOreMeseSpan.textContent       = fmtOre(oreMese);
-    tabRicavoOrarioSpan.textContent  = fmtEuroH(ricavoOrario);
-    tabCostoDipMeseSpan.textContent  = fmtEuro(costoDipMese);
-    tabMargineTotSpan.textContent    = fmtEuro(margineTot);
+    tabOreMeseSpan.textContent = fmtOre(oreMese);
+    tabRicavoOrarioSpan.textContent = fmtEuroH(ricavoOrario);
+    tabCostoDipMeseSpan.textContent = fmtEuro(costoDipMese);
+    tabMargineTotSpan.textContent = fmtEuro(margineTot);
     tabMargineOrarioSpan.textContent = fmtEuroH(margineOrario);
   });
 </script>
+</body>
+</html>
+
