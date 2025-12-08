@@ -112,12 +112,6 @@
       gap: 0.4rem;
     }
 
-    .panel-title span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
     .field {
       margin-bottom: 0.7rem;
     }
@@ -139,12 +133,6 @@
       font-size: 0.82rem;
       font-weight: 500;
       margin-bottom: 0.18rem;
-    }
-
-    .hint {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 0.22rem;
     }
 
     .input,
@@ -192,12 +180,6 @@
       font-size: 0.78rem;
       color: var(--text-muted);
       white-space: nowrap;
-    }
-
-    .note {
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      margin-top: 0.12rem;
     }
 
     .buttons {
@@ -375,7 +357,7 @@
           <img src="/assets/logos/Logo EA Cleaning.png" alt="EA Cleaning – Cleaning Services" />
         </div>
         <h1 class="title">Area preventivi</h1>
-        <p class="subtitle">Strumento interno per il calcolo, l’approvazione e l’archivio dei preventivi mensili.</p>
+        <p class="subtitle">Strumento interno per calcolo, approvazione e archivio.</p>
       </header>
 
       <div class="grid-main">
@@ -383,13 +365,12 @@
         <div>
           <!-- DATI PREVENTIVO / CLIENTE -->
           <section class="panel">
-            <div class="panel-title">Dati cliente e intestazione</div>
+            <div class="panel-title">Dati cliente</div>
 
             <div class="field-half-grid field">
               <div>
                 <label class="label" for="numPreventivo">Numero preventivo</label>
                 <input class="input" id="numPreventivo" type="text" readonly />
-                <p class="note">Generato in automatico in forma AAAA-XXX.</p>
               </div>
               <div>
                 <label class="label" for="dataPreventivo">Data preventivo</label>
@@ -399,33 +380,33 @@
 
             <div class="field">
               <label class="label" for="ragioneSociale">Ragione sociale / Cliente</label>
-              <input class="input" id="ragioneSociale" type="text" placeholder="Es. Condominio Giardino, Arancione S.r.l." />
+              <input class="input" id="ragioneSociale" type="text" />
             </div>
 
             <div class="field-half-grid field">
               <div>
                 <label class="label" for="indirizzo">Indirizzo</label>
-                <input class="input" id="indirizzo" type="text" placeholder="Via, civico, città" />
+                <input class="input" id="indirizzo" type="text" />
               </div>
               <div>
                 <label class="label" for="telefono">Telefono</label>
-                <input class="input" id="telefono" type="text" placeholder="+39 ..." />
+                <input class="input" id="telefono" type="text" />
               </div>
             </div>
 
             <div class="field">
               <label class="label" for="email">Email</label>
-              <input class="input" id="email" type="email" placeholder="esempio@mail.com" />
+              <input class="input" id="email" type="email" />
             </div>
 
             <div class="field">
               <label class="label" for="oggetto">Oggetto preventivo</label>
-              <input class="input" id="oggetto" type="text" placeholder="Es. Servizio di pulizia scale condominiali" />
+              <input class="input" id="oggetto" type="text" />
             </div>
 
             <div class="field">
-              <label class="label" for="descrizione">Descrizione libera</label>
-              <textarea class="textarea" id="descrizione" placeholder="Note operative, dettagli del servizio, esclusioni, ecc."></textarea>
+              <label class="label" for="descrizione">Descrizione</label>
+              <textarea class="textarea" id="descrizione"></textarea>
             </div>
           </section>
 
@@ -435,7 +416,7 @@
 
             <div class="field-half-grid field">
               <div>
-                <label class="label" for="interventiSett">Numero interventi settimanali</label>
+                <label class="label" for="interventiSett">Interventi settimanali</label>
                 <input class="input" id="interventiSett" type="number" min="0" step="0.5" value="2" />
               </div>
               <div>
@@ -447,53 +428,46 @@
             <div class="field">
               <div class="checkbox-row">
                 <input type="checkbox" id="flagProvvigione" />
-                <label for="flagProvvigione">Provvigione agente / intermediatore</label>
+                <label for="flagProvvigione">Provvigione</label>
               </div>
               <div class="inline-row">
-                <input class="input" id="provvigionePerc" type="number" min="0" step="0.5" placeholder="Es. 15" disabled />
+                <input class="input" id="provvigionePerc" type="number" min="0" step="0.5" placeholder="15" disabled />
                 <span class="suffix">% sul prezzo finale</span>
               </div>
-              <p class="note">
-                La provvigione è calcolata sul prezzo finale e trattata come costo: tolta la provvigione, ti rimane lo stesso margine.
-              </p>
             </div>
 
             <div class="field">
               <div class="checkbox-row">
                 <input type="checkbox" id="flagSubappalto" />
-                <label for="flagSubappalto">Lavoro in subappalto (costo 16 €/h, margine minimo 10 €/h)</label>
+                <label for="flagSubappalto">Subappalto (costo 16 €/h, prezzo 26 €/h)</label>
               </div>
-              <p class="note">
-                Se attivo: costo base 16 €/h, prezzo orario di preventivo 26 €/h (16 + 10 di guadagno minimo).
-              </p>
             </div>
 
             <div class="field">
               <div class="checkbox-row">
                 <input type="checkbox" id="flagCostoPersonalizzato" />
-                <label for="flagCostoPersonalizzato">Costo orario personalizzato (lavoro interno)</label>
+                <label for="flagCostoPersonalizzato">Costo orario interno</label>
               </div>
               <div class="inline-row">
                 <input class="input" id="costoOrario" type="number" min="0" step="0.5" value="23" />
-                <span class="suffix">€/h costo di riferimento</span>
+                <span class="suffix">€/h</span>
               </div>
-              <p class="note">
-                Di base il costo orario interno è 23 €/h. Se attivi subappalto, questo valore viene ignorato.
-              </p>
             </div>
 
             <div class="field">
               <label class="label">Costo prodotti</label>
-              <p class="hint">Applicato automaticamente un 10% fisso sul costo lavoro.</p>
+              <div class="inline-row">
+                <span class="suffix">10% sul costo lavoro (automatico)</span>
+              </div>
             </div>
 
             <div class="field">
               <div class="checkbox-row">
                 <input type="checkbox" id="flagAttrezzature" />
-                <label for="flagAttrezzature">Aggiungi costo attrezzature / noleggi</label>
+                <label for="flagAttrezzature">Attrezzature / noleggi</label>
               </div>
               <div class="inline-row">
-                <input class="input" id="costoAttrezzature" type="number" min="0" step="1" placeholder="Es. 50" disabled />
+                <input class="input" id="costoAttrezzature" type="number" min="0" step="1" placeholder="50" disabled />
                 <span class="suffix">€/mese</span>
               </div>
             </div>
@@ -506,10 +480,10 @@
                 Esporta PDF
               </button>
               <button type="button" class="btn-ghost" id="approvaBtn">
-                Approva preventivo (salva in storico)
+                Approva (salva storico)
               </button>
               <button type="button" class="btn-outline" id="resetBtn">
-                Reset campi
+                Reset
               </button>
             </div>
           </section>
@@ -527,11 +501,11 @@
               </div>
 
               <div class="result-row">
-                <span class="result-label">Costo lavoro (interno/subappalto)</span>
+                <span class="result-label">Costo lavoro</span>
                 <span class="result-value result-cost" id="costoLavoro">0,00 €</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Costo prodotti (10%)</span>
+                <span class="result-label">Costo prodotti</span>
                 <span class="result-value result-cost" id="costoProdotti">0,00 €</span>
               </div>
               <div class="result-row">
@@ -550,11 +524,11 @@
                 <span class="result-value result-cost" id="costoTotale">0,00 €</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Tariffa oraria di preventivo</span>
+                <span class="result-label">Tariffa oraria</span>
                 <span class="result-value result-revenue" id="prezzoOrarioRes">0,00 €/h</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Ricavo complessivo (solo lavoro)</span>
+                <span class="result-label">Ricavo lavoro</span>
                 <span class="result-value result-revenue" id="ricavoLavoro">0,00 €</span>
               </div>
               <div class="result-row">
@@ -568,7 +542,7 @@
             </div>
 
             <div class="results-main-total">
-              <span>Totale mensile da proporre al cliente</span>
+              <span>Totale mensile al cliente</span>
               <span id="prezzoTotaleCliente">0,00 €</span>
             </div>
           </section>
@@ -577,9 +551,9 @@
 
       <!-- STORICO PREVENTIVI -->
       <section class="panel storico-panel">
-        <div class="panel-title">Preventivi storici <span>(approvati)</span></div>
+        <div class="panel-title">Preventivi storici</div>
         <div class="storico-list" id="storicoList">
-          <p class="note">Quando approvi un preventivo, verrà salvato qui con possibilità di riaprirlo, ristamparlo in PDF o eliminarlo.</p>
+          <p style="font-size:0.8rem; color:#6b7280;">Nessun preventivo approvato.</p>
         </div>
       </section>
     </div>
@@ -663,7 +637,6 @@
     const prezzoTotaleClienteSpan = document.getElementById("prezzoTotaleCliente");
 
     const storicoListEl = document.getElementById("storicoList");
-
     const STORAGE_KEY = "eaPreventiviStorico_v1";
 
     // ======= ABILITAZIONI FLAG =======
@@ -699,8 +672,8 @@
       let prezzoOrario;
 
       if (flagSubappalto.checked) {
-        costoOrarioBase = 16;   // costo esterno
-        prezzoOrario = 26;      // 16 + 10 di guadagno minimo
+        costoOrarioBase = 16;
+        prezzoOrario = 26;
       } else {
         const costoRif = parseFloat(costoOrarioInput.value) || 23;
         costoOrarioBase = costoRif;
@@ -710,7 +683,6 @@
       const costoLavoro = oreMese * costoOrarioBase;
       const costoProdotti = costoLavoro * 0.10;
 
-      // Prezzo base (senza provvigione), già con il margine (prezzoOrario vs costoOrarioBase)
       const ricavoLavoro = oreMese * prezzoOrario;
       const prezzoBaseSenzaProvv = ricavoLavoro + costoProdotti + costoAttrezzature;
 
@@ -788,12 +760,14 @@
     });
 
     // ======= STORICO LOCALSTORAGE =======
+    const STORAGE_KEY = "eaPreventiviStorico_v1";
+
     function loadStorico() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return [];
         return JSON.parse(raw);
-      } catch (e) {
+      } catch {
         return [];
       }
     }
@@ -805,7 +779,8 @@
     function renderStorico() {
       const lista = loadStorico();
       if (!lista.length) {
-        storicoListEl.innerHTML = '<p class="note">Nessun preventivo approvato. Quando approvi un preventivo, verrà salvato qui.</p>';
+        storicoListEl.innerHTML =
+          '<p style="font-size:0.8rem; color:#6b7280;">Nessun preventivo approvato.</p>';
         return;
       }
 
@@ -824,7 +799,9 @@
           topline.textContent = `Nr ${item.num} – ${item.cliente || "Senza cliente"}`;
           const meta = document.createElement("div");
           meta.className = "storico-meta";
-          meta.textContent = `Data: ${item.data} · Totale: ${formatEuro(item.results.prezzoTotaleCliente)}`;
+          meta.textContent = `Data: ${item.data} · Totale: ${formatEuro(
+            item.results.prezzoTotaleCliente
+          )}`;
 
           main.appendChild(topline);
           main.appendChild(meta);
@@ -859,7 +836,7 @@
     }
 
     function raccogliDatiCorrenti() {
-      const risultati = calcola(); // assicura numeri aggiornati
+      const risultati = calcola();
 
       return {
         id: Date.now().toString(),
@@ -880,7 +857,9 @@
           costoPersonalizzato: flagCostoPersonalizzato.checked,
           costoOrario: parseFloat(costoOrarioInput.value) || 23,
           attrezzatureAttive: flagAttrezzature.checked,
-          costoAttrezzature: flagAttrezzature.checked ? (parseFloat(costoAttrezzatureInput.value) || 0) : 0
+          costoAttrezzature: flagAttrezzature.checked
+            ? parseFloat(costoAttrezzatureInput.value) || 0
+            : 0
         },
         results: risultati
       };
@@ -930,7 +909,7 @@
     // APPROVA PREVENTIVO
     document.getElementById("approvaBtn").addEventListener("click", () => {
       if (!ragioneSocialeInput.value.trim()) {
-        alert("Inserisci almeno la ragione sociale / cliente prima di approvare.");
+        alert("Inserisci la ragione sociale / cliente.");
         return;
       }
 
@@ -949,7 +928,7 @@
       lista.push(dati);
       saveStorico(lista);
       renderStorico();
-      alert("Preventivo approvato e salvato nello storico.");
+      alert("Preventivo approvato e salvato.");
     });
 
     // ======= PDF =======
@@ -1016,11 +995,12 @@
       y += 5;
 
       const param2 = [];
-      if (dati.params.subappalto) param2.push("Subappalto 16 €/h (prezzo 26 €/h)");
+      if (dati.params.subappalto) param2.push("Subappalto 16 €/h – prezzo 26 €/h");
       else param2.push("Lavoro interno");
 
       if (dati.params.provvigioneAttiva) param2.push("Provvigione " + dati.params.provvigionePerc + " %");
-      if (dati.params.attrezzatureAttive) param2.push("Attrezzature " + formatEuro(dati.params.costoAttrezzature).replace(" €", " €/mese"));
+      if (dati.params.attrezzatureAttive)
+        param2.push("Attrezzature " + formatEuro(dati.params.costoAttrezzature).replace(" €", " €/mese"));
 
       if (param2.length) {
         const pLines = doc.splitTextToSize(param2.join(" · "), pageWidth - marginLeft * 2);
@@ -1060,13 +1040,31 @@
       y += 5;
 
       doc.setFontSize(10);
-      doc.text("Tariffa oraria di preventivo: " + dati.results.prezzoOrario.toFixed(2).replace(".", ",") + " €/h", marginLeft, y);
+      doc.text(
+        "Tariffa oraria: " +
+          dati.results.prezzoOrario.toFixed(2).replace(".", ",") +
+          " €/h",
+        marginLeft,
+        y
+      );
       y += 5;
-      doc.text("Ricavo complessivo (solo lavoro): " + formatEuro(dati.results.ricavoLavoro), marginLeft, y);
+      doc.text(
+        "Ricavo lavoro: " + formatEuro(dati.results.ricavoLavoro),
+        marginLeft,
+        y
+      );
       y += 5;
-      doc.text("Guadagno netto: " + formatEuro(dati.results.guadagnoNetto), marginLeft, y);
+      doc.text(
+        "Guadagno netto: " + formatEuro(dati.results.guadagnoNetto),
+        marginLeft,
+        y
+      );
       y += 5;
-      doc.text("Guadagno netto %: " + formatPerc(dati.results.guadagnoPerc), marginLeft, y);
+      doc.text(
+        "Guadagno netto %: " + formatPerc(dati.results.guadagnoPerc),
+        marginLeft,
+        y
+      );
       y += 10;
 
       // TOTALE FINALE
@@ -1075,8 +1073,13 @@
       doc.roundedRect(marginLeft, y, pageWidth - marginLeft * 2, 12, 3, 3, "F");
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(12);
-      doc.text("Totale mensile da proporre al cliente", marginLeft + 3, y + 7);
-      doc.text(formatEuro(dati.results.prezzoTotaleCliente), pageWidth - marginLeft - 3, y + 7, { align: "right" });
+      doc.text("Totale mensile al cliente", marginLeft + 3, y + 7);
+      doc.text(
+        formatEuro(dati.results.prezzoTotaleCliente),
+        pageWidth - marginLeft - 3,
+        y + 7,
+        { align: "right" }
+      );
 
       const fileName = (dati.num || "preventivo-ea-cleaning") + ".pdf";
       doc.save(fileName);
