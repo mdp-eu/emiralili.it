@@ -163,8 +163,7 @@
     }
 
     .btn-primary,
-    .btn-outline,
-    .btn-small {
+    .btn-outline {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -182,13 +181,6 @@
       background: #ffffff;
       color: var(--accent);
       border-color: var(--accent);
-    }
-
-    .btn-small {
-      padding: 5px 10px;
-      font-size: 0.78rem;
-      border-radius: 999px;
-      margin-left: 4px;
     }
 
     .btn-row {
@@ -281,48 +273,64 @@
       color: #065f46;
     }
 
-    /* Storico */
+    /* Storico preventivi */
     .storico-list {
-      margin-top: 10px;
-      font-size: 0.84rem;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .storico-item {
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 10px 12px;
+      background: #ffffff;
+    }
+
+    .storico-header {
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       align-items: center;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border-subtle);
-      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .storico-main {
-      min-width: 200px;
-    }
-
-    .storico-main span {
-      display: block;
-    }
-
-    .storico-num {
+    .storico-title {
+      font-size: 0.92rem;
       font-weight: 600;
     }
 
-    .storico-cli {
+    .storico-sub {
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
     .storico-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 6px;
     }
 
-    .btn-small.danger {
+    .btn-small {
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: #ffffff;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-small-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-small-danger {
       border-color: var(--danger);
       color: var(--danger);
-      background: #fff;
     }
   </style>
 </head>
@@ -332,12 +340,35 @@
   <header>
     <img src="assets/logos/Logo%20EA%20Cleaning.png" alt="EA Cleaning – Cleaning Services">
     <h1>Area preventivi</h1>
-    <p>Calcolo completo del preventivo + simulatore ore di lavoro + storico preventivi approvati</p>
+    <p>Calcolo completo del preventivo + simulatore ore di lavoro</p>
   </header>
 
   <div class="grid">
-    <!-- SINISTRA: DATI CLIENTE + PARAMETRI LAVORO -->
+    <!-- COLONNA SINISTRA -->
     <div>
+      <!-- INTESTAZIONE PREVENTIVO -->
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Intestazione preventivo</div>
+          <div class="panel-sub">
+            Numero progressivo e data vengono usati per lo storico e i PDF.
+          </div>
+        </div>
+
+        <div class="tool-field">
+          <label class="tool-label" for="numPreventivo">Numero preventivo</label>
+          <div class="tool-inline">
+            <input class="tool-input" type="text" id="numPreventivo" placeholder="Es. 2025-001">
+            <span class="tool-suffix">auto-progressivo</span>
+          </div>
+        </div>
+
+        <div class="tool-field">
+          <label class="tool-label" for="dataPreventivo">Data preventivo</label>
+          <input class="tool-input" type="date" id="dataPreventivo">
+        </div>
+      </section>
+
       <!-- DATI CLIENTE -->
       <section class="panel">
         <div class="panel-header">
@@ -406,6 +437,9 @@
             <input class="tool-input" type="number" id="costoOrarioNetto" value="23" step="0.5">
             <span class="tool-suffix">€/h (puoi modificarlo)</span>
           </div>
+          <p class="tool-note">
+            Netto orario che vuoi tenere per il lavoro interno, dopo provvigione e prodotti.
+          </p>
         </div>
 
         <div class="checkbox-row">
@@ -449,13 +483,14 @@
       </section>
     </div>
 
-    <!-- DESTRA: RISULTATI PREVENTIVO + DETTAGLIO -->
+    <!-- COLONNA DESTRA -->
     <div>
+      <!-- RISULTATO PREVENTIVO -->
       <section class="panel">
         <div class="panel-header">
           <div class="panel-title">Risultato preventivo mensile</div>
           <div class="panel-sub">
-            Numeri già “puliti” secondo la logica 23 €/h (interno) o 26 €/h (subappalto) dopo provvigione + prodotti.
+            Numeri “puliti” secondo la logica 23 €/h (interno) o 26 €/h (subappalto) dopo provvigione + prodotti.
           </div>
         </div>
 
@@ -538,9 +573,7 @@
         </div>
 
         <div class="btn-row" style="margin-top:12px;">
-          <button class="btn-outline" type="button" id="approvaBtn">Approva e salva in storico</button>
-          <button class="btn-outline" type="button" id="pdfInternoBtn">PDF interno (analisi)</button>
-          <button class="btn-outline" type="button" id="pdfClienteBtn">PDF cliente</button>
+          <button class="btn-primary" type="button" id="approvaBtn">Approva e salva in storico</button>
         </div>
       </section>
 
@@ -549,7 +582,7 @@
         <div class="panel-header">
           <div class="panel-title">Simulatore variazione tempo (solo lavoro)</div>
           <div class="panel-sub">
-            Usa solo il valore lavoro: costo orario target × ore mensili. Prodotti, provvigione e attrezzature NON entrano qui.
+            Usa solo il valore lavoro: costo orario target × ore mensili. Prodotti, provvigione e attrezzature non entrano qui.
           </div>
         </div>
 
@@ -597,18 +630,17 @@
     </div>
   </div>
 
-  <!-- PANNELLO FINALE: TABELLA MARGINE SU DATI GIÀ ESISTENTI + STORICO -->
+  <!-- PANNELLO FINALE: TABELLA MARGINE SU DATI ESISTENTI -->
   <section class="panel sim-panel" style="margin-top:24px;">
     <div class="panel-header">
       <div class="panel-title">Tabella margine da fatturato e minuti</div>
       <div class="panel-sub">
         Inserisci il fatturato mensile, i minuti settimanali di lavoro totali e il costo lordo orario del dipendente.
-        I minuti vengono moltiplicati per 4,33 per stimare il mese.
       </div>
     </div>
 
     <div class="tool-field">
-      <label class="tool-label" for="tabFatturato">Fatturato mensile cliente</label>
+      <label class="tool-label" for="tabFatturatoInput">Fatturato mensile cliente</label>
       <div class="tool-inline">
         <input class="tool-input" type="number" id="tabFatturatoInput" placeholder="Es. 450">
         <span class="tool-suffix">€ / mese</span>
@@ -616,7 +648,7 @@
     </div>
 
     <div class="tool-field">
-      <label class="tool-label" for="tabMinuti">Tempo di lavoro totale</label>
+      <label class="tool-label" for="tabMinutiInput">Tempo di lavoro totale</label>
       <div class="tool-inline">
         <input class="tool-input" type="number" id="tabMinutiInput" placeholder="Es. 80">
         <span class="tool-suffix">minuti / settimana</span>
@@ -627,7 +659,7 @@
     </div>
 
     <div class="tool-field">
-      <label class="tool-label" for="tabCostoDip">Costo lordo orario dipendente</label>
+      <label class="tool-label" for="tabCostoDipInput">Costo lordo orario dipendente</label>
       <div class="tool-inline">
         <input class="tool-input" type="number" id="tabCostoDipInput" placeholder="Es. 11.32" step="0.01">
         <span class="tool-suffix">€/h</span>
@@ -640,45 +672,50 @@
 
     <table class="margin-table">
       <thead>
-      <tr>
-        <th>Voce</th>
-        <th>Valore</th>
-      </tr>
+        <tr>
+          <th>Voce</th>
+          <th>Valore</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Ore mensili di lavoro</td>
-        <td id="tabOreMese">0,00 h</td>
-      </tr>
-      <tr>
-        <td>Ricavo orario cliente</td>
-        <td id="tabRicavoOrario" class="mt-success">0,00 €/h</td>
-      </tr>
-      <tr>
-        <td>Costo dipendente mensile</td>
-        <td id="tabCostoDipMese" class="mt-danger">0,00 €</td>
-      </tr>
-      <tr>
-        <td>Margine totale</td>
-        <td id="tabMargineTot" class="mt-success">0,00 €</td>
-      </tr>
-      <tr>
-        <td>Margine orario reale</td>
-        <td id="tabMargineOrario" class="mt-success">0,00 €/h</td>
-      </tr>
+        <tr>
+          <td>Ore mensili di lavoro</td>
+          <td id="tabOreMese">0,00 h</td>
+        </tr>
+        <tr>
+          <td>Ricavo orario cliente</td>
+          <td id="tabRicavoOrario" class="mt-success">0,00 €/h</td>
+        </tr>
+        <tr>
+          <td>Costo dipendente mensile</td>
+          <td id="tabCostoDipMese" class="mt-danger">0,00 €</td>
+        </tr>
+        <tr>
+          <td>Margine totale</td>
+          <td id="tabMargineTot" class="mt-success">0,00 €</td>
+        </tr>
+        <tr>
+          <td>Margine orario reale</td>
+          <td id="tabMargineOrario" class="mt-success">0,00 €/h</td>
+        </tr>
       </tbody>
     </table>
   </section>
 
-  <!-- STORICO PREVENTIVI APPROVATI -->
+  <!-- STORICO PREVENTIVI -->
   <section class="panel sim-panel" style="margin-top:24px;">
     <div class="panel-header">
       <div class="panel-title">Storico preventivi approvati</div>
       <div class="panel-sub">
-        Vengono salvati solo quando clicchi “Approva e salva in storico”.
+        I preventivi approvati vengono salvati nel browser e puoi riaprirli, ristamparli o eliminarli.
       </div>
     </div>
-    <div id="storicoList" class="storico-list"></div>
+
+    <div class="btn-row">
+      <button class="btn-outline" type="button" id="svuotaStoricoBtn">Svuota tutto lo storico</button>
+    </div>
+
+    <div id="storicoContainer" class="storico-list"></div>
   </section>
 </div>
 
@@ -686,7 +723,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-  const STORAGE_KEY = "eaPreventiviStoricoV1";
+  // ---- Utility formato ---
+  function fmtEuro(val) {
+    const n = isNaN(val) ? 0 : val;
+    return n.toFixed(2).replace(".", ",") + " €";
+  }
+
+  function fmtOre(val) {
+    const n = isNaN(val) ? 0 : val;
+    return n.toFixed(2).replace(".", ",") + " h";
+  }
+
+  function fmtEuroH(val) {
+    const n = isNaN(val) ? 0 : val;
+    return n.toFixed(2).replace(".", ",") + " €/h";
+  }
+
+  // ---- DOM base ----
+  const numPreventivoInput = document.getElementById("numPreventivo");
+  const dataPreventivoInput = document.getElementById("dataPreventivo");
+
+  const clienteRagioneInput = document.getElementById("clienteRagione");
+  const clienteIndirizzoInput = document.getElementById("clienteIndirizzo");
+  const clienteTelefonoInput = document.getElementById("clienteTelefono");
+  const clienteEmailInput = document.getElementById("clienteEmail");
+  const oggettoPreventivoInput = document.getElementById("oggettoPreventivo");
+  const descrizioneInput = document.getElementById("descrizione");
 
   const interventiSettInput = document.getElementById("interventiSett");
   const oreInterventoInput = document.getElementById("oreIntervento");
@@ -730,83 +792,60 @@
   const tabMargineOrarioSpan = document.getElementById("tabMargineOrario");
   const tabCalcolaBtn = document.getElementById("tabCalcolaBtn");
 
+  // Storico
   const approvaBtn = document.getElementById("approvaBtn");
-  const pdfInternoBtn = document.getElementById("pdfInternoBtn");
-  const pdfClienteBtn = document.getElementById("pdfClienteBtn");
-  const storicoList = document.getElementById("storicoList");
+  const svuotaStoricoBtn = document.getElementById("svuotaStoricoBtn");
+  const storicoContainer = document.getElementById("storicoContainer");
 
-  const clienteRagioneInput = document.getElementById("clienteRagione");
-  const clienteIndirizzoInput = document.getElementById("clienteIndirizzo");
-  const clienteTelefonoInput = document.getElementById("clienteTelefono");
-  const clienteEmailInput = document.getElementById("clienteEmail");
-  const oggettoPreventivoInput = document.getElementById("oggettoPreventivo");
-  const descrizioneInput = document.getElementById("descrizione");
+  const calcolaBtn = document.getElementById("calcolaBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const simCalcolaBtn = document.getElementById("simCalcolaBtn");
 
-  let simValoreMensileLavoro = 0;
-  let simOreBase = 0;
-
-  let lastCalc = null;
+  // Stato
+  let lastCalcolo = null;
   let lastSimResult = null;
   let lastTabResult = null;
+  let storicoPreventivi = [];
 
-  function fmtEuro(val) {
-    if (val == null || isNaN(val)) return "0,00 €";
-    return val.toFixed(2).replace(".", ",") + " €";
+  // ---- Numerazione e data ----
+  function getTodayISO() {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
   }
 
-  function fmtOre(val) {
-    if (val == null || isNaN(val)) return "0,00 h";
-    return val.toFixed(2).replace(".", ",") + " h";
+  function getNextNumeroPreventivo() {
+    const year = new Date().getFullYear();
+    const key = "eaLastPreventivoNumberV2";
+    const last = localStorage.getItem(key);
+    if (!last || last.indexOf(year + "-") !== 0) {
+      const nuovo = year + "-001";
+      localStorage.setItem(key, nuovo);
+      return nuovo;
+    }
+    const parts = last.split("-");
+    let seq = parseInt(parts[1], 10) || 0;
+    seq++;
+    let seqStr = String(seq);
+    while (seqStr.length < 3) seqStr = "0" + seqStr;
+    const nuovo = year + "-" + seqStr;
+    localStorage.setItem(key, nuovo);
+    return nuovo;
   }
 
-  function fmtEuroH(val) {
-    if (val == null || isNaN(val)) return "0,00 €/h";
-    return val.toFixed(2).replace(".", ",") + " €/h";
-  }
-
-  function leggiStorico() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return [];
-      const arr = JSON.parse(raw);
-      return Array.isArray(arr) ? arr : [];
-    } catch {
-      return [];
+  function initIntestazione() {
+    if (!numPreventivoInput.value) {
+      numPreventivoInput.value = getNextNumeroPreventivo();
+    }
+    if (!dataPreventivoInput.value) {
+      dataPreventivoInput.value = getTodayISO();
     }
   }
 
-  function scriviStorico(arr) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
-  }
-
-  function renderStorico() {
-    const arr = leggiStorico();
-    if (!arr.length) {
-      storicoList.innerHTML = '<p style="font-size:0.82rem; color:#6b7280;">Nessun preventivo approvato salvato.</p>';
-      return;
-    }
-    let html = "";
-    arr.forEach((rec, idx) => {
-      html += `
-        <div class="storico-item">
-          <div class="storico-main">
-            <span class="storico-num">#${rec.numero || "-"} • ${rec.data || ""}</span>
-            <span class="storico-cli">${rec.clienteRagione || ""}</span>
-            <span class="storico-cli">Totale: ${fmtEuro(rec.prezzoTotale || 0)}</span>
-          </div>
-          <div class="storico-actions">
-            <button class="btn-small" data-action="apri" data-index="${idx}">Apri</button>
-            <button class="btn-small" data-action="pdfInt" data-index="${idx}">PDF interno</button>
-            <button class="btn-small" data-action="pdfCli" data-index="${idx}">PDF cliente</button>
-            <button class="btn-small danger" data-action="del" data-index="${idx}">Elimina</button>
-          </div>
-        </div>
-      `;
-    });
-    storicoList.innerHTML = html;
-  }
-
-  document.getElementById("calcolaBtn").addEventListener("click", function () {
+  // ---- Calcolo preventivo principale ----
+  calcolaBtn.addEventListener("click", function () {
     warningMsg.style.display = "none";
 
     const interventi = parseFloat(interventiSettInput.value) || 0;
@@ -829,11 +868,11 @@
       nettoTotaleSpan.textContent = "0,00 €";
       nettoOrarioSpan.textContent = "0,00 €/h";
       subExtraBox.style.display = "none";
-      simOreBase = 0;
-      simValoreMensileLavoro = 0;
-      simOreBaseSpan.textContent = fmtOre(0);
-      simValoreBaseSpan.textContent = fmtEuro(0);
-      lastCalc = null;
+      lastCalcolo = null;
+      lastSimResult = null;
+      lastTabResult = null;
+      simOreBaseSpan.textContent = "0,00 h";
+      simValoreBaseSpan.textContent = "0,00 €";
       return;
     }
 
@@ -850,13 +889,12 @@
       nettoTotaleSpan.textContent = "0,00 €";
       nettoOrarioSpan.textContent = "0,00 €/h";
       subExtraBox.style.display = "none";
-      lastCalc = null;
+      lastCalcolo = null;
       return;
     }
 
     const den = 1 - provvPerc - prodPerc;
-    const prezzoTotale =
-      (nettoTarget * oreMese + attrezzatureMese) / den;
+    const prezzoTotale = (nettoTarget * oreMese + attrezzatureMese) / den;
 
     const costoProdotti = prezzoTotale * prodPerc;
     const costoProvvigione = prezzoTotale * provvPerc;
@@ -873,7 +911,7 @@
     nettoTotaleSpan.textContent = fmtEuro(nettoTotale);
     nettoOrarioSpan.textContent = fmtEuroH(nettoOrario);
 
-    let subData = null;
+    let subBlock = null;
     if (isSub) {
       const costoSub = 16 * oreMese;
       const margineSub = nettoTotale - costoSub;
@@ -884,7 +922,7 @@
       margineSubappaltoSpan.textContent = fmtEuro(margineSub);
       margineSubappaltoOrarioSpan.textContent = fmtEuroH(margineSubOrario);
 
-      subData = {
+      subBlock = {
         costoSub,
         margineSub,
         margineSubOrario
@@ -893,30 +931,31 @@
       subExtraBox.style.display = "none";
     }
 
-    const baseNettoSim = costoOrarioNetto;
-    simOreBase = oreMese;
-    simValoreMensileLavoro = baseNettoSim * oreMese;
-
-    simOreBaseSpan.textContent = fmtOre(simOreBase);
+    // per simulatore: base = costoOrarioNetto * oreMese (solo lavoro)
+    const simValoreMensileLavoro = costoOrarioNetto * oreMese;
+    simOreBaseSpan.textContent = fmtOre(oreMese);
     simValoreBaseSpan.textContent = fmtEuro(simValoreMensileLavoro);
 
-    lastCalc = {
+    lastCalcolo = {
       interventi,
       oreInt,
       oreMese,
+      costoOrarioNetto,
+      isSub,
       prezzoTotale,
       tariffaOraria: prezzoTotale / oreMese,
       costoProdotti,
       costoProvvigione,
-      costoAttrezzatureRes,
+      costoAttrezzature: costoAttrezzatureRes,
       nettoTotale,
       nettoOrario,
-      isSub,
-      sub: subData
+      simValoreMensileLavoro,
+      sub: subBlock
     };
   });
 
-  document.getElementById("resetBtn").addEventListener("click", function () {
+  // Reset globale
+  resetBtn.addEventListener("click", function () {
     interventiSettInput.value = 1;
     oreInterventoInput.value = 1;
     costoOrarioNettoInput.value = 23;
@@ -925,13 +964,6 @@
     provvigionePercInput.value = 0;
     flagAttrezzature.checked = false;
     costoAttrezzatureInput.value = 0;
-
-    clienteRagioneInput.value = "";
-    clienteIndirizzoInput.value = "";
-    clienteTelefonoInput.value = "";
-    clienteEmailInput.value = "";
-    oggettoPreventivoInput.value = "";
-    descrizioneInput.value = "";
 
     oreMeseSpan.textContent = "0,00 h";
     prezzoTotaleSpan.textContent = "0,00 €";
@@ -944,8 +976,10 @@
     subExtraBox.style.display = "none";
     warningMsg.style.display = "none";
 
-    simOreBase = 0;
-    simValoreMensileLavoro = 0;
+    lastCalcolo = null;
+    lastSimResult = null;
+    lastTabResult = null;
+
     simOreBaseSpan.textContent = "0,00 h";
     simValoreBaseSpan.textContent = "0,00 €";
     simOreNuoveSpan.textContent = "0,00 h";
@@ -960,43 +994,40 @@
     tabCostoDipMeseSpan.textContent = "0,00 €";
     tabMargineTotSpan.textContent = "0,00 €";
     tabMargineOrarioSpan.textContent = "0,00 €/h";
-
-    lastCalc = null;
-    lastSimResult = null;
-    lastTabResult = null;
   });
 
-  document.getElementById("simCalcolaBtn").addEventListener("click", function () {
-    const minutiNuovi = parseFloat(simMinutiInput.value) || 0;
-    const interventi = parseFloat(interventiSettInput.value) || 0;
-
-    if (!lastCalc || simOreBase === 0 || simValoreMensileLavoro === 0) {
+  // Simulatore
+  simCalcolaBtn.addEventListener("click", function () {
+    if (!lastCalcolo || lastCalcolo.oreMese === 0 || !lastCalcolo.simValoreMensileLavoro) {
       alert("Prima calcola il preventivo, poi usa la simulazione.");
       return;
     }
-    if (minutiNuovi <= 0) {
-      alert("Inserisci una durata in minuti maggiore di 0.");
+
+    const minutiNuovi = parseFloat(simMinutiInput.value) || 0;
+    const interventi = parseFloat(interventiSettInput.value) || 0;
+
+    if (minutiNuovi <= 0 || interventi <= 0) {
+      alert("Inserisci un numero di minuti e interventi valido.");
       return;
     }
 
     const orePerInterventoNuove = minutiNuovi / 60;
     const nuoveOreMensili = interventi * orePerInterventoNuove * 4.33;
-
-    const nuovoGuadagnoOrario = simValoreMensileLavoro / nuoveOreMensili;
+    const nuovoGuadagnoOrario = lastCalcolo.simValoreMensileLavoro / nuoveOreMensili;
 
     simOreNuoveSpan.textContent = fmtOre(nuoveOreMensili);
     simGuadagnoOrarioSpan.textContent = fmtEuroH(nuovoGuadagnoOrario);
 
     lastSimResult = {
-      oreBase: simOreBase,
-      valoreMensileLavoro: simValoreMensileLavoro,
+      oreBase: lastCalcolo.oreMese,
+      valoreMensileLavoro: lastCalcolo.simValoreMensileLavoro,
       minutiIntervento: minutiNuovi,
       nuoveOreMensili,
       nuovoGuadagnoOrario
     };
   });
 
-  // Calcolo tabella margine finale (minuti settimanali × 4,33)
+  // Tabella margine finale (minuti settimanali × 4,33)
   tabCalcolaBtn.addEventListener("click", function () {
     const fatt = parseFloat(tabFatturatoInput.value) || 0;
     const minSett = parseFloat(tabMinutiInput.value) || 0;
@@ -1038,235 +1069,268 @@
     };
   });
 
-  function getTodayISO() {
-    const d = new Date();
-    const yyyy = d.getFullYear();
-    const mm = String(d.getMonth() + 1).padStart(2, "0");
-    const dd = String(d.getDate()).padStart(2, "0");
-    return yyyy + "-" + mm + "-" + dd;
-  }
+  // ---- Storico preventivi (localStorage) ----
+  const STORICO_KEY = "eaPreventiviStoricoV2";
 
-  function getNextNumeroPreventivo() {
-    const year = new Date().getFullYear();
-    const key = "eaLastPreventivoNumberSimple";
-    const last = localStorage.getItem(key);
-    if (!last || last.indexOf(year + "-") !== 0) {
-      const nuovo = year + "-001";
-      localStorage.setItem(key, nuovo);
-      return nuovo;
+  function caricaStorico() {
+    try {
+      const raw = localStorage.getItem(STORICO_KEY);
+      storicoPreventivi = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(storicoPreventivi)) storicoPreventivi = [];
+    } catch (e) {
+      storicoPreventivi = [];
     }
-    const parts = last.split("-");
-    let seq = parseInt(parts[1], 10) || 0;
-    seq = seq + 1;
-    let next = String(seq);
-    while (next.length < 3) next = "0" + next;
-    const nuovo = parts[0] + "-" + next;
-    localStorage.setItem(key, nuovo);
-    return nuovo;
   }
 
-  function buildCurrentRecord() {
-    if (!lastCalc) {
-      alert("Prima calcola il preventivo.");
+  function salvaStorico() {
+    localStorage.setItem(STORICO_KEY, JSON.stringify(storicoPreventivi));
+  }
+
+  function renderStorico() {
+    storicoContainer.innerHTML = "";
+    if (!storicoPreventivi.length) {
+      const empty = document.createElement("div");
+      empty.className = "storico-item";
+      empty.textContent = "Nessun preventivo approvato al momento.";
+      storicoContainer.appendChild(empty);
+      return;
+    }
+
+    storicoPreventivi
+      .slice()
+      .sort((a, b) => (a.numero || "").localeCompare(b.numero || ""))
+      .forEach((record) => {
+        const div = document.createElement("div");
+        div.className = "storico-item";
+
+        const titolo = record.numero || "Senza numero";
+        const cliente = record.clienteRagione || "Cliente non indicato";
+        const data = record.data || "";
+        const totale = fmtEuro(record.prezzoTotale || 0);
+
+        div.innerHTML = `
+          <div class="storico-header">
+            <div>
+              <div class="storico-title">${titolo} – ${cliente}</div>
+              <div class="storico-sub">Data: ${data} · Totale: ${totale}</div>
+            </div>
+            <div class="storico-actions">
+              <button class="btn-small" onclick="apriPreventivo(${record.id})">Apri</button>
+              <button class="btn-small btn-small-primary" onclick="pdfInterno(${record.id})">PDF interno</button>
+              <button class="btn-small btn-small-primary" onclick="pdfCliente(${record.id})">PDF cliente</button>
+              <button class="btn-small btn-small-danger" onclick="eliminaPreventivo(${record.id})">Elimina</button>
+            </div>
+          </div>
+        `;
+        storicoContainer.appendChild(div);
+      });
+  }
+
+  function buildRecordFromState() {
+    if (!lastCalcolo) {
+      alert("Calcola prima il preventivo.");
       return null;
     }
-    const numero = getNextNumeroPreventivo();
-    const data = getTodayISO();
 
-    return {
-      numero,
-      data,
+    const record = {
+      id: Date.now(),
+      numero: numPreventivoInput.value || "",
+      data: dataPreventivoInput.value || "",
       clienteRagione: clienteRagioneInput.value || "",
       clienteIndirizzo: clienteIndirizzoInput.value || "",
       clienteTelefono: clienteTelefonoInput.value || "",
       clienteEmail: clienteEmailInput.value || "",
       oggettoPreventivo: oggettoPreventivoInput.value || "",
       descrizione: descrizioneInput.value || "",
-      interventi: lastCalc.interventi,
-      oreInt: lastCalc.oreInt,
-      oreMese: lastCalc.oreMese,
-      prezzoTotale: lastCalc.prezzoTotale,
-      tariffaOraria: lastCalc.tariffaOraria,
-      costoProdotti: lastCalc.costoProdotti,
-      costoProvvigione: lastCalc.costoProvvigione,
-      costoAttrezzatureRes: lastCalc.costoAttrezzatureRes,
-      nettoTotale: lastCalc.nettoTotale,
-      nettoOrario: lastCalc.nettoOrario,
-      isSub: lastCalc.isSub,
-      sub: lastCalc.sub,
+      interventi: lastCalcolo.interventi,
+      oreInt: lastCalcolo.oreInt,
+      oreMese: lastCalcolo.oreMese,
+      prezzoTotale: lastCalcolo.prezzoTotale,
+      tariffaOraria: lastCalcolo.tariffaOraria,
+      costoProdotti: lastCalcolo.costoProdotti,
+      costoProvvigione: lastCalcolo.costoProvvigione,
+      costoAttrezzatureRes: lastCalcolo.costoAttrezzature,
+      nettoTotale: lastCalcolo.nettoTotale,
+      nettoOrario: lastCalcolo.nettoOrario,
+      sub: lastCalcolo.sub || null,
       simResult: lastSimResult || null,
       tabResult: lastTabResult || null
     };
+
+    return record;
   }
 
   approvaBtn.addEventListener("click", function () {
-    const rec = buildCurrentRecord();
+    const rec = buildRecordFromState();
     if (!rec) return;
-    const arr = leggiStorico();
-    arr.push(rec);
-    scriviStorico(arr);
+
+    storicoPreventivi.push(rec);
+    salvaStorico();
     renderStorico();
-    alert("Preventivo approvato e salvato in storico con numero: " + rec.numero);
+
+    // prepara un nuovo numero preventivo per il prossimo
+    numPreventivoInput.value = getNextNumeroPreventivo();
+    dataPreventivoInput.value = getTodayISO();
   });
 
-  storicoList.addEventListener("click", function (e) {
-    const btn = e.target.closest("button[data-action]");
-    if (!btn) return;
-    const idx = parseInt(btn.getAttribute("data-index"), 10);
-    const action = btn.getAttribute("data-action");
-    const arr = leggiStorico();
-    const rec = arr[idx];
+  svuotaStoricoBtn.addEventListener("click", function () {
+    if (!confirm("Sei sicuro di voler svuotare tutto lo storico?")) return;
+    storicoPreventivi = [];
+    salvaStorico();
+    renderStorico();
+  });
+
+  // Funzioni globali per i pulsanti inline
+  window.apriPreventivo = function (id) {
+    const rec = storicoPreventivi.find(r => r.id === id);
     if (!rec) return;
 
-    if (action === "apri") {
-      clienteRagioneInput.value = rec.clienteRagione || "";
-      clienteIndirizzoInput.value = rec.clienteIndirizzo || "";
-      clienteTelefonoInput.value = rec.clienteTelefono || "";
-      clienteEmailInput.value = rec.clienteEmail || "";
-      oggettoPreventivoInput.value = rec.oggettoPreventivo || "";
-      descrizioneInput.value = rec.descrizione || "";
+    numPreventivoInput.value = rec.numero || "";
+    dataPreventivoInput.value = rec.data || "";
 
-      interventiSettInput.value = rec.interventi;
-      oreInterventoInput.value = rec.oreInt;
-      costoOrarioNettoInput.value = rec.isSub ? 23 : 23; // base, puoi correggere a mano
-      flagSubappalto.checked = !!rec.isSub;
+    clienteRagioneInput.value = rec.clienteRagione || "";
+    clienteIndirizzoInput.value = rec.clienteIndirizzo || "";
+    clienteTelefonoInput.value = rec.clienteTelefono || "";
+    clienteEmailInput.value = rec.clienteEmail || "";
+    oggettoPreventivoInput.value = rec.oggettoPreventivo || "";
+    descrizioneInput.value = rec.descrizione || "";
 
-      oreMeseSpan.textContent = fmtOre(rec.oreMese);
-      prezzoTotaleSpan.textContent = fmtEuro(rec.prezzoTotale);
-      tariffaClienteSpan.textContent = fmtEuroH(rec.tariffaOraria);
-      costoProdottiSpan.textContent = fmtEuro(rec.costoProdotti);
-      costoProvvigioneSpan.textContent = fmtEuro(rec.costoProvvigione);
-      costoAttrezzatureResSpan.textContent = fmtEuro(rec.costoAttrezzatureRes);
-      nettoTotaleSpan.textContent = fmtEuro(rec.nettoTotale);
-      nettoOrarioSpan.textContent = fmtEuroH(rec.nettoOrario);
+    interventiSettInput.value = rec.interventi || 1;
+    oreInterventoInput.value = rec.oreInt || 1;
 
-      if (rec.isSub && rec.sub) {
-        subExtraBox.style.display = "block";
-        costoSubappaltoSpan.textContent = fmtEuro(rec.sub.costoSub);
-        margineSubappaltoSpan.textContent = fmtEuro(rec.sub.margineSub);
-        margineSubappaltoOrarioSpan.textContent = fmtEuroH(rec.sub.margineSubOrario);
-      } else {
-        subExtraBox.style.display = "none";
-      }
+    flagSubappalto.checked = !!(rec.sub);
+    // costoOrarioNetto rimane come era nel momento in cui vuoi lavorare
+    // puoi eventualmente ricalcolare in base alle tue logiche
 
-      if (rec.simResult) {
-        simOreBaseSpan.textContent = fmtOre(rec.simResult.oreBase);
-        simValoreBaseSpan.textContent = fmtEuro(rec.simResult.valoreMensileLavoro);
-        simOreNuoveSpan.textContent = fmtOre(rec.simResult.nuoveOreMensili);
-        simGuadagnoOrarioSpan.textContent = fmtEuroH(rec.simResult.nuovoGuadagnoOrario);
-      }
+    // ricalcola con i parametri attuali
+    calcolaBtn.click();
 
-      if (rec.tabResult) {
-        tabOreMeseSpan.textContent = fmtOre(rec.tabResult.oreMese);
-        tabRicavoOrarioSpan.textContent = fmtEuroH(rec.tabResult.ricavoOrario);
-        tabCostoDipMeseSpan.textContent = fmtEuro(rec.tabResult.costoDipMese);
-        tabMargineTotSpan.textContent = fmtEuro(rec.tabResult.margineTot);
-        tabMargineOrarioSpan.textContent = fmtEuroH(rec.tabResult.margineOrario);
-      }
+    // ripristina risultati aggiuntivi se presenti
+    lastSimResult = rec.simResult || null;
+    lastTabResult = rec.tabResult || null;
 
-      lastCalc = {
-        interventi: rec.interventi,
-        oreInt: rec.oreInt,
-        oreMese: rec.oreMese,
-        prezzoTotale: rec.prezzoTotale,
-        tariffaOraria: rec.tariffaOraria,
-        costoProdotti: rec.costoProdotti,
-        costoProvvigione: rec.costoProvvigione,
-        costoAttrezzatureRes: rec.costoAttrezzatureRes,
-        nettoTotale: rec.nettoTotale,
-        nettoOrario: rec.nettoOrario,
-        isSub: rec.isSub,
-        sub: rec.sub
-      };
-      lastSimResult = rec.simResult || null;
-      lastTabResult = rec.tabResult || null;
+    if (rec.simResult) {
+      simOreBaseSpan.textContent = fmtOre(rec.simResult.oreBase);
+      simValoreBaseSpan.textContent = fmtEuro(rec.simResult.valoreMensileLavoro);
+      simOreNuoveSpan.textContent = fmtOre(rec.simResult.nuoveOreMensili);
+      simGuadagnoOrarioSpan.textContent = fmtEuroH(rec.simResult.nuovoGuadagnoOrario);
     }
 
-    if (action === "pdfInt") {
-      generaPdfInterno(rec);
+    if (rec.tabResult) {
+      tabOreMeseSpan.textContent = fmtOre(rec.tabResult.oreMese);
+      tabRicavoOrarioSpan.textContent = fmtEuroH(rec.tabResult.ricavoOrario);
+      tabCostoDipMeseSpan.textContent = fmtEuro(rec.tabResult.costoDipMese);
+      tabMargineTotSpan.textContent = fmtEuro(rec.tabResult.margineTot);
+      tabMargineOrarioSpan.textContent = fmtEuroH(rec.tabResult.margineOrario);
     }
+  };
 
-    if (action === "pdfCli") {
-      generaPdfCliente(rec);
-    }
+  window.eliminaPreventivo = function (id) {
+    if (!confirm("Eliminare definitivamente questo preventivo dallo storico?")) return;
+    storicoPreventivi = storicoPreventivi.filter(r => r.id !== id);
+    salvaStorico();
+    renderStorico();
+  };
 
-    if (action === "del") {
-      if (confirm("Vuoi eliminare questo preventivo dallo storico?")) {
-        arr.splice(idx, 1);
-        scriviStorico(arr);
-        renderStorico();
-      }
-    }
-  });
-
-  pdfInternoBtn.addEventListener("click", function () {
-    const rec = buildCurrentRecord();
+  window.pdfInterno = function (id) {
+    const rec = storicoPreventivi.find(r => r.id === id);
     if (!rec) return;
     generaPdfInterno(rec);
-  });
+  };
 
-  pdfClienteBtn.addEventListener("click", function () {
-    const rec = buildCurrentRecord();
+  window.pdfCliente = function (id) {
+    const rec = storicoPreventivi.find(r => r.id === id);
     if (!rec) return;
     generaPdfCliente(rec);
-  });
+  };
 
-  const { jsPDF } = window.jspdf || {};
-
+  // ---- PDF INTERNO A BLOCCHI / TABELLE COLORATE ----
   function generaPdfInterno(record) {
-    if (!jsPDF) {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
       alert("Libreria PDF non disponibile.");
       return;
     }
+    const { jsPDF } = window.jspdf;
 
     const doc = new jsPDF();
     const margin = 14;
-    const pageHeight = doc.internal.pageSize.getHeight();
     const pageWidth = doc.internal.pageSize.getWidth();
-    const rightColX = pageWidth - margin;
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const tableWidth = pageWidth - margin * 2;
     const bottomMargin = 18;
-    let y = 16;
+    let y = 18;
 
-    function checkPage() {
-      if (y > pageHeight - bottomMargin) {
+    const COLORS = {
+      cliente:  { r: 37,  g: 99,  b: 235 },
+      lavoro:   { r: 236, g: 72,  b: 153 },
+      econ:     { r: 56,  g: 189, b: 248 },
+      sim:      { r: 234, g: 179, b: 8   },
+      margini:  { r: 22,  g: 163, b: 74  }
+    };
+
+    function checkPage(extraHeight = 0) {
+      if (y + extraHeight > pageHeight - bottomMargin) {
         doc.addPage();
-        y = 16;
+        y = 18;
       }
     }
 
-    function sectionTitle(title) {
-      checkPage();
+    function drawTableSection(title, rows, color) {
+      if (!rows || !rows.length) return;
+
+      const headerHeight = 7;
+      const rowHeight = 6;
+      const totalHeight = headerHeight + rowHeight * rows.length + 4;
+      checkPage(totalHeight);
+
+      doc.setFillColor(color.r, color.g, color.b);
+      doc.setDrawColor(color.r, color.g, color.b);
+      doc.rect(margin, y, tableWidth, headerHeight, "F");
+
+      doc.setTextColor(255, 255, 255);
       doc.setFontSize(11);
       doc.setFont("helvetica", "bold");
-      doc.text(title, margin, y);
-      y += 4;
-      doc.setLineWidth(0.2);
-      doc.line(margin, y, rightColX, y);
-      y += 3;
-    }
+      doc.text(title, margin + 2, y + 4);
 
-    function row(label, value) {
-      checkPage();
-      doc.setFontSize(10);
+      y += headerHeight;
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(9);
       doc.setFont("helvetica", "normal");
-      doc.text(label, margin, y);
-      doc.text(value, rightColX, y, { align: "right" });
-      y += 5;
+
+      const labelX = margin + 2;
+      const valueX = margin + tableWidth - 2;
+
+      rows.forEach((riga) => {
+        const label = riga.label || "";
+        const value = riga.value || "";
+
+        doc.setDrawColor(220, 224, 230);
+        doc.rect(margin, y, tableWidth, rowHeight);
+
+        doc.text(label, labelX, y + 4);
+        doc.text(value, valueX, y + 4, { align: "right" });
+
+        y += rowHeight;
+      });
+
+      y += 4;
     }
 
     // HEADER
-    doc.setFontSize(14);
+    doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
     doc.text("EA Cleaning – Analisi preventivo", margin, y);
+
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text(`Data: ${record.data || ""}`, rightColX, y, { align: "right" });
-    y += 8;
-
-    doc.setFontSize(10);
-    doc.text(`Nr: ${record.numero || "-"}`, margin, y);
+    doc.text(`Data: ${record.data || ""}`, pageWidth - margin, y, { align: "right" });
     y += 7;
 
+    doc.text(`Nr: ${record.numero || "-"}`, margin, y);
+    y += 10;
+
+    // Dati cliente
     const hasCliente =
       record.clienteRagione ||
       record.clienteIndirizzo ||
@@ -1275,89 +1339,106 @@
       record.oggettoPreventivo;
 
     if (hasCliente) {
-      sectionTitle("Dati cliente");
-      if (record.clienteRagione) row("Cliente", record.clienteRagione);
-      if (record.clienteIndirizzo) row("Indirizzo", record.clienteIndirizzo);
-      if (record.clienteTelefono) row("Telefono", record.clienteTelefono);
-      if (record.clienteEmail) row("Email", record.clienteEmail);
-      if (record.oggettoPreventivo) row("Oggetto", record.oggettoPreventivo);
-      y += 2;
+      const clienteRows = [];
+      if (record.clienteRagione)   clienteRows.push({ label: "Cliente",   value: record.clienteRagione });
+      if (record.clienteIndirizzo) clienteRows.push({ label: "Indirizzo", value: record.clienteIndirizzo });
+      if (record.clienteTelefono)  clienteRows.push({ label: "Telefono",  value: record.clienteTelefono });
+      if (record.clienteEmail)     clienteRows.push({ label: "Email",     value: record.clienteEmail });
+      if (record.oggettoPreventivo)clienteRows.push({ label: "Oggetto",   value: record.oggettoPreventivo });
+
+      drawTableSection("Dati cliente", clienteRows, COLORS.cliente);
     }
 
+    // Descrizione
     if (record.descrizione) {
-      checkPage();
-      doc.setFontSize(10);
+      const extraHeight = 20;
+      checkPage(extraHeight);
+
       doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
       doc.text("Descrizione interventi", margin, y);
       y += 5;
+
       doc.setFont("helvetica", "normal");
-      const blocco = doc.splitTextToSize(record.descrizione, pageWidth - margin * 2);
-      doc.text(blocco, margin, y);
-      y += blocco.length * 4 + 4;
+      doc.setFontSize(9);
+      const descLines = doc.splitTextToSize(record.descrizione, tableWidth);
+      doc.text(descLines, margin, y);
+      y += descLines.length * 4 + 4;
     }
 
-    // BLOCCO 1 – PARAMETRI DI LAVORO
-    sectionTitle("Parametri di lavoro");
-    row("Interventi settimanali", String(record.interventi ?? ""));
-    row("Ore per intervento", String(record.oreInt ?? ""));
-    row("Ore mensili", record.oreMese != null ? record.oreMese.toFixed(2) + " h" : "");
-    y += 3;
+    // Parametri di lavoro
+    const paramRows = [];
+    if (record.interventi != null)
+      paramRows.push({ label: "Interventi settimanali", value: String(record.interventi) });
+    if (record.oreInt != null)
+      paramRows.push({ label: "Ore per intervento",      value: String(record.oreInt) });
+    if (record.oreMese != null)
+      paramRows.push({ label: "Ore mensili",             value: record.oreMese.toFixed(2) + " h" });
 
-    // BLOCCO 2 – COMPOSIZIONE ECONOMICA
-    sectionTitle("Composizione economica");
-    row("Totale preventivo cliente", fmtEuro(record.prezzoTotale));
-    row("Tariffa oraria cliente", fmtEuroH(record.tariffaOraria));
-    row("Costo prodotti (10%)", fmtEuro(record.costoProdotti));
-    row("Provvigione", fmtEuro(record.costoProvvigione));
-    row("Attrezzature / noleggi", fmtEuro(record.costoAttrezzatureRes));
-    y += 2;
-    row("Ricavo netto totale", fmtEuro(record.nettoTotale));
-    row("Ricavo netto orario", fmtEuroH(record.nettoOrario));
-    y += 3;
+    drawTableSection("Parametri di lavoro", paramRows, COLORS.lavoro);
 
+    // Composizione economica
+    const econRows = [];
+    econRows.push({ label: "Totale preventivo cliente", value: fmtEuro(record.prezzoTotale || 0) });
+    econRows.push({ label: "Tariffa oraria cliente",    value: fmtEuroH(record.tariffaOraria || 0) });
+    econRows.push({ label: "Costo prodotti (10%)",      value: fmtEuro(record.costoProdotti || 0) });
+    econRows.push({ label: "Provvigione",               value: fmtEuro(record.costoProvvigione || 0) });
+    econRows.push({ label: "Attrezzature / noleggi",    value: fmtEuro(record.costoAttrezzatureRes || 0) });
+    econRows.push({ label: "Ricavo netto totale",       value: fmtEuro(record.nettoTotale || 0) });
+    econRows.push({ label: "Ricavo netto orario",       value: fmtEuroH(record.nettoOrario || 0) });
+
+    drawTableSection("Composizione economica", econRows, COLORS.econ);
+
+    // Subappalto
     if (record.sub && record.sub.costoSub != null) {
-      sectionTitle("Subappalto (collaboratore esterno)");
-      row("Costo collaboratore (16 €/h)", fmtEuro(record.sub.costoSub));
-      row("Margine finale dopo subappalto", fmtEuro(record.sub.margineSub));
-      row("Margine orario finale", fmtEuroH(record.sub.margineSubOrario));
-      y += 3;
+      const subRows = [];
+      subRows.push({ label: "Costo collaboratore (16 €/h)",   value: fmtEuro(record.sub.costoSub || 0) });
+      subRows.push({ label: "Margine finale dopo subappalto", value: fmtEuro(record.sub.margineSub || 0) });
+      subRows.push({ label: "Margine orario finale",          value: fmtEuroH(record.sub.margineSubOrario || 0) });
+
+      drawTableSection("Subappalto (collaboratore esterno)", subRows, COLORS.econ);
     }
 
-    // BLOCCO 3 – SIMULATORE
+    // Simulatore
     if (record.simResult && record.simResult.nuoveOreMensili && record.simResult.nuoveOreMensili > 0) {
       const s = record.simResult;
-      sectionTitle("Simulatore variazione tempo (solo lavoro)");
-      row("Ore mensili originali", s.oreBase.toFixed(2) + " h");
-      row("Valore mensile lavoro (solo ore)", fmtEuro(s.valoreMensileLavoro));
-      row("Nuova durata intervento", s.minutiIntervento + " min");
-      row("Nuove ore mensili", s.nuoveOreMensili.toFixed(2) + " h");
-      row("Nuovo guadagno orario reale", fmtEuroH(s.nuovoGuadagnoOrario));
-      y += 3;
+      const simRows = [];
+      simRows.push({ label: "Ore mensili originali",            value: s.oreBase.toFixed(2) + " h" });
+      simRows.push({ label: "Valore mensile lavoro (solo ore)", value: fmtEuro(s.valoreMensileLavoro || 0) });
+      simRows.push({ label: "Nuova durata intervento",          value: (s.minutiIntervento || 0) + " min" });
+      simRows.push({ label: "Nuove ore mensili",                value: s.nuoveOreMensili.toFixed(2) + " h" });
+      simRows.push({ label: "Nuovo guadagno orario reale",      value: fmtEuroH(s.nuovoGuadagnoOrario || 0) });
+
+      drawTableSection("Simulatore variazione tempo (solo lavoro)", simRows, COLORS.sim);
     }
 
-    // BLOCCO 4 – TABELLA MARGINE
+    // Tabella margini
     if (record.tabResult && record.tabResult.oreMese && record.tabResult.oreMese > 0) {
       const t = record.tabResult;
-      sectionTitle("Tabella margine da fatturato e minuti");
-      row("Fatturato mensile cliente", fmtEuro(t.fatturato));
-      row("Tempo di lavoro", t.minSett + " min/settimana");
-      row("Costo lordo orario dipendente", fmtEuroH(t.costoDip));
-      row("Ore mensili di lavoro", t.oreMese.toFixed(2) + " h");
-      row("Ricavo orario cliente", fmtEuroH(t.ricavoOrario));
-      row("Costo dipendente mensile", fmtEuro(t.costoDipMese));
-      row("Margine totale", fmtEuro(t.margineTot));
-      row("Margine orario reale", fmtEuroH(t.margineOrario));
+      const margRows = [];
+      margRows.push({ label: "Fatturato mensile cliente",         value: fmtEuro(t.fatturato || 0) });
+      margRows.push({ label: "Tempo di lavoro",                   value: (t.minSett || 0) + " min/settimana" });
+      margRows.push({ label: "Costo lordo orario dipendente",     value: fmtEuroH(t.costoDip || 0) });
+      margRows.push({ label: "Ore mensili di lavoro",             value: t.oreMese.toFixed(2) + " h" });
+      margRows.push({ label: "Ricavo orario cliente",             value: fmtEuroH(t.ricavoOrario || 0) });
+      margRows.push({ label: "Costo dipendente mensile",          value: fmtEuro(t.costoDipMese || 0) });
+      margRows.push({ label: "Margine totale",                    value: fmtEuro(t.margineTot || 0) });
+      margRows.push({ label: "Margine orario reale",              value: fmtEuroH(t.margineOrario || 0) });
+
+      drawTableSection("Tabella margine da fatturato e minuti", margRows, COLORS.margini);
     }
 
     const nomeFile = `Preventivo_interno_${record.numero || "EA"}.pdf`;
     doc.save(nomeFile);
   }
 
+  // ---- PDF CLIENTE (semplice ma pulito) ----
   function generaPdfCliente(record) {
-    if (!jsPDF) {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
       alert("Libreria PDF non disponibile.");
       return;
     }
+    const { jsPDF } = window.jspdf;
 
     const doc = new jsPDF();
     const margin = 18;
@@ -1433,18 +1514,18 @@
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
     doc.text("Totale mensile servizio di pulizia:", margin, y);
-    doc.text(fmtEuro(record.prezzoTotale), pageWidth - margin, y, { align: "right" });
+    doc.text(fmtEuro(record.prezzoTotale || 0), pageWidth - margin, y, { align: "right" });
     y += 6;
 
     if (record.tariffaOraria) {
       doc.text("Tariffa oraria di riferimento:", margin, y);
-      doc.text(fmtEuroH(record.tariffaOraria), pageWidth - margin, y, { align: "right" });
+      doc.text(fmtEuroH(record.tariffaOraria || 0), pageWidth - margin, y, { align: "right" });
       y += 6;
     }
 
-    doc.setFont("helvetica", "normal");
     y += 10;
-    const note = "Il presente preventivo è da intendersi valido salvo diverse indicazioni e potrà essere adeguato in base a modifiche delle condizioni di lavoro, metrature o richieste specifiche del cliente.";
+    const note =
+      "Il presente preventivo è da intendersi valido salvo diverse indicazioni e potrà essere adeguato in base a modifiche delle condizioni di lavoro, metrature o richieste specifiche del cliente.";
     const noteLines = doc.splitTextToSize(note, pageWidth - margin * 2);
     doc.text(noteLines, margin, y);
 
@@ -1452,6 +1533,9 @@
     doc.save(nomeFile);
   }
 
+  // Init
+  initIntestazione();
+  caricaStorico();
   renderStorico();
 </script>
 </body>
