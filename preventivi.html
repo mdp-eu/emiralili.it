@@ -1199,13 +1199,9 @@
     oreInterventoInput.value = rec.oreInt || 1;
 
     flagSubappalto.checked = !!(rec.sub);
-    // costoOrarioNetto rimane come era nel momento in cui vuoi lavorare
-    // puoi eventualmente ricalcolare in base alle tue logiche
 
-    // ricalcola con i parametri attuali
     calcolaBtn.click();
 
-    // ripristina risultati aggiuntivi se presenti
     lastSimResult = rec.simResult || null;
     lastTabResult = rec.tabResult || null;
 
@@ -1432,7 +1428,7 @@
     doc.save(nomeFile);
   }
 
-  // ---- PDF CLIENTE (semplice ma pulito) ----
+  // ---- PDF CLIENTE (NUOVA VERSIONE SENZA TARIFFA ORARIA) ----
   function generaPdfCliente(record) {
     if (!window.jspdf || !window.jspdf.jsPDF) {
       alert("Libreria PDF non disponibile.");
@@ -1443,8 +1439,16 @@
     const doc = new jsPDF();
     const margin = 18;
     const pageWidth = doc.internal.pageSize.getWidth();
+    const contentWidth = pageWidth - margin * 2;
     let y = 20;
 
+    function paragraph(text, extraSpace = 6) {
+      const lines = doc.splitTextToSize(text, contentWidth);
+      doc.text(lines, margin, y);
+      y += lines.length * 5 + extraSpace;
+    }
+
+    // HEADER
     doc.setFont("helvetica", "bold");
     doc.setFontSize(14);
     doc.text("EA Cleaning", margin, y);
@@ -1452,18 +1456,20 @@
     doc.setFontSize(10);
     doc.text("Servizi di pulizia professionale", margin, y + 5);
 
-    y += 14;
-
     doc.setFontSize(10);
     doc.text(`Data: ${record.data || ""}`, pageWidth - margin, y, { align: "right" });
     y += 6;
     doc.text(`Preventivo n.: ${record.numero || "-"}`, pageWidth - margin, y, { align: "right" });
-    y += 10;
+    y += 12;
 
+    // DATI CLIENTE
     doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
     doc.text("Dati cliente", margin, y);
     y += 6;
+
     doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
     if (record.clienteRagione) {
       doc.text("Cliente: " + record.clienteRagione, margin, y);
       y += 5;
@@ -1481,30 +1487,48 @@
       y += 7;
     }
 
+    // OGGETTO
     if (record.oggettoPreventivo) {
       doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
       doc.text("Oggetto del preventivo", margin, y);
       y += 6;
+
       doc.setFont("helvetica", "normal");
-      const oggLines = doc.splitTextToSize(record.oggettoPreventivo, pageWidth - margin * 2);
+      doc.setFontSize(10);
+      const oggLines = doc.splitTextToSize(record.oggettoPreventivo, contentWidth);
       doc.text(oggLines, margin, y);
-      y += oggLines.length * 4 + 6;
+      y += oggLines.length * 5 + 8;
     }
 
+    // DESCRIZIONE
     if (record.descrizione) {
       doc.setFont("helvetica", "bold");
-      doc.text("Descrizione degli interventi", margin, y);
+      doc.setFontSize(11);
+      doc.text("Descrizione delle attività", margin, y);
       y += 6;
+
       doc.setFont("helvetica", "normal");
-      const descLines = doc.splitTextToSize(record.descrizione, pageWidth - margin * 2);
+      doc.setFontSize(10);
+      const descLines = doc.splitTextToSize(record.descrizione, contentWidth);
       doc.text(descLines, margin, y);
-      y += descLines.length * 4 + 8;
+      y += descLines.length * 5 + 10;
     }
 
+    // TESTO INTRODUTTIVO STANDARD
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    paragraph(
+      "Come da accordi telefonici e da sopralluogo effettuato con la presente, " +
+      "siamo a proporre la seguente quotazione per le attività richieste.",
+      10
+    );
+
+    // RIEPILOGO ECONOMICO
     doc.setDrawColor(0, 0, 0);
     doc.setLineWidth(0.4);
     doc.line(margin, y, pageWidth - margin, y);
-    y += 8;
+    y += 6;
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
@@ -1515,19 +1539,38 @@
     doc.setFontSize(10);
     doc.text("Totale mensile servizio di pulizia:", margin, y);
     doc.text(fmtEuro(record.prezzoTotale || 0), pageWidth - margin, y, { align: "right" });
+    y += 8;
+
+    // TESTO PRODOTTI + MANODOPERA
+    paragraph(
+      "Il prezzo comprende prodotti e manodopera, ad esclusione di acqua ed energia elettrica qualora necessari.",
+      8
+    );
+
+    // NOTA VALIDITÀ
+    paragraph(
+      "Il presente preventivo è da intendersi valido salvo diverse indicazioni e potrà essere adeguato " +
+      "in base a modifiche delle condizioni di lavoro, metrature o richieste specifiche del cliente.",
+      10
+    );
+
+    // TESTO ACCETTAZIONE
+    paragraph(
+      "In caso di accettazione si richiede di inoltrare il presente preventivo firmato " +
+      "alla seguente e-mail: ea@eagroup-servizi.com",
+      14
+    );
+
+    // CHIUSURA: LUOGO, DATA, FIRMA
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("Luogo e data: ____________________________", margin, y);
+    y += 12;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Firma", margin, y);
     y += 6;
-
-    if (record.tariffaOraria) {
-      doc.text("Tariffa oraria di riferimento:", margin, y);
-      doc.text(fmtEuroH(record.tariffaOraria || 0), pageWidth - margin, y, { align: "right" });
-      y += 6;
-    }
-
-    y += 10;
-    const note =
-      "Il presente preventivo è da intendersi valido salvo diverse indicazioni e potrà essere adeguato in base a modifiche delle condizioni di lavoro, metrature o richieste specifiche del cliente.";
-    const noteLines = doc.splitTextToSize(note, pageWidth - margin * 2);
-    doc.text(noteLines, margin, y);
+    doc.text("Ufficio Commerciale EA Group", margin, y);
 
     const nomeFile = `Preventivo_cliente_${record.numero || "EA"}.pdf`;
     doc.save(nomeFile);
