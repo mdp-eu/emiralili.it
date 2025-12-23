@@ -1,294 +1,239 @@
-/* style.css */
+<!-- index.html -->
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emir Alili – Visione, metodo, progetto</title>
+  <meta name="description" content="Emir Alili. Visione, metodo e progetti tra politica, diaspora e impresa." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+</head>
 
-/* Reset base */
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  background:#0b0c10;
-  color:#f2f4f8;
-  line-height:1.5;
-}
-img{max-width:100%; display:block}
-a{text-decoration:none; color:inherit}
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="Vai alla Home">
+        <div class="brand-name">Emir Alili</div>
+        <div class="brand-sub">Visione · Metodo · Azione</div>
+      </a>
 
-/* Layout */
-.container{
-  width:min(1120px, calc(100% - 40px));
-  margin:0 auto;
-}
+      <!-- Desktop nav -->
+      <nav class="nav-desktop" aria-label="Navigazione principale">
+        <a class="nav-link" href="chi-sono.html">Chi sono</a>
+        <a class="nav-link" href="cosa-faccio.html">Cosa faccio</a>
+        <a class="nav-link btn" href="contatti.html">Contatti</a>
+      </nav>
 
-/* Header */
-.site-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(11,12,16,.78);
-  backdrop-filter: blur(10px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.header-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:14px 0;
-}
+      <!-- Mobile toggle -->
+      <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-.brand{display:flex; flex-direction:column; gap:2px; min-width:180px}
-.brand-name{font-weight:800; letter-spacing:.2px}
-.brand-sub{font-size:12px; color:#aeb6c2}
+    <!-- Mobile nav -->
+    <nav id="navMobile" class="nav-mobile" aria-label="Navigazione mobile">
+      <a class="nav-link" href="chi-sono.html">Chi sono</a>
+      <a class="nav-link" href="cosa-faccio.html">Cosa faccio</a>
+      <a class="nav-link" href="contatti.html">Contatti</a>
+      <a class="nav-link nav-link--muted" href="https://www.mdp-eu.com" target="_blank" rel="noopener">MDP</a>
+    </nav>
+  </header>
 
-/* Desktop nav */
-.nav-desktop{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-.nav-link{color:#aeb6c2}
-.nav-link:hover{color:#f2f4f8}
-.nav-link.active{color:#f2f4f8; text-decoration:underline; text-underline-offset:4px; text-decoration-color:rgba(255,255,255,.35)}
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="pill">Sito personale</div>
+          <h1>Un Paese non cambia con gli slogan.<br> Cambia con metodo e responsabilità.</h1>
+          <p class="lead">
+            Lavoro su progetti concreti tra politica, diaspora e impresa.
+            Qui trovi visione, piani e strumenti: senza fumo, senza teatro.
+          </p>
 
-/* Buttons */
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.10);
-  color:#f2f4f8;
-}
-.btn:hover{background: rgba(255,255,255,.14)}
-.btn-ghost{
-  background:transparent;
-  border:1px solid rgba(255,255,255,.10);
-}
-.btn-ghost:hover{background: rgba(255,255,255,.06)}
+          <div class="cta-row">
+            <a class="btn" href="cosa-faccio.html">Vedi i progetti</a>
+            <a class="btn btn-ghost" href="#manifesto">Leggi la visione</a>
+          </div>
 
-/* Mobile toggle */
-.nav-toggle{
-  display:none;
-  width:44px;
-  height:40px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:transparent;
-  cursor:pointer;
-}
-.nav-toggle span{
-  display:block;
-  width:18px;
-  height:2px;
-  margin:5px auto;
-  background:#f2f4f8;
-  opacity:.9;
-}
+          <div class="meta-grid">
+            <div class="meta-card">
+              <div class="meta-title">Focus</div>
+              <div class="meta-value">Trasparenza · Merito · Risultati</div>
+            </div>
+            <div class="meta-card">
+              <div class="meta-title">Approccio</div>
+              <div class="meta-value">Numeri · Processo · Accountability</div>
+            </div>
+          </div>
+        </div>
 
-/* Mobile nav dropdown */
-.nav-mobile{
-  display:none;
-  border-top:1px solid rgba(255,255,255,.08);
-  padding:10px 0;
-}
-.nav-mobile a{
-  display:block;
-  padding:12px 20px;
-  color:#aeb6c2;
-}
-.nav-mobile a:hover{background: rgba(255,255,255,.06); color:#f2f4f8}
-.nav-mobile a.active{color:#f2f4f8; font-weight:700}
-.nav-link--muted{opacity:.8}
+        <div class="hero-media">
+          <div class="media-card">
+            <img src="assets/img/emirplatea.jpeg" alt="Emir Alili" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-/* Hero */
-.hero{
-  padding:44px 0 26px;
-  background:
-    radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,.08), transparent 60%),
-    radial-gradient(900px 600px at 80% 10%, rgba(255,255,255,.06), transparent 55%);
-}
-.hero-grid{
-  display:grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap:28px;
-  align-items:stretch;
-}
-.pill{
-  display:inline-block;
-  color:#aeb6c2;
-  border:1px solid rgba(255,255,255,.10);
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  background: rgba(255,255,255,.04);
-}
-h1{
-  margin:12px 0 10px;
-  font-size: clamp(28px, 3.6vw, 46px);
-  line-height:1.12;
-  letter-spacing:-.6px;
-}
-.lead{
-  margin:0;
-  color:#aeb6c2;
-  font-size: clamp(15px, 1.5vw, 18px);
-  max-width: 62ch;
-}
-.cta-row{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    <!-- Contesto UE -->
+    <section class="context">
+      <div class="container context-grid">
+        <div class="context-text">
+          <h2>Una visione che guarda oltre i confini</h2>
+          <p class="lead-sm">
+            La politica locale non può essere isolata dal contesto europeo. Le decisioni che contano oggi si muovono su più livelli:
+            regole, fondi, equilibri, interessi. Capirli è responsabilità, non decorazione.
+          </p>
+          <p class="muted">
+            Il mio percorso nasce dalla realtà dei territori, ma si confronta anche con le istituzioni europee perché è lì che spesso
+            si definiscono vincoli e opportunità che poi ricadono sui cittadini.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-ghost" href="chi-sono.html">Percorso</a>
+            <a class="btn" href="https://www.mdp-eu.com" target="_blank" rel="noopener">MDP</a>
+          </div>
+        </div>
 
-.meta-grid{
-  margin-top:18px;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:12px;
-}
-.meta-card{
-  border:1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.04);
-  border-radius:16px;
-  padding:12px;
-}
-.meta-title{font-size:12px; color:#aeb6c2}
-.meta-value{margin-top:4px; font-weight:700}
+        <div class="context-media">
+          <div class="media-card">
+            <img src="assets/img/emireu.jpeg" alt="Emir Alili davanti al Parlamento Europeo" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-.hero-media, .context-media{display:flex}
-.media-card{
-  width:100%;
-  border-radius:22px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.02);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  min-height: 340px;
-}
-.media-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-}
+    <!-- Visione -->
+    <section class="section" id="manifesto">
+      <div class="container">
+        <div class="section-head">
+          <h2>Visione</h2>
+          <p>Non mi interessa “stare nel sistema”. Mi interessa cambiare le regole che lo rendono opaco e clientelare.</p>
+        </div>
 
-/* Context */
-.context{
-  padding:38px 0;
-  border-top:1px solid rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-}
-.context-grid{
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap:18px;
-  align-items:center;
-}
-.context-text h2{margin:0 0 10px; font-size:24px}
+        <div class="cards">
+          <article class="card">
+            <h3>Trasparenza reale</h3>
+            <p>Decisioni pubbliche, dati accessibili, responsabilità tracciabili. Niente zone grigie.</p>
+          </article>
+          <article class="card">
+            <h3>Meritocrazia</h3>
+            <p>Fine delle scorciatoie e delle raccomandazioni: ruoli e risorse devono seguire competenza e risultati.</p>
+          </article>
+          <article class="card">
+            <h3>Giustizia e regole uguali</h3>
+            <p>Uno Stato serio non si misura dai discorsi, ma da come applica le regole a tutti.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-.section{padding:46px 0}
-.section-alt{
-  background: linear-gradient(180deg, transparent, rgba(255,255,255,.03), transparent);
-  border-top:1px solid rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
+    <!-- Metodo -->
+    <section class="section section-alt">
+      <div class="container split">
+        <div>
+          <h2>Metodo</h2>
+          <p class="lead-sm">Se non misuri, non governi. Se non rendi conto, non sei credibile.</p>
+          <ul class="list">
+            <li>Analisi dei bilanci e delle macrovoci: dove finiscono davvero i soldi</li>
+            <li>Processi verificabili: chi decide cosa, e con quali criteri</li>
+            <li>Obiettivi misurabili e rendicontazione pubblica</li>
+          </ul>
+        </div>
 
-.section-head{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:18px;
-  margin-bottom:18px;
-}
-.section-head h2{margin:0; font-size:24px}
-.section-head p{margin:0; color:#aeb6c2; max-width:70ch}
+        <div class="note">
+          <div class="note-title">Promessa operativa</div>
+          <p>
+            Dove MDP sarà presente, faremo opposizione documentata: bilanci, delibere, scelte e responsabilità.
+            Nessuno spazio a opacità.
+          </p>
+        </div>
+      </div>
+    </section>
 
-.cards{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:14px;
-}
-.card{
-  border:1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:16px;
-}
-.card h3{margin:0 0 8px; font-size:16px}
-.card p{margin:0; color:#aeb6c2}
+    <!-- Progetti -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Progetti</h2>
+          <p>Politica, impresa, comunità: tre canali, un’unica linea. Risultati, non vetrina.</p>
+        </div>
 
-.cards-wide{grid-template-columns: repeat(3, 1fr)}
+        <div class="cards cards-wide">
+          <article class="card">
+            <h3>MDP – Macedonian Diaspora Party</h3>
+            <p>Strumento politico per chi non accetta più un sistema chiuso. Programma, visione, adesioni.</p>
+            <a class="link" href="https://www.mdp-eu.com" target="_blank" rel="noopener">Vai al sito MDP</a>
+          </article>
+          <article class="card">
+            <h3>Analisi e contenuti</h3>
+            <p>Letture critiche: economia, istituzioni, budget pubblici. Materiale utile, non chiacchiere.</p>
+            <a class="link" href="cosa-faccio.html">Approfondisci</a>
+          </article>
+          <article class="card">
+            <h3>Progetti imprenditoriali</h3>
+            <p>Esperienza sul campo: gestione, processi, margini, organizzazione. Le cose reali insegnano più dei talk show.</p>
+            <a class="link" href="chi-sono.html">Percorso</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-.split{
-  display:grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap:18px;
-  align-items:start;
-}
-.lead-sm{color:#aeb6c2; margin-top:8px}
-.list{margin:12px 0 0; padding-left:18px; color:#aeb6c2}
-.list li{margin:8px 0}
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Vuoi parlare di un progetto o collaborare?</h2>
+          <p class="muted">Scrivimi. Se è concreto, se ne discute. Se è fumo, lo annuso subito.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn" href="contatti.html">Contatti</a>
+          <a class="btn btn-ghost" href="chi-sono.html">Chi sono</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-.note{
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:16px;
-}
-.note-title{font-weight:800; margin-bottom:8px}
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© <span id="y"></span> Emir Alili</div>
+      <div class="footer-links">
+        <a href="contatti.html">Contatti</a>
+        <span class="sep">·</span>
+        <a href="https://www.mdp-eu.com" target="_blank" rel="noopener">MDP</a>
+      </div>
+    </div>
+  </footer>
 
-.link{
-  display:inline-block;
-  margin-top:12px;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(255,255,255,.25);
-}
-.link:hover{ text-decoration-color: rgba(255,255,255,.6) }
+  <script>
+    // anno footer
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-.cta{padding:40px 0 58px}
-.cta-inner{
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-  border-radius: 22px;
-  padding:22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-}
-.cta-actions{display:flex; gap:12px; flex-wrap:wrap}
+    // menu mobile
+    const toggle = document.querySelector('.nav-toggle');
+    const navMobile = document.getElementById('navMobile');
 
-.footer{
-  border-top:1px solid rgba(255,255,255,.08);
-  background: rgba(11,12,16,.78);
-}
-.footer-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  padding:18px 0;
-  color:#aeb6c2;
-  font-size:14px;
-}
-.footer-links{display:flex; gap:10px; align-items:center}
-.sep{opacity:.45}
+    toggle.addEventListener('click', () => {
+      const isOpen = navMobile.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
 
-.muted{color:#aeb6c2}
+    // chiudi menu mobile cliccando un link
+    navMobile.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navMobile.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
 
-/* Responsive */
-@media (max-width: 920px){
-  .hero-grid{grid-template-columns: 1fr}
-  .meta-grid{grid-template-columns: 1fr}
-  .cards{grid-template-columns: 1fr}
-  .split{grid-template-columns: 1fr}
-  .context-grid{grid-template-columns: 1fr}
-  .cta-inner{flex-direction:column; align-items:flex-start}
-}
-
-@media (max-width: 760px){
-  .nav-desktop{display:none}
-  .nav-toggle{display:block}
-  .nav-mobile{display:none}
-  .nav-mobile.open{display:block}
-}
+    // evidenzia link attivo (desktop + mobile)
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('a.nav-link').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      if (href === path) a.classList.add('active');
+    });
+  </script>
+</body>
+</html>
