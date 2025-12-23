@@ -3,294 +3,291 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home – Emir Alili</title>
-  <meta name="description" content="Emir Alili. Visione, metodo, progetti tra impresa, diaspora e politica. Trasparenza, meritocrazia, giustizia." />
+  <title>Emir Alili – Visione, Metodo, Azione</title>
+  <meta name="description" content="Emir Alili. Visione, metodo e progetti tra impresa, diaspora e politica. Trasparenza, meritocrazia, giustizia." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div class="page">
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <nav class="nav" id="nav">
-          <a class="brand" href="index.html" aria-label="Vai alla Home">
-            <div class="brand-avatar">
-              <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili" />
-            </div>
-            <div class="brand-text">
-              <strong>Emir Alili</strong>
-              <span>Imprenditore · autore · leader politico</span>
-            </div>
-          </a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html" aria-label="Vai alla home">
+          <span class="brand-avatar">
+            <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili" />
+          </span>
+          <span class="brand-text">
+            <strong>Emir Alili</strong>
+            <small>Visione · Metodo · Azione</small>
+          </span>
+        </a>
 
-          <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="chi-sono.html">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="contatti.html">Contatti</a>
-          </div>
-
-          <div class="nav-cta">
-            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-              Contatti
-            </button>
-          </div>
-
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">☰</button>
+        <nav class="nav-desktop" aria-label="Navigazione principale">
+          <a class="nav-link is-active" href="index.html">Home</a>
+          <a class="nav-link" href="chi-sono.html">Chi sono</a>
+          <a class="nav-link" href="cosa-faccio.html">Cosa faccio</a>
+          <a class="nav-link" href="contatti.html">Contatti</a>
         </nav>
-      </div>
-    </header>
 
-    <!-- HERO -->
-    <div class="hero-wrap">
-      <section class="hero hero-home">
-        <div class="container hero-home-grid">
-          <div class="hero-home-text">
-            <div class="hero-kicker">Visione · Metodo · Azione</div>
-            <h1 class="hero-title hero-title-home">
-              Un Paese non cambia con gli slogan.<br />
-              Cambia con metodo e responsabilità.
-            </h1>
-            <p class="hero-subtitle hero-subtitle-home">
-              Progetti concreti tra impresa, diaspora e politica. Trasparenza reale, meritocrazia, giustizia.
-              Niente fumo. Risultati e responsabilità.
+        <div class="header-actions">
+          <a class="btn btn-soft" href="contatti.html">Contatti</a>
+          <button class="burger" id="burger" aria-label="Apri menu" aria-expanded="false" aria-controls="navMobile">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE NAV -->
+      <div class="nav-mobile" id="navMobile" hidden>
+        <a class="nav-m-link is-active" href="index.html">Home</a>
+        <a class="nav-m-link" href="chi-sono.html">Chi sono</a>
+        <a class="nav-m-link" href="cosa-faccio.html">Cosa faccio</a>
+        <a class="nav-m-link" href="contatti.html">Contatti</a>
+
+        <div class="nav-m-cta">
+          <a class="btn btn-primary" href="cosa-faccio.html">Vedi progetti</a>
+          <a class="btn btn-soft" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">Sito MDP</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <div class="kicker">Imprenditore · autore · leader politico</div>
+        <h1>Un Paese non cambia con gli slogan.<br />Cambia con metodo e responsabilità.</h1>
+        <p>
+          Progetti concreti tra politica, diaspora e impresa. Trasparenza reale, meritocrazia, giustizia.
+          Niente fumo. Risultati e responsabilità.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="cosa-faccio.html">Vedi i progetti</a>
+          <a class="btn btn-soft" href="#visione">Leggi la visione</a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric">
+            <div class="metric-label">Focus</div>
+            <div class="metric-value">Trasparenza · Merito · Risultati</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Approccio</div>
+            <div class="metric-value">Numeri · Processo · Accountability</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="media-card">
+          <img src="assets/img/emirplatea.jpeg" alt="Emir Alili in platea" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <!-- IN BREVE -->
+      <section class="box">
+        <div class="box-head">
+          <h2 class="box-title">In breve</h2>
+          <p class="box-sub">
+            Tre linee che si incrociano: impresa, comunità, politica. Il punto non è “parlare bene”.
+            Il punto è creare struttura, misurare, rendere conto.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Impresa</h3>
+            <p>Gestione operativa, processi, personale, qualità e numeri reali. Il lavoro si giudica dai risultati.</p>
+            <a class="link" href="cosa-faccio.html">Scopri cosa faccio</a>
+          </article>
+
+          <article class="card">
+            <h3>Politica</h3>
+            <p>Critica documentata, bilanci, scelte e responsabilità. Dove ci sono zone opache, ci entro con i dati.</p>
+            <a class="link" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai al progetto MDP</a>
+          </article>
+
+          <article class="card">
+            <h3>Diaspora</h3>
+            <p>La diaspora non è folklore: è capitale umano e finanziario. Serve metodo per trasformarlo in forza.</p>
+            <a class="link" href="chi-sono.html">Leggi il percorso</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- EUROPA -->
+      <section class="box">
+        <div class="split">
+          <div class="split-text">
+            <h2 class="box-title">Europa e contesto</h2>
+            <p class="box-sub">
+              Le decisioni che contano non stanno solo “nel Comune”. Regole, fondi e vincoli spesso arrivano da livelli superiori.
+              Capirli è responsabilità, non decorazione.
             </p>
 
-            <div class="hero-actions">
-              <a class="btn-primary" href="cosa-faccio.html">Vedi i progetti</a>
-              <a class="btn-secondary" href="#visione">Leggi la visione</a>
-            </div>
+            <ul class="bullets">
+              <li>Se non sai leggere gli strumenti, finisci per subire scelte fatte altrove.</li>
+              <li>Chi governa deve conoscere vincoli e opportunità, e poi rendere conto.</li>
+              <li>La politica seria si misura con numeri e atti, non con comunicati.</li>
+            </ul>
 
-            <div class="hero-badges">
-              <div class="badge">
-                <div class="badge-title">Focus</div>
-                <div class="badge-value">Trasparenza · Merito · Risultati</div>
-              </div>
-              <div class="badge">
-                <div class="badge-title">Approccio</div>
-                <div class="badge-value">Numeri · Processo · Accountability</div>
-              </div>
+            <div class="row">
+              <a class="btn btn-soft" href="chi-sono.html">Percorso</a>
+              <a class="btn btn-primary" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
             </div>
           </div>
 
-          <div class="hero-home-media">
-            <div class="hero-media-card">
-              <img src="assets/img/emirplatea.jpeg" alt="Emir Alili in platea" />
+          <div class="split-media">
+            <div class="media-card">
+              <img src="assets/img/emireu.jpeg" alt="Emir Alili davanti al Parlamento Europeo" />
             </div>
           </div>
         </div>
       </section>
-    </div>
 
-    <!-- MAIN -->
-    <main>
-      <div class="container">
-        <!-- BOX: INTRO -->
-        <section class="section-box">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> In breve</h2>
-            <p class="section-subtitle">
-              Lavoro su tre linee che si incrociano: impresa, comunità, politica. Il punto non è “parlare bene”.
-              Il punto è creare struttura, misurare, rendere conto.
+      <!-- VISIONE -->
+      <section class="box" id="visione">
+        <div class="box-head">
+          <h2 class="box-title">Visione</h2>
+          <p class="box-sub">
+            Il problema non è la mancanza di idee. È il metodo: clientelismo, opacità, scelte senza responsabilità.
+            La linea è semplice: regole uguali per tutti, merito, trasparenza reale.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card card-strong">
+            <h3>Trasparenza reale</h3>
+            <p>Decisioni pubbliche, dati accessibili, responsabilità tracciabili. Niente “altri” senza spiegazione.</p>
+          </article>
+
+          <article class="card card-strong">
+            <h3>Meritocrazia</h3>
+            <p>Stop raccomandazioni. Ruoli e risorse devono seguire competenze e risultati, non appartenenze.</p>
+          </article>
+
+          <article class="card card-strong">
+            <h3>Giustizia e regole uguali</h3>
+            <p>Uno Stato serio si vede da come applica le regole, non da come le racconta.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- METODO -->
+      <section class="box">
+        <div class="split">
+          <div class="split-text">
+            <h2 class="box-title">Metodo</h2>
+            <p class="box-sub">Se non misuri, non governi. Se non rendi conto, non sei credibile.</p>
+
+            <ul class="bullets">
+              <li><strong>Analisi bilanci e macrovoci</strong>: dove finiscono davvero i soldi e perché.</li>
+              <li><strong>Processi verificabili</strong>: chi decide cosa, con quali criteri e controlli.</li>
+              <li><strong>Obiettivi misurabili</strong>: tempi, risultati, indicatori e rendicontazione pubblica.</li>
+            </ul>
+          </div>
+
+          <aside class="side">
+            <div class="side-title">Promessa operativa</div>
+            <p>
+              Dove saremo presenti, faremo opposizione documentata: bilanci, delibere, scelte e responsabilità.
+              Nessuno spazio a zone opache.
             </p>
+            <a class="btn btn-primary" href="contatti.html">Parliamone</a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PROGETTI -->
+      <section class="box">
+        <div class="box-head">
+          <h2 class="box-title">Progetti</h2>
+          <p class="box-sub">
+            Politica, impresa, comunità: tre canali, un’unica linea. Se è concreto, si fa. Se è fumo, si scarta.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>MDP – Macedonian Diaspora Party</h3>
+            <p>Programma, visione, documenti e adesioni. Struttura politica, non slogan.</p>
+            <a class="link" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">Visita mdp-eu.com</a>
+          </article>
+
+          <article class="card">
+            <h3>Analisi e contenuti</h3>
+            <p>Letture critiche su bilanci, economia, istituzioni. Dati e contesto, non propaganda.</p>
+            <a class="link" href="cosa-faccio.html">Approfondisci</a>
+          </article>
+
+          <article class="card">
+            <h3>Impresa e gestione</h3>
+            <p>Esperienza concreta su gestione, processi, organizzazione e controllo operativo.</p>
+            <a class="link" href="chi-sono.html">Percorso e competenze</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div class="cta-inner">
+          <div>
+            <h2>Vuoi parlare di un progetto o collaborare?</h2>
+            <p>Scrivimi con una richiesta chiara. Se è concreta, la affrontiamo. Se è fumo, non perdiamo tempo.</p>
           </div>
-
-          <div class="three-grid">
-            <article class="mini-card">
-              <h3 class="mini-title">Impresa</h3>
-              <p class="mini-text">
-                Gestione operativa, processi, personale, qualità e numeri reali. Il lavoro si giudica dai risultati.
-              </p>
-              <a class="mini-link" href="cosa-faccio.html">Scopri cosa faccio</a>
-            </article>
-
-            <article class="mini-card">
-              <h3 class="mini-title">Politica</h3>
-              <p class="mini-text">
-                Critica documentata, bilanci, scelte e responsabilità. Dove ci sono zone opache, ci entro con i dati.
-              </p>
-              <a class="mini-link" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai al progetto MDP</a>
-            </article>
-
-            <article class="mini-card">
-              <h3 class="mini-title">Diaspora</h3>
-              <p class="mini-text">
-                La diaspora non è folklore: è capitale umano e finanziario. Serve metodo per trasformarlo in forza.
-              </p>
-              <a class="mini-link" href="chi-sono.html">Leggi il percorso</a>
-            </article>
-          </div>
-        </section>
-
-        <!-- BOX: UE -->
-        <section class="section-box">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Europa e contesto</h2>
-            <p class="section-subtitle">
-              Le decisioni che contano non stanno solo “nel Comune”. Regole, fondi e vincoli spesso arrivano da livelli superiori.
-              Capirli è responsabilità, non decorazione.
-            </p>
-          </div>
-
-          <div class="two-grid">
-            <div class="text-block">
-              <h3 class="block-title">Una visione che guarda oltre i confini</h3>
-              <p class="block-text">
-                Chi amministra deve conoscere il contesto. Se non sai leggere gli strumenti, ti ritrovi a subire scelte fatte altrove.
-                E poi racconti ai cittadini che “non si poteva fare diversamente”.
-              </p>
-              <div class="block-actions">
-                <a class="btn-secondary" href="chi-sono.html">Percorso</a>
-                <a class="btn-primary" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-              </div>
-            </div>
-
-            <div class="media-block">
-              <div class="media-card">
-                <img src="assets/img/emireu.jpeg" alt="Emir Alili davanti al Parlamento Europeo" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- BOX: VISIONE -->
-        <section class="section-box" id="visione">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Visione</h2>
-            <p class="section-subtitle">
-              Il problema non è “mancanza di idee”. È il metodo: clientelismo, opacità, e scelte senza responsabilità.
-              La linea è semplice: regole uguali per tutti, merito, trasparenza reale.
-            </p>
-          </div>
-
-          <div class="three-grid">
-            <article class="pill-card">
-              <h3 class="pill-title">Trasparenza reale</h3>
-              <p class="pill-text">Decisioni pubbliche, dati accessibili, responsabilità tracciabili. Niente “altri” senza spiegazione.</p>
-            </article>
-
-            <article class="pill-card">
-              <h3 class="pill-title">Meritocrazia</h3>
-              <p class="pill-text">Stop raccomandazioni. Ruoli e risorse devono seguire competenze e risultati, non appartenenze.</p>
-            </article>
-
-            <article class="pill-card">
-              <h3 class="pill-title">Giustizia e regole uguali</h3>
-              <p class="pill-text">Uno Stato serio si vede da come applica le regole, non da come le racconta.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- BOX: METODO -->
-        <section class="section-box">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Metodo</h2>
-            <p class="section-subtitle">
-              Se non misuri, non governi. Se non rendi conto, non sei credibile.
-            </p>
-          </div>
-
-          <div class="two-grid">
-            <div class="text-block">
-              <ul class="notes-list">
-                <li><strong>Bilanci e macrovoci</strong> · leggere entrate/uscite, capire dove vanno i soldi e perché.</li>
-                <li><strong>Processi verificabili</strong> · chi decide cosa, con quali criteri, con quali controlli.</li>
-                <li><strong>Obiettivi misurabili</strong> · tempi, risultati, indicatori e rendicontazione pubblica.</li>
-              </ul>
-            </div>
-
-            <div class="promise-card">
-              <div class="promise-title">Promessa operativa</div>
-              <p class="promise-text">
-                Dove saremo presenti, faremo opposizione documentata: bilanci, delibere, scelte e responsabilità.
-                Nessuno spazio a zone opache.
-              </p>
-              <a class="btn-secondary" href="contatti.html">Parliamone</a>
-            </div>
-          </div>
-        </section>
-
-        <!-- BOX: PROGETTI -->
-        <section class="section-box">
-          <div class="section-header">
-            <h2 class="section-title"><span>//</span> Progetti</h2>
-            <p class="section-subtitle">
-              Politica, impresa, comunità: tre canali, una linea. Se è concreto, si fa. Se è fumo, si scarta.
-            </p>
-          </div>
-
-          <div class="three-grid">
-            <article class="mini-card">
-              <h3 class="mini-title">MDP – Macedonian Diaspora Party</h3>
-              <p class="mini-text">
-                Programma, visione, documenti e adesioni. Struttura politica, non slogan.
-              </p>
-              <a class="mini-link" href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">Visita mdp-eu.com</a>
-            </article>
-
-            <article class="mini-card">
-              <h3 class="mini-title">Analisi e contenuti</h3>
-              <p class="mini-text">
-                Letture critiche su bilanci, economia, istituzioni. Dati e contesto, non propaganda.
-              </p>
-              <a class="mini-link" href="cosa-faccio.html">Vai alla sezione</a>
-            </article>
-
-            <article class="mini-card">
-              <h3 class="mini-title">Impresa e gestione</h3>
-              <p class="mini-text">
-                Esperienza concreta su gestione, processi, organizzazione e controllo operativo.
-              </p>
-              <a class="mini-link" href="chi-sono.html">Percorso e competenze</a>
-            </article>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-strip">
-          <div class="cta-inner">
-            <div>
-              <div class="cta-title">Vuoi parlare di un progetto o collaborare?</div>
-              <div class="cta-sub">
-                Scrivimi con una richiesta chiara. Se è concreta, la affrontiamo. Se è fumo, non perdiamo tempo.
-              </div>
-            </div>
-            <div class="cta-actions">
-              <a class="btn-primary" href="contatti.html">Contatti</a>
-              <a class="btn-secondary" href="chi-sono.html">Chi sono</a>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-links">
-            <span>© <span id="year"></span> Emir Alili.</span>
-            <span>Imprenditore · autore · leader politico.</span>
-          </div>
-          <div class="footer-social">
-            <a href="mailto:info@emiralili.it">Email</a>
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <div class="row">
+            <a class="btn btn-primary" href="contatti.html">Contatti</a>
+            <a class="btn btn-soft" href="chi-sono.html">Chi sono</a>
           </div>
         </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="foot-left">
+        <span>© <span id="year"></span> Emir Alili</span>
+        <span class="dot">·</span>
+        <a href="contatti.html">Contatti</a>
       </div>
-    </footer>
-  </div>
+      <div class="foot-right">
+        <a href="https://www.mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const nav = document.getElementById("nav");
-    const navToggle = document.getElementById("navToggle");
+    const burger = document.getElementById("burger");
+    const navMobile = document.getElementById("navMobile");
 
-    navToggle.addEventListener("click", () => {
-      nav.classList.toggle("mobile-open");
+    burger.addEventListener("click", () => {
+      const isOpen = !navMobile.hasAttribute("hidden");
+      if (isOpen) {
+        navMobile.setAttribute("hidden", "");
+        burger.setAttribute("aria-expanded", "false");
+      } else {
+        navMobile.removeAttribute("hidden");
+        burger.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    // Chiudi menu mobile quando clicchi un link
+    navMobile?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        navMobile.setAttribute("hidden", "");
+        burger.setAttribute("aria-expanded", "false");
+      });
     });
   </script>
 </body>
