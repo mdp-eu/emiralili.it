@@ -1,207 +1,673 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Emir Alili – Visione, Metodo, Azione</title>
-  <meta name="description" content="Emir Alili. Visione, metodo, azione: politica, diaspora e impresa. Progetti, analisi e percorso." />
-  <link rel="stylesheet" href="style.css?v=12" />
+  <meta name="description" content="Sito personale di Emir Alili. Visione, metodo e azione tra impresa, diaspora e politica. Progetti, analisi e percorso: senza slogan, con numeri e responsabilità." />
+  <link rel="canonical" href="https://emiralili.it/" />
+
+  <meta name="google-site-verification" content="cLIaWRkyTXS3GFC4LqP3SrA85JoxyicuL8z1480yfws" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Emir Alili – Visione, Metodo, Azione" />
+  <meta property="og:description" content="Progetti concreti tra impresa, diaspora e politica. Trasparenza, merito, giustizia: senza teatro." />
+  <meta property="og:image" content="https://emiralili.it/assets/img/emirplatea.jpeg" />
+  <meta property="og:url" content="https://emiralili.it/" />
+  <meta property="og:site_name" content="Emir Alili – Sito ufficiale" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Emir Alili – Visione, Metodo, Azione" />
+  <meta name="twitter:description" content="Progetti concreti tra impresa, diaspora e politica. Trasparenza, merito, giustizia: senza teatro." />
+  <meta name="twitter:image" content="https://emiralili.it/assets/img/emirplatea.jpeg" />
+
+  <style>
+    :root{
+      --bg:#f3f4f6;
+      --panel:#ffffff;
+      --soft:#f9fafb;
+      --text:#0f172a;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+
+      --darkA:#0b1220;
+      --darkB:#020617;
+
+      --accent:#ea580c;
+      --accent2:#f59e0b;
+      --accentDark:#9a3412;
+      --link:#2563eb;
+
+      --r-lg:18px;
+      --r-xl:22px;
+      --r-full:999px;
+
+      --shadow:0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadowDark:0 26px 70px rgba(0,0,0,0.55);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+
+    .container{width:100%;max-width:1120px;margin:0 auto;padding:0 1.25rem}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,0.98);
+      border-bottom:1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0.7rem 0;gap:0.75rem;
+    }
+    .brand{display:flex;align-items:center;gap:0.65rem;min-width:0}
+    .brand-avatar{
+      width:40px;height:40px;border-radius:50%;
+      overflow:hidden;border:1px solid var(--border);
+      background:#e5e7eb;flex-shrink:0;
+    }
+    .brand-avatar img{width:100%;height:100%;object-fit:cover}
+    .brand-text{display:flex;flex-direction:column;gap:0.08rem;min-width:0}
+    .brand-text strong{
+      font-size:0.96rem;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;
+    }
+    .brand-text span{
+      font-size:0.78rem;color:var(--muted);
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    }
+
+    .nav-links{display:none;align-items:center;gap:1.2rem;font-size:0.9rem}
+    .nav-links a{
+      position:relative;padding-bottom:0.08rem;color:#4b5563;font-weight:600;
+    }
+    .nav-links a.active{color:var(--text)}
+    .nav-links a::after{
+      content:"";position:absolute;left:0;bottom:0;width:0;height:2px;
+      background:var(--accent);border-radius:var(--r-full);
+      transition:width .16s ease-out;
+    }
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+
+    .nav-cta{display:none;align-items:center;gap:0.6rem}
+    .btn-header{
+      border-radius:var(--r-full);
+      padding:0.45rem 1rem;
+      font-size:0.78rem;font-weight:800;
+      letter-spacing:0.12em;text-transform:uppercase;
+      border:1px solid var(--border);
+      background:var(--soft);
+      color:#374151;cursor:pointer;white-space:nowrap;
+    }
+    .btn-header:hover{border-color:var(--accent);color:var(--accentDark)}
+
+    .nav-toggle{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:36px;height:36px;border-radius:var(--r-full);
+      border:1px solid var(--border);background:var(--soft);
+      color:#4b5563;font-size:1.05rem;cursor:pointer;
+    }
+
+    .nav.mobile-open{flex-direction:column;align-items:flex-start}
+    .nav.mobile-open .nav-links,
+    .nav.mobile-open .nav-cta{display:flex;width:100%}
+    .nav.mobile-open .nav-links{
+      margin-top:0.6rem;flex-direction:column;align-items:flex-start;gap:0.55rem;
+    }
+    .nav.mobile-open .nav-cta{margin-top:0.5rem}
+
+    @media (min-width: 880px){
+      .nav-links{display:flex}
+      .nav-cta{display:flex}
+      .nav-toggle{display:none}
+      .nav{flex-direction:row}
+    }
+
+    /* HERO */
+    .hero-wrap{
+      background: radial-gradient(circle at top left, #1f2937 0%, var(--darkB) 55%);
+      color:#e5e7eb;
+      border-bottom:1px solid #020617;
+    }
+    .hero{padding:2.2rem 0 2.4rem}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.6fr) minmax(0,1.2fr);
+      gap:2rem;align-items:center;
+    }
+    @media (max-width: 920px){
+      .hero{padding:1.8rem 0 2rem}
+      .hero-grid{grid-template-columns:minmax(0,1fr)}
+    }
+
+    .kicker{
+      font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;
+      color:#9ca3af;margin-bottom:0.45rem;
+    }
+    .kicker span{color:#fed7aa;font-weight:800;margin-right:0.35rem}
+    .hero h1{
+      font-size:2.05rem;line-height:1.15;letter-spacing:-0.03em;
+      margin-bottom:0.65rem;color:#f9fafb;
+    }
+    .hero h1 span{color:#fed7aa}
+    .hero p.lead{
+      font-size:1.02rem;color:#d1d5db;max-width:38rem;margin-bottom:1rem;
+    }
+
+    .pill-row{display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:1.1rem}
+    .pill{
+      font-size:0.78rem;padding:0.22rem 0.8rem;border-radius:var(--r-full);
+      background:rgba(15,23,42,0.95);
+      border:1px solid rgba(107,114,128,0.9);
+      color:#e5e7eb;
+    }
+
+    .actions{display:flex;flex-wrap:wrap;gap:0.7rem}
+    .btn-primary{
+      border-radius:var(--r-full);
+      padding:0.6rem 1.4rem;
+      font-size:0.86rem;font-weight:900;
+      letter-spacing:0.12em;text-transform:uppercase;
+      border:none;background:var(--accent);color:#fff;cursor:pointer;
+    }
+    .btn-primary:hover{filter:brightness(0.95)}
+    .btn-outline{
+      border-radius:var(--r-full);
+      padding:0.6rem 1.2rem;
+      font-size:0.86rem;font-weight:900;
+      letter-spacing:0.12em;text-transform:uppercase;
+      border:1px solid rgba(148,163,184,0.9);
+      background:transparent;color:#e5e7eb;cursor:pointer;
+    }
+    .btn-outline:hover{border-color:#fed7aa;color:#fff}
+
+    .hero-media{
+      border-radius:var(--r-xl);
+      overflow:hidden;
+      border:1px solid rgba(55,65,81,0.95);
+      box-shadow:var(--shadowDark);
+      background:rgba(2,6,23,0.6);
+      max-width:420px;
+      justify-self:end;
+    }
+    @media (max-width: 920px){
+      .hero-media{justify-self:center;max-width:520px}
+    }
+    .hero-media img{width:100%;height:auto;display:block}
+
+    /* MAIN */
+    main{padding:2.2rem 0 3rem}
+
+    .section-title{
+      font-size:0.86rem;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:0.35rem;
+    }
+    .section-title span{color:var(--accent);margin-right:0.3rem}
+    .section-head h2{
+      font-size:1.25rem;letter-spacing:-0.02em;margin-bottom:0.35rem;
+      color:var(--text);
+    }
+    .section-head p{
+      color:var(--muted);max-width:56rem;
+    }
+
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--r-lg);
+      box-shadow:var(--shadow);
+      padding:1.25rem 1.35rem;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      gap:1.25rem;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .grid-2{grid-template-columns:minmax(0,1fr)}
+    }
+
+    /* BREVE */
+    .brief{
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);
+      gap:1.25rem;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .brief{grid-template-columns:minmax(0,1fr)}
+    }
+    .brief p{color:var(--muted)}
+    .brief p + p{margin-top:0.6rem}
+    .brief strong{color:#111827}
+
+    .mini-list{
+      background:var(--soft);
+      border:1px solid var(--border);
+      border-radius:var(--r-lg);
+      padding:1rem 1rem;
+      color:var(--muted);
+      font-size:0.92rem;
+    }
+    .mini-list h3{
+      font-size:1rem;color:#111827;margin-bottom:0.35rem;
+    }
+    .mini-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.6rem}
+    .tag{
+      font-size:0.78rem;padding:0.18rem 0.65rem;border-radius:var(--r-full);
+      background:#fff;border:1px solid var(--border);color:#111827;
+    }
+
+    /* EUROPA */
+    .europe-block{
+      margin-top:1.25rem;
+      display:grid;
+      grid-template-columns:minmax(0,1fr);
+      gap:0.9rem;
+    }
+    .europe-media{
+      border-radius:var(--r-xl);
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:var(--soft);
+    }
+    .europe-media img{width:100%;height:auto}
+    .link-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.65rem}
+    .chip-link{
+      display:inline-flex;align-items:center;gap:0.35rem;
+      padding:0.35rem 0.85rem;border-radius:var(--r-full);
+      background:var(--soft);
+      border:1px solid var(--border);
+      font-weight:800;
+      color:#374151;
+      font-size:0.78rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+    .chip-link:hover{border-color:var(--accent);color:var(--accentDark)}
+
+    /* CARDS (Visione/Metodo/Progetti) */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:0.9rem;
+      margin-top:0.8rem;
+    }
+    @media (max-width: 960px){
+      .cards{grid-template-columns:minmax(0,1fr)}
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:var(--soft);
+      padding:0.85rem 0.95rem;
+      color:var(--muted);
+      font-size:0.92rem;
+    }
+    .card h3{
+      color:#111827;
+      font-size:0.98rem;
+      margin-bottom:0.25rem;
+      letter-spacing:-0.01em;
+    }
+
+    .bullets{
+      margin-top:0.5rem;
+      padding-left:1.1rem;
+      color:var(--muted);
+    }
+    .bullets li{margin:0.25rem 0}
+
+    .promise{
+      margin-top:0.8rem;
+      border-left:3px solid var(--accent);
+      background:#fff7ed;
+      border-radius:12px;
+      padding:0.7rem 0.85rem;
+      color:var(--accentDark);
+      font-weight:700;
+      font-size:0.92rem;
+    }
+
+    /* CTA */
+    .cta{
+      margin-top:1.25rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+      padding:1.1rem 1.25rem;
+      border-radius:var(--r-lg);
+      border:1px solid var(--border);
+      background:linear-gradient(90deg, rgba(234,88,12,0.08), rgba(245,158,11,0.06));
+    }
+    .cta p{color:#374151;font-weight:700}
+    .cta small{display:block;color:var(--muted);font-weight:600;margin-top:0.2rem}
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid var(--border);
+      background:#fff;
+      margin-top:2rem;
+      padding:1.3rem 0 1.7rem;
+    }
+    .footer-inner{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+      gap:0.9rem;font-size:0.82rem;color:var(--muted);
+    }
+    .footer-social{display:flex;flex-wrap:wrap;gap:0.5rem}
+    .footer-social a{
+      padding:0.26rem 0.75rem;border-radius:var(--r-full);
+      border:1px solid var(--border);background:var(--soft);
+      font-weight:700;
+    }
+
+    /* Anchor offset (se user clicca su sezioni) */
+    .anchor{scroll-margin-top:90px}
+  </style>
 </head>
 
 <body>
-  <header class="header">
-    <div class="wrap header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__name">Emir Alili</span>
-        <span class="brand__tag">Visione · Metodo · Azione</span>
-      </a>
+  <header>
+    <div class="container">
+      <nav class="nav" id="nav">
+        <a class="brand" href="index.html" aria-label="Home">
+          <div class="brand-avatar">
+            <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili" />
+          </div>
+          <div class="brand-text">
+            <strong>Emir Alili</strong>
+            <span>Visione · Metodo · Azione</span>
+          </div>
+        </a>
 
-      <button class="burger" type="button" aria-controls="nav" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+        <div class="nav-links" aria-label="Navigazione principale">
+          <a href="index.html" class="active">Home</a>
+          <a href="chi-sono.html">Chi sono</a>
+          <a href="cosa-faccio.html">Cosa faccio</a>
+          <a href="contatti.html">Contatti</a>
+        </div>
 
-      <nav id="nav" class="nav" aria-label="Navigazione principale">
-        <a class="nav__link is-active" href="index.html">Home</a>
-        <a class="nav__link" href="chi-sono.html">Chi sono</a>
-        <a class="nav__link" href="cosa-faccio.html">Cosa faccio</a>
-        <a class="nav__link nav__cta" href="contatti.html">Contatti</a>
+        <div class="nav-cta">
+          <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">Contatti</button>
+        </div>
+
+        <button class="nav-toggle" type="button" aria-label="Apri/chiudi menu" id="navToggle">☰</button>
       </nav>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
+  <div class="hero-wrap">
     <section class="hero">
-      <div class="wrap hero__grid">
-        <div class="hero__copy">
-          <div class="kicker">Sito personale</div>
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker"><span>Sito personale</span> senza slogan, con responsabilità</div>
 
-          <h1>Un Paese non cambia con gli slogan.<br> Camba con metodo e responsabilità.</h1>
+            <h1>
+              Un Paese non cambia con gli slogan.<br />
+              <span>Cambia con metodo e responsabilità.</span>
+            </h1>
 
-          <p class="lead">
-            Lavoro su progetti concreti tra politica, diaspora e impresa.
-            Qui trovi visione, piani e strumenti: senza fumo, senza teatro.
-          </p>
+            <p class="lead">
+              Lavoro su progetti concreti tra impresa, diaspora e politica.
+              Qui trovi visione, piani e strumenti: niente fumo, niente teatro.
+            </p>
 
-          <div class="actions">
-            <a class="btn btn--primary" href="#progetti">Vedi i progetti</a>
-            <a class="btn btn--ghost" href="#visione">Leggi la visione</a>
+            <div class="actions">
+              <button class="btn-primary" type="button" onclick="document.getElementById('progetti').scrollIntoView({behavior:'smooth'});">
+                Vedi i progetti
+              </button>
+              <button class="btn-outline" type="button" onclick="document.getElementById('visione').scrollIntoView({behavior:'smooth'});">
+                Leggi la visione
+              </button>
+            </div>
+
+            <div class="pill-row" style="margin-top:1rem;">
+              <span class="pill">Focus: Trasparenza · Merito · Risultati</span>
+              <span class="pill">Approccio: Numeri · Processo · Accountability</span>
+            </div>
           </div>
 
-          <div class="meta">
-            <div class="meta__row"><strong>Focus</strong> Trasparenza · Merito · Risultati</div>
-            <div class="meta__row"><strong>Approccio</strong> Numeri · Processo · Accountability</div>
+          <div class="hero-media" aria-label="Foto Emir in platea">
+            <img src="assets/img/emirplatea.jpeg" alt="Emir Alili – intervento pubblico" />
           </div>
-        </div>
-
-        <div class="hero__media">
-          <img src="assets/img/emirplatea.jpeg" alt="Emir Alili durante un intervento pubblico">
         </div>
       </div>
     </section>
+  </div>
 
-    <!-- EUROPA -->
-    <section class="section section--light">
-      <div class="wrap two">
-        <div>
+  <main>
+    <div class="container">
+
+      <!-- IN BREVE -->
+      <section class="panel anchor" id="breve">
+        <div class="section-head">
+          <div class="section-title"><span>//</span> In breve</div>
+          <h2>Impresa, diaspora, politica: una linea sola</h2>
+          <p>
+            Lavoro su tre linee che si incrociano: organizzazione e gestione reale, lettura critica dei conti pubblici,
+            e costruzione di strumenti politici verificabili. Se è fumo, lo chiudiamo. Se è concreto, lo misuriamo.
+          </p>
+        </div>
+
+        <div class="brief" style="margin-top:1rem;">
+          <div>
+            <p>
+              <strong>Impresa.</strong> Gestione operativa, processi, persone, qualità e numeri reali.
+              Il lavoro si giudica dai risultati, non dalle parole.
+            </p>
+            <p>
+              <strong>Politica.</strong> Critica documentata: bilanci, scelte e responsabilità.
+              Dove ci sono zone opache, entro con i dati.
+            </p>
+            <p>
+              <strong>Diaspora.</strong> La diaspora non è folklore. È capitale umano e finanziario.
+              Senza metodo resta solo nostalgia. Con metodo diventa forza.
+            </p>
+
+            <div class="link-row">
+              <button class="chip-link" type="button" onclick="window.location.href='chi-sono.html'">Percorso</button>
+              <button class="chip-link" type="button" onclick="window.location.href='cosa-faccio.html'">Cosa faccio</button>
+              <button class="chip-link" type="button" onclick="window.location.href='contatti.html'">Contatti</button>
+            </div>
+          </div>
+
+          <aside class="mini-list">
+            <h3>Focus operativo</h3>
+            <div>Trasparenza reale: dati accessibili e responsabilità tracciabili.</div>
+            <div style="margin-top:0.35rem;">Meritocrazia: fine di scorciatoie e raccomandazioni.</div>
+            <div style="margin-top:0.35rem;">Giustizia: regole uguali, applicate a tutti.</div>
+
+            <div class="mini-tags">
+              <span class="tag">Bilanci</span>
+              <span class="tag">Processi</span>
+              <span class="tag">Controllo</span>
+              <span class="tag">Risultati</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- EUROPA E CONTESTO -->
+      <section class="panel anchor" id="europa" style="margin-top:1.25rem;">
+        <div class="section-head">
+          <div class="section-title"><span>//</span> Europa e contesto</div>
           <h2>Una visione che guarda oltre i confini</h2>
-          <p class="p">
-            La politica locale non può essere isolata dal contesto europeo. Regole, fondi, vincoli e opportunità passano anche da lì.
-            Capirli è responsabilità, non decorazione.
+          <p>
+            La politica locale non può essere isolata dal contesto europeo. Regole, fondi, vincoli e opportunità
+            passano anche da lì. Capirli è responsabilità, non decorazione.
           </p>
-          <p class="p">
-            Il mio percorso nasce dalla realtà dei territori, ma si confronta anche con le istituzioni europee: perché è lì che spesso si definiscono
-            scelte che ricadono poi sui cittadini.
-          </p>
+        </div>
 
-          <div class="actions">
-            <a class="btn btn--ghost" href="chi-sono.html">Percorso</a>
-            <a class="btn btn--ghost" href="https://www.mdp-eu.com" target="_blank" rel="noopener">MDP</a>
+        <div class="europe-block">
+          <div class="europe-media" aria-label="Emir davanti al Parlamento Europeo">
+            <img src="assets/img/emireu.jpeg" alt="Emir Alili – davanti al Parlamento Europeo" />
+          </div>
+
+          <div style="color:var(--muted);font-size:0.95rem;">
+            Il mio percorso nasce dai territori, ma si confronta anche con le istituzioni europee:
+            spesso le scelte che ricadono sui cittadini si decidono prima altrove. Se non leggi gli strumenti,
+            subisci le conseguenze.
+            <div class="link-row">
+              <a class="chip-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+              <a class="chip-link" href="cosa-faccio.html">Percorso</a>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="mediaCard">
-          <img src="assets/img/emireu.jpeg" alt="Emir Alili davanti al Parlamento Europeo">
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIONE -->
-    <section class="section" id="visione">
-      <div class="wrap">
-        <div class="head">
-          <h2>Visione</h2>
-          <p class="muted">Non mi interessa “stare nel sistema”. Mi interessa cambiare le regole che lo rendono opaco e clientelare.</p>
+      <!-- VISIONE -->
+      <section class="panel anchor" id="visione" style="margin-top:1.25rem;">
+        <div class="section-head">
+          <div class="section-title"><span>//</span> Visione</div>
+          <h2>Regole uguali. Merito. Trasparenza.</h2>
+          <p>
+            Non mi interessa “stare nel sistema”. Mi interessa cambiare le regole che lo rendono opaco e clientelare.
+          </p>
         </div>
 
-        <div class="grid3">
-          <article class="card">
+        <div class="cards">
+          <div class="card">
             <h3>Trasparenza reale</h3>
-            <p>Decisioni pubbliche, dati accessibili, responsabilità tracciabili. Niente zone grigie.</p>
-          </article>
-
-          <article class="card">
+            Decisioni pubbliche, dati accessibili, responsabilità tracciabili. Niente zone grigie.
+          </div>
+          <div class="card">
             <h3>Meritocrazia</h3>
-            <p>Fine delle scorciatoie e delle raccomandazioni: ruoli e risorse devono seguire competenza e risultati.</p>
-          </article>
-
-          <article class="card">
+            Fine di scorciatoie e raccomandazioni: ruoli e risorse devono seguire competenza e risultati.
+          </div>
+          <div class="card">
             <h3>Giustizia e regole uguali</h3>
-            <p>Uno Stato serio non si misura dai discorsi, ma da come applica le regole a tutti.</p>
-          </article>
+            Uno Stato serio non si misura dai discorsi, ma da come applica le regole a tutti.
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- METODO -->
-    <section class="section section--light" id="metodo">
-      <div class="wrap two">
-        <div>
-          <h2>Metodo</h2>
-          <p class="p muted">Se non misuri, non governi. Se non rendi conto, non sei credibile.</p>
-          <ul class="list">
-            <li>Bilanci e macrovoci: dove finiscono davvero i soldi e perché</li>
-            <li>Processi verificabili: chi decide cosa, con quali criteri, con quali controlli</li>
-            <li>Obiettivi misurabili: tempi, risultati, indicatori e rendicontazione pubblica</li>
-          </ul>
+      <!-- METODO -->
+      <section class="panel anchor" id="metodo" style="margin-top:1.25rem;">
+        <div class="section-head">
+          <div class="section-title"><span>//</span> Metodo</div>
+          <h2>Se non misuri, non governi</h2>
+          <p>
+            Se non rendi conto, non sei credibile. Vale in azienda e vale nelle istituzioni.
+          </p>
         </div>
 
-        <aside class="callout">
-          <h3>Promessa operativa</h3>
-          <p>Dove MDP sarà presente, faremo opposizione documentata: bilanci, delibere, scelte e responsabilità. Nessuno spazio a opacità.</p>
-        </aside>
-      </div>
-    </section>
+        <ul class="bullets">
+          <li><strong>Bilanci e macrovoci</strong>: leggere dove finiscono davvero i soldi e perché.</li>
+          <li><strong>Processi verificabili</strong>: chi decide cosa, con quali criteri, con quali controlli.</li>
+          <li><strong>Obiettivi misurabili</strong>: tempi, risultati, indicatori e rendicontazione pubblica.</li>
+        </ul>
 
-    <!-- PROGETTI -->
-    <section class="section" id="progetti">
-      <div class="wrap">
-        <div class="head">
-          <h2>Progetti</h2>
-          <p class="muted">Politica, impresa, comunità: tre canali, un’unica linea. Risultati, non vetrina.</p>
+        <div class="promise">
+          Promessa operativa: dove MDP sarà presente, faremo opposizione documentata.
+          Bilanci, delibere, scelte e responsabilità. Nessuno spazio a opacità.
+        </div>
+      </section>
+
+      <!-- PROGETTI -->
+      <section class="panel anchor" id="progetti" style="margin-top:1.25rem;">
+        <div class="section-head">
+          <div class="section-title"><span>//</span> Progetti</div>
+          <h2>Politica, impresa, comunità: risultati, non vetrina</h2>
+          <p>
+            Tre canali, un’unica linea. Se è concreto, se ne discute. Se è fumo, si scarta.
+          </p>
         </div>
 
-        <div class="grid3">
-          <article class="card">
+        <div class="cards">
+          <div class="card" style="background:#fff;">
             <h3>MDP – Macedonian Diaspora Party</h3>
-            <p>Strumento politico per chi non accetta più un sistema chiuso. Programma, visione, adesioni.</p>
-            <a class="link" href="https://www.mdp-eu.com" target="_blank" rel="noopener">Vai al sito MDP</a>
-          </article>
+            Strumento politico per chi non accetta più un sistema chiuso.
+            Programma, visione, documenti e adesioni: struttura politica, non slogan.
+            <div style="margin-top:0.6rem;">
+              <a class="chip-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai al sito MDP</a>
+            </div>
+          </div>
 
-          <article class="card">
+          <div class="card" style="background:#fff;">
             <h3>Analisi e contenuti</h3>
-            <p>Letture critiche su economia, istituzioni, budget pubblici. Materiale utile, non chiacchiere.</p>
-            <a class="link" href="cosa-faccio.html">Approfondisci</a>
-          </article>
+            Letture critiche su economia, istituzioni e budget pubblici.
+            Materiale utile, non chiacchiere.
+            <div style="margin-top:0.6rem;">
+              <a class="chip-link" href="cosa-faccio.html">Approfondisci</a>
+            </div>
+          </div>
 
-          <article class="card">
-            <h3>Progetti imprenditoriali</h3>
-            <p>Gestione, processi, margini, organizzazione. Le cose reali insegnano più dei talk show.</p>
-            <a class="link" href="cosa-faccio.html">Percorso</a>
-          </article>
+          <div class="card" style="background:#fff;">
+            <h3>Impresa e gestione</h3>
+            Esperienza sul campo: gestione, processi, organizzazione e controllo operativo.
+            Le cose reali insegnano più dei talk show.
+            <div style="margin-top:0.6rem;">
+              <a class="chip-link" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Group</a>
+            </div>
+          </div>
         </div>
 
         <div class="cta">
           <div>
-            <strong>Vuoi parlare di un progetto o collaborare?</strong>
-            <div class="muted">Scrivimi. Se è concreto, se ne discute. Se è fumo, lo chiudiamo subito.</div>
+            <p>Vuoi parlare di un progetto o collaborare?</p>
+            <small>Scrivimi. Se è concreto, ne discutiamo. Se è fumo, risparmiamo tempo.</small>
           </div>
-          <div class="actions">
-            <a class="btn btn--primary" href="contatti.html">Contatti</a>
-            <a class="btn btn--ghost" href="chi-sono.html">Chi sono</a>
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+            <button class="btn-primary" type="button" onclick="window.location.href='contatti.html'">Contatti</button>
+            <button class="btn-outline" type="button" onclick="window.location.href='chi-sono.html'">Chi sono</button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <footer>
+        <div class="container">
+          <div class="footer-inner">
+            <div>
+              © <span id="year"></span> Emir Alili · Imprenditore · autore · leader politico
+            </div>
+            <div class="footer-social">
+              <a href="mailto:info@emiralili.it">Email</a>
+              <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <div>© <span id="y"></span> Emir Alili</div>
-      <div class="muted">Visione · Metodo · Azione</div>
-    </div>
-  </footer>
-
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector(".nav");
+    const nav = document.getElementById("nav");
+    const navToggle = document.getElementById("navToggle");
 
-    const setOpen = (open) => {
-      nav.classList.toggle("is-open", open);
-      burger.setAttribute("aria-expanded", open ? "true" : "false");
-      document.documentElement.classList.toggle("lock", open);
-      document.body.classList.toggle("lock", open);
-    };
-
-    burger.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
-    nav.addEventListener("click", (e) => {
-      if (e.target.closest("a")) setOpen(false);
+    navToggle.addEventListener("click", () => {
+      nav.classList.toggle("mobile-open");
     });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
+
+    // Chiude il menu mobile al click su un link (migliora UX)
+    document.querySelectorAll(".nav-links a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (nav.classList.contains("mobile-open")) nav.classList.remove("mobile-open");
+      });
     });
   </script>
 </body>
 </html>
+
