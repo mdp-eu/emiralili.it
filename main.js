@@ -1,46 +1,47 @@
 (() => {
-  // anno footer
-  document.querySelectorAll("[data-year]").forEach(el => {
-    el.textContent = new Date().getFullYear();
-  });
-
   const nav = document.querySelector(".site-nav");
   const openBtn = document.querySelector("[data-nav-toggle]");
-  const panel = document.querySelector("[data-nav-panel]");
+  const drawer = document.querySelector("[data-nav-panel]");
   const backdrop = document.querySelector("[data-nav-backdrop]");
   const closeBtn = document.querySelector("[data-nav-close]");
 
-  if (!nav || !openBtn || !panel || !backdrop) return;
+  if (!nav || !openBtn || !drawer || !backdrop) return;
 
-  const openMenu = () => {
-    nav.classList.add("is-open");
-    openBtn.setAttribute("aria-expanded", "true");
-    document.documentElement.classList.add("no-scroll");
-    document.body.classList.add("no-scroll");
+  const lock = () => {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
   };
 
-  const closeMenu = () => {
+  const unlock = () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  };
+
+  const open = () => {
+    nav.classList.add("is-open");
+    openBtn.setAttribute("aria-expanded", "true");
+    lock();
+  };
+
+  const close = () => {
     nav.classList.remove("is-open");
     openBtn.setAttribute("aria-expanded", "false");
-    document.documentElement.classList.remove("no-scroll");
-    document.body.classList.remove("no-scroll");
+    unlock();
   };
 
   openBtn.addEventListener("click", e => {
     e.preventDefault();
-    nav.classList.contains("is-open") ? closeMenu() : openMenu();
+    nav.classList.contains("is-open") ? close() : open();
   });
 
-  backdrop.addEventListener("click", closeMenu);
-  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+  backdrop.addEventListener("click", close);
+  if (closeBtn) closeBtn.addEventListener("click", close);
 
-  panel.addEventListener("click", e => {
-    if (e.target.closest("a")) closeMenu();
+  drawer.addEventListener("click", e => {
+    if (e.target.closest("a")) close();
   });
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && nav.classList.contains("is-open")) {
-      closeMenu();
-    }
+    if (e.key === "Escape" && nav.classList.contains("is-open")) close();
   });
 })();
