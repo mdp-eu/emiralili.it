@@ -1,4 +1,13 @@
+/* ==========================================================
+   EmirAlili.it — Modern Static Site Styles (global)
+   - Mobile-first
+   - No external libs
+   - Shared header/nav/footer + Home + Chi sono sections
+   ========================================================== */
+
+/* ---------- Design tokens ---------- */
 :root{
+  /* Palette (light premium) */
   --bg: #0b0f1a;
   --paper: #ffffff;
   --ink: #0b1020;
@@ -14,12 +23,22 @@
   --shadow: 0 20px 60px rgba(11,16,32,.12);
 
   --container: 1160px;
-  --s1: 8px; --s2: 12px; --s3: 16px; --s4: 24px; --s5: 32px; --s6: 48px; --s7: 72px;
 
+  /* Spacing system (8px) */
+  --s1: 8px;
+  --s2: 12px;
+  --s3: 16px;
+  --s4: 24px;
+  --s5: 32px;
+  --s6: 48px;
+  --s7: 72px;
+
+  /* Typography */
   --display: clamp(2.05rem, 4.2vw, 3.2rem);
   --h2: clamp(1.35rem, 2.3vw, 1.85rem);
 }
 
+/* ---------- Base ---------- */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -59,7 +78,12 @@ strong{color: rgba(11,16,32,.92)}
 
 html.no-scroll, body.no-scroll{overflow:hidden}
 
-/* Header */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important}
+}
+
+/* ---------- Header ---------- */
 .site-header{
   position: sticky;
   top: 0;
@@ -88,6 +112,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   color: #0b0f1a;
   font-weight: 900;
   letter-spacing: .08em;
+  flex: 0 0 auto;
 }
 .brand-name{display:flex; flex-direction:column; gap:2px; min-width:0}
 .brand-name strong{
@@ -104,7 +129,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   text-overflow:ellipsis;
 }
 
-/* Nav drawer */
+/* ---------- Nav drawer (mobile first) ---------- */
 .site-nav{position:relative; display:flex; align-items:center}
 .nav-btn{
   width: 42px; height: 42px;
@@ -183,6 +208,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   font-size: 1.35rem;
   line-height: 1;
 }
+
 .nav-list{
   list-style:none;
   padding: 4px;
@@ -214,11 +240,12 @@ html.no-scroll, body.no-scroll{overflow:hidden}
 .nav-actions{
   margin-top: auto;
   display:flex;
+  flex-wrap:wrap;
   gap: 10px;
   padding: 6px;
 }
 
-/* Buttons */
+/* ---------- Buttons ---------- */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -233,6 +260,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   text-transform: uppercase;
   font-size: .78rem;
   cursor:pointer;
+  user-select:none;
 }
 .btn-primary{
   background: linear-gradient(135deg, rgba(255,77,46,1), rgba(255,176,0,1));
@@ -242,7 +270,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
 .btn-primary:hover{filter: brightness(1.02)}
 .btn-ghost:hover{background: rgba(11,16,32,.04)}
 
-/* Shared headings */
+/* ---------- Shared typography blocks ---------- */
 .overline{
   margin: 0 0 10px;
   font-weight: 900;
@@ -269,6 +297,29 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   color: rgba(11,16,32,.72);
   font-size: 1.05rem;
 }
+.section{padding: var(--s6) 0}
+.section-head{margin-bottom: 18px}
+.section-kicker{
+  margin: 0 0 8px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: .75rem;
+  color: rgba(11,16,32,.52);
+}
+.section-title{
+  margin: 0 0 10px;
+  font-size: var(--h2);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.section-subtitle{
+  margin: 0;
+  max-width: 72ch;
+  color: rgba(11,16,32,.66);
+}
+
+/* ---------- Chips / Quick facts ---------- */
 .chips{display:flex; flex-wrap:wrap; gap: 8px; margin: 0 0 18px}
 .chip{
   padding: 8px 12px;
@@ -306,7 +357,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   color: rgba(11,16,32,.80);
 }
 
-/* Hero media */
+/* ---------- Hero media card ---------- */
 .hero-media{
   margin:0;
   border-radius: calc(var(--radius) + 8px);
@@ -328,30 +379,53 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   border-top: 1px solid rgba(11,16,32,.10);
 }
 
-/* Sections */
-.section{padding: var(--s6) 0}
-.section-head{margin-bottom: 18px}
-.section-kicker{
-  margin: 0 0 8px;
-  font-weight: 900;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  font-size: .75rem;
-  color: rgba(11,16,32,.52);
+/* ---------- HOME hero wrapper ---------- */
+.home-hero{
+  padding: var(--s7) 0 var(--s6);
 }
-.section-title{
-  margin: 0 0 10px;
-  font-size: var(--h2);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+.home-hero-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: var(--s5);
+  align-items: start;
 }
-.section-subtitle{
-  margin: 0;
-  max-width: 72ch;
-  color: rgba(11,16,32,.66);
+@media (min-width: 980px){
+  .home-hero-grid{grid-template-columns: 1.2fr .9fr; align-items:center}
 }
 
-/* Features */
+/* ---------- Band section (home) ---------- */
+.home-band{padding: 0 0 var(--s7)}
+.band-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+@media (min-width: 980px){
+  .band-grid{grid-template-columns: 1.2fr .9fr}
+}
+.band-card{
+  border-radius: calc(var(--radius) + 8px);
+  border: 1px solid rgba(11,16,32,.12);
+  background: rgba(255,255,255,.85);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+.band-media{
+  border-radius: calc(var(--radius) + 8px);
+  overflow:hidden;
+  border: 1px solid rgba(11,16,32,.12);
+  box-shadow: 0 14px 40px rgba(11,16,32,.10);
+  background: #fff;
+}
+.band-media img{
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+}
+
+/* ---------- Features (used on Home + other pages) ---------- */
 .features{display:flex; flex-direction:column; gap: 12px}
 .feature{
   display:grid;
@@ -406,55 +480,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   color: rgba(11,16,32,.14);
 }
 
-/* HOME hero wrapper */
-.home-hero{
-  padding: var(--s7) 0 var(--s6);
-}
-.home-hero-grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: var(--s5);
-  align-items: start;
-}
-@media (min-width: 980px){
-  .home-hero-grid{grid-template-columns: 1.2fr .9fr; align-items:center}
-}
-
-/* Band section (immagine + testo) */
-.home-band{
-  padding: 0 0 var(--s7);
-}
-.band-grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  align-items: stretch;
-}
-@media (min-width: 980px){
-  .band-grid{grid-template-columns: 1.2fr .9fr}
-}
-.band-card{
-  border-radius: calc(var(--radius) + 8px);
-  border: 1px solid rgba(11,16,32,.12);
-  background: rgba(255,255,255,.85);
-  box-shadow: var(--shadow);
-  padding: 18px;
-}
-.band-media{
-  border-radius: calc(var(--radius) + 8px);
-  overflow:hidden;
-  border: 1px solid rgba(11,16,32,.12);
-  box-shadow: 0 14px 40px rgba(11,16,32,.10);
-  background: #fff;
-}
-.band-media img{
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  object-fit: cover;
-}
-
-/* Bullets (manifesto) */
+/* ---------- Bullets list ---------- */
 .bullets{
   margin: 14px 0 0;
   padding: 0;
@@ -465,7 +491,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
 }
 .bullets li{color: rgba(11,16,32,.70)}
 
-/* Masonry gallery */
+/* ---------- Masonry gallery (Home + Chi sono) ---------- */
 .masonry{
   display:grid;
   grid-template-columns: 1fr;
@@ -500,7 +526,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
   border-top: 1px solid rgba(11,16,32,.10);
 }
 
-/* CTA */
+/* ---------- CTA card ---------- */
 .cta-card{
   border-radius: calc(var(--radius) + 8px);
   border: 1px solid rgba(11,16,32,.12);
@@ -529,7 +555,7 @@ html.no-scroll, body.no-scroll{overflow:hidden}
 .muted{color: rgba(11,16,32,.62); margin:0}
 .cta-actions{display:flex; flex-wrap:wrap; gap: 10px}
 
-/* Footer */
+/* ---------- Footer ---------- */
 .site-footer{
   border-top: 1px solid var(--line);
   background: rgba(255,255,255,.65);
@@ -558,7 +584,190 @@ html.no-scroll, body.no-scroll{overflow:hidden}
 }
 .footer-links a:hover{background: rgba(11,16,32,.04)}
 
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *{transition:none !important}
+/* ==========================================================
+   Chi sono — page grid + TOC + editorial (YOUR BLOCK integrated)
+   ========================================================== */
+
+/* ===== Chi sono (page grid + TOC + editorial) ===== */
+
+.page-body{padding: var(--s4) 0 var(--s7)}
+.page-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: var(--s5);
+  align-items:start;
 }
+@media (min-width: 980px){
+  .page-grid{grid-template-columns: 300px 1fr}
+}
+.content{display:flex; flex-direction:column; gap: var(--s6)}
+
+/* TOC */
+.toc{position:relative}
+.toc-card{
+  border-radius: var(--radius);
+  border: 1px solid rgba(11,16,32,.12);
+  background: rgba(255,255,255,.75);
+  box-shadow: 0 10px 30px rgba(11,16,32,.08);
+  padding: 14px;
+}
+@media (min-width: 980px){
+  .toc-card{position: sticky; top: 86px;}
+}
+.toc-title{
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  color: rgba(11,16,32,.60);
+  margin-bottom: 10px;
+}
+.toc-links{display:flex; flex-direction:column; gap: 8px}
+.toc-links a{
+  padding: 10px 12px;
+  border-radius: 14px;
+  text-decoration:none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(11,16,32,.78);
+  font-weight: 650;
+}
+.toc-links a:hover{
+  background: rgba(11,16,32,.04);
+  border-color: rgba(11,16,32,.08);
+}
+.toc-social{
+  margin-top: 12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 8px;
+  border-top: 1px solid rgba(11,16,32,.08);
+  padding-top: 12px;
+}
+.mini-link{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(11,16,32,.10);
+  background: rgba(255,255,255,.7);
+  text-decoration:none;
+  font-weight: 750;
+  font-size: .86rem;
+  color: rgba(11,16,32,.72);
+}
+.mini-link:hover{background: rgba(11,16,32,.04)}
+
+/* Editorial split */
+.editorial{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: var(--s4);
+}
+@media (min-width: 980px){
+  .editorial{grid-template-columns: 1.2fr .8fr}
+}
+.editorial-main{
+  border-radius: var(--radius);
+  border: 1px solid rgba(11,16,32,.12);
+  background: rgba(255,255,255,.82);
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(11,16,32,.06);
+}
+.editorial-main p{margin:0 0 12px; color: rgba(11,16,32,.74)}
+.editorial-main p:last-child{margin-bottom:0}
+.editorial-rail{display:flex; flex-direction:column; gap: 12px}
+
+.pull{
+  border-radius: var(--radius);
+  border: 1px solid rgba(11,16,32,.12);
+  background: rgba(255,255,255,.70);
+  padding: 14px;
+}
+.pull-title{
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .76rem;
+  color: rgba(11,16,32,.58);
+  margin-bottom: 8px;
+}
+.pull p{margin:0; color: rgba(11,16,32,.70)}
+
+.tags{display:flex; flex-wrap:wrap; gap: 8px}
+.tag{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(11,16,32,.10);
+  background: rgba(255,255,255,.78);
+  font-size: .88rem;
+  color: rgba(11,16,32,.70);
+}
+.quote{
+  margin:0;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,77,46,.22);
+  background: linear-gradient(180deg, rgba(255,77,46,.10), rgba(255,176,0,.06));
+  padding: 14px;
+  color: rgba(11,16,32,.70);
+  font-weight: 650;
+}
+
+/* Timeline milestones */
+.milestones{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+.mile{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(11,16,32,.12);
+  background: rgba(255,255,255,.80);
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(11,16,32,.06);
+}
+@media (min-width: 780px){
+  .mile{grid-template-columns: 160px 1fr; align-items:start}
+}
+.mile-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(11,16,32,.04);
+  border: 1px solid rgba(11,16,32,.10);
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-size: .72rem;
+  color: rgba(11,16,32,.62);
+}
+.mile-body h3{margin: 0 0 6px; font-size: 1.05rem}
+.mile-body p{margin:0; color: rgba(11,16,32,.70)}
+
+/* Manifesto */
+.manifesto{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 980px){
+  .manifesto{grid-template-columns: 1.2fr .8fr}
+}
+.manifesto-main,
+.manifesto-aside{
+  border-radius: var(--radius);
+  border: 1px solid rgba(11,16,32,.12);
+  background: rgba(255,255,255,.82);
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(11,16,32,.06);
+}
+.manifesto-main p{margin:0 0 12px; color: rgba(11,16,32,.72)}
+.manifesto-aside p{margin:0 0 12px; color: rgba(11,16,32,.72)}
+.manifesto-aside p:last-child{margin-bottom:0}
