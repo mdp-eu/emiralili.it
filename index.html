@@ -4,199 +4,142 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Emir Alili – Sito ufficiale</title>
-  <meta name="description" content="Emir Alili: impresa, diaspora, politica. Metodo. Numeri. Responsabilità." />
-  <link rel="canonical" href="https://emiralili.it/" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Emir Alili – Sito ufficiale" />
-  <meta property="og:description" content="Metodo. Numeri. Responsabilità. Impresa, diaspora, politica." />
-  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
-  <meta property="og:url" content="https://emiralili.it/" />
-
-  <link rel="stylesheet" href="style.css?v=3" />
-  <script defer src="main.js?v=3"></script>
+  <meta name="description" content="Emir Alili. Impresa, diaspora, politica. Visione, aggiornamenti, contatti." />
+  <link rel="stylesheet" href="style.css?v=7" />
+  <script defer src="main.js?v=7"></script>
 </head>
+
 <body>
+  <!-- TOP BAR -->
+  <header class="topbar" data-topbar>
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html" aria-label="Home Emir Alili">
+        <span class="brand__name">EMIR ALILI</span>
+      </a>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Vai alla home">
-      <span class="brand-mark" aria-hidden="true">EA</span>
-      <span class="brand-name">
-        <strong>Emir Alili</strong>
-        <span>Imprenditore · autore · leader politico</span>
-      </span>
-    </a>
+      <a class="topbar__center" href="#sostieni">SOSTIENI</a>
 
-    <button class="nav-btn" type="button"
-      aria-label="Apri menu"
-      aria-expanded="false"
-      data-menu-btn>
-      <span class="nav-icon" aria-hidden="true"></span>
-    </button>
-  </div>
-</header>
+      <button class="burger" type="button" aria-label="Apri menu" aria-expanded="false" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-<!-- Backdrop + Drawer -->
-<div class="nav-backdrop" data-menu-backdrop aria-hidden="true"></div>
+    <!-- MENU OVERLAY -->
+    <div class="menu" data-menu aria-hidden="true">
+      <nav class="menu__panel" aria-label="Menu principale">
+        <a class="menu__link" href="chi-sono.html">Chi sono</a>
+        <a class="menu__link" href="cosa-faccio.html">Cosa faccio</a>
+        <a class="menu__link" href="news.html">News</a>
+        <a class="menu__link" href="contatti.html">Contatti</a>
+        <div class="menu__sep"></div>
+        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+      </nav>
+    </div>
+  </header>
 
-<nav class="nav-drawer" data-menu-drawer aria-label="Menu">
-  <div class="nav-head">
-    <div class="nav-title">Menu</div>
-    <button class="nav-close" type="button" aria-label="Chiudi menu" data-menu-close>×</button>
-  </div>
+  <!-- HERO FULL BLEED -->
+  <main>
+    <section class="hero">
+      <div class="hero__media">
+        <!-- IMPORTANTE: usa un file SENZA spazi e con la stessa estensione reale -->
+        <img
+          src="assets/img/emir-primo-piano.jpg?v=7"
+          alt="Emir Alili – ritratto"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hero__shade" aria-hidden="true"></div>
+      </div>
 
-  <ul class="nav-list">
-    <li><a class="nav-link is-active" href="index.html" aria-current="page">Home</a></li>
-    <li><a class="nav-link" href="chi-sono.html">Chi sono</a></li>
-    <li><a class="nav-link" href="cosa-faccio.html">Cosa faccio</a></li>
-    <li><a class="nav-link" href="contatti.html">Contatti</a></li>
-  </ul>
+      <div class="wrap hero__content">
+        <p class="hero__kicker">SITO UFFICIALE</p>
+        <h1 class="hero__title">
+          Metodo, responsabilità, risultati.
+          <span>Niente teatro.</span>
+        </h1>
 
-  <div class="nav-actions">
-    <a class="btn btn-primary" href="contatti.html">Scrivimi</a>
-    <a class="btn btn-ghost" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-  </div>
-</nav>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">
+            Visione dello Stato
+          </a>
+          <a class="btn btn--ghost" href="chi-sono.html">Chi sono</a>
+        </div>
+      </div>
+    </section>
 
-<main>
-  <!-- HERO -->
-  <section class="section">
-    <div class="container hero-grid">
-      <div>
-        <p class="overline">Sito ufficiale</p>
-        <h1 class="display">Metodo. Numeri. <span class="accent">Responsabilità.</span></h1>
-        <p class="lead">
-          Impresa, progetti sociali e politica della diaspora: niente slogan.
-          Qui trovi percorso, visione e collegamenti ufficiali.
+    <!-- VIDEO / FEATURE FULL BLEED -->
+    <section class="feature">
+      <div class="feature__media">
+        <img
+          src="assets/img/emir-platea.jpeg?v=7"
+          alt="Intervento pubblico"
+          loading="lazy"
+          decoding="async"
+        />
+        <button class="play" type="button" aria-label="Guarda video" data-play>
+          ▶
+        </button>
+      </div>
+    </section>
+
+    <!-- BLOCCO CONTENUTO MINIMALE -->
+    <section class="content">
+      <div class="wrap content__inner">
+        <div class="content__block">
+          <h2>Una linea sola</h2>
+          <p>
+            Impresa, diaspora, politica. Non sono tre vite diverse. È lo stesso criterio applicato a tre campi:
+            responsabilità diretta, scelte verificabili, risultati misurabili.
+          </p>
+        </div>
+
+        <div class="content__grid">
+          <a class="tile" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">
+            <span class="tile__title">Documenti</span>
+            <span class="tile__text">Visione e riforme in chiaro.</span>
+          </a>
+
+          <a class="tile" href="news.html">
+            <span class="tile__title">Aggiornamenti</span>
+            <span class="tile__text">Interventi, comunicazioni, analisi.</span>
+          </a>
+
+          <a class="tile" href="contatti.html">
+            <span class="tile__title">Contatti</span>
+            <span class="tile__text">Canali ufficiali e diretti.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEZIONE SOSTIENI -->
+    <section id="sostieni" class="support">
+      <div class="wrap support__inner">
+        <h2>Sostieni</h2>
+        <p>
+          Se vuoi aiutare a far crescere il progetto: collaborazione, territorio, comunicazione, competenze.
+          Qui si lavora, non si tifa.
         </p>
-
-        <div class="chips" aria-label="Focus principali">
-          <span class="chip">Impresa · EA Group / EA Cleaning</span>
-          <span class="chip">Diaspora · rete e rappresentanza</span>
-          <span class="chip">Politica · Macedonian Diaspora Party (MDP)</span>
-        </div>
-
-        <div class="actions">
-          <a class="btn btn-primary" href="chi-sono.html">Leggi “Chi sono”</a>
-          <a class="btn btn-ghost" href="contatti.html">Contatti</a>
-        </div>
+        <a class="btn btn--primary" href="contatti.html">Scrivimi</a>
       </div>
+    </section>
+  </main>
 
-      <figure class="media media--hero">
-        <img src="assets/img/emirplatea.jpeg" alt="Emir Alili durante un intervento pubblico">
-      </figure>
-    </div>
-  </section>
-
-  <!-- VISIONE -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Visione</p>
-      <h2 class="section-title">Regole uguali. Merito. Trasparenza.</h2>
-      <p class="section-subtitle">
-        Ho costruito aziende partendo da zero e conosco cosa significa prendere decisioni con conseguenze reali.
-        Per questo parlo di politica e di Stato solo in un modo: con metodo, dati verificabili e responsabilità personale.
-      </p>
-
-      <div class="gallery" style="margin-top:16px;">
-        <figure class="card">
-          <img src="assets/img/Emir%20ufficio.jpg" alt="Emir Alili in ufficio">
-          <figcaption><strong>Trasparenza</strong> — processi chiari, obiettivi misurabili, risultati verificabili.</figcaption>
-        </figure>
-
-        <figure class="card">
-          <img src="assets/img/Emir%20formatore.jpg" alt="Emir Alili in un contesto formativo">
-          <figcaption><strong>Merito</strong> — opportunità basate su competenze e lavoro, non su scorciatoie.</figcaption>
-        </figure>
-
-        <figure class="card">
-          <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili – ritratto">
-          <figcaption><strong>Responsabilità</strong> — chi decide risponde, senza scaricare colpe e senza alibi.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROGETTI -->
-  <section class="section" id="progetti">
-    <div class="container">
-      <p class="section-kicker">Progetti</p>
-      <h2 class="section-title">Risultati, non vetrina</h2>
-      <p class="section-subtitle">
-        Tre linee tengono insieme il mio lavoro: impresa, politica della diaspora e strumenti concreti (libri/progetti sociali).
-      </p>
-
-      <div class="gallery" style="margin-top:16px;">
-        <!-- MDP: logo -->
-        <figure class="card card--logo">
-          <img src="assets/img/mdp-logo.jpg" alt="Logo Macedonian Diaspora Party (MDP)">
-          <figcaption>
-            <strong>Macedonian Diaspora Party (MDP)</strong><br>
-            Un progetto politico nato dalla diaspora: regole chiare, documenti pubblici, controllo degli eletti.
-            <br><a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai al sito MDP</a>
-          </figcaption>
-        </figure>
-
-        <!-- EA: logo -->
-        <figure class="card card--logo">
-          <img src="assets/img/LogoEACleaning.png" alt="Logo EA Cleaning">
-          <figcaption>
-            <strong>EA Group / EA Cleaning</strong><br>
-            Aziende costruite su processi, persone e numeri reali: qualità del servizio e responsabilità verso chi lavora.
-            <br><a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">Vai a EA Group</a>
-          </figcaption>
-        </figure>
-
-        <!-- Libro: copertina + link Amazon (con fallback .jpg) -->
-      <figure class="card card--book">
-  <picture>
-    <source srcset="assets/img/copertinalibro.jpeg?v=3" type="image/jpeg">
-    <img
-      src="assets/img/copertinalibro.jpg?v=3"
-      alt="Copertina del libro di Emir Alili"
-      loading="lazy"
-      decoding="async">
-  </picture>
-
-  <figcaption>
-    <strong>Libro</strong><br>
-    Esperienza vissuta trasformata in strumenti utili: orientamento, identità, comunità, partecipazione.
-    <br>
-    <a href="https://amzn.eu/d/1J9BqVL" target="_blank" rel="noopener noreferrer">
-      Acquista su Amazon
-    </a>
-  </figcaption>
-</figure>
-
- 
-  <!-- CTA -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Contatti</p>
-      <h2 class="section-title">Hai un progetto concreto?</h2>
-      <p class="section-subtitle">
-        Per collaborazioni, media o iniziative: poche righe chiare e si parte.
-      </p>
-
-      <div class="actions" style="margin-top:16px;">
-        <a class="btn btn-primary" href="contatti.html">Vai ai contatti</a>
-        <a class="btn btn-ghost" href="mailto:info@emiralili.it">Email diretta</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <p>© <span data-year></span> Emir Alili.</p>
-    <div class="footer-links">
-      <a href="mailto:info@emiralili.it">Email</a>
-      <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-      <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </div>
+  <!-- BOTTOM BAR tipo Renzi -->
+  <div class="bottombar">
+    <a class="bottombar__btn" href="#sostieni">Sostieni</a>
+    <a class="bottombar__btn" href="news.html">Ascolta</a>
   </div>
-</footer>
 
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p>© <span data-year></span> Emir Alili.</p>
+      <div class="footer__links">
+        <a href="mailto:info@emiralili.it">Email</a>
+        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
