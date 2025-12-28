@@ -1,111 +1,46 @@
 (() => {
-  // Footer year
-  document.querySelectorAll("[data-year]").forEach((el) => {
-    el.textContent = String(new Date().getFullYear());
+  // aggiorna anno footer
+  document.querySelectorAll("[data-year]").forEach(el => {
+    el.textContent = new Date().getFullYear();
   });
 
-  // NAV (robusto)
-  const navRoot = document.querySelector(".site-nav");
-  const btnOpen = document.querySelector("[data-nav-toggle]");
+  const nav = document.querySelector(".site-nav");
+  const openBtn = document.querySelector("[data-nav-toggle]");
   const panel = document.querySelector("[data-nav-panel]");
   const backdrop = document.querySelector("[data-nav-backdrop]");
-  const btnClose = document.querySelector("[data-nav-close]");
+  const closeBtn = document.querySelector("[data-nav-close]");
 
-  // Se manca qualcosa, esci senza errori
-  if (!navRoot || !btnOpen || !panel || !backdrop) {
-    // Debug rapido (non rompe il sito)
-    console.warn("[nav] elementi mancanti:", {
-      navRoot: !!navRoot,
-      btnOpen: !!btnOpen,
-      panel: !!panel,
-      backdrop: !!backdrop,
-      btnClose: !!btnClose
-    });
-    return;
-  }
+  if (!nav || !openBtn || !panel || !backdrop) return;
 
-  const focusableSel = [
-    'a[href]',
-    'button:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])'
-  ].join(",");
-
-  const isOpen = () => navRoot.classList.contains("is-open");
-  const focusables = () => Array.from(panel.querySelectorAll(focusableSel));
-
-  const lockScroll = (lock) => {
-    document.documentElement.classList.toggle("no-scroll", lock);
-    document.body.classList.toggle("no-scroll", lock);
+  const openMenu = () => {
+    nav.classList.add("is-open");
+    openBtn.setAttribute("aria-expanded", "true");
+    document.documentElement.classList.add("no-scroll");
+    document.body.classList.add("no-scroll");
   };
 
-  const open = () => {
-    if (isOpen()) return;
-    navRoot.classList.add("is-open");
-    btnOpen.setAttribute("aria-expanded", "true");
-    lockScroll(true);
-
-    // focus primo elemento del drawer (accessibilità)
-    const f = focusables();
-    if (f[0]) f[0].focus({ preventScroll: true });
+  const closeMenu = () => {
+    nav.classList.remove("is-open");
+    openBtn.setAttribute("aria-expanded", "false");
+    document.documentElement.classList.remove("no-scroll");
+    document.body.classList.remove("no-scroll");
   };
 
-  const close = () => {
-    if (!isOpen()) return;
-    navRoot.classList.remove("is-open");
-    btnOpen.setAttribute("aria-expanded", "false");
-    lockScroll(false);
-
-    // ritorna focus al bottone hamburger
-    btnOpen.focus({ preventScroll: true });
-  };
-
-  btnOpen.addEventListener("click", (e) => {
+  openBtn.addEventListener("click", e => {
     e.preventDefault();
-    isOpen() ? close() : open();
+    nav.classList.contains("is-open") ? closeMenu() : openMenu();
   });
 
-  if (btnClose) {
-    btnClose.addEventListener("click", (e) => {
-      e.preventDefault();
-      close();
-    });
-  }
+  backdrop.addEventListener("click", closeMenu);
+  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
 
-  backdrop.addEventListener("click", close);
-
-  // Chiudi su click link
-  panel.addEventListener("click", (e) => {
-    const a = e.target.closest("a");
-    if (a) close();
+  panel.addEventListener("click", e => {
+    if (e.target.closest("a")) closeMenu();
   });
 
-  // Chiudi su ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
-
-  // Focus trap quando aperto
-  document.addEventListener("keydown", (e) => {
-    if (!isOpen() || e.key !== "Tab") return;
-
-    const f = focusables();
-    if (!f.length) return;
-
-    const first = f[0];
-    const last = f[f.length - 1];
-
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
+      closeMenu();
     }
-  });
-
-  // Sicurezza: se ridimensioni a desktop con menu aperto, chiudi.
-  window.addEventListener("resize", () => {
-    // se supera 900px, in genere non serve drawer
-    if (window.innerWidth >= 900) close();
   });
 })();
