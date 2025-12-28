@@ -3,129 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emir Alili – Sito ufficiale</title>
-  <meta name="description" content="Emir Alili. Impresa, diaspora, politica. Visione, aggiornamenti, contatti." />
+  <title>Emir Alili — Sito ufficiale</title>
+  <meta name="description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
+  <link rel="canonical" href="https://emiralili.it/" />
 
-  <link rel="stylesheet" href="style.css?v=9" />
-  <script defer src="main.js?v=9"></script>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Emir Alili — Sito ufficiale" />
+  <meta property="og:description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
+  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
+
+  <link rel="stylesheet" href="style.css?v=20" />
+  <script defer src="main.js?v=20"></script>
 </head>
 
 <body>
-  <!-- TOP BAR -->
-  <header class="topbar" data-topbar>
-    <div class="wrap topbar__inner">
-      <a class="brand" href="index.html" aria-label="Home Emir Alili">
-        <span class="brand__name">EMIR ALILI</span>
-      </a>
 
-      <a class="topbar__center" href="#sostieni">SOSTIENI</a>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Vai alla home">EMIR ALILI</a>
 
-      <button class="burger" type="button" aria-label="Apri menu" aria-expanded="false" data-burger>
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+      <div class="header__actions">
+        <a class="header__link" href="sostieni.html">SOSTIENI</a>
 
-    <!-- MENU OVERLAY -->
-    <div class="menu" data-menu aria-hidden="true">
-      <nav class="menu__panel" aria-label="Menu principale">
-        <a class="menu__link" href="chi-sono.html">Chi sono</a>
-        <a class="menu__link" href="cosa-faccio.html">Cosa faccio</a>
-        <a class="menu__link" href="news.html">News</a>
-        <a class="menu__link" href="contatti.html">Contatti</a>
-        <div class="menu__sep"></div>
-        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
-      </nav>
+        <button class="burger" type="button"
+          aria-label="Apri menu"
+          aria-expanded="false"
+          data-burger>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- HERO FULL BLEED -->
-  <main>
-    <section class="hero">
-      <div class="hero__media">
-        <img
-          src="assets/img/emirplatea.jpeg?v=9"
-          alt="Emir Alili – intervento pubblico"
-          loading="eager"
-          decoding="async"
-        />
-        <div class="hero__shade" aria-hidden="true"></div>
-      </div>
-
-      <div class="wrap hero__content">
-        <p class="hero__kicker">SITO UFFICIALE</p>
-
-        <h1 class="hero__title">
-          Metodo, responsabilità, risultati.
-          <span>Niente teatro.</span>
-        </h1>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">
-            Visione dello Stato
-          </a>
-          <a class="btn btn--ghost" href="chi-sono.html">Chi sono</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTENUTO -->
-    <section class="content">
-      <div class="wrap content__inner">
-        <div class="content__block">
-          <h2>Una linea sola</h2>
-          <p>
-            Impresa, diaspora, politica. Non sono tre vite diverse. È lo stesso criterio applicato a tre campi:
-            responsabilità diretta, scelte verificabili, risultati misurabili.
-          </p>
-        </div>
-
-        <div class="content__grid">
-          <a class="tile" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">
-            <span class="tile__title">Documenti</span>
-            <span class="tile__text">Visione e riforme in chiaro.</span>
-          </a>
-
-          <a class="tile" href="news.html">
-            <span class="tile__title">Aggiornamenti</span>
-            <span class="tile__text">Interventi, comunicazioni, analisi.</span>
-          </a>
-
-          <a class="tile" href="contatti.html">
-            <span class="tile__title">Contatti</span>
-            <span class="tile__text">Canali ufficiali e diretti.</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOSTIENI -->
-    <section id="sostieni" class="support">
-      <div class="wrap support__inner">
-        <h2>Sostieni</h2>
-        <p>
-          Se vuoi aiutare a far crescere il progetto: collaborazione, territorio, comunicazione, competenze.
-          Qui si lavora, non si tifa.
-        </p>
-        <a class="btn btn--primary" href="contatti.html">Scrivimi</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- BOTTOM BAR -->
-  <div class="bottombar" role="navigation" aria-label="Azioni rapide">
-    <a class="bottombar__btn" href="#sostieni">Sostieni</a>
-    <a class="bottombar__btn" href="news.html">Ascolta</a>
+  <!-- MENU OVERLAY -->
+  <div class="menu" data-menu aria-hidden="true">
+    <div class="menu__panel" role="dialog" aria-label="Menu principale">
+      <nav class="menu__nav">
+        <a href="chi-sono.html">Chi sono</a>
+        <a href="cosa-faccio.html">Cosa faccio</a>
+        <a href="news.html">News</a>
+        <a href="contatti.html">Contatti</a>
+        <hr class="menu__hr">
+        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+      </nav>
+    </div>
   </div>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <p>© <span data-year></span> Emir Alili.</p>
-      <div class="footer__links">
-        <a href="mailto:info@emiralili.it">Email</a>
-        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <!-- HERO -->
+  <main class="hero">
+    <div class="container hero__content">
+      <div class="hero__label">SITO UFFICIALE</div>
+
+      <h1 class="hero__title">
+        Metodo, responsabilità,<br>
+        risultati. <span>Niente teatro.</span>
+      </h1>
+
+      <p class="hero__text">
+        Una linea sola: impresa, diaspora, politica. Stessa regola ovunque:
+        numeri chiari, scelte verificabili, responsabilità personale.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn-primary" href="visione-dello-stato.html">Visione dello Stato</a>
+        <a class="btn-ghost" href="chi-sono.html">Chi sono</a>
       </div>
     </div>
-  </footer>
+
+    <!-- bottom bar mobile -->
+    <div class="hero__bottom">
+      <a href="sostieni.html">SOSTIENI</a>
+      <a href="#video" class="js-scroll-video">ASCOLTA</a>
+    </div>
+  </main>
+
+  <!-- VIDEO SECTION -->
+  <section class="section" id="video">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__kicker">IN PRIMO PIANO</div>
+        <h2 class="section__title">Un messaggio diretto</h2>
+        <p class="section__text">
+          Aggiornamenti, interventi pubblici, visione e proposte: qui trovi i contenuti principali in formato video.
+        </p>
+      </div>
+
+      <!-- OPZIONE A: YouTube/Vimeo (consigliata) -->
+      <div class="video-card">
+        <div class="video-frame">
+          <!-- Sostituisci l'URL con il tuo video -->
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+            title="Video ufficiale"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="video-meta">
+          <div class="video-meta__title">Titolo video</div>
+          <div class="video-meta__desc">
+            Due righe secche: di cosa parli, cosa chiedi, cosa devono fare.
+          </div>
+          <div class="video-meta__actions">
+            <a class="btn-primary btn-small" href="news.html">Tutti gli aggiornamenti</a>
+            <a class="btn-ghost btn-small" href="contatti.html">Contattami</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPZIONE B: Video locale MP4 (se vuoi caricare file nel repo)
+      <div class="video-card">
+        <div class="video-frame">
+          <video controls preload="metadata" poster="assets/img/emir-og-cover.jpeg">
+            <source src="assets/video/video-ufficiale.mp4" type="video/mp4" />
+            Il tuo browser non supporta il video.
+          </video>
+        </div>
+        <div class="video-meta">
+          <div class="video-meta__title">Titolo video</div>
+          <div class="video-meta__desc">Descrizione breve.</div>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </section>
+
 </body>
 </html>
