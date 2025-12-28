@@ -512,3 +512,60 @@ a {
   background: rgba(15,23,42,.06);
   transform: translateY(-1px);
 }
+/* =========================
+   FOOTER — FIX CENTRATURA
+========================= */
+
+.site-footer {
+  border-top: 1px solid rgba(15,23,42,.08);
+  background: #ffffff;
+  padding: 28px 0 34px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* testo copyright */
+.footer-copy {
+  font-size: .9rem;
+  color: #475569;
+  text-align: center;
+}
+
+/* social centrali veri */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+/* bottoni social */
+.social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,.12);
+  background: rgba(15,23,42,.03);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: .15s ease;
+}
+
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #0f172a;
+}
+
+.social-btn:hover {
+  border-color: rgba(15,23,42,.25);
+  background: rgba(15,23,42,.06);
+  transform: translateY(-1px);
+}
