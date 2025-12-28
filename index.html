@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Emir Alili — Sito ufficiale</title>
+
   <meta name="description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
   <link rel="canonical" href="https://emiralili.it/" />
 
@@ -11,9 +12,11 @@
   <meta property="og:title" content="Emir Alili — Sito ufficiale" />
   <meta property="og:description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
   <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
+  <meta property="og:url" content="https://emiralili.it/" />
 
-  <link rel="stylesheet" href="style.css?v=20" />
-  <script defer src="main.js?v=20"></script>
+  <!-- IMPORTANTISSIMO: cache busting -->
+  <link rel="stylesheet" href="style.css?v=40" />
+  <script defer src="main.js?v=40"></script>
 </head>
 
 <body>
@@ -24,7 +27,7 @@
       <a class="brand" href="index.html" aria-label="Vai alla home">EMIR ALILI</a>
 
       <div class="header__actions">
-        <a class="header__link" href="sostieni.html">SOSTIENI</a>
+        <a class="header__link" href="contatti.html">CONTATTI</a>
 
         <button class="burger" type="button"
           aria-label="Apri menu"
@@ -40,6 +43,7 @@
   <div class="menu" data-menu aria-hidden="true">
     <div class="menu__panel" role="dialog" aria-label="Menu principale">
       <nav class="menu__nav">
+        <a href="index.html">Home</a>
         <a href="chi-sono.html">Chi sono</a>
         <a href="cosa-faccio.html">Cosa faccio</a>
         <a href="news.html">News</a>
@@ -61,75 +65,101 @@
       </h1>
 
       <p class="hero__text">
-        Una linea sola: impresa, diaspora, politica. Stessa regola ovunque:
+        Impresa, diaspora, politica: una linea sola. La regola è sempre la stessa:
         numeri chiari, scelte verificabili, responsabilità personale.
       </p>
 
       <div class="hero__actions">
         <a class="btn-primary" href="visione-dello-stato.html">Visione dello Stato</a>
-        <a class="btn-ghost" href="chi-sono.html">Chi sono</a>
+        <a class="btn-ghost" href="#video">Guarda il video</a>
       </div>
     </div>
 
     <!-- bottom bar mobile -->
     <div class="hero__bottom">
-      <a href="sostieni.html">SOSTIENI</a>
-      <a href="#video" class="js-scroll-video">ASCOLTA</a>
+      <a href="contatti.html">CONTATTI</a>
+      <a href="#video">ASCOLTA</a>
     </div>
   </main>
 
-  <!-- VIDEO SECTION -->
-  <section class="section" id="video">
+  <!-- SEZIONE SOTTO HERO -->
+  <section class="home-sections" id="video">
     <div class="container">
-      <div class="section__head">
-        <div class="section__kicker">IN PRIMO PIANO</div>
-        <h2 class="section__title">Un messaggio diretto</h2>
-        <p class="section__text">
-          Aggiornamenti, interventi pubblici, visione e proposte: qui trovi i contenuti principali in formato video.
-        </p>
-      </div>
+      <div class="section-grid">
 
-      <!-- OPZIONE A: YouTube/Vimeo (consigliata) -->
-      <div class="video-card">
-        <div class="video-frame">
-          <!-- Sostituisci l'URL con il tuo video -->
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
-            title="Video ufficiale"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-
-        <div class="video-meta">
-          <div class="video-meta__title">Titolo video</div>
-          <div class="video-meta__desc">
-            Due righe secche: di cosa parli, cosa chiedi, cosa devono fare.
+        <!-- VIDEO -->
+        <article class="card">
+          <div class="card__head">
+            <h2 class="card__title">In primo piano</h2>
           </div>
-          <div class="video-meta__actions">
-            <a class="btn-primary btn-small" href="news.html">Tutti gli aggiornamenti</a>
-            <a class="btn-ghost btn-small" href="contatti.html">Contattami</a>
+
+          <div class="card__body">
+            <div class="video-embed">
+              <!-- SOSTITUISCI VIDEO_ID con il tuo ID YouTube -->
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                title="Video ufficiale"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+
+            <p class="video-caption">
+              Un messaggio diretto: visione, priorità, e cosa significa responsabilità politica senza fumo.
+            </p>
+
+            <div class="video-actions">
+              <a class="btn-small" href="news.html">Aggiornamenti</a>
+              <a class="btn-small" href="chi-sono.html">Chi sono</a>
+              <a class="btn-small" href="contatti.html">Contatti</a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <!-- OPZIONE B: Video locale MP4 (se vuoi caricare file nel repo)
-      <div class="video-card">
-        <div class="video-frame">
-          <video controls preload="metadata" poster="assets/img/emir-og-cover.jpeg">
-            <source src="assets/video/video-ufficiale.mp4" type="video/mp4" />
-            Il tuo browser non supporta il video.
-          </video>
-        </div>
-        <div class="video-meta">
-          <div class="video-meta__title">Titolo video</div>
-          <div class="video-meta__desc">Descrizione breve.</div>
-        </div>
-      </div>
-      -->
+        <!-- BLOCCO TESTO / SINTESI -->
+        <aside class="card">
+          <div class="card__head">
+            <h2 class="card__title">Linea chiara</h2>
+          </div>
 
+          <div class="card__body">
+            <p style="margin-top:0;">
+              Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione. In azienda funziona
+              o muori. In politica dovrebbe valere la stessa cosa.
+            </p>
+
+            <p>
+              Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli, responsabilità,
+              e risultati misurabili.
+            </p>
+
+            <div class="video-actions">
+              <a class="btn-small" href="cosa-faccio.html">Cosa faccio</a>
+              <a class="btn-small" href="visione-dello-stato.html">Visione</a>
+              <a class="btn-small" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
     </div>
   </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:28px 0;border-top:1px solid rgba(15,23,42,.08);background:#fff;">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;">
+      <div style="color:#475569;font-size:.9rem;">
+        © <span data-year></span> Emir Alili.
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="mailto:info@emiralili.it" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">Email</a>
+        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer"
+           style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">Facebook</a>
+        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer"
+           style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
