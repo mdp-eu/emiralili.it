@@ -13,8 +13,8 @@
   <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
   <meta property="og:url" content="https://emiralili.it/" />
 
-  <link rel="stylesheet" href="style.css?v=2" />
-  <script defer src="main.js?v=2"></script>
+  <link rel="stylesheet" href="style.css?v=3" />
+  <script defer src="main.js?v=3"></script>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
   </div>
 </header>
 
-<!-- Drawer + Backdrop -->
+<!-- Backdrop + Drawer -->
 <div class="nav-backdrop" data-menu-backdrop aria-hidden="true"></div>
 
 <nav class="nav-drawer" data-menu-drawer aria-label="Menu">
@@ -89,42 +89,36 @@
     </div>
   </section>
 
-  <!-- VISIONE (TESTO) -->
+  <!-- VISIONE -->
   <section class="section">
     <div class="container">
       <p class="section-kicker">Visione</p>
       <h2 class="section-title">Regole uguali. Merito. Trasparenza.</h2>
       <p class="section-subtitle">
-        Ho costruito aziende partendo da zero e conosco cosa significa prendere decisioni che hanno conseguenze reali.
+        Ho costruito aziende partendo da zero e conosco cosa significa prendere decisioni con conseguenze reali.
         Per questo parlo di politica e di Stato solo in un modo: con metodo, dati verificabili e responsabilità personale.
       </p>
 
       <div class="gallery" style="margin-top:16px;">
         <figure class="card">
           <img src="assets/img/Emir%20ufficio.jpg" alt="Emir Alili in ufficio">
-          <figcaption>
-            <strong>Trasparenza</strong> — processi chiari, obiettivi misurabili, risultati verificabili.
-          </figcaption>
+          <figcaption><strong>Trasparenza</strong> — processi chiari, obiettivi misurabili, risultati verificabili.</figcaption>
         </figure>
 
         <figure class="card">
           <img src="assets/img/Emir%20formatore.jpg" alt="Emir Alili in un contesto formativo">
-          <figcaption>
-            <strong>Merito</strong> — opportunità basate su competenze e lavoro, non su scorciatoie.
-          </figcaption>
+          <figcaption><strong>Merito</strong> — opportunità basate su competenze e lavoro, non su scorciatoie.</figcaption>
         </figure>
 
         <figure class="card">
           <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili – ritratto">
-          <figcaption>
-            <strong>Responsabilità</strong> — chi decide risponde, senza scaricare colpe e senza alibi.
-          </figcaption>
+          <figcaption><strong>Responsabilità</strong> — chi decide risponde, senza scaricare colpe e senza alibi.</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- PROGETTI (TESTO) -->
+  <!-- PROGETTI -->
   <section class="section" id="progetti">
     <div class="container">
       <p class="section-kicker">Progetti</p>
@@ -154,9 +148,17 @@
           </figcaption>
         </figure>
 
-        <!-- Libri: copertina + link Amazon -->
+        <!-- Libro: copertina + link Amazon (con fallback .jpg) -->
         <figure class="card card--book">
-          <img src="assets/img/copertinalibro.jpeg" alt="Copertina del libro di Emir Alili">
+          <picture>
+            <source srcset="assets/img/copertinalibro.jpg?v=3" type="image/jpeg">
+            <img
+              src="assets/img/copertinalibro.jpeg?v=3"
+              alt="Copertina del libro di Emir Alili"
+              loading="lazy"
+              decoding="async">
+          </picture>
+
           <figcaption>
             <strong>Libro</strong><br>
             Esperienza vissuta trasformata in strumenti utili: orientamento, identità, comunità, partecipazione.
@@ -167,7 +169,32 @@
     </div>
   </section>
 
-  <!-- CTA FINALE -->
+  <!-- IMMAGINI -->
+  <section class="section">
+    <div class="container">
+      <p class="section-kicker">Immagini</p>
+      <h2 class="section-title">Contesto e lavoro sul campo</h2>
+
+      <div class="gallery" style="margin-top:16px;">
+        <figure class="card">
+          <img src="assets/img/Emir%20servizio%20fotografico.jpg" alt="Emir Alili durante un servizio fotografico">
+          <figcaption>Comunicazione pulita, senza retorica.</figcaption>
+        </figure>
+
+        <figure class="card">
+          <img src="assets/img/Emir%20ufficio.jpg" alt="Emir Alili in ufficio">
+          <figcaption>Lavoro, processi, numeri.</figcaption>
+        </figure>
+
+        <figure class="card card--top">
+          <img src="assets/img/emireu.jpeg" alt="Emir Alili in contesto istituzionale europeo">
+          <figcaption>Rappresentanza e responsabilità.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
   <section class="section">
     <div class="container">
       <p class="section-kicker">Contatti</p>
