@@ -20,7 +20,7 @@ body{
 a{color:inherit; text-decoration:none}
 img{max-width:100%; display:block}
 
-/* topbar */
+/* TOPBAR */
 .topbar{
   position:fixed;
   top:0; left:0; right:0;
@@ -68,7 +68,7 @@ img{max-width:100%; display:block}
   margin:2px 0;
 }
 
-/* menu overlay */
+/* MENU OVERLAY */
 .menu{
   position:fixed;
   inset:64px 0 0 0;
@@ -105,7 +105,7 @@ img{max-width:100%; display:block}
   font-weight:750;
 }
 
-/* hero */
+/* HERO */
 .hero{
   position:relative;
   height: min(92vh, 820px);
@@ -113,23 +113,34 @@ img{max-width:100%; display:block}
   padding-top:64px;
   background:#000;
 }
+
 .hero__media{
   position:absolute;
   inset:0;
 }
+
+/* IMMAGINE: più visibile e “centrata” */
 .hero__media img{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position: 50% 35%;
+  object-position: center 55%;
+  filter: brightness(0.75) contrast(1.05);
 }
+
+/* OVERLAY: meno aggressivo */
 .hero__shade{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 600px at 20% 10%, rgba(0,0,0,.22), rgba(0,0,0,.70)),
-    linear-gradient(180deg, rgba(10,27,102,.60), rgba(0,0,0,.55));
+    linear-gradient(
+      to bottom,
+      rgba(6,15,40,.55) 0%,
+      rgba(6,15,40,.35) 35%,
+      rgba(0,0,0,.65) 100%
+    );
 }
+
 .hero__content{
   position:relative;
   height:100%;
@@ -139,6 +150,7 @@ img{max-width:100%; display:block}
   padding:26px 18px 34px;
   color:#fff;
 }
+
 .hero__kicker{
   margin:0 0 10px 0;
   font-size:12px;
@@ -146,6 +158,7 @@ img{max-width:100%; display:block}
   text-transform:uppercase;
   color:rgba(255,255,255,.78);
 }
+
 .hero__title{
   margin:0;
   font-size: clamp(34px, 6vw, 56px);
@@ -153,7 +166,11 @@ img{max-width:100%; display:block}
   letter-spacing:-.03em;
   max-width: 18ch;
 }
-.hero__title span{color:rgba(255,255,255,.70); font-weight:700}
+.hero__title span{
+  color:rgba(255,255,255,.70);
+  font-weight:700
+}
+
 .hero__actions{
   display:flex;
   gap:12px;
@@ -161,7 +178,7 @@ img{max-width:100%; display:block}
   margin-top:18px;
 }
 
-/* buttons */
+/* BUTTONS */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -184,38 +201,63 @@ img{max-width:100%; display:block}
   color:#fff;
 }
 
-/* content */
+/* CONTENT */
 .content{
   padding:36px 0;
   background:#fff;
 }
-.content__inner{display:flex; flex-direction:column; gap:18px}
-.content__block h2{margin:0; font-size:22px; letter-spacing:-.02em}
-.content__block p{margin:8px 0 0; color:#334155; max-width:70ch}
+.content__inner{
+  display:flex;
+  flex-direction:column;
+  gap:18px
+}
+.content__block h2{
+  margin:0;
+  font-size:22px;
+  letter-spacing:-.02em
+}
+.content__block p{
+  margin:8px 0 0;
+  color:#334155;
+  max-width:70ch
+}
 
 .content__grid{
   display:grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap:12px;
 }
+
 .tile{
   border:1px solid rgba(2,6,23,.10);
   border-radius:18px;
   padding:16px;
   background:#fff;
 }
-.tile__title{display:block; font-weight:850; letter-spacing:-.01em}
-.tile__text{display:block; margin-top:6px; color:#475569}
+.tile__title{
+  display:block;
+  font-weight:850;
+  letter-spacing:-.01em
+}
+.tile__text{
+  display:block;
+  margin-top:6px;
+  color:#475569
+}
 
-/* support */
+/* SUPPORT */
 .support{
   background:#f6f7fb;
   padding:36px 0 76px;
 }
 .support__inner h2{margin:0; font-size:22px}
-.support__inner p{margin:10px 0 16px; color:#475569; max-width:70ch}
+.support__inner p{
+  margin:10px 0 16px;
+  color:#475569;
+  max-width:70ch
+}
 
-/* bottombar */
+/* BOTTOM BAR */
 .bottombar{
   position:fixed;
   left:0; right:0; bottom:0;
@@ -236,9 +278,11 @@ img{max-width:100%; display:block}
   text-transform:uppercase;
   font-size:13px;
 }
-.bottombar__btn:first-child{border-right:1px solid rgba(255,255,255,.10)}
+.bottombar__btn:first-child{
+  border-right:1px solid rgba(255,255,255,.10)
+}
 
-/* footer */
+/* FOOTER */
 .footer{
   background:#fff;
   border-top:1px solid rgba(2,6,23,.08);
@@ -252,9 +296,29 @@ img{max-width:100%; display:block}
   color:#64748b;
   font-size:14px;
 }
-.footer__links{display:flex; gap:12px; flex-wrap:wrap}
+.footer__links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap
+}
 .footer__links a:hover{text-decoration:underline}
 
-@media (max-width: 920px){
-  .content__grid{grid-template-columns:1fr}
+/* MOBILE: crop e luminosità diversi (qui si vede davvero) */
+@media (max-width: 768px){
+  .hero{
+    min-height: 88vh;
+  }
+
+  .hero__media img{
+    object-position: center 60%;
+    filter: brightness(0.82) contrast(1.05);
+  }
+
+  .hero__title{
+    max-width: 100%;
+  }
+
+  .content__grid{
+    grid-template-columns: 1fr;
+  }
 }
