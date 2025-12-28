@@ -4,21 +4,40 @@
 
   const burger = document.querySelector("[data-burger]");
   const menu = document.querySelector("[data-menu]");
-
   if (!burger || !menu) return;
+
+  let scrollY = 0;
+
+  const lockScroll = () => {
+    scrollY = window.scrollY || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  };
+
+  const unlockScroll = () => {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollY);
+  };
 
   const openMenu = () => {
     menu.classList.add("is-open");
     menu.setAttribute("aria-hidden", "false");
     burger.setAttribute("aria-expanded", "true");
-    document.documentElement.style.overflow = "hidden";
+    lockScroll();
   };
 
   const closeMenu = () => {
     menu.classList.remove("is-open");
     menu.setAttribute("aria-hidden", "true");
     burger.setAttribute("aria-expanded", "false");
-    document.documentElement.style.overflow = "";
+    unlockScroll();
   };
 
   burger.addEventListener("click", () => {
@@ -38,7 +57,7 @@
   });
 
   // chiude quando clicchi su un link del menu
-  menu.querySelectorAll("a").forEach(a => {
+  menu.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", () => closeMenu());
   });
 })();
