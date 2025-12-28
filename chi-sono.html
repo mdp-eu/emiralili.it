@@ -1,1422 +1,308 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
 
-  <title>Chi sono – Emir Alili | Biografia ufficiale diaspora macedone</title>
+  <title>Emir Alili – Sito ufficiale | Impresa, diaspora, politica</title>
+  <meta name="description" content="Emir Alili: imprenditore, autore e voce della diaspora macedone. Impresa, progetti sociali e impegno politico con metodo, numeri e responsabilità." />
+  <link rel="canonical" href="https://emiralili.it/" />
 
-  <meta name="description" content="Biografia ufficiale di Emir Alili, imprenditore, autore e voce della diaspora macedone. Dal percorso nei Balcani all’arrivo in Italia, fino all’impresa, ai progetti sociali e alla fondazione del Macedonian Diaspora Party (MDP).">
-
-  <link rel="canonical" href="https://emiralili.it/chi-sono.html" />
-
-  <!-- Verifica Google (può essere identica alla home) -->
-  <meta name="google-site-verification" content="cLIaWRkyTXS3GFC4LqP3SrA85JoxyicuL8z1480yfws" />
-
-  <!-- Open Graph / Facebook / LinkedIn -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content="Chi è Emir Alili – Biografia ufficiale" />
-  <meta property="og:description" content="Imprenditore, autore e voce della diaspora macedone. Dalla migrazione all’impresa, fino alla fondazione del Macedonian Diaspora Party (MDP)." />
-  <meta property="og:image" content="https://emiralili.it/assets/img/Emir%20primo%20piano.jpg" />
-  <meta property="og:url" content="https://emiralili.it/chi-sono.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Emir Alili – Impresa, diaspora, politica" />
+  <meta property="og:description" content="Imprenditore, autore e fondatore del Macedonian Diaspora Party (MDP). Metodo, numeri, responsabilità." />
+  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
+  <meta property="og:url" content="https://emiralili.it/" />
   <meta property="og:site_name" content="Emir Alili – Sito ufficiale" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chi è Emir Alili – Biografia ufficiale" />
-  <meta name="twitter:description" content="Imprenditore, autore e voce della diaspora macedone. Dalla migrazione all’impresa, fino alla fondazione del Macedonian Diaspora Party (MDP)." />
-  <meta name="twitter:image" content="https://emiralili.it/assets/img/Emir%20primo%20piano.jpg" />
-
-  <!-- Schema.org Person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Emir Alili",
-    "alternateName": "Emir",
-    "url": "https://emiralili.it/chi-sono.html",
-    "description": "Imprenditore, autore e voce della diaspora macedone. Fondatore del Macedonian Diaspora Party (MDP) e attivo tra Italia e Macedonia.",
-    "jobTitle": "Imprenditore, autore, leader politico indipendente",
-    "nationality": "North Macedonia",
-    "homeLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "Country",
-        "name": "Italy"
-      }
-    },
-    "affiliation": [
-      {
-        "@type": "Organization",
-        "name": "Macedonian Diaspora Party (MDP)",
-        "url": "https://mdp-eu.com"
-      },
-      {
-        "@type": "Organization",
-        "name": "EA Group / EA Cleaning",
-        "url": "https://www.eacleaning.it"
-      }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/emir.alili.81/",
-      "https://www.linkedin.com/in/emiralili/"
-    ]
-  }
-  </script>
-
-  <style>
-    :root {
-      --bg-page: #f3f4f6;
-      --bg-main: #ffffff;
-      --bg-soft: #f9fafb;
-      --text-main: #0f172a;
-      --text-muted: #6b7280;
-      --border-subtle: #e5e7eb;
-      --accent: #ea580c;
-      --accent-dark: #9a3412;
-      --accent-soft: #fef2e2;
-      --link: #2563eb;
-      --radius-lg: 18px;
-      --radius-full: 999px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: var(--bg-page);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-
-    /* HEADER – uguale per tutto il sito */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255, 255, 255, 0.98);
-      border-bottom: 1px solid var(--border-subtle);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.7rem 0;
-      gap: 0.75rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      min-width: 0;
-    }
-
-    .brand-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      background: #e5e7eb;
-      flex-shrink: 0;
-    }
-
-    .brand-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.08rem;
-      min-width: 0;
-    }
-
-    .brand-text strong {
-      font-size: 0.96rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .brand-text span {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: none;
-      align-items: center;
-      gap: 1.4rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.08rem;
-      color: #4b5563;
-      font-weight: 500;
-    }
-
-    .nav-links a.active {
-      color: var(--text-main);
-      font-weight: 600;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      border-radius: var(--radius-full);
-      transition: width 0.16s ease-out;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      display: none;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .btn-header {
-      border-radius: var(--radius-full);
-      padding: 0.45rem 1rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      color: #374151;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .btn-header:hover {
-      border-color: var(--accent);
-      color: var(--accent-dark);
-    }
-
-    .nav-toggle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      color: #4b5563;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .nav.mobile-open {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .nav.mobile-open .nav-links,
-    .nav.mobile-open .nav-cta {
-      display: flex;
-      width: 100%;
-    }
-
-    .nav.mobile-open .nav-links {
-      margin-top: 0.6rem;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.55rem;
-    }
-
-    .nav.mobile-open .nav-cta {
-      margin-top: 0.5rem;
-    }
-
-    @media (min-width: 880px) {
-      .nav-links {
-        display: flex;
-      }
-      .nav-cta {
-        display: flex;
-      }
-      .nav-toggle {
-        display: none;
-      }
-      .nav {
-        flex-direction: row;
-      }
-    }
-
-    /* HERO A FASCIA CON FOTO + CARD */
-
-    .hero-wrap {
-      background: radial-gradient(circle at top left, #1f2937 0%, #020617 55%);
-      color: #e5e7eb;
-      border-bottom: 1px solid #020617;
-    }
-
-    .hero {
-      padding: 2rem 0 2.2rem;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
-      gap: 2rem;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .hero {
-        padding: 1.7rem 0 2rem;
-      }
-    }
-
-    .hero-kicker {
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 0.4rem;
-    }
-
-    .hero-kicker span {
-      color: #fed7aa;
-      font-weight: 600;
-      margin-right: 0.3rem;
-    }
-
-    .hero-title {
-      font-size: 1.9rem;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-      color: #f9fafb;
-    }
-
-    .hero-title span {
-      color: #fed7aa;
-    }
-
-    .hero-subtitle {
-      font-size: 0.98rem;
-      color: #d1d5db;
-      max-width: 34rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .pill {
-      font-size: 0.78rem;
-      padding: 0.22rem 0.8rem;
-      border-radius: var(--radius-full);
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(107, 114, 128, 0.9);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-
-    .btn-primary {
-      border-radius: var(--radius-full);
-      padding: 0.55rem 1.5rem;
-      font-size: 0.86rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: none;
-      background: var(--accent);
-      color: #ffffff;
-      cursor: pointer;
-    }
-
-    .btn-outline {
-      border-radius: var(--radius-full);
-      padding: 0.55rem 1.2rem;
-      font-size: 0.86rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      background: transparent;
-      color: #e5e7eb;
-      cursor: pointer;
-    }
-
-    .hero-card {
-      max-width: 340px;
-      width: 100%;
-      justify-self: center;
-      border-radius: 22px;
-      background: radial-gradient(circle at top, #1f2937 0%, #020617 70%);
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.75);
-      padding: 1.1rem 1.2rem 1.15rem;
-    }
-
-    .hero-photo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.8rem;
-    }
-
-    .hero-photo-inner {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(209, 213, 219, 0.95);
-      background: #111827;
-    }
-
-    .hero-photo-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-name {
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #f9fafb;
-    }
-
-    .hero-role-main {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 0.8rem;
-    }
-
-    .hero-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.45rem;
-      font-size: 0.75rem;
-    }
-
-    .hero-stat-card {
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 0.45rem 0.5rem 0.4rem;
-    }
-
-    .hero-stat-number {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fed7aa;
-      margin-bottom: 0.1rem;
-    }
-
-    .hero-stat-label {
-      color: #9ca3af;
-    }
-
-    .hero-social-row {
-      margin-top: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-      color: #9ca3af;
-    }
-
-    .hero-social-icons {
-      display: flex;
-      gap: 0.45rem;
-    }
-
-    .social-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.95);
-      background: rgba(15, 23, 42, 0.95);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .social-btn svg {
-      width: 15px;
-      height: 15px;
-      fill: #e5e7eb;
-    }
-
-    /* CONTENUTO PRINCIPALE */
-
-    main {
-      padding: 2.1rem 0 3rem;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.05fr);
-      gap: 2rem;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 920px) {
-      main {
-        padding-top: 1.7rem;
-      }
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .content-column {
-      display: flex;
-      flex-direction: column;
-      gap: 1.7rem;
-    }
-
-    .section-box {
-      background: var(--bg-main);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 1.25rem 1.35rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .section-header {
-      margin-bottom: 0.9rem;
-    }
-
-    .section-title {
-      font-size: 0.86rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .section-title span {
-      color: var(--accent);
-      margin-right: 0.3rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 34rem;
-    }
-
-    /* BIO con bordo laterale */
-
-    .bio-main {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bio-main::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, #ea580c, #facc15);
-    }
-
-    .bio-main p + p {
-      margin-top: 0.6rem;
-    }
-
-    .bio-main strong {
-      color: #111827;
-    }
-
-    .bio-main p:first-child::first-letter {
-      font-size: 2.2rem;
-      float: left;
-      line-height: 1;
-      padding-right: 0.25rem;
-      padding-top: 0.05rem;
-      font-weight: 600;
-      color: var(--accent-dark);
-    }
-
-    .bio-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-      gap: 1rem;
-      margin-top: 0.7rem;
-    }
-
-    @media (max-width: 780px) {
-      .bio-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .bio-side {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .bio-card {
-      background: var(--bg-soft);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 0.85rem 1rem;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    .bio-card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 0.2rem;
-    }
-
-    .bio-taglist {
-      margin-top: 0.4rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-
-    .bio-tag {
-      font-size: 0.78rem;
-      padding: 0.16rem 0.6rem;
-      border-radius: var(--radius-full);
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .quote-card {
-      margin-top: 0.4rem;
-      padding: 0.5rem 0.7rem;
-      border-radius: 12px;
-      background: var(--accent-soft);
-      border-left: 3px solid var(--accent);
-      font-size: 0.82rem;
-      color: var(--accent-dark);
-    }
-
-    /* TIMELINE a card */
-
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-top: 0.8rem;
-    }
-
-    @media (max-width: 780px) {
-      .timeline-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .timeline-card {
-      border-radius: 14px;
-      background: var(--bg-soft);
-      border: 1px solid var(--border-subtle);
-      padding: 0.7rem 0.8rem;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    .timeline-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 0.12rem;
-    }
-
-    .timeline-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 0.2rem;
-    }
-
-    .timeline-card strong {
-      color: #111827;
-    }
-
-    /* AREE DI LAVORO CON ICONE */
-
-    .areas-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 0.7rem;
-    }
-
-    @media (max-width: 880px) {
-      .areas-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .area-card {
-      background: var(--bg-main);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 0.9rem 1rem;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .area-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .area-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid #fed7aa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .area-icon svg {
-      width: 15px;
-      height: 15px;
-      fill: var(--accent-dark);
-    }
-
-    .area-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .area-footer {
-      margin-top: 0.25rem;
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .area-footer a {
-      color: var(--link);
-      font-weight: 500;
-    }
-
-    /* VALORI */
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 1rem;
-      margin-top: 0.7rem;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 780px) {
-      .values-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .values-main {
-      background: var(--bg-main);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 0.9rem 1rem;
-      color: var(--text-muted);
-    }
-
-    .values-list {
-      margin-top: 0.4rem;
-      list-style: none;
-      padding: 0;
-    }
-
-    .values-list li {
-      padding: 0.25rem 0;
-    }
-
-    .values-list strong {
-      color: #111827;
-    }
-
-    .values-side {
-      background: var(--bg-soft);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 0.8rem 0.9rem;
-      color: var(--text-muted);
-      font-size: 0.86rem;
-    }
-
-    .values-side strong {
-      color: #111827;
-    }
-
-    /* SIDEBAR */
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-    }
-
-    .sidebar-box {
-      background: var(--bg-main);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 1.1rem 1.25rem;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .sidebar-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: var(--text-main);
-    }
-
-    .sidebar-subtitle {
-      font-size: 0.83rem;
-      color: var(--text-muted);
-      margin-bottom: 0.7rem;
-    }
-
-    .sidebar-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0.86rem;
-    }
-
-    .sidebar-list li + li {
-      margin-top: 0.25rem;
-    }
-
-    .sidebar-list strong {
-      color: #111827;
-    }
-
-    .sidebar-social-row {
-      margin-top: 0.7rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .sidebar-social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.32rem 0.9rem;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-      font-size: 0.82rem;
-      color: #374151;
-    }
-
-    .sidebar-social-btn svg {
-      width: 15px;
-      height: 15px;
-      fill: #4b5563;
-    }
-
-    .sidebar-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.85rem;
-    }
-
-    .sidebar-links a {
-      color: var(--link);
-      font-weight: 500;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      background: #ffffff;
-      margin-top: auto;
-      padding: 1.3rem 0 1.7rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.9rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      align-items: baseline;
-    }
-
-    .footer-social {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .footer-social a {
-      padding: 0.26rem 0.75rem;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-soft);
-    }
-  </style>
+  <meta name="twitter:title" content="Emir Alili – Impresa, diaspora, politica" />
+  <meta name="twitter:description" content="Metodo, numeri e responsabilità. Impresa, progetti sociali e impegno politico." />
+  <meta name="twitter:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="main.js"></script>
 </head>
+
 <body>
-  <div class="page">
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <nav class="nav" id="nav">
-          <div class="brand">
-            <div class="brand-avatar">
-              <img
-                src="assets/img/Emir%20primo%20piano.jpg"
-                alt="Emir Alili"
-              />
-            </div>
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
-            <div class="brand-text">
-              <strong>Emir Alili</strong>
-              <span>Imprenditore, autore, leader politico</span>
-            </div>
+  <!-- Header (uguale su tutte le pagine) -->
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Vai alla home">
+        <span class="brand-mark" aria-hidden="true">EA</span>
+        <span class="brand-name">
+          <strong>Emir Alili</strong>
+          <span>Imprenditore · autore · leader politico</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigazione principale">
+        <button class="nav-btn" type="button"
+          aria-label="Apri menu"
+          aria-controls="site-menu"
+          aria-expanded="false"
+          data-nav-toggle>
+          <span class="nav-btn-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="nav-drawer" id="site-menu" data-nav-panel>
+          <div class="nav-drawer-head">
+            <div class="nav-drawer-title">Menu</div>
+            <button class="nav-close" type="button" aria-label="Chiudi menu" data-nav-close>×</button>
           </div>
 
-          <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="chi-sono.html" class="active">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="contatti.html">Contatti</a>
-          </div>
+          <ul class="nav-list">
+            <li><a class="nav-link is-active" href="index.html" aria-current="page">Home</a></li>
+            <li><a class="nav-link" href="chi-sono.html">Chi sono</a></li>
+            <li><a class="nav-link" href="cosa-faccio.html">Cosa faccio</a></li>
+            <li><a class="nav-link" href="contatti.html">Contatti</a></li>
+          </ul>
 
-          <div class="nav-cta">
-            <button class="btn-header" type="button" onclick="window.location.href='contatti.html'">
-              Contatti
-            </button>
-          </div>
-
-          <button class="nav-toggle" type="button" aria-label="Menu" id="navToggle">
-            ☰
-          </button>
-        </nav>
-      </div>
-    </header>
-
-    <!-- HERO INTESTAZIONE -->
-    <div class="hero-wrap">
-      <section class="hero">
-        <div class="container">
-          <div class="hero-grid">
-            <div>
-              <div class="hero-kicker">
-                <span>Chi sono</span> percorso, scelte, responsabilità
-              </div>
-              <h1 class="hero-title">
-                Dai Balcani all’Italia: <span>impresa, politica, impegno civile</span> senza filtri.
-              </h1>
-              <p class="hero-subtitle">
-                Sono arrivato come migrante, ho costruito aziende nei servizi, scritto libri
-                e fondato un partito politico della diaspora. Tutto con una regola sola:
-                rispondere in prima persona delle scelte che faccio.
-              </p>
-              <div class="hero-pills">
-                <span class="pill">Fondatore · Macedonian Diaspora Party (MDP)</span>
-                <span class="pill">CEO · EA Group / EA Cleaning</span>
-                <span class="pill">Autore · libri su identità, scelte, futuro</span>
-              </div>
-              <div class="hero-actions">
-                <button class="btn-primary" type="button" onclick="window.location.href='cosa-faccio.html'">
-                  Cosa faccio oggi
-                </button>
-                <button class="btn-outline" type="button" onclick="window.location.href='contatti.html'">
-                  Contatti diretti
-                </button>
-              </div>
-            </div>
-
-            <aside class="hero-card">
-              <div class="hero-photo">
-                <div class="hero-photo-inner">
-                  <img
-                    src="assets/img/Emir%20primo%20piano.jpg"
-                    alt="Emir Alili – Ritratto"
-                  />
-                </div>
-              </div>
-              <div class="hero-name">Emir Alili</div>
-              <div class="hero-role-main">
-                Imprenditore, autore, fondatore del Macedonian Diaspora Party.
-              </div>
-              <div class="hero-stat-grid">
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">Impresa</div>
-                  <div class="hero-stat-label">EA Group · EA Cleaning</div>
-                </div>
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">Politica</div>
-                  <div class="hero-stat-label">MDP · diaspora al centro</div>
-                </div>
-                <div class="hero-stat-card">
-                  <div class="hero-stat-number">Società</div>
-                  <div class="hero-stat-label">Libri · comunità · progetti</div>
-                </div>
-              </div>
-              <div class="hero-social-row">
-                <span>Seguimi anche sui social</span>
-                <div class="hero-social-icons">
-                  <a class="social-btn" href="mailto:info@emiralili.it">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M4 4h16a2 2 0 0 1 2 2v0.4l-10 6.5-10-6.5V6a2 2 0 0 1 2-2zm-2 5.3V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9.3l-9.3 6a2 2 0 0 1-2.2 0L2 9.3z"/>
-                    </svg>
-                  </a>
-                  <a class="social-btn" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M13 3h3a1 1 0 0 1 1 1v3h-3.1a1 1 0 0 0-.9 1v3h3.5a1 1 0 0 1 1 1.1l-.4 3a1 1 0 0 1-1 .9H13v5h-3v-5H7a1 1 0 0 1-1-1v-3h3v-3.8A4.2 4.2 0 0 1 13 3z"/>
-                    </svg>
-                  </a>
-                  <a class="social-btn" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M5 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-2 5h4v11H3zM10 9h3.7v1.6h.1A4 4 0 0 1 21 14v6h-4v-5.2c0-1.3-.7-2.2-1.9-2.2S13 13.5 13 14.8V20h-3z"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </aside>
+          <div class="nav-actions">
+            <a class="btn btn-primary" href="contatti.html">Scrivimi</a>
+            <a class="btn btn-ghost" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
           </div>
         </div>
-      </section>
+
+        <div class="nav-backdrop" data-nav-backdrop aria-hidden="true"></div>
+      </nav>
     </div>
+  </header>
 
-    <!-- CONTENUTO -->
-    <main>
-      <div class="container">
-        <div class="layout">
-          <!-- COLONNA PRINCIPALE -->
-          <div class="content-column">
-            <!-- BIO -->
-            <section class="section-box bio-main">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Biografia essenziale</h2>
-                <p class="section-subtitle">
-                  Poche righe per capire da dove arrivo, cosa ho visto e perché oggi parlo di responsabilità,
-                  numeri e futuro di uno Stato.
-                </p>
-              </div>
+  <main id="contenuto">
+    <!-- HERO Home: editoriale + immagine forte -->
+    <section class="home-hero">
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
+          <p class="overline">Sito ufficiale</p>
+          <h1 class="display">
+            Metodo. Numeri.
+            <span class="accent">Responsabilità.</span>
+          </h1>
 
-              <div class="bio-grid">
-                <article>
-                  <p>
-                    Sono nato nei Balcani, in un contesto dove la guerra, le tensioni etniche e l’instabilità
-                    non sono un capitolo di storia, ma qualcosa che ti entra in casa. Da lì parte il mio
-                    rapporto con le parole <strong>sicurezza, Stato, giustizia</strong>.
-                  </p>
-                  <p>
-                    La migrazione verso l’Italia non è stata una scelta romantica ma una necessità.
-                    Ho lavorato dove capitava, spesso con mansioni umili e senza tutele, imparando sul campo
-                    cosa significa ricominciare da zero in un altro Paese, con un’altra lingua
-                    e regole che devi decifrare da solo.
-                  </p>
-                  <p>
-                    Da quelle esperienze ho costruito, pezzo dopo pezzo, aziende nel settore dei servizi
-                    e delle pulizie, imparando a leggere i numeri, a gestire persone, a tenere insieme
-                    qualità, margini e responsabilità verso chi lavora con me.
-                  </p>
-                  <p>
-                    In parallelo ho iniziato a scrivere e a impegnarmi in progetti sociali e culturali:
-                    libri autobiografici e di orientamento, attività con associazioni locali,
-                    comunità religiose e realtà umanitarie, con un filo conduttore chiaro:
-                    <strong>mettere a disposizione degli altri ciò che ho imparato a caro prezzo</strong>.
-                  </p>
-                  <p>
-                    Oggi questo percorso sfocia anche in politica, con la nascita del Macedonian Diaspora Party:
-                    un progetto che nasce dalla diaspora per ricostruire lo Stato su basi di merito,
-                    trasparenza e responsabilità diretta di chi governa.
-                  </p>
-                </article>
+          <p class="lead">
+            Impresa, progetti sociali e politica della diaspora: niente slogan.
+            Qui trovi percorso, visione e collegamenti ufficiali.
+          </p>
 
-                <aside class="bio-side">
-                  <div class="bio-card">
-                    <div class="bio-card-title">In tre righe</div>
-                    <p>
-                      Migrante dei Balcani che in Italia ha costruito impresa, progetti sociali
-                      e un percorso politico. Nessuna carriera di partito, solo lavoro reale
-                      e responsabilità dirette.
-                    </p>
-                  </div>
-                  <div class="bio-card">
-                    <div class="bio-card-title">Dove lavoro oggi</div>
-                    <div class="bio-taglist">
-                      <span class="bio-tag">EA Group / EA Cleaning</span>
-                      <span class="bio-tag">Macedonian Diaspora Party</span>
-                      <span class="bio-tag">Progetti editoriali</span>
-                      <span class="bio-tag">Associazioni e comunità locali</span>
-                    </div>
-                    <div class="quote-card">
-                      “Ogni ruolo ha un solo criterio: responsabilità concreta sulle persone,
-                      sui numeri e sulle conseguenze delle scelte.”
-                    </div>
-                  </div>
-                </aside>
-              </div>
-            </section>
-
-            <!-- TIMELINE COMPATTA A CARD -->
-            <section class="section-box">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Percorso in tappe</h2>
-                <p class="section-subtitle">
-                  Non tutte le date, solo gli snodi che spiegano perché oggi parlo di Stato, impresa e responsabilità.
-                </p>
-              </div>
-
-              <div class="timeline-grid">
-                <div class="timeline-card">
-                  <div class="timeline-label">Origini</div>
-                  <div class="timeline-title">Balcani, anni di instabilità</div>
-                  <p>
-                    Cresco in un contesto segnato da conflitti e migrazioni. Capisco presto cosa significa
-                    uno Stato che non tutela i cittadini e lascia spazio a corruzione e arbitri.
-                  </p>
-                </div>
-                <div class="timeline-card">
-                  <div class="timeline-label">Migrazione</div>
-                  <div class="timeline-title">Arrivo in Italia</div>
-                  <p>
-                    Arrivo come tanti: lavori umili, turni pesanti, nessun paracadute.
-                    È lì che imparo cosa vuol dire cavarsela davvero da solo.
-                  </p>
-                </div>
-                <div class="timeline-card">
-                  <div class="timeline-label">Impresa</div>
-                  <div class="timeline-title">EA Cleaning · EA Group</div>
-                  <p>
-                    Trasformo quell’esperienza in impresa: aziende di servizi e pulizie costruite sul controllo dei costi,
-                    sull’organizzazione dei cantieri e sul rispetto di chi lavora.
-                  </p>
-                </div>
-                <div class="timeline-card">
-                  <div class="timeline-label">Scrittura</div>
-                  <div class="timeline-title">Libri e orientamento</div>
-                  <p>
-                    Inizio a scrivere libri su identità, radici e scelte di vita, per dare strumenti concreti
-                    a chi deve decidere cosa fare dopo la scuola o dopo una migrazione.
-                  </p>
-                </div>
-                <div class="timeline-card">
-                  <div class="timeline-label">Impegno civile</div>
-                  <div class="timeline-title">Associazioni e comunità</div>
-                  <p>
-                    Lavoro con associazioni locali, centri culturali e progetti umanitari.
-                    Il tema è sempre lo stesso: partecipazione, responsabilità, dignità.
-                  </p>
-                </div>
-                <div class="timeline-card">
-                  <div class="timeline-label">Politica</div>
-                  <div class="timeline-title">Macedonian Diaspora Party</div>
-                  <p>
-                    Fonda <strong>MDP</strong>, il primo partito politico della diaspora macedone:
-                    programma pubblico, regole chiare, controllo degli eletti e fine dell’impunità.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <!-- AREE DI LAVORO CON ICONE -->
-            <section class="section-box">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Dove metto tempo ed energie</h2>
-                <p class="section-subtitle">
-                  Tre blocchi tengono insieme il mio percorso: impresa, politica, scrittura e progetti sociali.
-                </p>
-              </div>
-
-              <div class="areas-grid">
-                <article class="area-card">
-                  <div class="area-header">
-                    <div class="area-icon">
-                      <!-- icona “building” -->
-                      <svg viewBox="0 0 24 24">
-                        <path d="M5 3h9a1 1 0 0 1 1 1v16h-2v-3H7v3H5V4a1 1 0 0 1 1-1zm2 4v2h2V7H7zm0 4v2h2v-2H7zm5-4v2h2V7h-2zm0 4v2h2v-2h-2zM18 9h2a1 1 0 0 1 1 1v10h-3V9z"/>
-                      </svg>
-                    </div>
-                    <h3 class="area-title">Impresa · EA Group / EA Cleaning</h3>
-                  </div>
-                  <p>
-                    Servizi di pulizia e facility management per aziende, condomìni e realtà produttive.
-                    Niente slogan: bilanci veri, turni, controllo dei margini e qualità del servizio.
-                  </p>
-                  <div class="area-footer">
-                    <span>Impresa come strumento di dignità, non solo di fatturato.</span><br />
-                    <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">
-                      Vai al sito EA Group
-                    </a>
-                  </div>
-                </article>
-
-                <article class="area-card">
-                  <div class="area-header">
-                    <div class="area-icon">
-                      <!-- icona “parlamento” -->
-                      <svg viewBox="0 0 24 24">
-                        <path d="M4 10h16v2H4v-2zm1-3 7-4 7 4v1H5V7zm-1 7h2v5H4v-5zm5 0h2v5H9v-5zm5 0h2v5h-2v-5zm5 0h2v5h-2v-5z"/>
-                      </svg>
-                    </div>
-                    <h3 class="area-title">Politica · Macedonian Diaspora Party</h3>
-                  </div>
-                  <p>
-                    Un partito nato fuori dai palazzi, dai cittadini costretti a emigrare.
-                    Obiettivo: riportare lo Stato sotto il controllo di chi lavora e subisce le conseguenze
-                    delle decisioni politiche, non di chi vive di privilegi.
-                  </p>
-                  <div class="area-footer">
-                    <span>Progetto di governo, non di testimonianza.</span><br />
-                    <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
-                      Scopri MDP e i documenti ufficiali
-                    </a>
-                  </div>
-                </article>
-
-                <article class="area-card">
-                  <div class="area-header">
-                    <div class="area-icon">
-                      <!-- icona “book” -->
-                      <svg viewBox="0 0 24 24">
-                        <path d="M5 4h8a3 3 0 0 1 3 3v13h-2a3 3 0 0 0-3-3H5V4zm0 13h6a1 1 0 0 1 1 1v2H8a3 3 0 0 1-3-3zM17 4h2a2 2 0 0 1 2 2v14h-4V4z"/>
-                      </svg>
-                    </div>
-                    <h3 class="area-title">Libri · progetti sociali</h3>
-                  </div>
-                  <p>
-                    Libri autobiografici e di orientamento, iniziative con associazioni, comunità e realtà umanitarie.
-                    L’obiettivo è trasformare esperienza vissuta in strumenti concreti per chi arriva dopo.
-                  </p>
-                  <div class="area-footer">
-                    <span>Parole ancorate alla realtà, non alla retorica.</span>
-                  </div>
-                </article>
-              </div>
-            </section>
-
-            <!-- VALORI DI FONDO -->
-            <section class="section-box">
-              <div class="section-header">
-                <h2 class="section-title"><span>//</span> Cosa non cambia</h2>
-                <p class="section-subtitle">
-                  Al di là dei ruoli e dei progetti, ci sono alcuni punti fermi che guidano le mie scelte.
-                </p>
-              </div>
-
-              <div class="values-grid">
-                <article class="values-main">
-                  <p>
-                    Non mi interessa la politica come carriera, né l’impresa come vetrina.
-                    Il punto non è l’immagine ma la coerenza tra quello che si dice
-                    e quello che si firma, tra ciò che si promette e ciò che si fa.
-                  </p>
-                  <ul class="values-list">
-                    <li>
-                      <strong>Responsabilità diretta</strong> · chi decide risponde delle conseguenze,
-                      senza scaricare su altri.
-                    </li>
-                    <li>
-                      <strong>Numeri prima delle parole</strong> · nei bilanci aziendali
-                      come nei conti pubblici, senza trucchi.
-                    </li>
-                    <li>
-                      <strong>Merito e lavoro</strong> · niente posizioni regalate,
-                      né in azienda né nelle istituzioni.
-                    </li>
-                    <li>
-                      <strong>Rispetto per chi è costretto a emigrare</strong> · la diaspora
-                      non è solo rimesse di denaro, ma competenze e vite sospese
-                      che meritano ascolto e rappresentanza.
-                    </li>
-                  </ul>
-                </article>
-
-                <aside class="values-side">
-                  <p>
-                    Vengo da contesti in cui le decisioni sbagliate di pochi
-                    hanno pesato sulla vita di molti. È il motivo per cui oggi parlo
-                    di controllo degli eletti, trasparenza dei processi e
-                    <strong>fine dell’impunità politica</strong>.
-                  </p>
-                  <br />
-                  <p>
-                    Tutto quello che faccio – in azienda, nei libri, nel progetto MDP –
-                    ha lo stesso obiettivo: costruire strumenti perché
-                    le persone possano scegliere, capire e pretendere coerenza.
-                  </p>
-                </aside>
-              </div>
-            </section>
+          <div class="chips" aria-label="Focus principali">
+            <span class="chip">Impresa · EA Group / EA Cleaning</span>
+            <span class="chip">Diaspora · rete e rappresentanza</span>
+            <span class="chip">Politica · Macedonian Diaspora Party (MDP)</span>
           </div>
 
-          <!-- SIDEBAR -->
-          <aside class="sidebar">
-            <section class="sidebar-box">
-              <h3 class="sidebar-title">Scheda sintetica</h3>
-              <p class="sidebar-subtitle">
-                Alcuni dati per contestualizzare il mio lavoro e le mie responsabilità.
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="chi-sono.html">Leggi “Chi sono”</a>
+            <a class="btn btn-ghost" href="#progetti">Vedi progetti</a>
+          </div>
+
+          <dl class="quick-facts" aria-label="Dati rapidi">
+            <div>
+              <dt>Base</dt>
+              <dd>Italia</dd>
+            </div>
+            <div>
+              <dt>Approccio</dt>
+              <dd>Trasparenza · Merito</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>Impresa · Diaspora</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="hero-media">
+          <img
+            src="assets/img/emirplatea.jpeg"
+            alt="Emir Alili durante un intervento pubblico"
+            loading="eager"
+            decoding="async"
+            width="1400"
+            height="1600" />
+          <figcaption class="hero-caption">
+            Un Paese non cambia con gli slogan. Cambia con metodo e responsabilità.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Sezione: Manifesto breve -->
+    <section class="home-band">
+      <div class="container band-grid">
+        <div class="band-card">
+          <p class="section-kicker">Visione</p>
+          <h2 class="section-title">Regole uguali. Merito. Trasparenza.</h2>
+          <p class="section-subtitle">
+            Non mi interessa “stare nel sistema”. Mi interessa cambiare le regole che lo rendono opaco e clientelare.
+            Se non misuri, non governi. Se non rendi conto, non sei credibile.
+          </p>
+
+          <ul class="bullets">
+            <li><strong>Trasparenza reale</strong> · dati accessibili e responsabilità tracciabili.</li>
+            <li><strong>Meritocrazia</strong> · fine di scorciatoie e raccomandazioni.</li>
+            <li><strong>Giustizia</strong> · regole uguali, applicate a tutti.</li>
+          </ul>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="cosa-faccio.html">Cosa faccio</a>
+            <a class="btn btn-ghost" href="contatti.html">Contatti</a>
+          </div>
+        </div>
+
+        <div class="band-media" aria-hidden="true">
+          <img
+            src="assets/img/Emir%20ufficio.jpg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="900" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Progetti: layout alternato (feature) -->
+    <section class="section" id="progetti">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">Progetti</p>
+          <h2 class="section-title">Risultati, non vetrina</h2>
+          <p class="section-subtitle">
+            Tre linee tengono insieme il mio lavoro: impresa, politica della diaspora e iniziative sociali/editoriali.
+          </p>
+        </header>
+
+        <div class="features">
+          <article class="feature">
+            <div class="feature-meta">
+              <div class="feature-eyebrow">Politica</div>
+              <h3>Macedonian Diaspora Party (MDP)</h3>
+              <p>
+                Un progetto nato dalla diaspora: regole chiare, documenti pubblici, controllo degli eletti.
+                Obiettivo: rompere il ciclo corruzione–clientele–impunità.
               </p>
-              <ul class="sidebar-list">
-                <li><strong>Origine</strong>: Balcani, area ex-Jugoslavia</li>
-                <li><strong>Paese in cui vivo</strong>: Italia</li>
-                <li><strong>Ambiti principali</strong>: impresa, politica, progetti sociali</li>
-                <li><strong>Ruoli chiave</strong>: CEO EA Group / EA Cleaning, fondatore MDP</li>
-              </ul>
-              <div class="sidebar-social-row">
-                <a class="sidebar-social-btn" href="mailto:info@emiralili.it">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M4 4h16a2 2 0 0 1 2 2v0.4l-10 6.5-10-6.5V6a2 2 0 0 1 2-2zm-2 5.3V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9.3l-9.3 6a2 2 0 0 1-2.2 0L2 9.3z"/>
-                  </svg>
-                  Email
-                </a>
-                <a class="sidebar-social-btn" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M13 3h3a1 1 0 0 1 1 1v3h-3.1a1 1 0 0 0-.9 1v3h3.5a1 1 0 0 1 1 1.1l-.4 3a1 1 0 0 1-1 .9H13v5h-3v-5H7a1 1 0 0 1-1-1v-3h3v-3.8A4.2 4.2 0 0 1 13 3z"/>
-                  </svg>
-                  Facebook
-                </a>
-                <a class="sidebar-social-btn" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M5 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-2 5h4v11H3zM10 9h3.7v1.6h.1A4 4 0 0 1 21 14v6h-4v-5.2c0-1.3-.7-2.2-1.9-2.2S13 13.5 13 14.8V20h-3z"/>
-                  </svg>
-                  LinkedIn
-                </a>
-              </div>
-            </section>
+              <a class="text-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai al sito MDP</a>
+            </div>
+            <div class="feature-aside" aria-hidden="true">
+              <div class="feature-mark">01</div>
+            </div>
+          </article>
 
-            <section class="sidebar-box">
-              <h3 class="sidebar-title">Collegamenti rapidi</h3>
-              <div class="sidebar-links">
-                <a href="cosa-faccio.html">Progetti e attività in corso</a>
-                <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Sito ufficiale MDP</a>
-                <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Cleaning / EA Group</a>
-              </div>
-            </section>
-          </aside>
+          <article class="feature feature--reverse">
+            <div class="feature-meta">
+              <div class="feature-eyebrow">Impresa</div>
+              <h3>EA Group / EA Cleaning</h3>
+              <p>
+                Aziende costruite su processi, persone e numeri reali: qualità del servizio, sostenibilità, responsabilità
+                verso chi lavora e verso i clienti.
+              </p>
+              <a class="text-link" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">Vai a EA Group</a>
+            </div>
+            <div class="feature-aside" aria-hidden="true">
+              <div class="feature-mark">02</div>
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-meta">
+              <div class="feature-eyebrow">Libri & progetti sociali</div>
+              <h3>Strumenti concreti</h3>
+              <p>
+                Libri autobiografici e di orientamento, attività con associazioni e comunità:
+                trasformare esperienza vissuta in strumenti utili per chi arriva dopo.
+              </p>
+              <a class="text-link" href="chi-sono.html#bio">Leggi la biografia</a>
+            </div>
+            <div class="feature-aside" aria-hidden="true">
+              <div class="feature-mark">03</div>
+            </div>
+          </article>
         </div>
       </div>
-    </main>
+    </section>
 
-    <!-- FOOTER -->
-    <footer>
+    <!-- Gallery moderna: 3 immagini “story” -->
+    <section class="section">
       <div class="container">
-        <div class="footer-inner">
-          <div class="footer-links">
-            <span>© <span id="year"></span> Emir Alili.</span>
-            <span>Imprenditore · autore · leader politico.</span>
+        <header class="section-head">
+          <p class="section-kicker">Immagini</p>
+          <h2 class="section-title">Contesto e lavoro sul campo</h2>
+          <p class="section-subtitle">Alcuni scatti per dare un’idea del taglio: professionale, reale, senza teatro.</p>
+        </header>
+
+        <div class="masonry">
+          <figure class="shot">
+            <img
+              src="assets/img/Emir%20servizio%20fotografico.jpg"
+              alt="Emir Alili durante un servizio fotografico"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900" />
+            <figcaption>Comunicazione pulita, senza retorica.</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img
+              src="assets/img/Emir%20formatore.jpg"
+              alt="Emir Alili in un contesto formativo"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900" />
+            <figcaption>Mettere esperienza in metodo.</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img
+              src="assets/img/emireu.jpeg"
+              alt="Emir Alili in contesto istituzionale europeo"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900" />
+            <figcaption>Rappresentanza e responsabilità.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA finale -->
+    <section class="cta" aria-label="Call to action finale">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <p class="cta-kicker">Contatti</p>
+            <h2>Hai un progetto concreto?</h2>
+            <p class="muted">
+              Per collaborazioni, media o iniziative: poche righe chiare e si parte.
+            </p>
           </div>
-          <div class="footer-social">
-            <a href="mailto:info@emiralili.it">Email</a>
-            <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="contatti.html">Vai ai contatti</a>
+            <a class="btn btn-ghost" href="mailto:info@emiralili.it">Email diretta</a>
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
+  </main>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const nav = document.getElementById("nav");
-    const navToggle = document.getElementById("navToggle");
-
-    navToggle.addEventListener("click", () => {
-      nav.classList.toggle("mobile-open");
-    });
-  </script>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span data-year></span> Emir Alili.</p>
+      <div class="footer-links">
+        <a href="mailto:info@emiralili.it">Email</a>
+        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
+
+
