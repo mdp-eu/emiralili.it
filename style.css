@@ -569,3 +569,65 @@ a {
   background: rgba(15,23,42,.06);
   transform: translateY(-1px);
 }
+   /* FOOTER – fix icone giganti + centratura */
+.site-footer{
+  padding: 22px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(10,14,28,.55);
+  backdrop-filter: blur(10px);
+}
+
+.site-footer .footer-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.site-footer .footer-social{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Il bottone/Link social */
+.site-footer .social-btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  overflow: hidden; /* blocca gli svg che “escono” */
+}
+
+/* L’SVG deve essere piccolo e NON può scalare */
+.site-footer .social-btn svg{
+  width: 18px !important;
+  height: 18px !important;
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* Se usi <img> come icona (invece di svg) */
+.site-footer .social-btn img{
+  width: 18px !important;
+  height: 18px !important;
+  display: block;
+  object-fit: contain;
+}
+
+/* Mobile: niente robe strane */
+@media (max-width: 520px){
+  .site-footer .footer-social{ gap: 10px; }
+  .site-footer .social-btn{ width: 42px; height: 42px; }
+}
