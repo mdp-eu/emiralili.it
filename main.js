@@ -1,47 +1,68 @@
 (() => {
-  const nav = document.querySelector(".site-nav");
+  // Year
+  document.querySelectorAll("[data-year]").forEach((el) => {
+    el.textContent = String(new Date().getFullYear());
+  });
+
+  const html = document.documentElement;
+
   const openBtn = document.querySelector("[data-nav-toggle]");
-  const drawer = document.querySelector("[data-nav-panel]");
+  const panel = document.querySelector("[data-nav-panel]");
   const backdrop = document.querySelector("[data-nav-backdrop]");
   const closeBtn = document.querySelector("[data-nav-close]");
 
-  if (!nav || !openBtn || !drawer || !backdrop) return;
+  // Se manca qualcosa, non rompiamo la pagina
+  if (!openBtn || !panel || !backdrop) return;
 
-  const lock = () => {
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-  };
-
-  const unlock = () => {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-  };
+  const isOpen = () => html.classList.contains("menu-open");
 
   const open = () => {
-    nav.classList.add("is-open");
+    if (isOpen()) return;
+    html.classList.add("menu-open");
+    document.body.classList.add("menu-open");
     openBtn.setAttribute("aria-expanded", "true");
-    lock();
+
+    // Focus primo elemento cliccabile nel drawer (accessibilità senza focus trap aggressivo)
+    const firstLink = panel.querySelector('a[href], button:not([disabled])');
+    if (firstLink) firstLink.focus({ preventScroll: true });
   };
 
   const close = () => {
-    nav.classList.remove("is-open");
+    if (!isOpen()) return;
+    html.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
     openBtn.setAttribute("aria-expanded", "false");
-    unlock();
+    openBtn.focus({ preventScroll: true });
   };
 
-  openBtn.addEventListener("click", e => {
+  // IMPORTANT: stopPropagation evita click “doppi” strani in alcuni browser
+  openBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    nav.classList.contains("is-open") ? close() : open();
+    e.stopPropagation();
+    isOpen() ? close() : open();
   });
 
-  backdrop.addEventListener("click", close);
-  if (closeBtn) closeBtn.addEventListener("click", close);
-
-  drawer.addEventListener("click", e => {
-    if (e.target.closest("a")) close();
+  // Backdrop close (pointerdown è più affidabile su mobile)
+  backdrop.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    close();
   });
 
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && nav.classList.contains("is-open")) close();
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      close();
+    });
+  }
+
+  // Close on link click
+  panel.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) close();
+  });
+
+  // ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
   });
 })();
