@@ -1,199 +1,165 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emir Alili – Sito ufficiale</title>
-  <meta name="description" content="Metodo, responsabilità, risultati. Impresa, diaspora e politica: una linea sola, scelte verificabili e responsabilità personale." />
+  <title>Emir Alili — Sito ufficiale</title>
 
-  <!-- CSS: deve stare in ROOT accanto a index.html -->
-  <link rel="stylesheet" href="style.css?v=10" />
+  <meta name="description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
+  <link rel="canonical" href="https://emiralili.it/" />
 
-  <!-- Preload immagine hero (opzionale) -->
-  <link rel="preload" as="image" href="assets/img/emirplatea.jpeg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Emir Alili — Sito ufficiale" />
+  <meta property="og:description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
+  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
+  <meta property="og:url" content="https://emiralili.it/" />
+
+  <!-- IMPORTANTISSIMO: cache busting -->
+  <link rel="stylesheet" href="style.css?v=40" />
+  <script defer src="main.js?v=40"></script>
 </head>
 
 <body>
-  <!-- OVERLAY + DRAWER MENU (mobile) -->
-  <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
-
-  <aside class="menu-drawer" id="menuDrawer" aria-label="Menu">
-    <div class="drawer-head">
-      <div class="drawer-title">Menu</div>
-      <button class="drawer-close" id="menuClose" type="button" aria-label="Chiudi menu">×</button>
-    </div>
-
-    <nav class="drawer-links">
-      <a class="drawer-link is-active" href="index.html">Home</a>
-      <a class="drawer-link" href="chi-sono.html">Chi sono</a>
-      <a class="drawer-link" href="cosa-faccio.html">Cosa faccio</a>
-      <a class="drawer-link" href="contatti.html">Contatti</a>
-    </nav>
-
-    <div class="drawer-actions">
-      <a class="drawer-link" href="mailto:info@emiralili.it">Scrivimi</a>
-      <a class="drawer-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
-    </div>
-  </aside>
 
   <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-inner">
-        <div class="brand-name">EMIR ALILI</div>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Vai alla home">EMIR ALILI</a>
 
-        <nav class="header-nav" aria-label="Navigazione principale">
-          <a class="nav-link" href="chi-sono.html">Chi sono</a>
-          <a class="nav-link" href="cosa-faccio.html">Cosa faccio</a>
-          <a class="nav-link nav-cta" href="contatti.html">Contatti</a>
-          <a class="nav-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-        </nav>
+      <div class="header__actions">
+        <a class="header__link" href="contatti.html">CONTATTI</a>
 
-        <button class="menu-btn" id="menuBtn" type="button" aria-label="Apri menu">
-          <span class="menu-icon" aria-hidden="true"></span>
+        <button class="burger" type="button"
+          aria-label="Apri menu"
+          aria-expanded="false"
+          data-burger>
+          <span aria-hidden="true"></span>
         </button>
       </div>
     </div>
   </header>
 
+  <!-- MENU OVERLAY -->
+  <div class="menu" data-menu aria-hidden="true">
+    <div class="menu__panel" role="dialog" aria-label="Menu principale">
+      <nav class="menu__nav">
+        <a href="index.html">Home</a>
+        <a href="chi-sono.html">Chi sono</a>
+        <a href="cosa-faccio.html">Cosa faccio</a>
+        <a href="news.html">News</a>
+        <a href="contatti.html">Contatti</a>
+        <hr class="menu__hr">
+        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+      </nav>
+    </div>
+  </div>
+
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" role="img" aria-label="Emir Alili in pubblico"></div>
-    <div class="hero-overlay" aria-hidden="true"></div>
+  <main class="hero">
+    <div class="container hero__content">
+      <div class="hero__label">SITO UFFICIALE</div>
 
-    <div class="container hero-content">
-      <div class="kicker">SITO UFFICIALE</div>
-
-      <h1 class="hero-title">
-        Metodo, responsabilità, risultati. <span>Niente teatro.</span>
+      <h1 class="hero__title">
+        Metodo, responsabilità,<br>
+        risultati. <span>Niente teatro.</span>
       </h1>
 
-      <p class="hero-lead">
-        Una linea sola: impresa, diaspora, politica. Stessa regola ovunque: numeri chiari, scelte verificabili, responsabilità personale.
+      <p class="hero__text">
+        Impresa, diaspora, politica: una linea sola. La regola è sempre la stessa:
+        numeri chiari, scelte verificabili, responsabilità personale.
       </p>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="visione-dello-stato.html">Visione dello Stato</a>
-        <a class="btn btn-ghost" href="chi-sono.html">Chi sono</a>
+      <div class="hero__actions">
+        <a class="btn-primary" href="visione-dello-stato.html">Visione dello Stato</a>
+        <a class="btn-ghost" href="#video">Guarda il video</a>
       </div>
+    </div>
 
-      <div class="hero-quick">
-        <a class="quick-link" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-        <span class="dot">•</span>
-        <a class="quick-link" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Group</a>
-        <span class="dot">•</span>
-        <a class="quick-link" href="#newsletter">Newsletter</a>
+    <!-- bottom bar mobile -->
+    <div class="hero__bottom">
+      <a href="contatti.html">CONTATTI</a>
+      <a href="#video">ASCOLTA</a>
+    </div>
+  </main>
+
+  <!-- SEZIONE SOTTO HERO -->
+  <section class="home-sections" id="video">
+    <div class="container">
+      <div class="section-grid">
+
+        <!-- VIDEO -->
+        <article class="card">
+          <div class="card__head">
+            <h2 class="card__title">In primo piano</h2>
+          </div>
+
+          <div class="card__body">
+            <div class="video-embed">
+              <!-- SOSTITUISCI VIDEO_ID con il tuo ID YouTube -->
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                title="Video ufficiale"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+
+            <p class="video-caption">
+              Un messaggio diretto: visione, priorità, e cosa significa responsabilità politica senza fumo.
+            </p>
+
+            <div class="video-actions">
+              <a class="btn-small" href="news.html">Aggiornamenti</a>
+              <a class="btn-small" href="chi-sono.html">Chi sono</a>
+              <a class="btn-small" href="contatti.html">Contatti</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- BLOCCO TESTO / SINTESI -->
+        <aside class="card">
+          <div class="card__head">
+            <h2 class="card__title">Linea chiara</h2>
+          </div>
+
+          <div class="card__body">
+            <p style="margin-top:0;">
+              Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione. In azienda funziona
+              o muori. In politica dovrebbe valere la stessa cosa.
+            </p>
+
+            <p>
+              Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli, responsabilità,
+              e risultati misurabili.
+            </p>
+
+            <div class="video-actions">
+              <a class="btn-small" href="cosa-faccio.html">Cosa faccio</a>
+              <a class="btn-small" href="visione-dello-stato.html">Visione</a>
+              <a class="btn-small" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+            </div>
+          </div>
+        </aside>
+
       </div>
     </div>
   </section>
 
-  <!-- CONTENT -->
-  <main class="section">
-    <div class="container">
-      <div class="grid-2">
-        <div class="stack">
-          <article class="card">
-            <div class="card-title">Linea chiara</div>
-            <p class="card-text">
-              Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione. In azienda funziona o muori. In politica dovrebbe valere la stessa cosa.
-            </p>
-            <p class="card-text">
-              Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli, responsabilità, e risultati misurabili.
-            </p>
-
-            <div class="chips">
-              <a class="chip" href="cosa-faccio.html">Cosa faccio</a>
-              <a class="chip" href="visione-dello-stato.html">Visione</a>
-              <a class="chip" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-            </div>
-          </article>
-
-          <article class="card" id="newsletter">
-            <div class="card-title">Aggiornamenti</div>
-            <p class="card-text">
-              Comunicazioni, interventi, analisi e contenuti. Se vuoi seguire il lavoro senza filtri, qui trovi gli aggiornamenti principali.
-            </p>
-
-            <div class="mini-list">
-              <a class="mini-item" href="news.html">
-                <span class="mini-label">News</span>
-                <span class="mini-arrow">→</span>
-              </a>
-              <a class="mini-item" href="contatti.html">
-                <span class="mini-label">Contatti</span>
-                <span class="mini-arrow">→</span>
-              </a>
-            </div>
-
-            <!-- Placeholder newsletter -->
-            <div class="newsletter-placeholder">
-              <div class="placeholder-line"></div>
-              <div class="placeholder-line short"></div>
-              <div style="margin-top:10px">
-                <span class="placeholder-btn">Spazio Newsletter (in arrivo)</span>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <aside class="card">
-          <div class="card-title">Video</div>
-          <p class="card-text">
-            Spazio video: lo lasciamo pronto. Lo collegheremo dopo (YouTube / file / embed).
-          </p>
-          <div class="video-slot" aria-label="Spazio video"></div>
-        </aside>
-      </div>
-    </div>
-  </main>
-
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-copy">© <span id="year"></span> Emir Alili.</div>
-
-        <div class="footer-social" aria-label="Social">
-          <a class="social-btn" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6H16.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5z"/></svg>
-          </a>
-
-          <a class="social-btn" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.9 6.8A2.1 2.1 0 1 1 6.9 2.6a2.1 2.1 0 0 1 0 4.2zM4.8 21.4V8.5h4.1v12.9H4.8zm6.9 0V8.5h3.9v1.8h.1c.5-1 1.9-2.1 3.9-2.1 4.2 0 5 2.8 5 6.4v6.8h-4.1v-6c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1v6.1h-4.1z"/></svg>
-          </a>
-
-          <a class="social-btn" href="mailto:info@emiralili.it" aria-label="Email">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm-2 5.2V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6.8l-10 6-10-6z"/></svg>
-          </a>
-
-          <a class="social-btn" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.9A8.5 8.5 0 0 1 7.2 19.2L3 20l.9-4A8.5 8.5 0 1 1 20.5 11.9zm-4.9 4.6c.2 0 1.3-.5 1.5-1 .2-.4.2-.8.1-.9-.1-.1-.3-.2-.6-.3l-1.4-.7c-.2-.1-.4-.1-.6.2l-.8 1c-.1.2-.3.2-.5.1-2-.9-3.3-2.2-4.2-4.1-.1-.2 0-.4.1-.5l.6-.7c.2-.2.3-.4.2-.6l-.7-1.6c-.2-.5-.4-.4-.6-.4h-.6c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s.9 2.6 1 2.8c.1.2 1.8 2.8 4.3 3.9.6.3 1.1.5 1.5.6.6.2 1.1.2 1.6.1z"/></svg>
-          </a>
-        </div>
+  <footer style="padding:28px 0;border-top:1px solid rgba(15,23,42,.08);background:#fff;">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;">
+      <div style="color:#475569;font-size:.9rem;">
+        © <span data-year></span> Emir Alili.
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="mailto:info@emiralili.it" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">Email</a>
+        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer"
+           style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">Facebook</a>
+        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer"
+           style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">LinkedIn</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    // anno
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // menu mobile
-    const body = document.body;
-    const menuBtn = document.getElementById("menuBtn");
-    const menuClose = document.getElementById("menuClose");
-    const menuOverlay = document.getElementById("menuOverlay");
-
-    function openMenu(){ body.classList.add("menu-open"); }
-    function closeMenu(){ body.classList.remove("menu-open"); }
-
-    menuBtn.addEventListener("click", openMenu);
-    menuClose.addEventListener("click", closeMenu);
-    menuOverlay.addEventListener("click", closeMenu);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-  </script>
 </body>
 </html>
