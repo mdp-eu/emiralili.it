@@ -82,216 +82,121 @@
           </p>
         </div>
 
-        <div class="content__grid content__grid--page">
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
-                <!-- phone -->
-                <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.5 2.9 3.7 5.1 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1 .3 2.1.5 3.2.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C9.8 21.2 2.8 14.2 2.8 5.2 2.8 4.5 3.3 4 4 4h3.5c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.2.5 3.2.1.4 0 .9-.2 1.2l-2.4 2.2z"/></svg>
+        <!-- PILL ACTIONS (stile social, colorate) -->
+        <section class="contacts" aria-label="Azioni di contatto">
+          <div class="contact-grid">
+            <!-- TELEFONO -->
+            <a class="contact-pill contact-pill--phone" href="tel:+393282290062" aria-label="Chiama Emir Alili">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.5 2.7 3.9 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.9.7.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C11.3 22 2 12.7 2 1c0-.6.4-1 1-1h3.7c.6 0 1 .4 1 1 0 1.4.2 2.7.7 3.9.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
               </span>
-              <span class="tile__title">Telefono</span>
-            </div>
-            <span class="tile__text">Chiamata diretta.</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="tel:+393282290062">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.5 2.9 3.7 5.1 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1 .3 2.1.5 3.2.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C9.8 21.2 2.8 14.2 2.8 5.2 2.8 4.5 3.3 4 4 4h3.5c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.2.5 3.2.1.4 0 .9-.2 1.2l-2.4 2.2z"/></svg>
-                </span>
-                Chiama
-              </a>
-              <a class="btn btn--ghost btn--icon" href="tel:+393282290062">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 0 1-2 2H7l-4 3V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </span>
-                +39 328 229 0062
-              </a>
-            </div>
-          </div>
+              <span class="contact-pill__label">Chiama</span>
+              <span class="contact-pill__hint">+39 328 229 0062</span>
+            </a>
 
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
-                <!-- whatsapp -->
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20zm4.6-5.7c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
+            <!-- WHATSAPP -->
+            <a class="contact-pill contact-pill--wa" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-12.2 6.8L4 20l1.3-3.6A8 8 0 1 1 20 12zm-4.7 2.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
               </span>
-              <span class="tile__title">WhatsApp</span>
-            </div>
-            <span class="tile__text">Messaggio veloce, con contesto chiaro.</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z"/></svg>
-                </span>
-                Apri WhatsApp
-              </a>
-              <a class="btn btn--ghost btn--icon" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 0 1-2 2H7l-4 3V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </span>
-                Chat diretta
-              </a>
-            </div>
-          </div>
+              <span class="contact-pill__label">WhatsApp</span>
+              <span class="contact-pill__hint">Chat diretta</span>
+            </a>
 
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
-                <!-- mail -->
+            <!-- EMAIL -->
+            <a class="contact-pill contact-pill--mail" href="mailto:info@emiralili.it" aria-label="Invia una email">
+              <span class="contact-pill__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
               </span>
-              <span class="tile__title">Email</span>
-            </div>
-            <span class="tile__text">Richieste strutturate, collaborazione, media.</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="mailto:info@emiralili.it">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2z"/></svg>
-                </span>
-                Scrivi email
-              </a>
-              <a class="btn btn--ghost btn--icon" href="mailto:info@emiralili.it">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 0 1-2 2H7l-4 3V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </span>
-                info@emiralili.it
-              </a>
-            </div>
+              <span class="contact-pill__label">Email</span>
+              <span class="contact-pill__hint">info@emiralili.it</span>
+            </a>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 
-    <!-- SOCIAL (PILLS, PULITO, NIENTE CARD) -->
-    <section class="contacts" id="social" aria-label="Social e canali">
-      <div class="wrap">
-        <div class="contacts-head">
-          <p class="contacts-kicker">SOCIAL</p>
-          <h2 class="contacts-title">Social e canali</h2>
-          <p class="contacts-sub">Canali ufficiali e riconoscibili. Tocchi e apri.</p>
+    <!-- SOCIAL -->
+    <section class="content content--page cf-section--soft" id="social" aria-label="Social e canali">
+      <div class="wrap content__inner">
+        <div class="content__block">
+          <h2>Social e canali</h2>
+          <p>Canali ufficiali. Icone riconoscibili, un click e sei dentro.</p>
         </div>
 
-        <div class="contact-grid" aria-label="Azioni social">
-          <a class="contact-pill contact-pill--fb" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Vai a Facebook">
-            <span class="contact-pill__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg>
-            </span>
-            <span class="contact-pill__label">Facebook</span>
-            <span class="contact-pill__hint">@emir.alili.81</span>
-          </a>
+        <section class="contacts" aria-label="Azioni social">
+          <div class="contact-grid">
+            <a class="contact-pill contact-pill--fb" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg>
+              </span>
+              <span class="contact-pill__label">Facebook</span>
+              <span class="contact-pill__hint">@emir.alili.81</span>
+            </a>
 
-          <a class="contact-pill contact-pill--in" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="Vai a LinkedIn">
-            <span class="contact-pill__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg>
-            </span>
-            <span class="contact-pill__label">LinkedIn</span>
-            <span class="contact-pill__hint">/in/emiralili</span>
-          </a>
+            <a class="contact-pill contact-pill--in" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg>
+              </span>
+              <span class="contact-pill__label">LinkedIn</span>
+              <span class="contact-pill__hint">/in/emiralili</span>
+            </a>
 
-          <a class="contact-pill contact-pill--ig" href="https://www.instagram.com/emir_alili?igsh=MWY1dmU3d2doczIzYg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Vai a Instagram">
-            <span class="contact-pill__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.2-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg>
-            </span>
-            <span class="contact-pill__label">Instagram</span>
-            <span class="contact-pill__hint">@emir_alili</span>
-          </a>
+            <a class="contact-pill contact-pill--ig" href="https://www.instagram.com/emir_alili?igsh=MWY1dmU3d2doczIzYg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.2-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg>
+              </span>
+              <span class="contact-pill__label">Instagram</span>
+              <span class="contact-pill__hint">@emir_alili</span>
+            </a>
 
-          <a class="contact-pill contact-pill--tg" href="https://t.me/mmea81" target="_blank" rel="noopener noreferrer" aria-label="Apri Telegram">
-            <span class="contact-pill__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M21.8 4.2 2.9 11.6c-.9.4-.8 1.7.1 1.9l4.8 1.4 1.8 5.1c.3.8 1.3 1 1.8.3l2.6-3.5 4.9 3.6c.7.5 1.7.1 1.9-.8l3.1-14.2c.2-1-.8-1.8-1.8-1.4zM9.4 14.5l9.2-7.1-7.4 8.6-.3 3.1-1.6-4.6z"/></svg>
-            </span>
-            <span class="contact-pill__label">Telegram</span>
-            <span class="contact-pill__hint">@mmea81</span>
-          </a>
-
-          <!-- Se vuoi puoi aggiungere TikTok / YouTube qui con lo stesso schema -->
-        </div>
+            <a class="contact-pill contact-pill--tg" href="https://t.me/mmea81" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M21.8 4.2 2.9 11.6c-.9.4-.8 1.7.1 1.9l4.8 1.4 1.8 5.1c.3.8 1.3 1 1.8.3l2.6-3.5 4.9 3.6c.7.5 1.7.1 1.9-.8l3.1-14.2c.2-1-.8-1.8-1.8-1.4zM9.4 14.5l9.2-7.1-7.4 8.6-.3 3.1-1.6-4.6z"/></svg>
+              </span>
+              <span class="contact-pill__label">Telegram</span>
+              <span class="contact-pill__hint">@mmea81</span>
+            </a>
+          </div>
+        </section>
       </div>
     </section>
 
     <!-- SITI WEB -->
-    <section class="cf-section" id="siti" aria-label="Siti web">
-      <div class="wrap cf-section__inner">
-        <div class="cf-head">
-          <div class="cf-badge">
-            <span class="cf-badge__text">SITI WEB</span>
-          </div>
-          <h2 class="cf-title">Siti ufficiali</h2>
-          <p class="cf-sub">Link diretti ai progetti.</p>
+    <section class="content content--page" id="siti" aria-label="Siti web">
+      <div class="wrap content__inner">
+        <div class="content__block">
+          <h2>Siti ufficiali</h2>
+          <p>Link diretti ai progetti, identificabili al volo.</p>
         </div>
 
-        <div class="content__grid content__grid--page">
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.9 9h-3.2a15.8 15.8 0 0 0-1.3-5 8.1 8.1 0 0 1 4.5 5zM12 4.1c1.2 1.7 2.1 4.1 2.5 6.9H9.5c.4-2.8 1.3-5.2 2.5-6.9zM4.1 13h3.2c.2 1.8.7 3.5 1.3 5a8.1 8.1 0 0 1-4.5-5zm3.2-2H4.1a8.1 8.1 0 0 1 4.5-5c-.6 1.5-1.1 3.2-1.3 5zM12 19.9c-1.2-1.7-2.1-4.1-2.5-6.9h5c-.4 2.8-1.3 5.2-2.5 6.9zM15.4 18c.6-1.5 1.1-3.2 1.3-5h3.2a8.1 8.1 0 0 1-4.5 5zm-1-5H9.6c-.1-.6-.1-1.3-.1-2s0-1.4.1-2h4.8c.1.6.1 1.3.1 2s0 1.4-.1 2z"/></svg>
+        <section class="contacts" aria-label="Siti ufficiali">
+          <div class="contact-grid">
+            <a class="contact-pill contact-pill--site" href="index.html" aria-label="Vai al sito personale">
+              <span class="contact-pill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.9 9h-3.2a15.8 15.8 0 0 0-1.3-5 8.1 8.1 0 0 1 4.5 5zM12 4.1c1.2 1.7 2.1 4.1 2.5 6.9H9.5c.4-2.8 1.3-5.2 2.5-6.9zM4.1 13h3.2c.2 1.8.7 3.5 1.3 5a8.1 8.1 0 0 1-4.5-5zm3.2-2H4.1a8.1 8.1 0 0 1 4.5-5c-.6 1.5-1.1 3.2-1.3 5zM12 19.9c-1.2-1.7-2.1-4.1-2.5-6.9h5c-.4 2.8-1.3 5.2-2.5 6.9zM15.4 18c.6-1.5 1.1-3.2 1.3-5h3.2a8.1 8.1 0 0 1-4.5 5z"/></svg>
               </span>
-              <span class="tile__title">Sito personale</span>
-            </div>
-            <span class="tile__text">emiralili.it</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="index.html">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3z"/></svg>
-                </span>
-                Vai al sito
-              </a>
-              <a class="btn btn--ghost btn--icon" href="index.html">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 0 1-2 2H7l-4 3V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </span>
-                Home
-              </a>
-            </div>
-          </div>
+              <span class="contact-pill__label">Sito personale</span>
+              <span class="contact-pill__hint">emiralili.it</span>
+            </a>
 
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
+            <a class="contact-pill contact-pill--mdp" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer" aria-label="Vai al sito MDP">
+              <span class="contact-pill__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1v5h5"/></svg>
               </span>
-              <span class="tile__title">MDP</span>
-            </div>
-            <span class="tile__text">Macedonian Diaspora Party</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
-                </span>
-                Vai a MDP
-              </a>
-              <a class="btn btn--ghost btn--icon" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/></svg>
-                </span>
-                Documenti
-              </a>
-            </div>
-          </div>
+              <span class="contact-pill__label">MDP</span>
+              <span class="contact-pill__hint">mdp-eu.com</span>
+            </a>
 
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
+            <a class="contact-pill contact-pill--ea" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer" aria-label="Vai al sito EA Cleaning">
+              <span class="contact-pill__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M3 22V2h14v20H3zm16 0v-12h2v12h-2zM6 6h2v2H6V6zm0 4h2v2H6v-2zm0 4h2v2H6v-2zm4-8h2v2h-2V6zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>
               </span>
-              <span class="tile__title">EA Cleaning</span>
-            </div>
-            <span class="tile__text">Servizi e contatti aziendali</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
-                </span>
-                Vai al sito
-              </a>
-              <a class="btn btn--ghost btn--icon" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 0 1-2 2H7l-4 3V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </span>
-                www.eacleaning.it
-              </a>
-            </div>
+              <span class="contact-pill__label">EA Cleaning</span>
+              <span class="contact-pill__hint">eacleaning.it</span>
+            </a>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 
@@ -304,30 +209,36 @@
         </div>
 
         <div class="content__grid content__grid--page">
-          <div class="tile">
-            <div class="ct-head">
-              <span class="ct-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
-              </span>
-              <span class="tile__title">Indirizzo</span>
+          <!-- MAPPA -->
+          <div class="tile tile--map">
+            <div class="tile__map">
+              <iframe
+                title="Mappa - Via Nievo 1, 47035 Gambettola FC"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Via%20Nievo%201%2C%2047035%20Gambettola%20FC&output=embed">
+              </iframe>
             </div>
-            <span class="tile__text">Via Nievo 1, Gambettola (FC)</span>
-            <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="https://www.google.com/maps?q=Via+Nievo+1,+Gambettola" target="_blank" rel="noopener noreferrer">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7z"/></svg>
+
+            <div class="tile__mapmeta">
+              <div class="ct-head">
+                <span class="ct-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
                 </span>
-                Apri su Maps
-              </a>
-              <a class="btn btn--ghost btn--icon" href="#operativita">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v5h4v2h-6V7h2z"/></svg>
-                </span>
-                Aree
-              </a>
+                <span class="tile__title">Via Nievo 1</span>
+              </div>
+              <span class="tile__text">47035 Gambettola (FC)</span>
+
+              <div class="map-actions">
+                <a class="btn btn--primary" href="https://www.google.com/maps?q=Via+Nievo+1,+47035+Gambettola+FC" target="_blank" rel="noopener noreferrer">
+                  Apri su Maps
+                </a>
+                <a class="btn btn--ghost" href="#operativita">Zone</a>
+              </div>
             </div>
           </div>
 
+          <!-- ZONE -->
           <div class="tile" id="operativita">
             <div class="ct-head">
               <span class="ct-icon" aria-hidden="true">
@@ -336,12 +247,13 @@
               <span class="tile__title">Zone principali</span>
             </div>
             <span class="tile__text">Gambettola • Forlì • Cesena</span>
-            <ul class="cf-list cf-list--compact" style="margin-top:10px">
+            <ul class="cf-list cf-list--compact">
               <li>Interventi su richiesta anche in provincia</li>
               <li>Collaborazioni operative e incontri programmati</li>
             </ul>
           </div>
 
+          <!-- MEDIA / EVENTI -->
           <div class="tile">
             <div class="ct-head">
               <span class="ct-icon" aria-hidden="true">
@@ -351,18 +263,8 @@
             </div>
             <span class="tile__text">Richieste di intervento, interviste, incontri pubblici.</span>
             <div class="ct-actions">
-              <a class="btn btn--primary btn--icon" href="mailto:info@emiralili.it?subject=Richiesta%20intervento%20/%20media">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
-                </span>
-                Richiedi contatto
-              </a>
-              <a class="btn btn--ghost btn--icon" href="news.html">
-                <span class="btn__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v2h12V6H6zm0 4v2h12v-2H6zm0 4v2h8v-2H6z"/></svg>
-                </span>
-                News
-              </a>
+              <a class="btn btn--primary" href="mailto:info@emiralili.it?subject=Richiesta%20intervento%20/%20media">Richiedi contatto</a>
+              <a class="btn btn--ghost" href="news.html">News</a>
             </div>
           </div>
         </div>
@@ -374,12 +276,7 @@
       <div class="wrap support__inner">
         <h2>Vuoi coinvolgermi in un progetto?</h2>
         <p>Scrivimi con obiettivo, contesto e tempi. Se serve una call, la fissiamo con agenda e punti chiari.</p>
-        <a class="btn btn--primary btn--icon" href="mailto:info@emiralili.it">
-          <span class="btn__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
-          </span>
-          Scrivimi
-        </a>
+        <a class="btn btn--primary" href="mailto:info@emiralili.it">Scrivimi</a>
       </div>
     </section>
   </main>
