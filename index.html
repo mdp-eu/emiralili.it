@@ -1,161 +1,168 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Emir Alili – Sito ufficiale</title>
-  <meta name="description" content="Metodo, responsabilità, risultati. Impresa, diaspora, politica: una linea sola. Canali ufficiali, visione e aggiornamenti." />
-  <link rel="stylesheet" href="assets/css/style.css?v=12" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emir Alili — Sito ufficiale</title>
+
+  <meta name="description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
+  <link rel="canonical" href="https://emiralili.it/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Emir Alili — Sito ufficiale" />
+  <meta property="og:description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
+  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
+  <meta property="og:url" content="https://emiralili.it/" />
+
+  <!-- IMPORTANTISSIMO: cache busting -->
+  <link rel="stylesheet" href="style.css?v=40" />
+  <script defer src="main.js?v=40"></script>
 </head>
 
 <body>
-  <div class="page">
 
-    <!-- TOPBAR -->
-    <header class="topbar" role="banner">
-      <div class="container">
-        <div class="topbar__inner">
-          <a class="brand" href="index.html" aria-label="Home Emir Alili">
-            <div class="brand__name">EMIR ALILI</div>
-          </a>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Vai alla home">EMIR ALILI</a>
 
-          <nav class="topbar__mid" aria-label="Navigazione principale">
-            <a href="index.html" class="active">Home</a>
-            <a href="chi-sono.html">Chi sono</a>
-            <a href="cosa-faccio.html">Cosa faccio</a>
-            <a href="news.html">News</a>
-            <a href="contatti.html">Contatti</a>
-          </nav>
+      <div class="header__actions">
+        <a class="header__link" href="contatti.html">CONTATTI</a>
 
-          <div class="topbar__right">
-            <a class="btn" href="contatti.html">Contatti</a>
-            <button class="iconbtn" type="button" data-menu-open aria-label="Apri menu">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- MENU OVERLAY + DRAWER -->
-    <div class="overlay" data-menu-overlay></div>
-    <aside class="drawer" aria-label="Menu" aria-modal="true" role="dialog">
-      <div class="drawer__title">
-        <strong>Menu</strong>
-        <button class="drawer__close" type="button" data-menu-close aria-label="Chiudi menu">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3 1.4 1.4z"></path>
-          </svg>
+        <button class="burger" type="button"
+          aria-label="Apri menu"
+          aria-expanded="false"
+          data-burger>
+          <span aria-hidden="true"></span>
         </button>
       </div>
+    </div>
+  </header>
 
-      <div class="drawer__links">
-        <a href="index.html" class="active">Home</a>
+  <!-- MENU OVERLAY -->
+  <div class="menu" data-menu aria-hidden="true">
+    <div class="menu__panel" role="dialog" aria-label="Menu principale">
+      <nav class="menu__nav">
+        <a href="index.html">Home</a>
         <a href="chi-sono.html">Chi sono</a>
         <a href="cosa-faccio.html">Cosa faccio</a>
         <a href="news.html">News</a>
         <a href="contatti.html">Contatti</a>
+        <hr class="menu__hr">
+        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main class="hero">
+    <div class="container hero__content">
+      <div class="hero__label">SITO UFFICIALE</div>
+
+      <h1 class="hero__title">
+        Metodo, responsabilità,<br>
+        risultati. <span>Niente teatro.</span>
+      </h1>
+
+      <p class="hero__text">
+        Impresa, diaspora, politica: una linea sola. La regola è sempre la stessa:
+        numeri chiari, scelte verificabili, responsabilità personale.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn-primary" href="visione-dello-stato.html">Visione dello Stato</a>
+        <a class="btn-ghost" href="#video">Guarda il video</a>
       </div>
+    </div>
 
-      <div class="drawer__actions">
-        <a class="btn btn--accent" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
-        <a class="btn" href="mailto:info@emiralili.it">Scrivimi</a>
-      </div>
+    <!-- bottom bar mobile -->
+    <div class="hero__bottom">
+      <a href="contatti.html">CONTATTI</a>
+      <a href="#video">ASCOLTA</a>
+    </div>
+  </main>
 
-      <div class="drawer__note">
-        Canali ufficiali. Nessun filtro, nessun intermediario.
-      </div>
-    </aside>
+  <!-- SEZIONE SOTTO HERO -->
+  <section class="home-sections" id="video">
+    <div class="container">
+      <div class="section-grid">
 
-    <!-- HERO -->
-    <main role="main">
-      <section class="hero">
-        <div class="hero__bg" aria-hidden="true"></div>
-        <div class="container">
-          <div class="hero__content">
-            <div class="kicker">Sito ufficiale</div>
+        <!-- VIDEO -->
+        <article class="card">
+          <div class="card__head">
+            <h2 class="card__title">In primo piano</h2>
+          </div>
 
-            <h1 class="h1">
-              Metodo, responsabilità, risultati.
-              <span class="muted">Niente teatro.</span>
-            </h1>
+          <div class="card__body">
+            <div class="video-embed">
+              <!-- SOSTITUISCI VIDEO_ID con il tuo ID YouTube -->
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                title="Video ufficiale"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
 
-            <p class="lead">
-              Impresa, diaspora, politica: una linea sola. Stessa regola ovunque: numeri chiari,
-              scelte verificabili, responsabilità personale.
+            <p class="video-caption">
+              Un messaggio diretto: visione, priorità, e cosa significa responsabilità politica senza fumo.
             </p>
 
-            <div class="hero__cta">
-              <a class="btn btn--accent" href="chi-sono.html">Chi sono</a>
-              <a class="btn" href="assets/pdf/VisioneDelloStato.pdf" target="_blank" rel="noopener noreferrer">Visione dello Stato</a>
-            </div>
-
-            <div class="hero__links" aria-label="Link rapidi">
-              <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-              <span class="dot">•</span>
-              <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Group</a>
-              <span class="dot">•</span>
-              <a href="#newsletter">Newsletter</a>
+            <div class="video-actions">
+              <a class="btn-small" href="news.html">Aggiornamenti</a>
+              <a class="btn-small" href="chi-sono.html">Chi sono</a>
+              <a class="btn-small" href="contatti.html">Contatti</a>
             </div>
           </div>
-        </div>
-      </section>
+        </article>
 
-      <!-- SEZIONI -->
-      <section class="section">
-        <div class="container">
-          <div class="grid grid--2">
-            <article class="card">
-              <div class="card__inner">
-                <div class="card__title">Linea chiara</div>
-                <h2 class="card__h">Regole, controlli, risultati misurabili.</h2>
-                <p class="card__p">
-                  Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione.
-                  In azienda funziona o muori. In politica dovrebbe valere la stessa cosa.
-                  Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli,
-                  responsabilità, risultati misurabili.
-                </p>
-
-                <div class="chips">
-                  <a class="chip" href="cosa-faccio.html">Cosa faccio</a>
-                  <a class="chip" href="assets/pdf/VisioneDelloStato.pdf" target="_blank" rel="noopener noreferrer">Visione</a>
-                  <a class="chip" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-                </div>
-              </div>
-            </article>
-
-            <aside class="card">
-              <div class="card__inner">
-                <div class="card__title">In primo piano</div>
-
-                <div class="video-slot">
-                  <div>
-                    <strong>Spazio video</strong>
-                    Qui lasciamo lo slot pronto. Lo collegheremo dopo (YouTube / file / embed).
-                  </div>
-                </div>
-
-                <div id="newsletter" style="height:14px"></div>
-
-                <div style="margin-top:14px">
-                  <div class="card__title">Newsletter (in arrivo)</div>
-                  <p class="card__p">
-                    Un messaggio diretto: visione, priorità, e cosa significa responsabilità politica senza fumo.
-                  </p>
-
-                  <div class="chips">
-                    <a class="chip" href="news.html">Aggiornamenti</a>
-                    <a class="chip" href="chi-sono.html">Chi sono</a>
-                    <a class="chip" href="contatti.html">Contatti</a>
-                  </div>
-                </div>
-              </div>
-            </aside>
+        <!-- BLOCCO TESTO / SINTESI -->
+        <aside class="card">
+          <div class="card__head">
+            <h2 class="card__title">Linea chiara</h2>
           </div>
-        </div>
-      </section>
+
+          <div class="card__body">
+            <p style="margin-top:0;">
+              Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione. In azienda funziona
+              o muori. In politica dovrebbe valere la stessa cosa.
+            </p>
+
+            <p>
+              Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli, responsabilità,
+              e risultati misurabili.
+            </p>
+
+            <div class="video-actions">
+              <a class="btn-small" href="cosa-faccio.html">Cosa faccio</a>
+              <a class="btn-small" href="visione-dello-stato.html">Visione</a>
+              <a class="btn-small" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:28px 0;border-top:1px solid rgba(15,23,42,.08);background:#fff;">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;">
+      <div style="color:#475569;font-size:.9rem;">
+        © <span data-year></span> Emir Alili.
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="mailto:info@emiralili.it" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">Email</a>
+        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer"
+           style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">Facebook</a>
+        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer"
+           style="padding:10px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.12);background:rgba(15,23,42,.03);font-weight:700;font-size:.85rem;">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
 
       <!-- FOOTER -->
       <footer class="footer" role="contentinfo">
