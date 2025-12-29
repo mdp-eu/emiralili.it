@@ -513,3 +513,58 @@ main{padding-top:64px}
   color: rgba(255,255,255,.70);
   line-height: 1.6;
 }
+/* =========================
+   CONTATTI – icone moderne
+========================= */
+
+.ct-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.ct-icon{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+.ct-icon svg{
+  width:20px;
+  height:20px;
+  fill:#fff;
+  opacity:.92;
+}
+
+.ct-actions{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* Bottoni con icona */
+.btn--icon{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+
+.btn__icon{
+  width:18px;
+  height:18px;
+  display:inline-grid;
+  place-items:center;
+}
+
+.btn__icon svg{
+  width:18px;
+  height:18px;
+  fill: currentColor;
+  opacity: .95;
+}
