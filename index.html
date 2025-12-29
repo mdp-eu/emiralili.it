@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Emir Alili – Sito ufficiale</title>
   <meta name="description" content="Emir Alili. Impresa, diaspora, politica. Visione, aggiornamenti, contatti." />
-  <link rel="stylesheet" href="style.css?v=7" />
-  <script defer src="main.js?v=7"></script>
+  <link rel="stylesheet" href="style.css?v=10" />
+  <script defer src="main.js?v=10"></script>
 </head>
 
 <body>
@@ -27,6 +27,7 @@
     <!-- MENU OVERLAY -->
     <div class="menu" data-menu aria-hidden="true">
       <nav class="menu__panel" aria-label="Menu principale">
+        <a class="menu__link" href="index.html">Home</a>
         <a class="menu__link" href="chi-sono.html">Chi sono</a>
         <a class="menu__link" href="cosa-faccio.html">Cosa faccio</a>
         <a class="menu__link" href="news.html">News</a>
@@ -37,13 +38,14 @@
     </div>
   </header>
 
+  <!-- HERO FULL BLEED -->
   <main>
-    <!-- HERO FULL BLEED (PLATEA) -->
-    <section class="hero hero--platea">
+    <section class="hero">
       <div class="hero__media">
+        <!-- HERO = immagine platea -->
         <img
-          src="assets/img/emirplatea.jpeg?v=7"
-          alt="Emir Alili – intervento pubblico davanti alla platea"
+          src="assets/img/emirplatea.jpeg?v=10"
+          alt="Emir Alili – intervento pubblico"
           loading="eager"
           decoding="async"
         />
@@ -57,9 +59,9 @@
           <span>Niente teatro.</span>
         </h1>
 
-        <p class="hero__lead">
+        <p class="hero__text">
           Impresa, diaspora, politica: una linea sola. Stesso criterio ovunque:
-          responsabilità diretta, scelte verificabili, risultati misurabili.
+          numeri chiari, scelte verificabili, responsabilità personale.
         </p>
 
         <div class="hero__actions">
@@ -71,25 +73,19 @@
       </div>
     </section>
 
-    <!-- VIDEO / FEATURE (spazio pronto, immagine platea già visibile) -->
-    <section class="feature">
+    <!-- VIDEO PLACEHOLDER (NO IMMAGINE) -->
+    <section class="feature" aria-label="Sezione video">
       <div class="feature__media">
-        <img
-          src="assets/img/emirplatea.jpeg?v=7"
-          alt="Intervento pubblico"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="feature__overlay" aria-hidden="true"></div>
-
-        <!-- spazio video: per ora lascia così -->
-        <button class="play" type="button" aria-label="Guarda video" data-play>
-          ▶
-        </button>
+        <div class="video-placeholder" role="img" aria-label="Spazio video (in arrivo)">
+          <button class="play" type="button" aria-label="Guarda video (in arrivo)" data-play>
+            ▶
+          </button>
+          <p class="video-placeholder__text">Spazio video: lo colleghiamo dopo (YouTube / file / embed).</p>
+        </div>
       </div>
     </section>
 
-    <!-- BLOCCO CONTENUTO MINIMALE -->
+    <!-- BLOCCO CONTENUTO -->
     <section class="content">
       <div class="wrap content__inner">
         <div class="content__block">
@@ -132,19 +128,33 @@
     </section>
   </main>
 
-  <!-- BOTTOM BAR tipo Renzi -->
-  <div class="bottombar">
+  <!-- BOTTOM BAR -->
+  <div class="bottombar" role="navigation" aria-label="Azioni rapide">
     <a class="bottombar__btn" href="#sostieni">Sostieni</a>
     <a class="bottombar__btn" href="news.html">Ascolta</a>
   </div>
 
   <footer class="footer">
     <div class="wrap footer__inner">
-      <p>© <span data-year></span> Emir Alili.</p>
-      <div class="footer__links">
-        <a href="mailto:info@emiralili.it">Email</a>
-        <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <p class="footer__copy">© <span data-year></span> Emir Alili.</p>
+
+      <!-- social centrali e in linea -->
+      <div class="social" aria-label="Social">
+        <a class="social__link" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg>
+        </a>
+
+        <a class="social__link" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg>
+        </a>
+
+        <a class="social__link" href="mailto:info@emiralili.it" aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
+        </a>
+
+        <a class="social__link" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-12.2 6.8L4 20l1.3-3.6A8 8 0 1 1 20 12zm-4.7 2.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
+        </a>
       </div>
     </div>
   </footer>
