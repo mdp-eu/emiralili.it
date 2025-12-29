@@ -1,139 +1,156 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emir Alili — Sito ufficiale</title>
-  <meta name="description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
-  <link rel="canonical" href="https://emiralili.it/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emir Alili – Sito ufficiale</title>
+  <meta name="description" content="Metodo, responsabilità, risultati. Impresa, diaspora e politica: una linea sola." />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Emir Alili — Sito ufficiale" />
-  <meta property="og:description" content="Metodo, responsabilità, risultati. Visione di Stato, lavoro reale, politica verificabile." />
-  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
-
+  <!-- CSS in root -->
   <link rel="stylesheet" href="style.css?v=20" />
-  <script defer src="main.js?v=20"></script>
 </head>
 
 <body>
+  <!-- Mobile menu overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- Mobile menu drawer -->
+  <aside class="drawer" id="drawer" aria-label="Menu">
+    <div class="drawer__top">
+      <div class="drawer__title">Menu</div>
+      <button class="drawer__close" id="drawerClose" type="button" aria-label="Chiudi menu">×</button>
+    </div>
+
+    <nav class="drawer__nav">
+      <a class="drawer__link is-active" href="index.html">Home</a>
+      <a class="drawer__link" href="chi-sono.html">Chi sono</a>
+      <a class="drawer__link" href="cosa-faccio.html">Cosa faccio</a>
+      <a class="drawer__link" href="news.html">News</a>
+      <a class="drawer__link" href="contatti.html">Contatti</a>
+    </nav>
+
+    <div class="drawer__actions">
+      <a class="drawer__btn" href="mailto:info@emiralili.it">Scrivimi</a>
+      <a class="drawer__btn drawer__btn--accent" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+    </div>
+  </aside>
+
+  <!-- Header -->
   <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="index.html" aria-label="Vai alla home">EMIR ALILI</a>
+    <div class="wrap">
+      <div class="header__inner">
+        <a class="brand" href="index.html" aria-label="Home Emir Alili">
+          <span class="brand__name">EMIR ALILI</span>
+        </a>
 
-      <div class="header__actions">
-        <a class="header__link" href="sostieni.html">SOSTIENI</a>
+        <nav class="nav" aria-label="Navigazione">
+          <a class="nav__link" href="chi-sono.html">Chi sono</a>
+          <a class="nav__link" href="cosa-faccio.html">Cosa faccio</a>
+          <a class="nav__link" href="news.html">News</a>
+          <a class="nav__link nav__pill" href="contatti.html">Contatti</a>
+        </nav>
 
-        <button class="burger" type="button"
-          aria-label="Apri menu"
-          aria-expanded="false"
-          data-burger>
-          <span aria-hidden="true"></span>
+        <button class="burger" id="burger" type="button" aria-label="Apri menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- MENU OVERLAY -->
-  <div class="menu" data-menu aria-hidden="true">
-    <div class="menu__panel" role="dialog" aria-label="Menu principale">
-      <nav class="menu__nav">
-        <a href="chi-sono.html">Chi sono</a>
-        <a href="cosa-faccio.html">Cosa faccio</a>
-        <a href="news.html">News</a>
-        <a href="contatti.html">Contatti</a>
-        <hr class="menu__hr">
-        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
-      </nav>
-    </div>
-  </div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__shade" aria-hidden="true"></div>
 
-  <!-- HERO -->
-  <main class="hero">
-    <div class="container hero__content">
-      <div class="hero__label">SITO UFFICIALE</div>
+    <div class="wrap hero__content">
+      <div class="hero__kicker">SITO UFFICIALE</div>
 
       <h1 class="hero__title">
-        Metodo, responsabilità,<br>
-        risultati. <span>Niente teatro.</span>
+        Metodo, responsabilità, risultati.<br>
+        <span>Niente teatro.</span>
       </h1>
 
-      <p class="hero__text">
-        Una linea sola: impresa, diaspora, politica. Stessa regola ovunque:
-        numeri chiari, scelte verificabili, responsabilità personale.
+      <p class="hero__lead">
+        Una linea sola: impresa, diaspora, politica. Stessa regola ovunque: numeri chiari, scelte verificabili, responsabilità personale.
       </p>
 
-      <div class="hero__actions">
-        <a class="btn-primary" href="visione-dello-stato.html">Visione dello Stato</a>
-        <a class="btn-ghost" href="chi-sono.html">Chi sono</a>
-      </div>
-    </div>
-
-    <!-- bottom bar mobile -->
-    <div class="hero__bottom">
-      <a href="sostieni.html">SOSTIENI</a>
-      <a href="#video" class="js-scroll-video">ASCOLTA</a>
-    </div>
-  </main>
-
-  <!-- VIDEO SECTION -->
-  <section class="section" id="video">
-    <div class="container">
-      <div class="section__head">
-        <div class="section__kicker">IN PRIMO PIANO</div>
-        <h2 class="section__title">Un messaggio diretto</h2>
-        <p class="section__text">
-          Aggiornamenti, interventi pubblici, visione e proposte: qui trovi i contenuti principali in formato video.
-        </p>
+      <div class="hero__cta">
+        <a class="btn btn--accent" href="visione-dello-stato.html">Visione dello Stato</a>
+        <a class="btn btn--ghost" href="chi-sono.html">Chi sono</a>
       </div>
 
-      <!-- OPZIONE A: YouTube/Vimeo (consigliata) -->
-      <div class="video-card">
-        <div class="video-frame">
-          <!-- Sostituisci l'URL con il tuo video -->
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
-            title="Video ufficiale"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-
-        <div class="video-meta">
-          <div class="video-meta__title">Titolo video</div>
-          <div class="video-meta__desc">
-            Due righe secche: di cosa parli, cosa chiedi, cosa devono fare.
-          </div>
-          <div class="video-meta__actions">
-            <a class="btn-primary btn-small" href="news.html">Tutti gli aggiornamenti</a>
-            <a class="btn-ghost btn-small" href="contatti.html">Contattami</a>
-          </div>
-        </div>
+      <div class="hero__links">
+        <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+        <span>•</span>
+        <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Group</a>
+        <span>•</span>
+        <a href="#aggiornamenti">Newsletter</a>
       </div>
-
-      <!-- OPZIONE B: Video locale MP4 (se vuoi caricare file nel repo)
-      <div class="video-card">
-        <div class="video-frame">
-          <video controls preload="metadata" poster="assets/img/emir-og-cover.jpeg">
-            <source src="assets/video/video-ufficiale.mp4" type="video/mp4" />
-            Il tuo browser non supporta il video.
-          </video>
-        </div>
-        <div class="video-meta">
-          <div class="video-meta__title">Titolo video</div>
-          <div class="video-meta__desc">Descrizione breve.</div>
-        </div>
-      </div>
-      -->
-
     </div>
   </section>
 
-</body>
-</html>
-<!-- Footer -->
+  <!-- Main -->
+  <main class="main">
+    <div class="wrap">
+
+      <section class="grid" aria-label="Sezioni principali">
+        <article class="card">
+          <header class="card__head">
+            <h2 class="card__title">Linea chiara</h2>
+          </header>
+
+          <p class="card__text">
+            Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione. In azienda funziona o muori. In politica dovrebbe valere la stessa cosa.
+          </p>
+          <p class="card__text">
+            Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli, responsabilità, risultati misurabili.
+          </p>
+
+          <div class="chips">
+            <a class="chip" href="cosa-faccio.html">Cosa faccio</a>
+            <a class="chip" href="visione-dello-stato.html">Visione</a>
+            <a class="chip" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+          </div>
+        </article>
+
+        <article class="card" id="aggiornamenti">
+          <header class="card__head">
+            <h2 class="card__title">Aggiornamenti</h2>
+          </header>
+
+          <p class="card__text">
+            Comunicazioni, interventi, analisi e contenuti. Se vuoi seguire il lavoro senza filtri, qui trovi gli aggiornamenti principali.
+          </p>
+
+          <div class="list">
+            <a class="list__item" href="news.html"><span>News</span><i>→</i></a>
+            <a class="list__item" href="contatti.html"><span>Contatti</span><i>→</i></a>
+          </div>
+
+          <div class="placeholder">
+            <div class="placeholder__line"></div>
+            <div class="placeholder__line placeholder__line--short"></div>
+            <div class="placeholder__tag">Spazio Newsletter (in arrivo)</div>
+          </div>
+        </article>
+
+        <aside class="card card--side">
+          <header class="card__head">
+            <h2 class="card__title">Video</h2>
+          </header>
+
+          <p class="card__text">
+            Spazio video: lo lasciamo pronto. Lo collegheremo dopo (YouTube / file / embed).
+          </p>
+
+          <div class="video"></div>
+        </aside>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="wrap footer__inner">
       <div class="footer__copy">© <span id="year"></span> Emir Alili.</div>
