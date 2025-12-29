@@ -497,3 +497,19 @@ main{padding-top:64px}
   .cf-cols{ grid-template-columns: 1fr 1fr; }
   .cf-title{ font-size:34px; }
 }
+/* =========================
+   CONTATTI (solo pagina)
+========================= */
+
+.ct-actions{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.ct-note{
+  margin:14px 0 0;
+  color: rgba(255,255,255,.70);
+  line-height: 1.6;
+}
