@@ -1421,3 +1421,12 @@ main{padding-top:64px}
     justify-content: center;
   }
 }
+@media (max-width: 820px){
+  .hero .hero__content{
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .hero .hero__actions{
+    justify-content: center !important;
+  }
+}
