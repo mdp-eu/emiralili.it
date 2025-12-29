@@ -1,34 +1,35 @@
 (() => {
-  const y = document.querySelector("[data-year]");
-  if (y) y.textContent = String(new Date().getFullYear());
-
   const burger = document.querySelector("[data-burger]");
   const menu = document.querySelector("[data-menu]");
-  if (!burger || !menu) return;
+  const year = document.querySelector("[data-year]");
 
-  const open = () => {
-    menu.style.display = "block";
-    menu.setAttribute("aria-hidden", "false");
+  if (year) year.textContent = new Date().getFullYear();
+
+  function openMenu() {
+    document.body.classList.add("menu-open");
     burger.setAttribute("aria-expanded", "true");
-  };
+    menu.setAttribute("aria-hidden", "false");
+  }
 
-  const close = () => {
-    menu.style.display = "none";
-    menu.setAttribute("aria-hidden", "true");
+  function closeMenu() {
+    document.body.classList.remove("menu-open");
     burger.setAttribute("aria-expanded", "false");
-  };
+    menu.setAttribute("aria-hidden", "true");
+  }
 
-  burger.addEventListener("click", () => {
-    const isOpen = burger.getAttribute("aria-expanded") === "true";
-    isOpen ? close() : open();
-  });
+  if (burger && menu) {
+    burger.addEventListener("click", () => {
+      document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
+    });
 
-  menu.addEventListener("click", (e) => {
-    const isPanel = e.target.closest(".menu__panel");
-    if (!isPanel) close();
-  });
+    // click fuori = chiudi
+    menu.addEventListener("click", (e) => {
+      if (e.target === menu) closeMenu();
+    });
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
+    // ESC = chiudi
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+  }
 })();
