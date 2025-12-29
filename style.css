@@ -280,3 +280,105 @@ main{padding-top:64px}
     box-shadow: 0 20px 60px rgba(0,0,0,0.45);
   }
 }
+/* =========================
+   COSA FACCIO (solo pagina)
+   Non rompe index
+========================= */
+
+.tile--link { cursor: pointer; }
+.tile--link:hover { transform: translateY(-2px); transition: transform .15s ease; }
+
+.cf-section{
+  padding: 56px 0;
+  background: var(--bg);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.cf-section--alt{
+  background: rgba(255,255,255,.02);
+}
+
+.cf-section__inner{ display: grid; gap: 18px; }
+
+.cf-head{ display: grid; gap: 12px; max-width: 900px; }
+
+.cf-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+  width: fit-content;
+}
+.cf-icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,106,0,.12);
+  border: 1px solid rgba(255,106,0,.28);
+}
+.cf-icon svg{ width: 18px; height: 18px; fill: #fff; opacity: .95; }
+.cf-badge__text{
+  font-weight: 900;
+  letter-spacing: .18em;
+  font-size: 11px;
+  opacity: .9;
+}
+
+.cf-title{ margin: 0; font-size: 30px; }
+.cf-sub{ margin: 0; color: var(--muted); line-height: 1.7; }
+
+.cf-cols{
+  display: grid;
+  gap: 16px;
+}
+
+.cf-card{
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  padding: 18px;
+}
+.cf-card h3{ margin: 0 0 10px; font-size: 18px; }
+.cf-card p{ margin: 0 0 12px; color: var(--muted); line-height: 1.7; }
+
+.cf-list{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255,255,255,.86);
+  line-height: 1.65;
+}
+.cf-list li{ margin: 6px 0; }
+.cf-list--compact li{ margin: 4px 0; }
+
+.cf-actions{
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cf-actions--tight{ margin-top: 12px; }
+
+.cf-mini{
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  display: grid;
+  gap: 10px;
+}
+.cf-mini__row{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cf-mini__k{ color: rgba(255,255,255,.68); font-size: 13px; }
+.cf-mini__v{ color: rgba(255,255,255,.92); font-weight: 700; font-size: 13px; }
+.cf-mini__v a{ text-decoration: underline; text-underline-offset: 3px; }
+
+@media (min-width: 920px){
+  .cf-cols{ grid-template-columns: 1fr 1fr; }
+  .cf-title{ font-size: 34px; }
+}
