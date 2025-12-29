@@ -69,18 +69,40 @@ body.menu-open .menu{opacity:1;pointer-events:auto}
 main{padding-top:64px}
 
 /* HERO */
-.hero{position:relative;min-height:84vh}
-.hero__media{position:absolute;inset:0}
+.hero{
+  position:relative;
+  min-height:auto;            /* prima era 84vh -> forzava crop */
+}
+
+/* prima: hero__media era absolute full-screen
+   ora: rimane in flow così l'immagine resta intera */
+.hero__media{
+  position:relative;
+}
+
+/* IMMAGINE SEMPRE INTERA */
 .hero__media img{
-  width:100%;height:100%;
-  object-fit:cover;
-  object-position:center 30%;
+  width:100%;
+  height:auto;               /* chiave: niente altezza forzata */
+  object-fit:contain;        /* chiave: non taglia */
+  object-position:center;    /* centrata */
 }
+
+/* shade sopra l'immagine, ma non cambia colori/logica */
 .hero__shade{
-  position:absolute;inset:0;
+  position:absolute;
+  inset:0;
   background:linear-gradient(to bottom, rgba(6,10,22,.45), rgba(6,10,22,.90));
+  pointer-events:none;
 }
-.hero__content{position:relative;z-index:2;padding:12vh 0 8vh}
+
+/* contenuto sotto l’immagine (niente sovrapposizione) */
+.hero__content{
+  position:relative;
+  z-index:2;
+  padding:28px 0 26px;       /* prima 12vh... era overlaying */
+}
+
 .hero__kicker{font-size:12px;letter-spacing:.30em;opacity:.75}
 .hero__title{
   font-size:clamp(34px,6.4vw,56px);
@@ -200,6 +222,7 @@ main{padding-top:64px}
   .menu__panel{margin-top:26px}
   .content__grid{grid-template-columns:repeat(3,1fr)}
 }
+
 /* =========================
    VIDEO SECTION
    ========================= */
