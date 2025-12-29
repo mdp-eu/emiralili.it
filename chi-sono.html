@@ -1,312 +1,196 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chi sono – Emir Alili</title>
-  <meta name="description" content="Biografia ufficiale di Emir Alili: impresa, diaspora e impegno politico. Metodo, responsabilità e risultati." />
-  <link rel="canonical" href="https://emiralili.it/chi-sono.html" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emir Alili – Sito ufficiale</title>
+  <meta name="description" content="Metodo, responsabilità, risultati. Impresa, diaspora e politica: una linea sola." />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Chi sono – Emir Alili" />
-  <meta property="og:description" content="Biografia ufficiale: impresa, diaspora e politica. Metodo, responsabilità e risultati." />
-  <meta property="og:image" content="https://emiralili.it/assets/img/emir-og-cover.jpeg" />
-
-  <link rel="stylesheet" href="style.css?v=2" />
-  <script defer src="main.js?v=2"></script>
+  <!-- CSS in root -->
+  <link rel="stylesheet" href="style.css?v=20" />
 </head>
+
 <body>
+  <!-- Mobile menu overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Vai alla home">
-      <span class="brand-mark" aria-hidden="true">EA</span>
-      <span class="brand-name">
-        <strong>Emir Alili</strong>
-        <span>Imprenditore · autore · leader politico</span>
-      </span>
-    </a>
-
-    <button class="nav-btn" type="button"
-      aria-label="Apri menu"
-      aria-expanded="false"
-      data-menu-btn>
-      <span class="nav-icon" aria-hidden="true"></span>
-    </button>
-  </div>
-</header>
-
-<div class="nav-backdrop" data-menu-backdrop aria-hidden="true"></div>
-
-<nav class="nav-drawer" data-menu-drawer aria-label="Menu">
-  <div class="nav-head">
-    <div class="nav-title">Menu</div>
-    <button class="nav-close" type="button" aria-label="Chiudi menu" data-menu-close>×</button>
-  </div>
-
-  <ul class="nav-list">
-    <li><a class="nav-link" href="index.html">Home</a></li>
-    <li><a class="nav-link is-active" href="chi-sono.html" aria-current="page">Chi sono</a></li>
-    <li><a class="nav-link" href="cosa-faccio.html">Cosa faccio</a></li>
-    <li><a class="nav-link" href="contatti.html">Contatti</a></li>
-  </ul>
-
-  <div class="nav-actions">
-    <a class="btn btn-primary" href="contatti.html">Scrivimi</a>
-    <a class="btn btn-ghost" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-  </div>
-</nav>
-
-<main>
-  <!-- HERO -->
-  <section class="section">
-    <div class="container hero-grid">
-      <div>
-        <p class="overline">Chi sono</p>
-        <h1 class="display">Percorso reale, <span class="accent">responsabilità reale</span>.</h1>
-        <p class="lead">
-          Migrante dei Balcani, imprenditore in Italia, autore e fondatore del Macedonian Diaspora Party.
-          Ho costruito tutto partendo da zero: lavoro, metodo e numeri. Senza scorciatoie, senza padrini.
-        </p>
-
-        <div class="chips">
-          <span class="chip">EA Group / EA Cleaning</span>
-          <span class="chip">Diaspora</span>
-          <span class="chip">MDP</span>
-        </div>
-
-        <div class="actions">
-          <a class="btn btn-primary" href="cosa-faccio.html">Cosa faccio</a>
-          <a class="btn btn-ghost" href="contatti.html">Contatti</a>
-        </div>
-      </div>
-
-      <figure class="media media--hero media--top">
-        <img src="assets/img/Emir%20primo%20piano.jpg" alt="Emir Alili – ritratto">
-      </figure>
+  <!-- Mobile menu drawer -->
+  <aside class="drawer" id="drawer" aria-label="Menu">
+    <div class="drawer__top">
+      <div class="drawer__title">Menu</div>
+      <button class="drawer__close" id="drawerClose" type="button" aria-label="Chiudi menu">×</button>
     </div>
-  </section>
 
-  <!-- BIOGRAFIA + GALLERY (tuo blocco originale) -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Biografia</p>
-      <h2 class="section-title">Dai Balcani all’Italia</h2>
+    <nav class="drawer__nav">
+      <a class="drawer__link is-active" href="index.html">Home</a>
+      <a class="drawer__link" href="chi-sono.html">Chi sono</a>
+      <a class="drawer__link" href="cosa-faccio.html">Cosa faccio</a>
+      <a class="drawer__link" href="news.html">News</a>
+      <a class="drawer__link" href="contatti.html">Contatti</a>
+    </nav>
 
-      <div class="prose" style="margin-top:14px; max-width: 78ch;">
-        <p>
-          Sono nato nei Balcani e ho vissuto sulla pelle cosa significa instabilità, propaganda e assenza di prospettiva.
-          Quando arrivi in un Paese nuovo, la retorica non ti salva: ti salva la disciplina. Ti salva il lavoro fatto bene,
-          ogni giorno, anche quando nessuno ti conosce e nessuno ti aspetta.
-        </p>
-        <p>
-          In Italia ho costruito il mio percorso partendo dai cantieri, dalle notti, dai “si fa e basta”.
-          Ho imparato una cosa semplice: se non misuri, ti stai raccontando una storia. Da lì nasce il mio modo di ragionare:
-          metodo, contabilità, processi, responsabilità personale. È lo stesso schema che serve in azienda e che manca nella politica.
-        </p>
+    <div class="drawer__actions">
+      <a class="drawer__btn" href="mailto:info@emiralili.it">Scrivimi</a>
+      <a class="drawer__btn drawer__btn--accent" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+    </div>
+  </aside>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap">
+      <div class="header__inner">
+        <a class="brand" href="index.html" aria-label="Home Emir Alili">
+          <span class="brand__name">EMIR ALILI</span>
+        </a>
+
+        <nav class="nav" aria-label="Navigazione">
+          <a class="nav__link" href="chi-sono.html">Chi sono</a>
+          <a class="nav__link" href="cosa-faccio.html">Cosa faccio</a>
+          <a class="nav__link" href="news.html">News</a>
+          <a class="nav__link nav__pill" href="contatti.html">Contatti</a>
+        </nav>
+
+        <button class="burger" id="burger" type="button" aria-label="Apri menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    
-      <div class="gallery" style="margin-top:16px;">
-        <figure class="card">
-          <img src="assets/img/Emir%20formatore.jpg" alt="Emir Alili in un contesto formativo">
-          <figcaption>Esperienza trasformata in metodo.</figcaption>
-        </figure>
-        <figure class="card">
-          <img src="assets/img/Emir%20ufficio.jpg" alt="Emir Alili in ufficio">
-          <figcaption>Impresa e responsabilità.</figcaption>
-        </figure>
-        <figure class="card card--top">
-          <img src="assets/img/emireu.jpeg" alt="Emir Alili in contesto istituzionale europeo">
-          <figcaption>Rappresentanza e responsabilità.</figcaption>
-        </figure>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__shade" aria-hidden="true"></div>
+
+    <div class="wrap hero__content">
+      <div class="hero__kicker">SITO UFFICIALE</div>
+
+      <h1 class="hero__title">
+        Metodo, responsabilità, risultati.<br>
+        <span>Niente teatro.</span>
+      </h1>
+
+      <p class="hero__lead">
+        Una linea sola: impresa, diaspora, politica. Stessa regola ovunque: numeri chiari, scelte verificabili, responsabilità personale.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--accent" href="visione-dello-stato.html">Visione dello Stato</a>
+        <a class="btn btn--ghost" href="chi-sono.html">Chi sono</a>
+      </div>
+
+      <div class="hero__links">
+        <a href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+        <span>•</span>
+        <a href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Group</a>
+        <span>•</span>
+        <a href="#aggiornamenti">Newsletter</a>
       </div>
     </div>
   </section>
 
-  <!-- VALORI -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Principi</p>
-      <h2 class="section-title">Cosa mi guida</h2>
+  <!-- Main -->
+  <main class="main">
+    <div class="wrap">
 
-      <div class="grid-3" style="margin-top:16px;">
-        <article class="card" style="padding:18px;">
-          <h3 style="margin:0 0 8px;">Responsabilità</h3>
-          <p style="margin:0;">
-            Se sbaglio pago io. Se prometto, mantengo. La credibilità non si compra: si dimostra nei fatti e nei numeri.
+      <section class="grid" aria-label="Sezioni principali">
+        <article class="card">
+          <header class="card__head">
+            <h2 class="card__title">Linea chiara</h2>
+          </header>
+
+          <p class="card__text">
+            Non vendo slogan. Porto metodo: numeri, disciplina, organizzazione. In azienda funziona o muori. In politica dovrebbe valere la stessa cosa.
           </p>
+          <p class="card__text">
+            Il punto non è “fare rumore”. Il punto è costruire strumenti: regole, controlli, responsabilità, risultati misurabili.
+          </p>
+
+          <div class="chips">
+            <a class="chip" href="cosa-faccio.html">Cosa faccio</a>
+            <a class="chip" href="visione-dello-stato.html">Visione</a>
+            <a class="chip" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
+          </div>
         </article>
 
-        <article class="card" style="padding:18px;">
-          <h3 style="margin:0 0 8px;">Metodo</h3>
-          <p style="margin:0;">
-            Processi chiari, standard, controllo qualità. In azienda è sopravvivenza. Nelle istituzioni è dignità.
+        <article class="card" id="aggiornamenti">
+          <header class="card__head">
+            <h2 class="card__title">Aggiornamenti</h2>
+          </header>
+
+          <p class="card__text">
+            Comunicazioni, interventi, analisi e contenuti. Se vuoi seguire il lavoro senza filtri, qui trovi gli aggiornamenti principali.
           </p>
+
+          <div class="list">
+            <a class="list__item" href="news.html"><span>News</span><i>→</i></a>
+            <a class="list__item" href="contatti.html"><span>Contatti</span><i>→</i></a>
+          </div>
+
+          <div class="placeholder">
+            <div class="placeholder__line"></div>
+            <div class="placeholder__line placeholder__line--short"></div>
+            <div class="placeholder__tag">Spazio Newsletter (in arrivo)</div>
+          </div>
         </article>
 
-        <article class="card" style="padding:18px;">
-          <h3 style="margin:0 0 8px;">Libertà e verità</h3>
-          <p style="margin:0;">
-            Libertà di dire le cose come stanno, senza teatrini. E rispetto: non mi interessano gli insulti, mi interessano le prove.
+        <aside class="card card--side">
+          <header class="card__head">
+            <h2 class="card__title">Video</h2>
+          </header>
+
+          <p class="card__text">
+            Spazio video: lo lasciamo pronto. Lo collegheremo dopo (YouTube / file / embed).
           </p>
-        </article>
+
+          <div class="video"></div>
+        </aside>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__copy">© <span id="year"></span> Emir Alili.</div>
+
+      <div class="social" aria-label="Social">
+        <a class="social__btn" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6H16.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5z"/></svg>
+        </a>
+
+        <a class="social__btn" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.9 6.8A2.1 2.1 0 1 1 6.9 2.6a2.1 2.1 0 0 1 0 4.2zM4.8 21.4V8.5h4.1v12.9H4.8zm6.9 0V8.5h3.9v1.8h.1c.5-1 1.9-2.1 3.9-2.1 4.2 0 5 2.8 5 6.4v6.8h-4.1v-6c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1v6.1h-4.1z"/></svg>
+        </a>
+
+        <a class="social__btn" href="mailto:info@emiralili.it" aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm-2 5.2V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6.8l-10 6-10-6z"/></svg>
+        </a>
+
+        <a class="social__btn" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.9A8.5 8.5 0 0 1 7.2 19.2L3 20l.9-4A8.5 8.5 0 1 1 20.5 11.9zm-4.9 4.6c.2 0 1.3-.5 1.5-1 .2-.4.2-.8.1-.9-.1-.1-.3-.2-.6-.3l-1.4-.7c-.2-.1-.4-.1-.6.2l-.8 1c-.1.2-.3.2-.5.1-2-.9-3.3-2.2-4.2-4.1-.1-.2 0-.4.1-.5l.6-.7c.2-.2.3-.4.2-.6l-.7-1.6c-.2-.5-.4-.4-.6-.4h-.6c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s.9 2.6 1 2.8c.1.2 1.8 2.8 4.3 3.9.6.3 1.1.5 1.5.6.6.2 1.1.2 1.6.1z"/></svg>
+        </a>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- METODO DI LAVORO -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Approccio</p>
-      <h2 class="section-title">Impresa e politica: la stessa logica</h2>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-      <div class="prose" style="margin-top:14px; max-width: 82ch;">
-        <p>
-          Io non vedo “impresa, diaspora e politica” come mondi separati. È una linea sola:
-          costruire strutture che reggono, creare lavoro reale, proteggere la dignità delle persone, pretendere trasparenza.
-        </p>
-        <p>
-          Nella pratica significa tre cose: organizzazione operativa, sostenibilità economica, comunicazione chiara.
-          Ogni progetto che non passa questi tre filtri è solo marketing.
-        </p>
-      </div>
+    const body = document.body;
+    const burger = document.getElementById("burger");
+    const overlay = document.getElementById("overlay");
+    const drawer = document.getElementById("drawer");
+    const drawerClose = document.getElementById("drawerClose");
 
-      <div class="grid-2" style="margin-top:16px;">
-        <div class="card" style="padding:18px;">
-          <h3 style="margin:0 0 10px;">In azienda</h3>
-          <ul class="list" style="margin:0; padding-left:18px;">
-            <li>Standard di servizio e controllo qualità.</li>
-            <li>Gestione costi, margini, turni e responsabilità.</li>
-            <li>Relazione diretta col cliente: meno scuse, più risultati.</li>
-          </ul>
-        </div>
+    function openMenu(){ body.classList.add("menu-open"); }
+    function closeMenu(){ body.classList.remove("menu-open"); }
 
-        <div class="card" style="padding:18px;">
-          <h3 style="margin:0 0 10px;">Nelle istituzioni</h3>
-          <ul class="list" style="margin:0; padding-left:18px;">
-            <li>Programmi chiari, verificabili, con scadenze.</li>
-            <li>Trasparenza su fondi, nomine e decisioni.</li>
-            <li>Responsabilità politica reale: chi tradisce il mandato deve andare a casa.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TIMELINE -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Percorso</p>
-      <h2 class="section-title">Tappe chiave</h2>
-
-      <div class="timeline" style="margin-top:16px;">
-        <div class="card" style="padding:18px; margin-bottom:12px;">
-          <strong>Radici nei Balcani</strong>
-          <p style="margin:8px 0 0;">
-            Formazione dura: instabilità, identità, e la necessità di imparare presto a contare su se stessi.
-          </p>
-        </div>
-
-        <div class="card" style="padding:18px; margin-bottom:12px;">
-          <strong>Arrivo in Italia e lavoro dal basso</strong>
-          <p style="margin:8px 0 0;">
-            Inserimento reale nel mondo del lavoro. Qui nasce la mia “scuola”: disciplina, sacrificio, e zero alibi.
-          </p>
-        </div>
-
-        <div class="card" style="padding:18px; margin-bottom:12px;">
-          <strong>Costruzione d’impresa</strong>
-          <p style="margin:8px 0 0;">
-            Dalla pratica all’organizzazione: processi, persone, costi, qualità. Impresa significa assumersi il peso delle scelte.
-          </p>
-        </div>
-
-        <div class="card" style="padding:18px;">
-          <strong>MDP e impegno pubblico</strong>
-          <p style="margin:8px 0 0;">
-            La diaspora non è folklore: è capitale umano e finanziario. Serve struttura, non slogan.
-            Da qui nasce il Macedonian Diaspora Party.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CITAZIONE / POSIZIONAMENTO -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Posizionamento</p>
-      <h2 class="section-title">Una frase che mi rappresenta</h2>
-
-      <figure class="card" style="padding:18px; margin-top:16px;">
-        <blockquote style="margin:0; font-size:1.05rem; line-height:1.6;">
-          “La fiducia non si chiede. Si costruisce con responsabilità, numeri e coerenza.
-          Il resto è rumore.”
-        </blockquote>
-        <figcaption style="margin-top:10px; opacity:.85;">Emir Alili</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- OGGI / FOCUS -->
-  <section class="section">
-    <div class="container">
-      <p class="section-kicker">Oggi</p>
-      <h2 class="section-title">Su cosa sto lavorando adesso</h2>
-
-      <div class="grid-3" style="margin-top:16px;">
-        <article class="card" style="padding:18px;">
-          <h3 style="margin:0 0 8px;">EA Group - EA Cleaning</h3>
-          <p style="margin:0;">
-            Consolidamento dei processi operativi e crescita sostenibile: qualità, persone, standard.
-          </p>
-        </article>
-
-        <article class="card" style="padding:18px;">
-          <h3 style="margin:0 0 8px;">MDP</h3>
-          <p style="margin:0;">
-            Struttura politica della diaspora: organizzazione, programma e rete internazionale.
-          </p>
-        </article>
-
-        <article class="card" style="padding:18px;">
-          <h3 style="margin:0 0 8px;">Scrittura</h3>
-          <p style="margin:0;">
-            Libri e contenuti che trasformano esperienza in strumenti: per capire, scegliere, costruire.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA FINALE -->
-  <section class="section">
-    <div class="container">
-      <div class="card" style="padding:22px;">
-        <h2 style="margin:0 0 10px;">Vuoi collaborare o invitarmi?</h2>
-        <p style="margin:0 0 16px; max-width:80ch;">
-          Se ti serve un intervento pubblico, un confronto operativo o un progetto strutturato,
-          scrivimi con il contesto e l’obiettivo. Rispondo in modo diretto.
-        </p>
-        <div class="actions">
-          <a class="btn btn-primary" href="contatti.html">Contattami</a>
-          <a class="btn btn-ghost" href="cosa-faccio.html">Vedi cosa faccio</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <p>© <span data-year></span> Emir Alili.</p>
-    <div class="footer-links">
-      <a href="mailto:info@emiralili.it">Email</a>
-      <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer">Facebook</a>
-      <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </div>
-  </div>
-</footer>
-
+    burger.addEventListener("click", openMenu);
+    overlay.addEventListener("click", closeMenu);
+    drawerClose.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeMenu(); });
+  </script>
 </body>
 </html>
