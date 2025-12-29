@@ -382,3 +382,118 @@ main{padding-top:64px}
   .cf-cols{ grid-template-columns: 1fr 1fr; }
   .cf-title{ font-size: 34px; }
 }
+/* =========================
+   COSA FACCIO – media + loghi
+   (isolato: non rompe index)
+========================= */
+
+.tile__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.tile__logo{
+  height:28px;
+  width:auto;
+  display:block;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.20));
+}
+
+.tile__tag{
+  font-size:11px;
+  letter-spacing:.18em;
+  font-weight:900;
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(15,23,51,.06);
+  border: 1px solid rgba(15,23,51,.14);
+  color:#0f172a;
+}
+
+.tile--link{ cursor:pointer; }
+.tile--link:hover{ transform: translateY(-2px); transition: transform .15s ease; }
+
+.cf-section{
+  padding:56px 0;
+  background:var(--bg);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.cf-section--alt{ background:rgba(255,255,255,.02); }
+
+.cf-section__inner{ display:grid; gap:18px; }
+
+.cf-head{ display:grid; gap:12px; max-width:900px; }
+
+.cf-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  width:fit-content;
+}
+.cf-badge__logo{
+  height:26px;
+  width:auto;
+  display:block;
+}
+.cf-badge__text{
+  font-weight:900;
+  letter-spacing:.18em;
+  font-size:11px;
+  opacity:.9;
+}
+
+.cf-title{ margin:0; font-size:30px; }
+.cf-sub{ margin:0; color:var(--muted); line-height:1.7; }
+
+.cf-cols{ display:grid; gap:16px; }
+
+.cf-media{
+  margin:0;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+}
+.cf-media img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.cf-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  padding:18px;
+}
+.cf-card h3{ margin:0 0 10px; font-size:18px; }
+.cf-card p{ margin:0 0 12px; color:var(--muted); line-height:1.7; }
+
+.cf-list{
+  margin:0;
+  padding-left:18px;
+  color:rgba(255,255,255,.86);
+  line-height:1.65;
+}
+.cf-list li{ margin:6px 0; }
+.cf-list--compact li{ margin:4px 0; }
+
+.cf-actions{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.cf-actions--tight{ margin-top:12px; }
+
+@media (min-width: 920px){
+  .cf-cols{ grid-template-columns: 1fr 1fr; }
+  .cf-title{ font-size:34px; }
+}
