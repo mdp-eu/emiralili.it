@@ -37,14 +37,13 @@
     </div>
   </header>
 
-  <!-- HERO FULL BLEED -->
   <main>
-    <section class="hero">
+    <!-- HERO FULL BLEED (PLATEA) -->
+    <section class="hero hero--platea">
       <div class="hero__media">
-        <!-- IMPORTANTE: usa un file SENZA spazi e con la stessa estensione reale -->
         <img
-          src="assets/img/emir-primo-piano.jpg?v=7"
-          alt="Emir Alili – ritratto"
+          src="assets/img/emirplatea.jpeg?v=7"
+          alt="Emir Alili – intervento pubblico davanti alla platea"
           loading="eager"
           decoding="async"
         />
@@ -58,6 +57,11 @@
           <span>Niente teatro.</span>
         </h1>
 
+        <p class="hero__lead">
+          Impresa, diaspora, politica: una linea sola. Stesso criterio ovunque:
+          responsabilità diretta, scelte verificabili, risultati misurabili.
+        </p>
+
         <div class="hero__actions">
           <a class="btn btn--primary" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">
             Visione dello Stato
@@ -67,15 +71,18 @@
       </div>
     </section>
 
-    <!-- VIDEO / FEATURE FULL BLEED -->
+    <!-- VIDEO / FEATURE (spazio pronto, immagine platea già visibile) -->
     <section class="feature">
       <div class="feature__media">
         <img
-          src="assets/img/emir-platea.jpeg?v=7"
+          src="assets/img/emirplatea.jpeg?v=7"
           alt="Intervento pubblico"
           loading="lazy"
           decoding="async"
         />
+        <div class="feature__overlay" aria-hidden="true"></div>
+
+        <!-- spazio video: per ora lascia così -->
         <button class="play" type="button" aria-label="Guarda video" data-play>
           ▶
         </button>
