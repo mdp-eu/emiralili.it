@@ -821,3 +821,50 @@ main{padding-top:64px}
   .list-cards{grid-template-columns:repeat(3,1fr)}
   .principles{grid-template-columns:repeat(2,1fr)}
 }
+/* ====== SOCIAL PILL (sezione pulita dentro pagina contatti) ====== */
+.contacts-head{padding:10px 0 12px}
+.contacts-kicker{margin:0 0 8px;font-size:12px;letter-spacing:.30em;opacity:.7}
+.contacts-title{margin:0 0 8px;font-size:28px}
+.contacts-sub{margin:0;color:#334155;line-height:1.6}
+
+/* Ri-uso contacts ma la tua pagina ha già sfondo chiaro in altre sezioni */
+.contacts{
+  background:#f3f4f6;
+  color:#0f172a;
+  padding: 28px 0 56px;
+}
+.contact-grid{display:grid;gap:14px;margin-top:14px}
+
+.contact-pill{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 16px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  box-shadow:0 14px 30px rgba(15,23,42,.08);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.contact-pill:active{transform:scale(.99)}
+@media (hover:hover){
+  .contact-pill:hover{transform:translateY(-1px);box-shadow:0 18px 44px rgba(15,23,42,.12)}
+}
+
+.contact-pill__icon{
+  width:54px;height:54px;border-radius:16px;
+  display:grid;place-items:center;
+  color:#fff;flex:0 0 54px;
+}
+.contact-pill__icon svg{width:26px;height:26px;fill:currentColor}
+.contact-pill__label{font-weight:900;font-size:16px;line-height:1.1}
+.contact-pill__hint{margin-left:auto;font-weight:800;font-size:13px;color:#475569;text-align:right}
+
+/* colori icone */
+.contact-pill--fb .contact-pill__icon{background:linear-gradient(135deg,#1877f2,#0b5fd7)}
+.contact-pill--in .contact-pill__icon{background:linear-gradient(135deg,#0a66c2,#004182)}
+.contact-pill--ig .contact-pill__icon{background:linear-gradient(135deg,#f43f5e,#7c3aed)}
+.contact-pill--tg .contact-pill__icon{background:linear-gradient(135deg,#38bdf8,#0284c7)}
+
+@media (min-width: 920px){
+  .contact-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+}
+
