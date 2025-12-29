@@ -1394,3 +1394,30 @@ main{padding-top:64px}
 .hero__actions{
   justify-content: center;  /* centra i bottoni */
 }
+/* =========================
+   HERO (HOME + PAGE) — CENTRA SU MOBILE
+   ========================= */
+@media (max-width: 820px){
+  .hero__content,
+  .hero__content--page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* centra i blocchi di testo (non solo l’allineamento) */
+  .hero__kicker,
+  .hero__title,
+  .hero__text{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 36rem;
+  }
+
+  /* centra i bottoni */
+  .hero__actions{
+    width: 100%;
+    justify-content: center;
+  }
+}
