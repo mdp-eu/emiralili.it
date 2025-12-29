@@ -1376,3 +1376,21 @@ main{padding-top:64px}
   gap:12px;
   flex-wrap:wrap;
 }
+/* =========================
+   FIX HERO: contenuto troppo a sinistra
+   ========================= */
+
+.hero__content--page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* centra orizzontalmente */
+  text-align: center;       /* centra il testo */
+}
+
+.hero__content--page .hero__text{
+  max-width: 620px;         /* evita righe troppo larghe */
+}
+
+.hero__actions{
+  justify-content: center;  /* centra i bottoni */
+}
