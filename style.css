@@ -1068,4 +1068,198 @@ main{padding-top:64px}
   padding-left:18px;
   color:#334155;
 }
-.cf-list--compact li{ margin:6px 0; }
+.cf-list--compact li{ margin:6px 
+/* =========================
+   CONTATTI – PILL COLORATE
+   (non rompe la struttura esistente)
+   ========================= */
+
+:root{
+  --soft-bg:#eef1f5;
+  --pill-bg:#ffffff;
+  --pill-border:rgba(15,23,42,.10);
+  --pill-shadow:0 18px 40px rgba(15,23,42,.10);
+
+  --c-phone:#2563eb; /* blu telefono */
+  --c-mail:#0f172a;  /* email scuro elegante */
+  --c-wa:#22c55e;    /* verde WhatsApp */
+  --c-fb:#1877f2;
+  --c-in:#0a66c2;
+  --c-ig:#e1306c;
+  --c-tg:#229ed9;
+
+  --c-site:#0f172a;
+  --c-mdp:#0a1e5e;
+  --c-ea:#ff6a00;
+}
+
+/* variante “soft” per alternare sezioni */
+.content--soft{
+  background:var(--soft-bg);
+}
+
+/* grid pill */
+.contact-grid{
+  display:grid;
+  gap:14px;
+  margin-top:18px;
+}
+
+/* 2 colonne su tablet, 3 su desktop */
+@media (min-width: 720px){
+  .contact-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px){
+  .contact-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* pill base */
+.contact-pill{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  border-radius:999px;
+  background:var(--pill-bg);
+  border:1px solid var(--pill-border);
+  box-shadow:var(--pill-shadow);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  min-height:72px;
+}
+
+.contact-pill:hover{
+  transform:translateY(-1px);
+  box-shadow:0 22px 60px rgba(15,23,42,.14);
+}
+
+.contact-pill__icon{
+  width:52px;
+  height:52px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  flex:0 0 52px;
+  background:rgba(15,23,42,.06);
+  border:1px solid rgba(15,23,42,.10);
+}
+
+.contact-pill__icon svg{
+  width:22px;
+  height:22px;
+  fill:#0f172a;
+  opacity:.95;
+}
+
+.contact-pill__label{
+  font-weight:900;
+  font-size:18px;
+  color:#0f172a;
+  line-height:1.1;
+}
+
+.contact-pill__hint{
+  margin-left:auto;
+  font-weight:800;
+  font-size:14px;
+  color:rgba(15,23,42,.55);
+  white-space:nowrap;
+}
+
+/* se su schermi molto piccoli il testo a destra stringe troppo */
+@media (max-width: 360px){
+  .contact-pill__hint{ display:none; }
+}
+
+/* =========================
+   COLORI PER CANALE
+   ========================= */
+
+.contact-pill--phone .contact-pill__icon{ background:color-mix(in srgb, var(--c-phone) 16%, #fff); border-color:color-mix(in srgb, var(--c-phone) 30%, #fff); }
+.contact-pill--phone .contact-pill__icon svg{ fill:var(--c-phone); }
+.contact-pill--phone:hover{ border-color:color-mix(in srgb, var(--c-phone) 35%, #fff); }
+
+.contact-pill--wa .contact-pill__icon{ background:color-mix(in srgb, var(--c-wa) 16%, #fff); border-color:color-mix(in srgb, var(--c-wa) 30%, #fff); }
+.contact-pill--wa .contact-pill__icon svg{ fill:var(--c-wa); }
+.contact-pill--wa:hover{ border-color:color-mix(in srgb, var(--c-wa) 35%, #fff); }
+
+.contact-pill--mail .contact-pill__icon{ background:color-mix(in srgb, var(--c-mail) 10%, #fff); border-color:rgba(15,23,42,.18); }
+.contact-pill--mail .contact-pill__icon svg{ fill:var(--c-mail); }
+.contact-pill--mail:hover{ border-color:rgba(15,23,42,.26); }
+
+.contact-pill--fb .contact-pill__icon{ background:color-mix(in srgb, var(--c-fb) 16%, #fff); border-color:color-mix(in srgb, var(--c-fb) 30%, #fff); }
+.contact-pill--fb .contact-pill__icon svg{ fill:var(--c-fb); }
+
+.contact-pill--in .contact-pill__icon{ background:color-mix(in srgb, var(--c-in) 16%, #fff); border-color:color-mix(in srgb, var(--c-in) 30%, #fff); }
+.contact-pill--in .contact-pill__icon svg{ fill:var(--c-in); }
+
+.contact-pill--ig .contact-pill__icon{ background:color-mix(in srgb, var(--c-ig) 16%, #fff); border-color:color-mix(in srgb, var(--c-ig) 30%, #fff); }
+.contact-pill--ig .contact-pill__icon svg{ fill:var(--c-ig); }
+
+.contact-pill--tg .contact-pill__icon{ background:color-mix(in srgb, var(--c-tg) 16%, #fff); border-color:color-mix(in srgb, var(--c-tg) 30%, #fff); }
+.contact-pill--tg .contact-pill__icon svg{ fill:var(--c-tg); }
+
+/* siti */
+.contact-pill--site .contact-pill__icon{ background:color-mix(in srgb, var(--c-site) 10%, #fff); border-color:rgba(15,23,42,.18); }
+.contact-pill--site .contact-pill__icon svg{ fill:var(--c-site); }
+
+.contact-pill--mdp .contact-pill__icon{ background:color-mix(in srgb, var(--c-mdp) 14%, #fff); border-color:color-mix(in srgb, var(--c-mdp) 28%, #fff); }
+.contact-pill--mdp .contact-pill__icon svg{ fill:var(--c-mdp); }
+
+.contact-pill--ea .contact-pill__icon{ background:color-mix(in srgb, var(--c-ea) 14%, #fff); border-color:color-mix(in srgb, var(--c-ea) 28%, #fff); }
+.contact-pill--ea .contact-pill__icon svg{ fill:var(--c-ea); }
+
+
+/* =========================
+   MAPPA – NO SOVRAPPOSIZIONI
+   ========================= */
+
+.map-card{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:22px;
+  box-shadow:0 18px 50px rgba(15,23,42,.10);
+  overflow:hidden; /* IMPORTANTISSIMO: evita sovrapposizioni */
+}
+
+.map-embed{
+  position:relative;
+  width:100%;
+  aspect-ratio: 16 / 9;
+  background:#e5e7eb;
+}
+
+@supports not (aspect-ratio: 16 / 9){
+  .map-embed{ padding-top:56.25%; }
+}
+
+.map-embed iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+.map-card__body{
+  padding:16px 18px 18px;
+}
+
+.map-card__title{
+  font-weight:900;
+  font-size:20px;
+  color:#0f172a;
+}
+
+.map-card__sub{
+  margin-top:6px;
+  color:#475569;
+  font-weight:700;
+}
+
+.map-card__actions{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
