@@ -568,3 +568,41 @@ main{padding-top:64px}
   fill: currentColor;
   opacity: .95;
 }
+/* =========================
+   CONTATTI – icone più piccole
+   (override finale)
+========================= */
+
+.ct-icon{
+  width:30px;
+  height:30px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+.ct-icon svg{
+  width:14px;
+  height:14px;
+  fill:#fff;
+  opacity:.92;
+}
+
+/* Bottoni con icona: icona più piccola */
+.btn__icon{
+  width:14px;
+  height:14px;
+}
+
+.btn__icon svg{
+  width:14px;
+  height:14px;
+  fill: currentColor;
+  opacity: .95;
+}
+
+/* Spaziature più compatte */
+.btn--icon{ gap:8px; }
+.ct-head{ gap:10px; }
