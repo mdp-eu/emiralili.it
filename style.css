@@ -687,3 +687,137 @@ main{padding-top:64px}
 @media (min-width: 920px){
   .news-grid{ grid-template-columns: repeat(3, 1fr); }
 }
+
+/* =========================
+   CHI SONO - ARRICCHIMENTI
+   (non rompe la home)
+   ========================= */
+
+.page-divider{
+  height:1px;
+  background:rgba(15,23,42,.10);
+  margin:34px 0;
+}
+
+.page-section{
+  margin-top:26px;
+}
+.page-section h2{
+  margin:0 0 10px;
+  font-size:24px;
+}
+.muted{
+  color:#475569;
+  margin-top:6px;
+  line-height:1.7;
+}
+
+.list-cards{
+  display:grid;
+  gap:14px;
+  margin-top:16px;
+}
+.mini-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 10px 24px rgba(15,23,42,.06);
+}
+.mini-card h3{
+  margin:0 0 6px;
+  font-size:16px;
+  font-weight:900;
+}
+.mini-card p{
+  margin:0;
+  color:#475569;
+  line-height:1.65;
+}
+
+/* timeline */
+.timeline{
+  list-style:none;
+  padding:0;
+  margin:18px 0 0;
+  display:grid;
+  gap:14px;
+}
+.timeline__item{
+  position:relative;
+  padding-left:18px;
+  border-left:2px solid rgba(15,23,42,.10);
+}
+.timeline__dot{
+  position:absolute;
+  left:-6px;
+  top:8px;
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:#0f1733;
+}
+.timeline__content h3{
+  margin:0 0 6px;
+  font-size:16px;
+  font-weight:900;
+}
+.timeline__content p{
+  margin:0;
+  color:#475569;
+  line-height:1.65;
+}
+
+/* principles */
+.principles{
+  display:grid;
+  gap:14px;
+  margin-top:14px;
+}
+.principle{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:18px;
+}
+.principle h3{
+  margin:0 0 6px;
+  font-size:16px;
+  font-weight:900;
+}
+.principle p{
+  margin:0;
+  color:#475569;
+  line-height:1.65;
+}
+
+/* CTA strip */
+.cta-strip{
+  margin-top:26px;
+  border-radius:22px;
+  background:linear-gradient(90deg, rgba(10,30,94,.10), rgba(255,106,0,.10));
+  border:1px solid rgba(15,23,42,.10);
+  padding:18px;
+}
+.cta-strip__inner{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.cta-strip__inner h2{
+  margin:0 0 6px;
+  font-size:22px;
+}
+.cta-strip__actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* desktop layouts */
+@media (min-width: 920px){
+  .list-cards{grid-template-columns:repeat(3,1fr)}
+  .principles{grid-template-columns:repeat(2,1fr)}
+}
