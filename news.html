@@ -171,7 +171,7 @@
 
         <div class="news-grid">
 
-          <!-- NEWS REALE: INTERVISTA RADIO -->
+          <!-- NEWS REALE: INTERVISTA RADIO (AUDIO COMPATIBILE iPHONE) -->
           <article class="news-card" id="intervista-radio">
             <div class="news-meta">
               <span class="news-pill">MEDIA</span>
@@ -187,18 +187,26 @@
 
             <div class="audio-box">
               <audio controls preload="metadata" playsinline webkit-playsinline>
-                <!-- 1) Sorgente standard (dal tuo sito) -->
-                <source src="assets/img/Intervista-radio.mp3" type="audio/mpeg" />
-                <!-- 2) Fallback: sorgente RAW (se iPhone/Safari non carica da Pages) -->
+                <!-- CDN (stabile su iPhone) -->
+                <source src="https://cdn.jsdelivr.net/gh/mdp-eu/emiralili.it@main/assets/img/Intervista-radio.mp3" type="audio/mpeg" />
+                <!-- Fallback RAW -->
                 <source src="https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/img/Intervista-radio.mp3" type="audio/mpeg" />
                 Il tuo browser non supporta l’audio.
-                <a href="assets/img/Intervista-radio.mp3" download>Scarica l’MP3</a>.
               </audio>
             </div>
 
             <div class="hero__actions" style="margin-top:12px">
-              <a class="btn btn--primary" href="assets/img/Intervista-radio.mp3" download>Scarica audio</a>
-              <a class="btn btn--ghost" href="assets/img/Intervista-radio.mp3" target="_blank" rel="noopener noreferrer">Apri in nuova scheda</a>
+              <a class="btn btn--primary"
+                 href="https://cdn.jsdelivr.net/gh/mdp-eu/emiralili.it@main/assets/img/Intervista-radio.mp3"
+                 download>
+                Scarica audio
+              </a>
+              <a class="btn btn--ghost"
+                 href="https://cdn.jsdelivr.net/gh/mdp-eu/emiralili.it@main/assets/img/Intervista-radio.mp3"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Apri in nuova scheda
+              </a>
             </div>
 
             <!-- CONDIVISIONE -->
@@ -233,7 +241,7 @@
             </div>
           </article>
 
-          <!-- I TUOI PLACEHOLDER ORIGINALI (rimangono) -->
+          <!-- PLACEHOLDER ORIGINALI -->
           <article class="news-card">
             <div class="news-meta">
               <span class="news-pill">COMUNICAZIONE</span>
