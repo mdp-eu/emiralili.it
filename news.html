@@ -9,10 +9,10 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://www.emiralili.it/news.html" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph (pagina News) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="News – Emir Alili" />
-  <meta property="og:description" content="Comunicazioni ufficiali, eventi, interventi e uscite media." />
+  <meta property="og:description" content="Comunicazioni, eventi, interventi e uscite media. Link e materiali ufficiali." />
   <meta property="og:url" content="https://www.emiralili.it/news.html" />
   <meta property="og:image" content="https://www.emiralili.it/assets/img/emir-og-cover.jpeg" />
   <meta property="og:site_name" content="Emir Alili" />
@@ -21,16 +21,28 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="News – Emir Alili" />
-  <meta name="twitter:description" content="Comunicazioni ufficiali, eventi, interventi e uscite media." />
+  <meta name="twitter:description" content="Comunicazioni, eventi, interventi e uscite media. Link e materiali ufficiali." />
   <meta name="twitter:image" content="https://www.emiralili.it/assets/img/emir-og-cover.jpeg" />
 
   <link rel="stylesheet" href="style.css?v=10" />
   <script defer src="main.js?v=10"></script>
 
-  <!-- Stili locali SOLO per audio/share -->
+  <!-- Stili locali SOLO per player Drive + share (non tocca il resto) -->
   <style>
-    .audio-box { margin-top: 12px; }
-    .audio-box audio { width: 100%; }
+    .drive-player {
+      margin-top: 12px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+    }
+    .drive-player iframe {
+      width: 100%;
+      height: 110px; /* altezza ideale per player audio Drive */
+      border: 0;
+      display: block;
+    }
+
     .share-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
     .share-btn {
       display:inline-flex; align-items:center; gap:8px;
@@ -104,7 +116,7 @@
       </div>
     </section>
 
-    <!-- BLOCCO INTRO -->
+    <!-- BLOCCO INTRO (solo utile al lettore) -->
     <section class="content content--page">
       <div class="wrap content__inner">
         <div class="content__block">
@@ -154,7 +166,7 @@
       </div>
     </section>
 
-    <!-- ULTIME NEWS -->
+    <!-- ULTIME NEWS (placeholder neutro) -->
     <section class="cf-section" id="ultime" aria-label="Ultime news">
       <div class="wrap cf-section__inner">
         <div class="cf-head">
@@ -169,7 +181,7 @@
 
         <div class="news-grid">
 
-          <!-- NEWS: INTERVISTA RADIO -->
+          <!-- NEWS REALE: INTERVISTA RADIO -->
           <article class="news-card" id="intervista-radio">
             <div class="news-meta">
               <span class="news-pill">MEDIA</span>
@@ -179,33 +191,19 @@
             <h3 class="news-title">Intervista radio – audio integrale</h3>
 
             <p class="news-excerpt">
-              Intervista su impresa, diaspora e politica.
-              Metodo, numeri, responsabilità e visione.
+              Intervista su impresa, diaspora e politica. Metodo, numeri, responsabilità e visione.
             </p>
 
-            <div class="audio-box">
-              <audio controls preload="metadata" playsinline webkit-playsinline>
-                <source src="https://drive.google.com/uc?export=download&id=1v6mVNDz3DYNEzrzZ-_olQwpytvBR4MHu" type="audio/mpeg" />
-                Il tuo browser non supporta l’audio.
-              </audio>
+            <!-- PLAYER AUDIO IN PAGINA (Google Drive preview) -->
+            <div class="drive-player" aria-label="Player audio">
+              <iframe
+                src="https://drive.google.com/file/d/1v6mVNDz3DYNEzrzZ-_olQwpytvBR4MHu/preview"
+                allow="autoplay"
+                loading="lazy">
+              </iframe>
             </div>
 
-            <div class="hero__actions" style="margin-top:12px">
-              <a class="btn btn--primary"
-                 href="https://drive.google.com/uc?export=download&id=1v6mVNDz3DYNEzrzZ-_olQwpytvBR4MHu"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Ascolta / Scarica audio
-              </a>
-              <a class="btn btn--ghost"
-                 href="https://www.emiralili.it/news.html#intervista-radio"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Link diretto alla news
-              </a>
-            </div>
-
-            <!-- CONDIVISIONE -->
+            <!-- SOLO CONDIVISIONE -->
             <div class="share-row" aria-label="Condividi questa news">
               <a class="share-btn"
                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio"
@@ -237,7 +235,7 @@
             </div>
           </article>
 
-          <!-- PLACEHOLDER ORIGINALI -->
+          <!-- I TRE PLACEHOLDER ORIGINALI (li lasciamo) -->
           <article class="news-card">
             <div class="news-meta">
               <span class="news-pill">COMUNICAZIONE</span>
