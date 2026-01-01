@@ -4,257 +4,303 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>News – Emir Alili</title>
+  <meta name="description" content="News e aggiornamenti ufficiali di Emir Alili." />
 
-  <meta name="description" content="News e aggiornamenti ufficiali di Emir Alili: comunicazioni, interventi, analisi, iniziative e uscite media." />
-
-  <!-- Canonical -->
   <link rel="canonical" href="https://www.emiralili.it/news.html" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Intervista radio – audio integrale | Emir Alili" />
-  <meta property="og:description" content="Intervista su impresa, diaspora e politica. Metodo, numeri, responsabilità e visione." />
-  <meta property="og:url" content="https://www.emiralili.it/news.html#intervista-radio" />
+  <!-- Open Graph (pagina News) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="News – Emir Alili" />
+  <meta property="og:description" content="Comunicazioni, eventi e uscite media." />
+  <meta property="og:url" content="https://www.emiralili.it/news.html" />
   <meta property="og:image" content="https://www.emiralili.it/assets/img/emir-og-cover.jpeg" />
   <meta property="og:site_name" content="Emir Alili" />
   <meta property="og:locale" content="it_IT" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Intervista radio – audio integrale | Emir Alili" />
-  <meta name="twitter:description" content="Intervista su impresa, diaspora e politica. Metodo, numeri, responsabilità e visione." />
+  <meta name="twitter:title" content="News – Emir Alili" />
+  <meta name="twitter:description" content="Comunicazioni, eventi e uscite media." />
   <meta name="twitter:image" content="https://www.emiralili.it/assets/img/emir-og-cover.jpeg" />
 
   <link rel="stylesheet" href="style.css?v=10" />
   <script defer src="main.js?v=10"></script>
 
-  <!-- Stili locali SOLO per audio + share -->
   <style>
+    /* Layout minimale: non tocca il resto del sito */
+    .news-wrap { padding: 44px 0; }
+    .news-head { max-width: 900px; }
+    .news-head p { margin-top: 10px; }
+
+    .featured {
+      margin-top: 22px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+    }
+    .featured__media {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+    }
+    .featured__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05);
+    }
+    .featured__shade {
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.15));
+    }
+    .featured__content {
+      padding: 18px 18px 20px;
+    }
+    .featured__meta {
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+      opacity:.9;
+      margin-bottom:10px;
+      font-size: 14px;
+    }
+    .pill {
+      display:inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 12px;
+      letter-spacing: .02em;
+    }
+
     .audio-player {
       margin-top: 14px;
       padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(0,0,0,.25);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
     }
-    .audio-player audio {
-      width: 100%;
-      outline: none;
+    .audio-player audio { width: 100%; }
+
+    .share-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .share-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      text-decoration:none;
     }
 
-    .share-row {
-      display: flex;
-      flex-wrap: wrap;
+    .archive {
+      margin-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 18px;
+    }
+    .archive__list {
+      margin-top: 12px;
+      display: grid;
       gap: 10px;
-      margin-top: 14px;
     }
-    .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      text-decoration: none;
+    .archive-item {
+      display:flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      text-decoration:none;
+      background: rgba(0,0,0,.10);
     }
-    .share-btn svg {
-      width: 18px;
-      height: 18px;
-    }
+    .archive-item__left { min-width: 0; }
+    .archive-item__title { font-weight: 700; }
+    .archive-item__sub { opacity: .85; font-size: 14px; margin-top: 2px; }
+    .archive-item__date { opacity: .75; font-size: 14px; white-space: nowrap; }
   </style>
 </head>
 
 <body>
+  <!-- TOP BAR -->
+  <header class="topbar" data-topbar>
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html" aria-label="Home Emir Alili">
+        <span class="brand__name">EMIR ALILI</span>
+      </a>
 
-<!-- TOP BAR -->
-<header class="topbar" data-topbar>
-  <div class="wrap topbar__inner">
-    <a class="brand" href="index.html" aria-label="Home Emir Alili">
-      <span class="brand__name">EMIR ALILI</span>
-    </a>
+      <a class="topbar__center" href="index.html#sostieni">SOSTIENI</a>
 
-    <a class="topbar__center" href="index.html#sostieni">SOSTIENI</a>
-
-    <button class="burger" type="button" aria-label="Apri menu" aria-expanded="false" data-burger>
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-
-  <div class="menu" data-menu aria-hidden="true">
-    <nav class="menu__panel" aria-label="Menu principale">
-      <a class="menu__link" href="index.html">Home</a>
-      <a class="menu__link" href="chi-sono.html">Chi sono</a>
-      <a class="menu__link" href="cosa-faccio.html">Cosa faccio</a>
-      <a class="menu__link" href="news.html">News</a>
-      <a class="menu__link" href="contatti.html">Contatti</a>
-      <div class="menu__sep"></div>
-      <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero hero--page" id="top">
-  <div class="hero__media hero__media--page">
-    <img src="assets/img/emirplatea.jpeg" alt="Emir Alili – news" loading="eager" />
-    <div class="hero__shade"></div>
-  </div>
-
-  <div class="wrap hero__content hero__content--page">
-    <p class="hero__kicker">NEWS</p>
-    <h1 class="hero__title">
-      Aggiornamenti ufficiali.
-      <span>Comunicazioni, eventi, interventi, uscite media.</span>
-    </h1>
-    <p class="hero__text">
-      Qui trovi aggiornamenti su impresa, diaspora e politica: notizie essenziali, contesto chiaro
-      e materiali verificabili.
-    </p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#ultime">Ultime news</a>
-      <a class="btn btn--ghost" href="#categorie">Categorie</a>
-    </div>
-  </div>
-</section>
-
-<!-- INTRO -->
-<section class="content content--page">
-  <div class="wrap content__inner">
-    <div class="content__block">
-      <h2>Cosa trovi qui</h2>
-      <p>
-        Comunicazioni ufficiali, aggiornamenti sui progetti, iniziative sul territorio e uscite media.
-        Ogni contenuto è datato e classificato per categoria.
-      </p>
+      <button class="burger" type="button" aria-label="Apri menu" aria-expanded="false" data-burger>
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
-    <div class="content__grid content__grid--page">
-      <div class="tile">
-        <span class="tile__title">Criterio</span>
-        <span class="tile__text">
-          Titoli chiari, fatti, responsabilità. Se manca sostanza, non viene pubblicato.
-        </span>
+    <div class="menu" data-menu aria-hidden="true">
+      <nav class="menu__panel" aria-label="Menu principale">
+        <a class="menu__link" href="index.html">Home</a>
+        <a class="menu__link" href="chi-sono.html">Chi sono</a>
+        <a class="menu__link" href="cosa-faccio.html">Cosa faccio</a>
+        <a class="menu__link" href="news.html">News</a>
+        <a class="menu__link" href="contatti.html">Contatti</a>
+        <div class="menu__sep"></div>
+        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO MINIMALE -->
+    <section class="hero hero--page" id="top">
+      <div class="hero__media hero__media--page">
+        <img src="assets/img/emirplatea.jpeg" alt="Emir Alili – news" loading="eager" decoding="async" />
+        <div class="hero__shade" aria-hidden="true"></div>
       </div>
 
-      <div class="tile">
-        <span class="tile__title">Trasparenza</span>
-        <span class="tile__text">
-          Quando esistono fonti o materiali utili, sono linkati direttamente.
-        </span>
-      </div>
-
-      <div class="tile">
-        <span class="tile__title">Segnalazioni</span>
-        <span class="tile__text">
-          Per inviti o interviste usa i contatti ufficiali.
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ULTIME NEWS -->
-<section class="cf-section" id="ultime">
-  <div class="wrap cf-section__inner">
-
-    <div class="cf-head">
-      <div class="cf-badge"><span class="cf-badge__text">ULTIME</span></div>
-      <h2 class="cf-title">Ultime news</h2>
-    </div>
-
-    <div class="news-grid">
-
-      <!-- NEWS AUDIO -->
-      <article class="news-card" id="intervista-radio">
-        <div class="news-meta">
-          <span class="news-pill">MEDIA</span>
-          <time class="news-date" datetime="2025-12-31">31 dicembre 2025</time>
-        </div>
-
-        <h3 class="news-title">Intervista radio – audio integrale</h3>
-
-        <p class="news-excerpt">
-          Intervista su impresa, diaspora e politica. Metodo, numeri, responsabilità e visione.
+      <div class="wrap hero__content hero__content--page">
+        <p class="hero__kicker">NEWS</p>
+        <h1 class="hero__title">
+          Aggiornamenti ufficiali.
+          <span>Ultima notizia in evidenza e archivio.</span>
+        </h1>
+        <p class="hero__text">
+          Comunicazioni, eventi e uscite media: solo contenuti essenziali, ordinati.
         </p>
 
-        <!-- PLAYER AUDIO (DROPBOX) -->
-        <div class="audio-player">
-          <audio controls preload="metadata">
-            <source src="https://www.dropbox.com/scl/fi/cw7be3nyck12k5hjclhqd/Intervista-radio.mp3.mp3?rlkey=hwi41iz9lcax2m576wcop807x&raw=1" type="audio/mpeg">
-            Il tuo browser non supporta l’audio HTML5.
-          </audio>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#in-evidenza">Ultima news</a>
+          <a class="btn btn--ghost" href="#archivio">Archivio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENUTO -->
+    <section class="news-wrap" aria-label="News">
+      <div class="wrap">
+
+        <!-- IN EVIDENZA -->
+        <div class="news-head" id="in-evidenza">
+          <h2>In evidenza</h2>
+          <p>Ultima pubblicazione.</p>
         </div>
 
-        <!-- SHARE -->
-        <div class="share-row">
-          <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank">Facebook</a>
-          <a class="share-btn" href="https://wa.me/?text=Intervista%20radio%20https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank">WhatsApp</a>
-          <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank">Telegram</a>
-          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank">LinkedIn</a>
-        </div>
-      </article>
+        <article class="featured">
+          <div class="featured__media">
+            <img src="assets/img/emirplatea.jpeg" alt="Intervista radio" loading="lazy" decoding="async" />
+            <div class="featured__shade" aria-hidden="true"></div>
+          </div>
 
-      <!-- PLACEHOLDER -->
-      <article class="news-card">
-        <div class="news-meta">
-          <span class="news-pill">COMUNICAZIONE</span>
-          <time class="news-date">In arrivo</time>
-        </div>
-        <h3 class="news-title">Aggiornamento in pubblicazione</h3>
-        <p class="news-excerpt">Contenuti ufficiali in arrivo.</p>
-      </article>
+          <div class="featured__content" id="intervista-radio">
+            <div class="featured__meta">
+              <span class="pill">MEDIA</span>
+              <time datetime="2025-12-31">31 dicembre 2025</time>
+            </div>
 
-      <article class="news-card">
-        <div class="news-meta">
-          <span class="news-pill">EVENTO</span>
-          <time class="news-date">In arrivo</time>
-        </div>
-        <h3 class="news-title">Eventi e interventi pubblici</h3>
-        <p class="news-excerpt">Date, luoghi e materiali utili.</p>
-      </article>
+            <h3 style="margin:0;">Intervista radio – audio integrale</h3>
+            <p style="margin-top:10px; opacity:.92;">
+              Impresa, diaspora e politica: metodo, numeri, responsabilità e visione.
+            </p>
 
+            <div class="audio-player">
+              <audio controls preload="metadata">
+                <source src="https://www.dropbox.com/scl/fi/cw7be3nyck12k5hjclhqd/Intervista-radio.mp3.mp3?rlkey=hwi41iz9lcax2m576wcop807x&raw=1" type="audio/mpeg">
+                Il tuo browser non supporta l’audio HTML5.
+              </audio>
+            </div>
+
+            <div class="share-row" aria-label="Condividi questa news">
+              <a class="share-btn"
+                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio"
+                 target="_blank" rel="noopener noreferrer">Facebook</a>
+
+              <a class="share-btn"
+                 href="https://wa.me/?text=Intervista%20radio%20%E2%80%93%20audio%20integrale%20https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio"
+                 target="_blank" rel="noopener noreferrer">WhatsApp</a>
+
+              <a class="share-btn"
+                 href="https://t.me/share/url?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio&text=Intervista%20radio%20%E2%80%93%20audio%20integrale"
+                 target="_blank" rel="noopener noreferrer">Telegram</a>
+
+              <a class="share-btn"
+                 href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio"
+                 target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARCHIVIO -->
+        <section class="archive" id="archivio" aria-label="Archivio news">
+          <h2>Archivio</h2>
+          <p style="margin-top:8px; opacity:.9;">Elenco delle pubblicazioni precedenti.</p>
+
+          <div class="archive__list">
+            <!-- Quando aggiungi una news nuova: sposti la precedente qui sotto -->
+            <a class="archive-item" href="#intervista-radio">
+              <div class="archive-item__left">
+                <div class="archive-item__title">Intervista radio – audio integrale</div>
+                <div class="archive-item__sub">MEDIA</div>
+              </div>
+              <div class="archive-item__date">31/12/2025</div>
+            </a>
+
+            <!-- Placeholder: puoi eliminarli quando avrai 2-3 news reali -->
+            <a class="archive-item" href="#top">
+              <div class="archive-item__left">
+                <div class="archive-item__title">Aggiornamento in pubblicazione</div>
+                <div class="archive-item__sub">COMUNICAZIONE</div>
+              </div>
+              <div class="archive-item__date">In arrivo</div>
+            </a>
+
+            <a class="archive-item" href="#top">
+              <div class="archive-item__left">
+                <div class="archive-item__title">Eventi e interventi pubblici</div>
+                <div class="archive-item__sub">EVENTO</div>
+              </div>
+              <div class="archive-item__date">In arrivo</div>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- CTA pulita (una sola) -->
+    <section class="support" id="sostieni">
+      <div class="wrap support__inner">
+        <h2>Inviti, interviste, collaborazioni</h2>
+        <p>Per richieste e contatti ufficiali: canali diretti.</p>
+        <a class="btn btn--primary" href="contatti.html">Contatti</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottombar" role="navigation" aria-label="Azioni rapide">
+    <a class="bottombar__btn" href="#sostieni">Sostieni</a>
+    <a class="bottombar__btn" href="#in-evidenza">Ultima</a>
+    <a class="bottombar__btn" href="#archivio">Archivio</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__copy">© <span data-year></span> Emir Alili.</p>
+
+      <div class="social" aria-label="Social">
+        <a class="social__link" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg>
+        </a>
+
+        <a class="social__link" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg>
+        </a>
+
+        <a class="social__link" href="mailto:info@emiralili.it" aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
+        </a>
+
+        <a class="social__link" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-12.2 6.8L4 20l1.3-3.6A8 8 0 1 1 20 12zm-4.7 2.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- CATEGORIE -->
-<section class="content content--page" id="categorie">
-  <div class="wrap content__inner">
-    <h2>Categorie</h2>
-    <div class="tag-row">
-      <a class="tag" href="#ultime">Media</a>
-      <a class="tag" href="#ultime">Politica</a>
-      <a class="tag" href="#ultime">Impresa</a>
-      <a class="tag" href="#ultime">Diaspora</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="support" id="sostieni">
-  <div class="wrap support__inner">
-    <h2>Inviti, interviste, collaborazioni</h2>
-    <p>Per richieste e contatti ufficiali: canali diretti.</p>
-    <a class="btn btn--primary" href="contatti.html">Contatti</a>
-  </div>
-</section>
-
-</main>
-
-<!-- BOTTOM BAR -->
-<div class="bottombar">
-  <a class="bottombar__btn" href="#sostieni">Sostieni</a>
-  <a class="bottombar__btn" href="#ultime">Leggi</a>
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap footer__inner">
-    <p class="footer__copy">© <span data-year></span> Emir Alili.</p>
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>
