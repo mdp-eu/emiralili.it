@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EA GROUP - Gestionale Pulizie</title>
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- React + ReactDOM (UMD) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (per JSX in browser) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- jsPDF + AutoTable (in questa demo non usato, ma pronto) -->
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.3/dist/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- UUID (UMD) - QUI SISTEMATO -->
   <script src="https://cdn.jsdelivr.net/npm/uuid@10.0.0/dist/umd/uuidv4.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/date-fns@3.6.0/index.js"></script>
+
   <style>
     * { box-sizing: border-box; }
     body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
@@ -32,173 +40,214 @@
     .table th { background: #f8f9fa; padding: 16px; text-align: left; font-weight: 600; color: #333; border-bottom: 2px solid #e0e0e0; }
     .table td { padding: 12px 16px; border-bottom: 1px solid #eee; }
     .table tr:hover { background: #f8f9fa; }
-    .alert { padding: 12px 16px; margin: 16px 0; border-radius: 6px; font-weight: 500; }
-    .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .alert-danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
     .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
     .metric-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; }
     .metric-value { font-size: 2em; font-weight: bold; margin-bottom: 4px; }
+    .note { padding: 12px 14px; background:#fff7d6; border:1px solid #ffe58a; border-radius:8px; color:#6b4e00; margin-top:12px; }
   </style>
 </head>
+
 <body>
   <div id="root"></div>
+
   <script type="text/babel">
     const { useState, useEffect, useCallback } = React;
-    const { v4: uuidv4 } = window.uuidv4.default || { v4: () => Math.random().toString(36).slice(2) };
 
-    // Types
-    const Cliente = ({ id, ragione_sociale, indirizzo }) => ({ id, ragione_sociale, indirizzo });
-    const Dipendente = ({ id, nome_cognome, costo_orario }) => ({ id, nome_cognome, costo_orario });
-    const Commessa = ({ id, cliente_id, tipo, valore, assegnato_a, giorni_settimanali, ore_per_intervento, data_inizio, stato, provvigione_percento, extra_costs = [] }) => ({
-      id, cliente_id, tipo, valore, assegnato_a, giorni_settimanali, ore_per_intervento, data_inizio, stato, provvigione_percento, extra_costs
-    });
+    // UUID robusto per UMD:
+    // - uuidv4.min.js espone di solito window.uuidv4() direttamente
+    // - fallback se per qualche motivo non è presente
+    const uuidv4 =
+      (typeof window.uuidv4 === "function" && window.uuidv4) ||
+      (() => (Date.now().toString(36) + Math.random().toString(36).slice(2)));
 
-    // Storage Hook
+    // Storage Hook (localStorage)
     function useStorage(key, initialValue) {
       const [storedValue, setStoredValue] = useState(initialValue);
+
       useEffect(() => {
         try {
           const item = localStorage.getItem(key);
           if (item) setStoredValue(JSON.parse(item));
         } catch {}
       }, [key]);
+
       const setValue = useCallback((value) => {
         try {
           setStoredValue(value);
           localStorage.setItem(key, JSON.stringify(value));
         } catch {}
-      }, []);
+      }, [key]);
+
       return [storedValue, setValue];
     }
 
     // Demo Data
     const demoData = {
       clienti: [
-        { id: '1', ragione_sociale: 'Cliente A S.p.A.', indirizzo: 'Via Example 123, Milano' },
-        { id: '2', ragione_sociale: 'Cliente B SRL', indirizzo: 'Via Test 456, Milano' }
+        { id: "1", ragione_sociale: "Cliente A S.p.A.", indirizzo: "Via Example 123, Milano" },
+        { id: "2", ragione_sociale: "Cliente B SRL", indirizzo: "Via Test 456, Milano" }
       ],
       dipendenti: [
-        { id: '1', nome_cognome: 'Mario Rossi', costo_orario: 11.32 },
-        { id: '2', nome_cognome: 'Luigi Verdi', costo_orario: 19 }
+        { id: "1", nome_cognome: "Mario Rossi", costo_orario: 11.32 },
+        { id: "2", nome_cognome: "Luigi Verdi", costo_orario: 19.00 }
       ],
       commesse: [
         {
-          id: '1',
-          cliente_id: '1',
-          tipo: 'ricorrente',
+          id: "1",
+          cliente_id: "1",
+          tipo: "ricorrente",
           valore: 500,
-          assegnato_a: '1',
-          giorni_settimanali: ['lun', 'mer', 'ven'],
+          assegnato_a: "1",
+          giorni_settimanali: ["lun", "mer", "ven"],
           ore_per_intervento: 1.5,
-          data_inizio: '2026-02-01',
-          stato: 'attiva',
+          data_inizio: "2026-02-01",
+          stato: "attiva",
           provvigione_percento: 15,
           extra_costs: []
         }
       ]
     };
 
-    // Calcola contabilità
+    // Calcolo contabilità industriale (semplificata)
     function calculateContabilita(commessa, dipendente) {
-      const nGiorni = commessa.giorni_settimanali.length;
-      const oreStimate = nGiorni * 4.33 * commessa.ore_per_intervento;
-      const costoLavoro = dipendente.costo_orario * oreStimate;
-      const ricavi = commessa.valore;
-      const provvigione = commessa.provvigione_percento ? ricavi * (commessa.provvigione_percento / 100) : 0;
+      const nGiorni = (commessa.giorni_settimanali || []).length;
+      const oreStimate = nGiorni * 4.33 * (Number(commessa.ore_per_intervento || 0));
+      const costoLavoro = Number(dipendente.costo_orario || 0) * oreStimate;
+
+      const ricavi = Number(commessa.valore || 0);
+      const provvigione = commessa.provvigione_percento
+        ? ricavi * (Number(commessa.provvigione_percento) / 100)
+        : 0;
+
       const costi = costoLavoro + provvigione;
       const margine = ricavi - costi;
-      const marginePct = (margine / ricavi) * 100;
+      const marginePct = ricavi > 0 ? (margine / ricavi) * 100 : 0;
+
       return { oreStimate, costoLavoro, provvigione, costi, ricavi, margine, marginePct };
     }
 
-    // Componenti Tab
+    // Tabs
     const ClientiTab = ({ clienti, setClienti }) => {
-      const [form, setForm] = useState({ ragione_sociale: '', indirizzo: '' });
+      const [form, setForm] = useState({ ragione_sociale: "", indirizzo: "" });
+
       const addCliente = () => {
-        const newCliente = { id: uuidv4(), ...form };
+        if (!form.ragione_sociale.trim()) return;
+        const newCliente = { id: uuidv4(), ragione_sociale: form.ragione_sociale.trim(), indirizzo: form.indirizzo.trim() };
         setClienti([...clienti, newCliente]);
-        setForm({ ragione_sociale: '', indirizzo: '' });
+        setForm({ ragione_sociale: "", indirizzo: "" });
       };
+
       return (
         <div className="tab-content">
-          <h2>👥 Clienti</h2>
+          <h2>Clienti</h2>
+
           <div className="form-group">
             <label>Ragione Sociale</label>
-            <input value={form.ragione_sociale} onChange={e => setForm({...form, ragione_sociale: e.target.value})} />
+            <input value={form.ragione_sociale} onChange={e => setForm({ ...form, ragione_sociale: e.target.value })} />
           </div>
+
           <div className="form-group">
             <label>Indirizzo</label>
-            <input value={form.indirizzo} onChange={e => setForm({...form, indirizzo: e.target.value})} />
+            <input value={form.indirizzo} onChange={e => setForm({ ...form, indirizzo: e.target.value })} />
           </div>
-          <button className="btn btn-primary" onClick={addCliente}>➕ Aggiungi Cliente</button>
+
+          <button className="btn btn-primary" onClick={addCliente}>Aggiungi Cliente</button>
+
           <table className="table">
-            <thead><tr><th>ID</th><th>Ragione Sociale</th><th>Indirizzo</th><th></th></tr></thead>
-            <tbody>{clienti.map(c => (
-              <tr key={c.id}>
-                <td>{c.id.slice(0,8)}</td>
-                <td>{c.ragione_sociale}</td>
-                <td>{c.indirizzo}</td>
-                <td><button className="btn btn-danger" onClick={() => setClienti(clienti.filter(x => x.id !== c.id))}>🗑️</button></td>
-              </tr>
-            ))}</tbody>
+            <thead>
+              <tr><th>ID</th><th>Ragione Sociale</th><th>Indirizzo</th><th></th></tr>
+            </thead>
+            <tbody>
+              {clienti.map(c => (
+                <tr key={c.id}>
+                  <td>{String(c.id).slice(0, 8)}</td>
+                  <td>{c.ragione_sociale}</td>
+                  <td>{c.indirizzo}</td>
+                  <td>
+                    <button className="btn btn-danger" onClick={() => setClienti(clienti.filter(x => x.id !== c.id))}>Elimina</button>
+                  </td>
+                </tr>
+              ))}
+              {clienti.length === 0 && (
+                <tr><td colSpan="4">Nessun cliente.</td></tr>
+              )}
+            </tbody>
           </table>
         </div>
       );
     };
 
     const DipendentiTab = ({ dipendenti, setDipendenti }) => {
-      const [form, setForm] = useState({ nome_cognome: '', costo_orario: '' });
+      const [form, setForm] = useState({ nome_cognome: "", costo_orario: "" });
+
       const addDipendente = () => {
-        const newDip = { id: uuidv4(), nome_cognome: form.nome_cognome, costo_orario: parseFloat(form.costo_orario) };
+        if (!form.nome_cognome.trim()) return;
+        const costo = Number(form.costo_orario);
+        if (!Number.isFinite(costo)) return;
+
+        const newDip = { id: uuidv4(), nome_cognome: form.nome_cognome.trim(), costo_orario: costo };
         setDipendenti([...dipendenti, newDip]);
-        setForm({ nome_cognome: '', costo_orario: '' });
+        setForm({ nome_cognome: "", costo_orario: "" });
       };
+
       return (
         <div className="tab-content">
-          <h2>👷 Dipendenti</h2>
+          <h2>Dipendenti</h2>
+
           <div className="form-group">
             <label>Nome e Cognome</label>
-            <input value={form.nome_cognome} onChange={e => setForm({...form, nome_cognome: e.target.value})} />
+            <input value={form.nome_cognome} onChange={e => setForm({ ...form, nome_cognome: e.target.value })} />
           </div>
+
           <div className="form-group">
             <label>Costo Orario (€)</label>
-            <input type="number" step="0.01" value={form.costo_orario} onChange={e => setForm({...form, costo_orario: e.target.value})} />
+            <input type="number" step="0.01" value={form.costo_orario} onChange={e => setForm({ ...form, costo_orario: e.target.value })} />
           </div>
-          <button className="btn btn-primary" onClick={addDipendente}>➕ Aggiungi Dipendente</button>
+
+          <button className="btn btn-primary" onClick={addDipendente}>Aggiungi Dipendente</button>
+
           <table className="table">
             <thead><tr><th>ID</th><th>Nome</th><th>Costo Orario</th><th></th></tr></thead>
-            <tbody>{dipendenti.map(d => (
-              <tr key={d.id}>
-                <td>{d.id.slice(0,8)}</td>
-                <td>{d.nome_cognome}</td>
-                <td>€{d.costo_orario.toFixed(2)}</td>
-                <td><button className="btn btn-danger" onClick={() => setDipendenti(dipendenti.filter(x => x.id !== d.id))}>🗑️</button></td>
-              </tr>
-            ))}</tbody>
+            <tbody>
+              {dipendenti.map(d => (
+                <tr key={d.id}>
+                  <td>{String(d.id).slice(0, 8)}</td>
+                  <td>{d.nome_cognome}</td>
+                  <td>€{Number(d.costo_orario).toFixed(2)}</td>
+                  <td>
+                    <button className="btn btn-danger" onClick={() => setDipendenti(dipendenti.filter(x => x.id !== d.id))}>Elimina</button>
+                  </td>
+                </tr>
+              ))}
+              {dipendenti.length === 0 && (
+                <tr><td colSpan="4">Nessun dipendente.</td></tr>
+              )}
+            </tbody>
           </table>
         </div>
       );
     };
 
-    const CommesseTab = ({ commesse, setCommesse, clienti, dipendenti }) => {
+    const CommesseTab = ({ commesse, clienti, dipendenti }) => {
       const contabs = commesse.map(c => {
-        const cliente = clienti.find(cl => cl.id === c.cliente_id);
-        const dip = dipendenti.find(d => d.id === c.assegnato_a);
-        return calculateContabilita(c, dip || {costo_orario: 0}, cliente);
+        const dip = dipendenti.find(d => d.id === c.assegnato_a) || { costo_orario: 0 };
+        return calculateContabilita(c, dip);
       });
-      
+
       return (
         <div className="tab-content">
-          <h2>🏗️ Commesse + Contabilità</h2>
+          <h2>Commesse + Contabilità</h2>
+
           <div className="metrics">
             {contabs.map((cont, i) => (
-              <div key={i} className={`metric-card ${cont.margine < 0 ? 'alert-danger' : 'alert-success'}`}>
+              <div key={i} className="metric-card">
                 <div className="metric-value">€{cont.margine.toFixed(0)}</div>
                 <div>{cont.marginePct.toFixed(1)}%</div>
-                <small>Commessa {i+1}</small>
+                <small>Commessa {i + 1}</small>
               </div>
             ))}
           </div>
+
           <table className="table">
             <thead>
               <tr>
@@ -210,12 +259,14 @@
               {commesse.map((c, i) => {
                 const cont = contabs[i];
                 const cliente = clienti.find(cl => cl.id === c.cliente_id);
+                const bad = cont.margine < 0;
+
                 return (
-                  <tr key={c.id} className={cont.margine < 0 ? 'alert-danger' : ''}>
-                    <td>{cliente?.ragione_sociale}</td>
+                  <tr key={c.id} style={bad ? { background: "#f8d7da" } : null}>
+                    <td>{cliente?.ragione_sociale || "-"}</td>
                     <td>{c.tipo}</td>
-                    <td>€{cont.ricavi}</td>
-                    <td>{c.giorni_settimanali.length}</td>
+                    <td>€{cont.ricavi.toFixed(2)}</td>
+                    <td>{(c.giorni_settimanali || []).length}</td>
                     <td>{cont.oreStimate.toFixed(1)}h</td>
                     <td>€{cont.costoLavoro.toFixed(0)}</td>
                     <td>€{cont.provvigione.toFixed(0)}</td>
@@ -224,52 +275,77 @@
                   </tr>
                 );
               })}
+              {commesse.length === 0 && (
+                <tr><td colSpan="9">Nessuna commessa.</td></tr>
+              )}
             </tbody>
           </table>
+
+          <div className="note">
+            Nota: questa versione demo implementa solo Clienti, Dipendenti e Contabilità Commesse.
+            Pianificazione, Programmi PDF e Report qui sono placeholder.
+          </div>
         </div>
       );
     };
 
-    // Main App
     function App() {
       const [tabValue, setTabValue] = useState(0);
-      const [clienti, setClienti] = useStorage('clienti', []);
-      const [dipendenti, setDipendenti] = useStorage('dipendenti', []);
-      const [commesse, setCommesse] = useStorage('commesse', []);
+
+      const [clienti, setClienti] = useStorage("clienti", []);
+      const [dipendenti, setDipendenti] = useStorage("dipendenti", []);
+      const [commesse, setCommesse] = useStorage("commesse", []);
 
       useEffect(() => {
-        if (clienti.length === 0) {
+        if (clienti.length === 0 && dipendenti.length === 0 && commesse.length === 0) {
           setClienti(demoData.clienti);
           setDipendenti(demoData.dipendenti);
           setCommesse(demoData.commesse);
         }
-      }, []);
+      }, []); // intenzionale: solo primo mount
 
       return (
         <div className="app">
           <div className="header">
-            <h1>🧼 EA GROUP - Gestionale Pulizie</h1>
+            <h1>EA GROUP - Gestionale Pulizie</h1>
             <p>Contabilità Industriale | Pianificazione | Programmi Lavoro</p>
           </div>
+
           <div className="tabs">
-            <div className={`tab ${tabValue === 0 ? 'active' : ''}`} onClick={() => setTabValue(0)}>👥 Clienti</div>
-            <div className={`tab ${tabValue === 1 ? 'active' : ''}`} onClick={() => setTabValue(1)}>👷 Dipendenti</div>
-            <div className={`tab ${tabValue === 2 ? 'active' : ''}`} onClick={() => setTabValue(2)}>🏗️ Commesse</div>
-            <div className={`tab ${tabValue === 3 ? 'active' : ''}`} onClick={() => setTabValue(3)}>📅 Pianificazione</div>
-            <div className={`tab ${tabValue === 4 ? 'active' : ''}`} onClick={() => setTabValue(4)}>📋 Programmi</div>
-            <div className={`tab ${tabValue === 5 ? 'active' : ''}`} onClick={() => setTabValue(5)}>📊 Report</div>
+            <div className={`tab ${tabValue === 0 ? "active" : ""}`} onClick={() => setTabValue(0)}>Clienti</div>
+            <div className={`tab ${tabValue === 1 ? "active" : ""}`} onClick={() => setTabValue(1)}>Dipendenti</div>
+            <div className={`tab ${tabValue === 2 ? "active" : ""}`} onClick={() => setTabValue(2)}>Commesse</div>
+            <div className={`tab ${tabValue === 3 ? "active" : ""}`} onClick={() => setTabValue(3)}>Pianificazione</div>
+            <div className={`tab ${tabValue === 4 ? "active" : ""}`} onClick={() => setTabValue(4)}>Programmi</div>
+            <div className={`tab ${tabValue === 5 ? "active" : ""}`} onClick={() => setTabValue(5)}>Report</div>
           </div>
+
           {tabValue === 0 && <ClientiTab clienti={clienti} setClienti={setClienti} />}
           {tabValue === 1 && <DipendentiTab dipendenti={dipendenti} setDipendenti={setDipendenti} />}
-          {tabValue === 2 && <CommesseTab commesse={commesse} setCommesse={setCommesse} clienti={clienti} dipendenti={dipendenti} />}
-          {tabValue === 3 && <div className="tab-content"><h2>📅 Pianificazione</h2><p>Generazione automatica interventi da commesse ricorrenti (Marzo 2026: 13 interventi, 19.5h totali)</p></div>}
-          {tabValue === 4 && <div className="tab-content"><h2>📋 Programmi Dipendenti</h2><p>Seleziona dip. + periodo → Tabella + PDF stampabile (Mario Rossi: Lun/Mer/Ven 1.5h)</p></div>}
-          {tabValue === 5 && <div className="tab-content"><h2>📊 Report Mensile</h2><p>Ricavi: €500 | Costi: €295 | Margine: €205 (41%) ✅</p></div>}
+          {tabValue === 2 && <CommesseTab commesse={commesse} clienti={clienti} dipendenti={dipendenti} />}
+          {tabValue === 3 && (
+            <div className="tab-content">
+              <h2>Pianificazione</h2>
+              <p>Placeholder demo. (Nel progetto Vite completo si genera davvero il calendario interventi.)</p>
+            </div>
+          )}
+          {tabValue === 4 && (
+            <div className="tab-content">
+              <h2>Programmi Dipendenti</h2>
+              <p>Placeholder demo. (Nel progetto Vite completo c’è tabella + PDF.)</p>
+            </div>
+          )}
+          {tabValue === 5 && (
+            <div className="tab-content">
+              <h2>Report Mensile</h2>
+              <p>Placeholder demo. (Nel progetto Vite completo c’è report + export CSV.)</p>
+            </div>
+          )}
         </div>
       );
     }
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
+    const root = ReactDOM.createRoot(document.getElementById("root"));
     root.render(<App />);
   </script>
 </body>
