@@ -1,349 +1,257 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cosa faccio – Emir Alili</title>
-  <meta name="description" content="Cosa faccio. Impresa nei servizi, progetto politico della diaspora e iniziative sociali sul territorio. Organizzazione, numeri chiari, risultati verificabili." />
-  <link rel="stylesheet" href="style.css?v=10" />
-  <script defer src="main.js?v=10"></script>
+  <meta name="description" content="EA Group, EA Cleaning, MDP. Struttura, contratti, attività concreta.">
+  <link rel="canonical" href="https://www.emiralili.it/cosa-faccio.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cosa faccio – Emir Alili">
+  <meta property="og:description" content="EA Group, EA Cleaning, MDP. Struttura, contratti, attività concreta.">
+  <meta property="og:image" content="https://www.emiralili.it/assets/img/emir-og-cover.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=12">
+  <script defer src="main.js?v=12"></script>
 </head>
-
 <body>
-  <!-- TOP BAR -->
-  <header class="topbar" data-topbar>
-    <div class="wrap topbar__inner">
-      <a class="brand" href="index.html" aria-label="Home Emir Alili">
-        <span class="brand__name">EMIR ALILI</span>
-      </a>
 
-      <a class="topbar__center" href="index.html#sostieni">SOSTIENI</a>
+<!-- NAV -->
 
-      <button class="burger" type="button" aria-label="Apri menu" aria-expanded="false" data-burger>
-        <span></span><span></span><span></span>
-      </button>
+<nav>
+  <a href="index.html" class="nav-logo">EMIR <span>ALILI</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chi-sono.html">Chi sono</a></li>
+    <li><a href="cosa-faccio.html" class="active">Cosa faccio</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="contatti.html">Contatti</a></li>
+    <li><a href="https://mdp-eu.com" target="_blank" rel="noopener" class="nav-cta">Vai a MDP →</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+
+<div class="nav-overlay" id="navOverlay">
+  <button class="overlay-close" id="overlayClose" aria-label="Chiudi menu">✕</button>
+  <a href="index.html">Home</a>
+  <a href="chi-sono.html">Chi sono</a>
+  <a href="cosa-faccio.html">Cosa faccio</a>
+  <a href="news.html">News</a>
+  <a href="contatti.html">Contatti</a>
+  <a href="https://mdp-eu.com" target="_blank" rel="noopener" class="overlay-cta">Vai a MDP →</a>
+</div>
+
+<!-- PAGE HERO -->
+
+<div class="page-hero">
+  <div class="page-hero-bg">
+    <img src="assets/img/emirplatea.jpeg" alt="Emir Alili – cosa faccio" loading="eager" decoding="async">
+  </div>
+  <div class="page-hero-content">
+    <div class="page-hero-eyebrow">Cosa faccio</div>
+    <h1>Tre campi.<br>Un solo criterio.</h1>
+    <p class="page-hero-sub">
+      EA Group, EA Cleaning, MDP. Impresa, diaspora, politica.
+      Stesso metodo ovunque: struttura, numeri, responsabilità personale.
+    </p>
+    <div class="hero-actions">
+      <a href="#impresa" class="btn-primary">Impresa</a>
+      <a href="#politica" class="btn-secondary">Politica</a>
     </div>
+  </div>
+</div>
 
-    <div class="menu" data-menu aria-hidden="true">
-      <nav class="menu__panel" aria-label="Menu principale">
-        <a class="menu__link" href="index.html">Home</a>
-        <a class="menu__link" href="chi-sono.html">Chi sono</a>
-        <a class="menu__link" href="cosa-faccio.html">Cosa faccio</a>
-        <a class="menu__link" href="news.html">News</a>
-        <a class="menu__link" href="contatti.html">Contatti</a>
-        <div class="menu__sep"></div>
-        <a class="menu__cta" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Vai a MDP</a>
-      </nav>
+<!-- 01 — IMPRESA -->
+
+<section class="page-section page-section--dark" id="impresa">
+  <div class="section-header reveal">
+    <div class="section-number">01</div>
+    <div>
+      <div class="section-eyebrow">Impresa</div>
+      <h2 class="section-title">EA Group<br>EA Cleaning</h2>
+      <p class="section-lead">
+        Servizi professionali civili e aziendali nell'area Cesena-Forlì-Rimini.
+        26 contratti attivi, team di dipendenti e collaboratori.
+      </p>
     </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero hero--page" id="top">
-      <div class="hero__media hero__media--page">
-        <img
-          src="assets/img/emirplatea.jpeg"
-          alt="Emir Alili – intervento pubblico"
-          loading="eager"
-          decoding="async"
-        />
-        <div class="hero__shade" aria-hidden="true"></div>
-      </div>
-
-      <div class="wrap hero__content hero__content--page">
-        <p class="hero__kicker">COSA FACCIO</p>
-
-        <h1 class="hero__title">
-          Dove metto tempo e responsabilità, ogni giorno.
-          <span>Organizzazione, numeri chiari, risultati verificabili. Zero fumo.</span>
-        </h1>
-
-        <p class="hero__text">
-          Impresa nei servizi, progetto politico della diaspora e iniziative sociali sul territorio.
-          Un filo unico: struttura operativa, controllo dei processi, scelte misurabili.
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#aree">Vai alle aree</a>
-          <a class="btn btn--ghost" href="chi-sono.html">Chi sono</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PANORAMICA 3 AREE (con loghi reali) -->
-    <section class="content content--page" id="aree">
-      <div class="wrap content__inner">
-        <div class="content__block">
-          <h2>Tre aree. Un solo metodo.</h2>
-          <p>
-            Impresa, diaspora e politica non sono compartimenti stagni. Quando manca struttura, resta solo rumore.
-            Qui trovi cosa faccio e come posso essere utile in modo concreto.
-          </p>
-        </div>
-
-        <div class="content__grid content__grid--page">
-          <a class="tile tile--link" href="#impresa">
-            <div class="tile__head">
-              <img class="tile__logo" src="assets/img/LogoEACleaning.png" alt="EA Cleaning" loading="lazy" decoding="async">
-              <span class="tile__tag">IMPRESA</span>
-            </div>
-            <span class="tile__title">EA Group / EA Cleaning</span>
-            <span class="tile__text">Gestione operativa, turni, qualità, costi, continuità.</span>
-          </a>
-
-          <a class="tile tile--link" href="#politica">
-            <div class="tile__head">
-              <img class="tile__logo" src="assets/img/mdp-logo.jpg" alt="MDP" loading="lazy" decoding="async">
-              <span class="tile__tag">POLITICA</span>
-            </div>
-            <span class="tile__title">Macedonian Diaspora Party</span>
-            <span class="tile__text">Documenti, organi, visione di Stato, responsabilità verificabile.</span>
-          </a>
-
-          <a class="tile tile--link" href="#territorio">
-            <div class="tile__head">
-              <span class="tile__tag">TERRITORIO</span>
-            </div>
-            <span class="tile__title">Progetti sociali e culturali</span>
-            <span class="tile__text">Impatto reale, strumenti che restano, metodo applicato alle comunità.</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- IMPRESA -->
-    <section class="cf-section" id="impresa" aria-label="Impresa">
-      <div class="wrap cf-section__inner">
-        <div class="cf-head">
-          <div class="cf-badge">
-            <img class="cf-badge__logo" src="assets/img/LogoEACleaning.png" alt="EA Cleaning" loading="lazy" decoding="async">
-            <span class="cf-badge__text">IMPRESA</span>
-          </div>
-
-          <h2 class="cf-title">EA Group / EA Cleaning</h2>
-          <p class="cf-sub">
-            Gestione operativa, non teoria. La differenza non la fanno le brochure: la fanno turni,
-            controllo qualità, costi e continuità del servizio.
-          </p>
-        </div>
-
-        <div class="cf-cols">
-          <figure class="cf-media">
-            <img src="assets/img/Emir%20ufficio.jpg" alt="Emir – ufficio" loading="lazy" decoding="async">
-          </figure>
-
-          <div class="cf-card">
-            <h3>Come lavoro</h3>
-            <p>
-              Impresa significa far quadrare i conti senza schiacciare chi lavora: contratti chiari, carichi sostenibili,
-              standard ripetibili e responsabilità diretta.
-            </p>
-            <h3 style="margin-top:14px">Cosa facciamo in pratica</h3>
-            <ul class="cf-list">
-              <li>Pulizie continuative per condomìni e aziende</li>
-              <li>Interventi straordinari e post-cantiere</li>
-              <li>Servizi di supporto e facility per realtà produttive</li>
-              <li>Ottimizzazione ore, costi e performance su cantieri esistenti</li>
-            </ul>
-
-            <div class="cf-actions">
-              <a class="btn btn--primary" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">Vai a EA Cleaning</a>
-              <a class="btn btn--ghost" href="contatti.html">Parliamone</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- POLITICA -->
-    <section class="cf-section cf-section--alt" id="politica" aria-label="Politica">
-      <div class="wrap cf-section__inner">
-        <div class="cf-head">
-          <div class="cf-badge">
-            <img class="cf-badge__logo" src="assets/img/mdp-logo.jpg" alt="MDP" loading="lazy" decoding="async">
-            <span class="cf-badge__text">POLITICA</span>
-          </div>
-
-          <h2 class="cf-title">Macedonian Diaspora Party</h2>
-          <p class="cf-sub">
-            Struttura, documenti, responsabilità. MDP nasce dalla diaspora, ma non è folklore e non è improvvisazione:
-            è un progetto politico strutturato.
-          </p>
-        </div>
-
-        <div class="cf-cols">
-          <figure class="cf-media">
-            <img src="assets/img/emireu.jpeg" alt="Emir – contesto istituzionale" loading="lazy" decoding="async">
-          </figure>
-
-          <div class="cf-card">
-            <h3>Obiettivo</h3>
-            <p>
-              Rompere il circuito corruzione–clientele–impunità e rimettere lo Stato sotto controllo dei cittadini,
-              con programmi verificabili e responsabilità reale degli eletti.
-            </p>
-
-            <h3 style="margin-top:14px">Assi principali</h3>
-            <ul class="cf-list">
-              <li>Riforme strutturali e visione di Stato</li>
-              <li>Coinvolgimento organizzato della diaspora</li>
-              <li>Trasparenza su decisioni, fondi e nomine</li>
-              <li>Controllo degli eletti e revocabilità politica</li>
-            </ul>
-
-            <div class="cf-actions">
-              <a class="btn btn--primary" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">Documenti MDP</a>
-              <a class="btn btn--ghost" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">Sito MDP</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TERRITORIO -->
-    <section class="cf-section" id="territorio" aria-label="Territorio">
-      <div class="wrap cf-section__inner">
-        <div class="cf-head">
-          <div class="cf-badge">
-            <span class="cf-badge__text">TERRITORIO</span>
-          </div>
-
-          <h2 class="cf-title">Progetti sociali e culturali</h2>
-          <p class="cf-sub">
-            Impatto reale, non passerelle. Qui il metro non è il fatturato: è la capacità di costruire strumenti che restano.
-          </p>
-        </div>
-
-        <div class="cf-cols">
-          <figure class="cf-media">
-            <img src="assets/img/Emir%20servizio%20fotografico.jpg" alt="Emir – territorio e progetti" loading="lazy" decoding="async">
-          </figure>
-
-          <div class="cf-card">
-            <h3>Ambiti principali</h3>
-            <ul class="cf-list">
-              <li>Centri culturali e comunità</li>
-              <li>Iniziative su donazione e volontariato</li>
-              <li>Progetti di orientamento per giovani e migranti</li>
-              <li>Collaborazioni con associazioni del territorio</li>
-            </ul>
-
-            <h3 style="margin-top:14px">Metodo</h3>
-            <ul class="cf-list">
-              <li>Obiettivi chiari e misurabili</li>
-              <li>Ruoli e responsabilità assegnate</li>
-              <li>Processi replicabili, non eventi spot</li>
-              <li>Risultati e documentazione</li>
-            </ul>
-
-            <div class="cf-actions">
-              <a class="btn btn--primary" href="contatti.html">Proponi un progetto</a>
-              <a class="btn btn--ghost" href="news.html">Aggiornamenti</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- OPERATIVITÀ -->
-    <section class="content content--page" id="operativita">
-      <div class="wrap content__inner">
-        <div class="content__block">
-          <h2>Come posso essere utile in concreto</h2>
-          <p>
-            Per aziende e condomìni, per diaspora e cittadini, per media e informazione: qui sotto trovi le richieste tipiche.
-            Se mi scrivi, fallo con obiettivo e contesto.
-          </p>
-        </div>
-
-        <div class="content__grid content__grid--page">
-          <div class="tile">
-            <span class="tile__title">Per aziende e condomìni</span>
-            <ul class="cf-list cf-list--compact">
-              <li>Analisi costi e qualità del servizio</li>
-              <li>Riorganizzazione turni e carichi di lavoro</li>
-              <li>Contratti chiari e sostenibili</li>
-              <li>Passaggio da “emergenza” a gestione strutturata</li>
-            </ul>
-            <div class="cf-actions cf-actions--tight">
-              <a class="btn btn--primary" href="https://www.eacleaning.it" target="_blank" rel="noopener noreferrer">EA Cleaning</a>
-              <a class="btn btn--ghost" href="contatti.html">Parliamone</a>
-            </div>
-          </div>
-
-          <div class="tile">
-            <span class="tile__title">Per diaspora e cittadini</span>
-            <ul class="cf-list cf-list--compact">
-              <li>Confronto su riforme e visione di Stato</li>
-              <li>Costruzione di reti organizzate della diaspora</li>
-              <li>Supporto a gruppi che vogliono uscire dalla protesta sterile</li>
-              <li>Incontri pubblici e confronto strutturato</li>
-            </ul>
-            <div class="cf-actions cf-actions--tight">
-              <a class="btn btn--primary" href="https://mdp-eu.com" target="_blank" rel="noopener noreferrer">MDP</a>
-              <a class="btn btn--ghost" href="https://mdp-eu.com/documenti.html" target="_blank" rel="noopener noreferrer">Documenti</a>
-            </div>
-          </div>
-
-          <div class="tile">
-            <span class="tile__title">Per media e informazione</span>
-            <ul class="cf-list cf-list--compact">
-              <li>Interventi su diaspora, corruzione, riforme</li>
-              <li>Analisi su poteri, media e politica estera</li>
-              <li>Racconti concreti di impresa e migrazione</li>
-              <li>Confronti scomodi ma argomentati</li>
-            </ul>
-            <div class="cf-actions cf-actions--tight">
-              <a class="btn btn--primary" href="contatti.html">Richiedi contatto</a>
-              <a class="btn btn--ghost" href="news.html">News</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="support" id="sostieni">
-      <div class="wrap support__inner">
-        <h2>Vuoi coinvolgermi in un progetto?</h2>
-        <p>
-          Collaborazione operativa, intervento pubblico o confronto strutturato: scrivimi con obiettivo e contesto.
-          Rispondo in modo diretto.
-        </p>
-        <a class="btn btn--primary" href="contatti.html">Scrivimi</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- BOTTOM BAR -->
-  <div class="bottombar" role="navigation" aria-label="Azioni rapide">
-    <a class="bottombar__btn" href="#sostieni">Sostieni</a>
-    <a class="bottombar__btn" href="news.html">Ascolta</a>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <p class="footer__copy">© <span data-year></span> Emir Alili.</p>
-
-      <div class="social" aria-label="Social">
-        <a class="social__link" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg>
-        </a>
-
-        <a class="social__link" href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg>
-        </a>
-
-        <a class="social__link" href="mailto:info@emiralili.it" aria-label="Email">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
-        </a>
-
-        <a class="social__link" href="https://wa.me/393282290062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-12.2 6.8L4 20l1.3-3.6A8 8 0 1 1 20 12zm-4.7 2.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
-        </a>
-      </div>
+  <div class="card-grid">
+    <div class="card reveal">
+      <div class="card-num">Servizi /</div>
+      <div class="card-title">Pulizie professionali</div>
+      <p class="card-text">Servizi di pulizia civile e aziendale. Standard definiti, controllo qualità, contratti verificabili.</p>
+      <div class="card-line"></div>
     </div>
-  </footer>
+    <div class="card reveal reveal-delay-1">
+      <div class="card-num">Servizi /</div>
+      <div class="card-title">Manutenzione &amp; Verde</div>
+      <p class="card-text">Cura del verde, manutenzione spazi esterni. Gestione continuativa con personale qualificato.</p>
+      <div class="card-line"></div>
+    </div>
+    <div class="card reveal reveal-delay-2">
+      <div class="card-num">Servizi /</div>
+      <div class="card-title">Edilizia &amp; Pittura</div>
+      <p class="card-text">Lavori edili, tinteggiatura, ristrutturazioni. Esecuzione diretta con squadre interne.</p>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <!-- stats row -->
+
+  <div style="display:grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); border-top: none; margin-top: 0;">
+    <div style="padding: 2rem; border-right: 1px solid var(--border); text-align:center;">
+      <div style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--gold); line-height:1;">26</div>
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--grey); margin-top:0.3rem;">Contratti attivi</div>
+    </div>
+    <div style="padding: 2rem; border-right: 1px solid var(--border); text-align:center;">
+      <div style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--gold); line-height:1;">CS-FO-RN</div>
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--grey); margin-top:0.3rem;">Area operativa</div>
+    </div>
+    <div style="padding: 2rem; text-align:center;">
+      <div style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--gold); line-height:1;">4</div>
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--grey); margin-top:0.3rem;">Linee di servizio</div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO BAND -->
+
+<div class="manifesto-band">
+  <div class="manifesto-band-text">
+    "Se non regge nei numeri, non esiste."
+  </div>
+  <div class="manifesto-band-attr">Emir Alili — Criterio operativo</div>
+</div>
+
+<!-- 02 — POLITICA -->
+
+<section class="page-section" id="politica">
+  <div class="section-header reveal">
+    <div class="section-number">02</div>
+    <div>
+      <div class="section-eyebrow">Politica</div>
+      <h2 class="section-title">Partito della<br>Diaspora Macedone</h2>
+      <p class="section-lead">
+        Fondatore e Presidente MDP. La diaspora come struttura politica permanente,
+        non una riserva di voti — un attore geopolitico.
+      </p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card reveal">
+      <div class="card-num">Pilastro 01 /</div>
+      <div class="card-title">Libertà Reale</div>
+      <p class="card-text">Non slogan. Strutture e garanzie concrete che rendono possibile la libertà individuale nella vita quotidiana.</p>
+      <div class="card-line"></div>
+    </div>
+    <div class="card reveal reveal-delay-1">
+      <div class="card-num">Pilastro 02 /</div>
+      <div class="card-title">Giustizia e Responsabilità</div>
+      <p class="card-text">Accountability reale. Chi decide, risponde. Chi sbaglia, paga. Senza eccezioni per chi è in alto.</p>
+      <div class="card-line"></div>
+    </div>
+    <div class="card reveal reveal-delay-2">
+      <div class="card-num">Pilastro 03 /</div>
+      <div class="card-title">Meritocrazia</div>
+      <p class="card-text">Avanzamento basato su competenza e risultati, non su reti clientelari o appartenenze politiche.</p>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <div style="border:1px solid var(--border); border-top:none; padding:3rem; background:var(--mid);">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;">Pilastro 04 /</div>
+    <div style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--white); margin-bottom:0.8rem;">Sovranità Macedone</div>
+    <p style="font-size:0.9rem; color:var(--grey); line-height:1.8; max-width:600px; margin-bottom:2rem;">La diaspora come struttura politica permanente. Non una riserva di voti — un attore geopolitico con documenti programmatici, visione delle riforme, posizioni chiare e verificabili.</p>
+    <a href="https://mdp-eu.com" target="_blank" rel="noopener" class="btn-primary">Visita mdp-eu.com</a>
+  </div>
+</section>
+
+<!-- 03 — CONTENUTI -->
+
+<section class="page-section page-section--dark">
+  <div class="section-header reveal">
+    <div class="section-number">03</div>
+    <div>
+      <div class="section-eyebrow">Comunicazione</div>
+      <h2 class="section-title">Contenuti geopolitici</h2>
+      <p class="section-lead">Facebook e YouTube. Analisi, interventi pubblici, contenuti di approfondimento.</p>
+    </div>
+  </div>
+
+  <div class="contact-grid">
+    <a class="contact-card reveal" href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener">
+      <div class="contact-card-label">Facebook</div>
+      <div class="contact-card-title">~12.000 follower</div>
+      <div class="contact-card-hint">Profilo verificato — crescita organica costante</div>
+      <span class="contact-card-arrow">Segui</span>
+    </a>
+    <a class="contact-card reveal reveal-delay-1" href="https://www.youtube.com/@Emir-Alili" target="_blank" rel="noopener">
+      <div class="contact-card-label">YouTube</div>
+      <div class="contact-card-title">@Emir-Alili</div>
+      <div class="contact-card-hint">Analisi geopolitica — crescita rapida</div>
+      <span class="contact-card-arrow">Iscriviti</span>
+    </a>
+    <a class="contact-card reveal reveal-delay-2" href="news.html">
+      <div class="contact-card-label">Sito</div>
+      <div class="contact-card-title">News &amp; Interviste</div>
+      <div class="contact-card-hint">Interviste radio, comunicazioni ufficiali</div>
+      <span class="contact-card-arrow">Vai alle news</span>
+    </a>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+
+<div class="cta-strip">
+  <div>
+    <div class="cta-strip-title">Collaborazioni e richieste</div>
+    <div class="cta-strip-sub">Per servizi EA Group o contatti MDP: canali diretti.</div>
+  </div>
+  <div class="cta-strip-actions">
+    <a href="contatti.html" class="btn-primary">Contattami</a>
+    <a href="https://www.eacleaning.it" target="_blank" rel="noopener" class="btn-secondary">EA Cleaning →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div>
+    <div class="footer-brand">EMIR <span>ALILI</span></div>
+    <div class="footer-sub">© <span data-year></span> Emir Alili — Metodo, responsabilità, risultati. Niente teatro.</div>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg>
+      </a>
+      <a href="mailto:info@emiralili.it" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg>
+      </a>
+      <a href="https://wa.me/393282290062" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-12.2 6.8L4 20l1.3-3.6A8 8 0 1 1 20 12zm-4.7 2.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
+      </a>
+    </div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chi-sono.html">Chi sono</a></li>
+    <li><a href="cosa-faccio.html">Cosa faccio</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="contatti.html">Contatti</a></li>
+    <li><a href="https://mdp-eu.com" target="_blank" rel="noopener">MDP →</a></li>
+  </ul>
+</footer>
+
 </body>
 </html>
