@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Meta tags dinamici — popolati via JS prima del redirect -->
+<title id="page-title">Emir Alili — Geopolitica</title>
+<meta name="description" id="meta-desc" content="Analisi geopolitica indipendente di Emir Alili">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Emir Alili">
+<meta property="og:title" id="og-title" content="Emir Alili — Geopolitica">
+<meta property="og:description" id="og-desc" content="Analisi geopolitica indipendente">
+<meta property="og:image" id="og-image" content="https://emiralili.it/assets/copertina-710.jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" id="og-url" content="https://emiralili.it/blog.html">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Emir Alili — Geopolitica">
+<meta name="twitter:description" id="tw-desc" content="Analisi geopolitica indipendente">
+<meta name="twitter:image" id="tw-image" content="https://emiralili.it/assets/copertina-710.jpeg">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{background:#0A0A08;color:#EDE8DF;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+.loading{text-align:center;opacity:0.5;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.bar{width:200px;height:2px;background:#1A1A18;margin:16px auto 0;border-radius:2px;overflow:hidden}
+.bar-inner{height:100%;background:#D4A853;width:0;animation:load 1.5s ease forwards}
+@keyframes load{to{width:100%}}
+</style>
+</head>
+<body>
+<div class="loading">
+  Caricamento articolo...<br>
+  <div class="bar"><div class="bar-inner"></div></div>
+</div>
+
+<script>
+var SUPABASE_URL = 'https://kbsamcygzupiubiskxhk.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtic2FtY3lnenVwaXViaXNreGhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNjQzNzksImV4cCI6MjA4OTg0MDM3OX0.VK0AdZAR_tpphy-MtUWeybXGEuz5w0w-cs4z72QsliI';
+
+var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+function set(id, val){ var el=document.getElementById(id); if(el) el.setAttribute('content', val); }
+function setTitle(val){ var el=document.getElementById('page-title'); if(el) el.textContent=val; }
+
+async function load(){
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+
+  if(!id){
+    window.location.href = 'blog.html';
+    return;
+  }
+
+  try {
+    var result = await sb.from('articles').select('id,title,lead,content,image_url,category,created_at').eq('id',id).eq('published',true).single();
+
+    if(result.error || !result.data){
+      window.location.href = 'article.html?id='+id;
+      return;
+    }
+
+    var a = result.data;
+    var pageUrl = 'https://emiralili.it/share.html?id='+id;
+    var articleUrl = 'https://emiralili.it/article.html?id='+id;
+
+    // Build description from lead or content
+    var desc = a.lead || (a.content ? a.content.replace(/<[^>]+>/g,'').slice(0,160)+'...' : 'Analisi geopolitica di Emir Alili');
+
+    // Image — use article image or fallback
+    var img = a.image_url || 'https://emiralili.it/assets/copertina-710.jpeg';
+
+    // Inject meta tags into DOM (for crawlers that execute JS)
+    setTitle(a.title + ' — Emir Alili');
+    document.getElementById('meta-desc').setAttribute('content', desc);
+
+    set('og-title', a.title);
+    set('og-desc', desc);
+    set('og-image', img);
+    set('og-url', pageUrl);
+    set('tw-title', a.title);
+    set('tw-desc', desc);
+    set('tw-image', img);
+
+    // Also update link tags
+    var canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = articleUrl;
+    document.head.appendChild(canonical);
+
+    // Redirect human users to full article after brief delay
+    // (crawlers stop at meta tags, humans get redirected)
+    setTimeout(function(){
+      window.location.replace(articleUrl);
+    }, 800);
+
+  } catch(e) {
+    window.location.href = 'article.html?id='+id;
+  }
+}
+
+load();
+</script>
+</body>
+</html>
