@@ -135,7 +135,7 @@ async function load(){
 
   var a = result.data;
   var ytId = getYouTubeId(a.video_url);
-  var pageUrl = getShareUrl();
+  var pageUrl = encodeURIComponent('https://emiralili.it/share.html?id='+a.id);
   var shareTitle = encodeURIComponent(a.title);
 
   // Meta tags
