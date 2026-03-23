@@ -15,7 +15,78 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    /* ── SEZIONE ANALISI GEOPOLITICA ── */
+    /* ── FEATURED DINAMICO ── */
+    .featured-skeleton {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .featured-article--dynamic .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-article--dynamic .featured-media {
+      overflow: hidden;
+      background: #1A1A18;
+    }
+    .featured-cat-tag {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold, #D4A853);
+      background: rgba(212,168,83,0.1);
+      padding: 3px 10px;
+      margin-right: 8px;
+    }
+    .featured-video-embed {
+      margin: 20px 0;
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #111;
+    }
+    .featured-video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .featured-ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 16px 0;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold, #D4A853);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,168,83,0.3);
+      padding-bottom: 2px;
+    }
+    .featured-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold, #D4A853);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .featured-read-more:hover { gap: 14px; }
+
+    /* ── GRIGLIA ANALISI ── */
     .geo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -24,7 +95,7 @@
       margin-top: 40px;
     }
     .geo-card {
-      background: var(--bg, #0D0D0B);
+      background: #0D0D0B;
       display: flex;
       flex-direction: column;
       text-decoration: none;
@@ -45,117 +116,68 @@
     }
     .geo-card:hover::before { transform: scaleX(1); }
     .geo-card-img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(20%);
-      transition: filter 0.3s;
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover; display: block;
+      filter: grayscale(20%); transition: filter 0.3s;
     }
     .geo-card:hover .geo-card-img { filter: grayscale(0%); }
     .geo-card-img-ph {
-      width: 100%;
-      aspect-ratio: 16/9;
+      width: 100%; aspect-ratio: 16/9;
       background: #1A1A18;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
     .geo-card-img-ph span {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(212,168,83,0.2);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(212,168,83,0.15);
     }
-    .geo-card-body {
-      padding: 22px 22px 26px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+    .geo-card-body { padding: 20px 20px 24px; flex: 1; display: flex; flex-direction: column; }
     .geo-card-cat {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold, #D4A853);
-      margin-bottom: 7px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold, #D4A853); margin-bottom: 6px;
     }
     .geo-card-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 19px;
-      font-weight: 700;
-      line-height: 1.2;
-      color: #EDE8DF;
-      margin-bottom: 8px;
-      flex: 1;
+      font-size: 18px; font-weight: 700;
+      line-height: 1.2; color: #EDE8DF;
+      margin-bottom: 8px; flex: 1;
     }
     .geo-card-excerpt {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #6A6A68;
-      margin-bottom: 14px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      font-size: 13px; line-height: 1.6; color: #6A6A68;
+      margin-bottom: 12px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .geo-card-meta {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      letter-spacing: 1px;
-      color: #4A4A48;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 11px; letter-spacing: 1px; color: #4A4A48;
+      display: flex; align-items: center; gap: 8px;
     }
     .geo-video-tag {
       background: rgba(255,0,0,0.75);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: white;
-      padding: 2px 6px;
-      text-transform: uppercase;
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      color: white; padding: 2px 6px; text-transform: uppercase;
     }
     .geo-loading {
-      grid-column: 1/-1;
-      text-align: center;
-      padding: 48px;
+      grid-column: 1/-1; text-align: center; padding: 48px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #4A4A48;
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #4A4A48;
     }
     .geo-view-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
       margin-top: 28px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold, #D4A853);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(212,168,83,0.3);
-      padding-bottom: 3px;
+      font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold, #D4A853); text-decoration: none;
+      border-bottom: 1px solid rgba(212,168,83,0.3); padding-bottom: 3px;
       transition: gap 0.2s, border-color 0.2s;
     }
     .geo-view-all:hover { gap: 14px; border-color: var(--gold, #D4A853); }
 
-    @media (max-width: 900px) {
-      .geo-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .geo-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .geo-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -200,7 +222,7 @@
   </div>
 </div>
 
-<!-- 01 — IN EVIDENZA -->
+<!-- 01 — IN EVIDENZA (dinamico) -->
 <section class="page-section page-section--dark" id="in-evidenza">
   <div class="section-header reveal">
     <div class="section-number">01</div>
@@ -209,33 +231,16 @@
       <h2 class="section-title">Ultima pubblicazione</h2>
     </div>
   </div>
-
-  <article class="featured-article reveal" id="intervista-radio">
-    <div class="featured-media">
-      <img src="assets/img/emir-radio.jpg" alt="Intervista radio – Emir Alili" loading="lazy" decoding="async">
-    </div>
-    <div class="featured-body">
-      <div class="featured-meta">
-        <span class="pill-tag">Media</span>
-        <span class="featured-date">31 Dicembre 2025</span>
+  <div id="featured-slot" class="reveal">
+    <!-- Popolato via JS -->
+    <article class="featured-article featured-skeleton">
+      <div class="featured-media"></div>
+      <div class="featured-body">
+        <div class="featured-meta"><span class="pill-tag">Caricamento</span></div>
+        <h3 class="featured-title">Caricamento...</h3>
       </div>
-      <h3 class="featured-title">Intervista radio – audio integrale</h3>
-      <p class="featured-desc">Impresa, diaspora e politica: metodo, numeri, responsabilità e visione. Un confronto diretto su cosa significa costruire qualcosa di reale.</p>
-      <div class="audio-block">
-        <div class="audio-label">▶ Ascolta l'audio integrale</div>
-        <audio controls preload="metadata">
-          <source src="https://www.dropbox.com/scl/fi/cw7be3nyck12k5hjclhqd/Intervista-radio.mp3.mp3?rlkey=hwi41iz9lcax2m576wcop807x&raw=1" type="audio/mpeg">
-          Il tuo browser non supporta l'audio HTML5.
-        </audio>
-      </div>
-      <div class="share-row">
-        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank" rel="noopener">Facebook</a>
-        <a class="share-btn" href="https://wa.me/?text=Intervista%20radio%20%E2%80%93%20audio%20integrale%20https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio&text=Intervista%20radio" target="_blank" rel="noopener">Telegram</a>
-        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-  </article>
+    </article>
+  </div>
 </section>
 
 <!-- 02 — LIBRI -->
@@ -286,7 +291,7 @@
   </div>
 </section>
 
-<!-- 03 — ANALISI GEOPOLITICA (NUOVA SEZIONE) -->
+<!-- 03 — ANALISI GEOPOLITICA -->
 <section class="page-section page-section--dark" id="geopolitica">
   <div class="section-header reveal">
     <div class="section-number">03</div>
@@ -296,11 +301,9 @@
       <p class="section-lead">Articoli indipendenti su Iran, Europa, Balcani e movimenti di potere globali.</p>
     </div>
   </div>
-
   <div id="geo-grid" class="geo-grid reveal">
     <div class="geo-loading">Caricamento analisi...</div>
   </div>
-
   <a href="blog.html" class="geo-view-all reveal">Tutte le analisi →</a>
 </section>
 
@@ -314,28 +317,43 @@
     </div>
   </div>
   <div class="archive-list reveal">
-    <a class="archive-item" href="#intervista-radio">
+    <a class="archive-item" href="#intervista-radio-arch">
       <div>
         <div class="archive-item-title">Intervista radio – audio integrale</div>
         <div class="archive-item-tag">Media</div>
       </div>
       <div class="archive-item-date">31/12/2025</div>
     </a>
-    <a class="archive-item" href="#in-evidenza">
-      <div>
-        <div class="archive-item-title">Aggiornamento in pubblicazione</div>
-        <div class="archive-item-tag">Comunicazione</div>
-      </div>
-      <div class="archive-item-date">In arrivo</div>
-    </a>
-    <a class="archive-item" href="#in-evidenza">
-      <div>
-        <div class="archive-item-title">Eventi e interventi pubblici</div>
-        <div class="archive-item-tag">Evento</div>
-      </div>
-      <div class="archive-item-date">In arrivo</div>
-    </a>
+    <!-- Archivio articoli geopolitici — popolato dinamicamente -->
+    <div id="archive-geo"></div>
   </div>
+
+  <!-- Intervista radio — spostata in archivio -->
+  <article class="featured-article reveal" id="intervista-radio-arch" style="margin-top:32px">
+    <div class="featured-media">
+      <img src="assets/img/emir-radio.jpg" alt="Intervista radio – Emir Alili" loading="lazy" decoding="async">
+    </div>
+    <div class="featured-body">
+      <div class="featured-meta">
+        <span class="pill-tag">Media</span>
+        <span class="featured-date">31 Dicembre 2025</span>
+      </div>
+      <h3 class="featured-title">Intervista radio – audio integrale</h3>
+      <p class="featured-desc">Impresa, diaspora e politica: metodo, numeri, responsabilità e visione.</p>
+      <div class="audio-block">
+        <div class="audio-label">▶ Ascolta l'audio integrale</div>
+        <audio controls preload="metadata">
+          <source src="https://www.dropbox.com/scl/fi/cw7be3nyck12k5hjclhqd/Intervista-radio.mp3.mp3?rlkey=hwi41iz9lcax2m576wcop807x&raw=1" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="share-row">
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio-arch" target="_blank" rel="noopener">Facebook</a>
+        <a class="share-btn" href="https://wa.me/?text=Intervista%20radio%20https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio-arch" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio-arch" target="_blank" rel="noopener">Telegram</a>
+        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.emiralili.it%2Fnews.html%23intervista-radio-arch" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </article>
 </section>
 
 <div class="cta-strip">
@@ -356,7 +374,6 @@
     <div class="footer-social">
       <a href="https://www.facebook.com/emir.alili.81/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13 22v-8h2.7l.4-3H13V9.1c0-.9.3-1.5 1.6-1.5H16V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.3 1.6-4.3 4.6V11H6v3h3v8h4z"/></svg></a>
       <a href="https://www.linkedin.com/in/emiralili/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0zM2.5 21.5h4.9v-12H2.5v12zM9.6 9.5h4.7v1.7h.1c.6-1.1 2-2.2 4.1-2.2 4.4 0 5.2 2.9 5.2 6.6v5.9h-4.9v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3H9.6v-12z"/></svg></a>
-      <a href="/cdn-cgi/l/email-protection#4c25222a230c2921253e2d20252025622538" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v.5l-10 6-10-6V8a2 2 0 0 1 2-2zm18 5.2V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4.8l10 6 10-6z"/></svg></a>
       <a href="https://wa.me/393282290062" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-12.2 6.8L4 20l1.3-3.6A8 8 0 1 1 20 12zm-4.7 2.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2.1-.3 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.6 2.6 4 3.5.6.2 1 .4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg></a>
     </div>
   </div>
@@ -384,7 +401,69 @@
     var c = text.replace(/<[^>]+>/g,'');
     return c.length > len ? c.slice(0,len)+'…' : c;
   }
+  function getYouTubeId(url){
+    if(!url) return null;
+    var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^?&\s]+)/);
+    return m ? m[1] : null;
+  }
 
+  // ── FEATURED: ultimo articolo pubblicato ──
+  sb.from('articles')
+    .select('*')
+    .eq('published', true)
+    .order('created_at', {ascending: false})
+    .limit(1)
+    .then(function(result){
+      var slot = document.getElementById('featured-slot');
+      if(!slot) return;
+      if(result.error || !result.data || !result.data.length){
+        slot.innerHTML = '<p style="color:#6A6A68;font-family:\'Barlow Condensed\',sans-serif;letter-spacing:2px;font-size:12px;text-transform:uppercase">Nessun articolo pubblicato.</p>';
+        return;
+      }
+      var a = result.data[0];
+      var ytId = getYouTubeId(a.video_url);
+      var shareUrl = 'https://emiralili.it/share.html?id='+a.id;
+      var shareEnc = encodeURIComponent(shareUrl);
+      var titleEnc = encodeURIComponent(a.title);
+
+      var imgHtml = a.image_url
+        ? '<img src="'+a.image_url+'" alt="'+a.title+'" loading="lazy">'
+        : '';
+
+      var videoHtml = ytId
+        ? '<div class="featured-video-embed"><iframe src="https://www.youtube.com/embed/'+ytId+'?rel=0" allowfullscreen loading="lazy"></iframe></div>'
+        : '';
+
+      var extHtml = (a.external_url && !ytId)
+        ? '<a href="'+a.external_url+'" target="_blank" class="featured-ext-link">🔗 Leggi la fonte →</a>'
+        : '';
+
+      var desc = a.lead || excerpt(a.content, 200);
+
+      slot.innerHTML =
+        '<article class="featured-article featured-article--dynamic">'+
+          '<div class="featured-media">'+imgHtml+'</div>'+
+          '<div class="featured-body">'+
+            '<div class="featured-meta">'+
+              '<span class="featured-cat-tag">'+(a.category||'Analisi')+'</span>'+
+              '<span class="featured-date">'+formatDate(a.created_at)+'</span>'+
+            '</div>'+
+            '<h3 class="featured-title">'+a.title+'</h3>'+
+            (desc ? '<p class="featured-desc">'+desc+'</p>' : '')+
+            videoHtml+
+            extHtml+
+            '<a href="share.html?id='+a.id+'" class="featured-read-more">Leggi l\'articolo completo →</a>'+
+            '<div class="share-row" style="margin-top:20px">'+
+              '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u='+shareEnc+'" target="_blank" rel="noopener">Facebook</a>'+
+              '<a class="share-btn" href="https://wa.me/?text='+titleEnc+'%20'+shareEnc+'" target="_blank" rel="noopener">WhatsApp</a>'+
+              '<a class="share-btn" href="https://t.me/share/url?url='+shareEnc+'&text='+titleEnc+'" target="_blank" rel="noopener">Telegram</a>'+
+              '<a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url='+shareEnc+'" target="_blank" rel="noopener">LinkedIn</a>'+
+            '</div>'+
+          '</div>'+
+        '</article>';
+    });
+
+  // ── GRIGLIA: ultimi 6 articoli ──
   sb.from('articles')
     .select('id,title,lead,content,image_url,category,video_url,created_at')
     .eq('published', true)
@@ -413,6 +492,20 @@
           '</div>'+
         '</a>';
       }).join('');
+
+      // Archivio link dinamici
+      var archEl = document.getElementById('archive-geo');
+      if(archEl){
+        archEl.innerHTML = result.data.map(function(a){
+          return '<a class="archive-item" href="share.html?id='+a.id+'">'+
+            '<div>'+
+              '<div class="archive-item-title">'+a.title+'</div>'+
+              '<div class="archive-item-tag">'+(a.category||'Analisi')+'</div>'+
+            '</div>'+
+            '<div class="archive-item-date">'+new Date(a.created_at).toLocaleDateString('it-IT')+'</div>'+
+          '</a>';
+        }).join('');
+      }
     });
 })();
 </script>
