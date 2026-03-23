@@ -325,12 +325,56 @@ function insertLink(){
 
 document.addEventListener('DOMContentLoaded',function(){
   var ed = document.getElementById('editor');
-  if(ed){
-    ed.addEventListener('input',function(){
-      var words = ed.innerText.trim().split(/\s+/).filter(function(w){return w.length>0;}).length;
-      document.getElementById('char-count').textContent = words+' parole · ~'+Math.max(1,Math.round(words/200))+' min lettura';
-    });
-  }
+  if(!ed) return;
+
+  // Word count
+  ed.addEventListener('input',function(){
+    var words = ed.innerText.trim().split(/\s+/).filter(function(w){return w.length>0;}).length;
+    document.getElementById('char-count').textContent = words+' parole · ~'+Math.max(1,Math.round(words/200))+' min lettura';
+  });
+
+  // ── PASTE: strip all external styles and background colors ──
+  ed.addEventListener('paste',function(e){
+    e.preventDefault();
+    var html = '';
+    if(e.clipboardData && e.clipboardData.getData){
+      html = e.clipboardData.getData('text/html');
+    }
+    if(html){
+      // Parse and clean
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      // Remove all style attributes, class, font tags, spans with only style
+      tmp.querySelectorAll('[style]').forEach(function(el){
+        // Keep only display:block/inline rules if needed, strip rest
+        el.removeAttribute('style');
+      });
+      tmp.querySelectorAll('[class]').forEach(function(el){ el.removeAttribute('class'); });
+      tmp.querySelectorAll('[bgcolor]').forEach(function(el){ el.removeAttribute('bgcolor'); });
+      tmp.querySelectorAll('[color]').forEach(function(el){ el.removeAttribute('color'); });
+      tmp.querySelectorAll('font').forEach(function(el){
+        var span = document.createElement('span');
+        span.innerHTML = el.innerHTML;
+        el.parentNode.replaceChild(span, el);
+      });
+      // Remove empty spans
+      tmp.querySelectorAll('span').forEach(function(el){
+        if(!el.attributes.length){ el.outerHTML = el.innerHTML; }
+      });
+      // Insert cleaned HTML at cursor
+      var cleaned = tmp.innerHTML;
+      document.execCommand('insertHTML', false, cleaned);
+    } else {
+      // Plain text fallback
+      var text = e.clipboardData ? e.clipboardData.getData('text/plain') : '';
+      var lines = text.split('\n');
+      var htmlLines = lines.map(function(l){ return l.trim() ? '<p>'+l+'</p>' : ''; }).join('');
+      document.execCommand('insertHTML', false, htmlLines || text);
+    }
+    // Trigger word count
+    var words = ed.innerText.trim().split(/\s+/).filter(function(w){return w.length>0;}).length;
+    document.getElementById('char-count').textContent = words+' parole · ~'+Math.max(1,Math.round(words/200))+' min lettura';
+  });
 });
 
 // ── IMAGE ──
@@ -440,17 +484,22 @@ async function saveArticle(){
 }
 
 // ── LOAD LIST ──
+var articlesCache = {};
+
 async function loadList(){
   var listEl = document.getElementById('article-list');
   listEl.innerHTML = '<div class="empty-list">Caricamento...</div>';
   var result = await sb.from('articles').select('*').order('created_at',{ascending:false});
-  if(result.error || !result.data.length){
+  if(result.error || !result.data || !result.data.length){
     listEl.innerHTML = '<div class="empty-list">Nessun articolo trovato</div>';
     return;
   }
+  articlesCache = {};
+  result.data.forEach(function(a){ articlesCache[a.id] = a; });
+
   listEl.innerHTML = result.data.map(function(a){
     var imgHtml = a.image_url
-      ? '<img class="row-img" src="'+a.image_url+'" alt="">'
+      ? '<img class="row-img" src="'+a.image_url+'" alt="" onerror="this.style.display=\'none\'">'
       : '<div class="row-img-ph"><span>EA</span></div>';
     var date = new Date(a.created_at).toLocaleDateString('it-IT');
     return '<div class="article-row">'+
@@ -461,12 +510,25 @@ async function loadList(){
       '</div>'+
       '<span class="row-status '+(a.published?'pub':'draft')+'">'+(a.published?'Pubblicato':'Bozza')+'</span>'+
       '<div class="row-actions">'+
-        '<button class="row-btn" onclick="editArticle('+JSON.stringify(a).replace(/"/g,'&quot;')+')" >✏ Modifica</button>'+
+        '<button class="row-btn edit-btn" data-id="'+a.id+'">✏ Modifica</button>'+
         '<a class="row-btn" href="article.html?id='+a.id+'" target="_blank">↗ Vedi</a>'+
-        '<button class="row-btn del" onclick="deleteArticle(\''+a.id+'\',\''+a.title.replace(/'/g,"\\'")+'\')" >✕</button>'+
+        '<button class="row-btn del del-btn" data-id="'+a.id+'">✕</button>'+
       '</div>'+
     '</div>';
   }).join('');
+
+  listEl.querySelectorAll('.edit-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var a = articlesCache[btn.getAttribute('data-id')];
+      if(a) editArticle(a);
+    });
+  });
+  listEl.querySelectorAll('.del-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var a = articlesCache[btn.getAttribute('data-id')];
+      if(a) deleteArticle(a.id, a.title);
+    });
+  });
 }
 
 // ── EDIT ──
