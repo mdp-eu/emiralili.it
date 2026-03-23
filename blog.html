@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geopolitica — Emir Alili</title>
+<meta name="description" content="Analisi geopolitica indipendente di Emir Alili">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--gold:#D4A853;--black:#0A0A08;--dark:#111110;--mid:#1A1A18;--border:rgba(255,255,255,0.07);--text:#EDE8DF;--muted:#7A7670}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;min-height:100vh}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--gold)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(10,10,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--text);text-decoration:none}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+
+.hero{padding:160px 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(212,168,83,0.06) 0%,transparent 60%)}
+.hero-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,100px);line-height:0.95;color:var(--text)}
+.hero-sub{margin-top:20px;font-size:16px;line-height:1.7;color:var(--muted);max-width:480px}
+.hero-yt{margin-top:28px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,60,60,0.2);padding:10px 20px;text-decoration:none;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all 0.2s}
+.hero-yt:hover{background:rgba(255,0,0,0.2);border-color:rgba(255,60,60,0.5)}
+.yt-icon{width:18px;height:18px;background:#FF0000;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yt-icon::after{content:'';border-left:8px solid white;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+
+.filter-bar{padding:32px 48px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-right:8px}
+.filter-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{border-color:var(--gold);color:var(--gold)}
+
+.articles{padding:48px 48px 96px;max-width:1280px;margin:0 auto}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.article-card{background:var(--black);display:flex;flex-direction:column;transition:background 0.3s;position:relative;overflow:hidden}
+.article-card:hover{background:var(--dark)}
+.article-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
+.article-card:hover::before{transform:scaleX(1)}
+.card-img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:grayscale(20%);transition:filter 0.3s}
+.article-card:hover .card-img{filter:grayscale(0%)}
+.card-img-placeholder{width:100%;aspect-ratio:16/9;background:var(--mid);display:flex;align-items:center;justify-content:center}
+.card-img-placeholder span{font-family:'Bebas Neue',sans-serif;font-size:40px;color:rgba(212,168,83,0.15);letter-spacing:3px}
+.card-body{padding:28px 24px 32px;flex:1;display:flex;flex-direction:column}
+.card-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.card-cat{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.card-date{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;color:var(--muted)}
+.card-dot{width:3px;height:3px;border-radius:50%;background:var(--border)}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:10px;flex:1}
+.card-excerpt{font-size:13.5px;line-height:1.65;color:var(--muted);margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-link{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap 0.2s}
+.card-link:hover{gap:12px}
+.card-has-video{position:absolute;top:12px;right:12px;background:rgba(255,0,0,0.9);padding:3px 8px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;color:white;text-transform:uppercase}
+
+.loading{padding:96px;text-align:center;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:3px;text-transform:uppercase}
+.empty{padding:96px 48px;text-align:center}
+.empty-title{font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(212,168,83,0.2)}
+.empty-sub{font-size:14px;color:var(--muted);margin-top:8px}
+
+footer{border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--muted)}
+.footer-copy{font-size:12px;color:var(--muted)}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .hero{padding:120px 20px 60px}
+  .filter-bar{padding:24px 20px}
+  .articles{padding:32px 20px 64px}
+  .articles-grid{grid-template-columns:1fr}
+  footer{padding:32px 20px;flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">EMIR <span>ALILI</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chi-sono.html">Chi sono</a></li>
+    <li><a href="blog.html" style="color:var(--gold)">Geopolitica</a></li>
+    <li><a href="contatti.html">Contatti</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Analisi · Geopolitica · Indipendente</div>
+  <h1 class="hero-title">Geopolitica<br>senza filtri</h1>
+  <p class="hero-sub">Analisi dirette sui movimenti di potere globali. Iran, Europa, Balcani, conflitti in corso. Nessuna narrativa di regime.</p>
+  <a href="https://youtube.com/@Emir-Alili" target="_blank" class="hero-yt">
+    <div class="yt-icon"></div>
+    Guarda i video su YouTube
+  </a>
+</div>
+
+<div class="filter-bar" id="filter-bar">
+  <span class="filter-label">Categoria:</span>
+  <button class="filter-btn active" onclick="filterCat('')">Tutti</button>
+</div>
+
+<div class="articles">
+  <div id="grid" class="articles-grid">
+    <div class="loading">Caricamento articoli...</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">EMIR ALILI</div>
+  <div class="footer-copy">© 2025 emiralili.it</div>
+</footer>
+
+<script>
+// ── CONFIG: sostituisci con le tue credenziali Supabase ──
+var SUPABASE_URL = 'INSERISCI_QUI_SUPABASE_URL';
+var SUPABASE_KEY = 'INSERISCI_QUI_SUPABASE_ANON_KEY';
+// ────────────────────────────────────────────────────────
+
+var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+var allArticles = [];
+var activeCat = '';
+
+function formatDate(iso){
+  var d = new Date(iso);
+  return d.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'});
+}
+
+function excerpt(text, len){
+  if(!text) return '';
+  var clean = text.replace(/<[^>]+>/g,'');
+  return clean.length > len ? clean.slice(0,len)+'…' : clean;
+}
+
+function renderGrid(articles){
+  var grid = document.getElementById('grid');
+  if(!articles.length){
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="empty-title">NESSUN ARTICOLO</div><div class="empty-sub">Gli articoli pubblicati appariranno qui.</div></div>';
+    return;
+  }
+  grid.innerHTML = articles.map(function(a){
+    var imgHtml = a.image_url
+      ? '<img class="card-img" src="'+a.image_url+'" alt="'+a.title+'" loading="lazy">'
+      : '<div class="card-img-placeholder"><span>EA</span></div>';
+    var videoTag = a.video_url ? '<span class="card-has-video">▶ VIDEO</span>' : '';
+    return '<a href="article.html?id='+a.id+'" class="article-card" style="text-decoration:none">'+
+      imgHtml+videoTag+
+      '<div class="card-body">'+
+        '<div class="card-meta">'+
+          '<span class="card-cat">'+(a.category||'Analisi')+'</span>'+
+          '<div class="card-dot"></div>'+
+          '<span class="card-date">'+formatDate(a.created_at)+'</span>'+
+        '</div>'+
+        '<div class="card-title">'+a.title+'</div>'+
+        '<div class="card-excerpt">'+excerpt(a.content,160)+'</div>'+
+        '<span class="card-link">Leggi →</span>'+
+      '</div>'+
+    '</a>';
+  }).join('');
+}
+
+function filterCat(cat){
+  activeCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent === (cat||'Tutti'));
+  });
+  var filtered = cat ? allArticles.filter(function(a){ return a.category===cat; }) : allArticles;
+  renderGrid(filtered);
+}
+
+function buildFilters(articles){
+  var cats = [...new Set(articles.map(function(a){ return a.category; }).filter(Boolean))];
+  var bar = document.getElementById('filter-bar');
+  cats.forEach(function(cat){
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.textContent = cat;
+    btn.onclick = function(){ filterCat(cat); };
+    bar.appendChild(btn);
+  });
+}
+
+async function load(){
+  var result = await sb.from('articles').select('*').eq('published',true).order('created_at',{ascending:false});
+  if(result.error){ document.getElementById('grid').innerHTML='<div class="loading">Errore caricamento. Verifica configurazione Supabase.</div>'; return; }
+  allArticles = result.data;
+  buildFilters(allArticles);
+  renderGrid(allArticles);
+}
+
+load();
+</script>
+</body>
+</html>
