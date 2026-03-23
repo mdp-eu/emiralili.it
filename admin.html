@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor — Emir Alili</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--gold:#D4A853;--black:#0A0A08;--dark:#111110;--mid:#1A1A18;--surface:#222220;--border:rgba(255,255,255,0.08);--text:#EDE8DF;--muted:#7A7670;--green:#2ECC71;--red:#E74C3C}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;min-height:100vh}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* LOGIN */
+#login-screen{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:999}
+.login-box{width:380px;padding:48px;border:1px solid var(--border)}
+.login-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--text);margin-bottom:4px}
+.login-logo span{color:var(--gold)}
+.login-sub{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:36px}
+.login-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.login-input{width:100%;background:var(--mid);border:1px solid var(--border);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;padding:12px 14px;outline:none;transition:border-color 0.2s;margin-bottom:16px}
+.login-input:focus{border-color:var(--gold)}
+.login-btn{width:100%;background:var(--gold);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:14px;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:4px}
+.login-btn:hover{opacity:0.85}
+.login-err{font-size:13px;color:var(--red);margin-top:10px;display:none}
+
+/* APP */
+#app{display:none}
+
+header{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(10,10,8,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+.header-brand{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--text)}
+.header-brand span{color:var(--gold)}
+.header-actions{display:flex;gap:10px;align-items:center}
+.btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 18px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all 0.2s}
+.btn:hover{border-color:var(--text);color:var(--text)}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.btn-gold:hover{opacity:0.85;color:var(--black)}
+.btn-red{border-color:var(--red);color:var(--red)}
+.btn-red:hover{background:var(--red);color:white}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border)}
+.tab{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* EDITOR */
+#view-editor{padding:32px}
+.editor-layout{display:grid;grid-template-columns:1fr 360px;gap:24px;max-width:1300px;margin:0 auto}
+.editor-main{}
+.editor-sidebar{}
+
+.field-group{margin-bottom:20px}
+.field-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.field-input,.field-textarea,.field-select{width:100%;background:var(--mid);border:1px solid var(--border);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;padding:11px 14px;outline:none;transition:border-color 0.2s}
+.field-input:focus,.field-textarea:focus,.field-select:focus{border-color:var(--gold)}
+.field-textarea{min-height:60px;resize:vertical;line-height:1.6}
+.field-select option{background:var(--dark)}
+
+/* RICH TEXT TOOLBAR */
+.toolbar{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;padding:8px;background:var(--mid);border:1px solid var(--border);border-bottom:none}
+.toolbar-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;padding:5px 10px;background:none;border:1px solid transparent;color:var(--muted);cursor:pointer;transition:all 0.15s}
+.toolbar-btn:hover{border-color:var(--border);color:var(--text)}
+.toolbar-sep{width:1px;background:var(--border);margin:0 4px}
+#editor{background:var(--mid);border:1px solid var(--border);min-height:360px;padding:20px;outline:none;font-size:16px;line-height:1.8;color:var(--text)}
+#editor:focus{border-color:var(--gold)}
+#editor h2{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);margin:24px 0 8px}
+#editor h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin:18px 0 6px;text-transform:uppercase;letter-spacing:1px}
+#editor blockquote{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(212,168,83,0.05);font-style:italic}
+#editor p{margin-bottom:14px}
+#editor a{color:var(--gold)}
+.char-count{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:6px;text-align:right}
+
+/* SIDEBAR CARDS */
+.sidebar-card{background:var(--dark);border:1px solid var(--border);padding:20px;margin-bottom:16px}
+.sidebar-card-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.sidebar-card-title::before{content:'';width:16px;height:1px;background:var(--gold)}
+
+/* IMAGE UPLOAD */
+.img-drop{border:2px dashed var(--border);padding:32px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative}
+.img-drop:hover,.img-drop.dragging{border-color:var(--gold);background:rgba(212,168,83,0.04)}
+.img-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-drop-icon{font-size:28px;margin-bottom:8px}
+.img-drop-text{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.img-preview{width:100%;aspect-ratio:16/9;object-fit:cover;margin-top:12px;display:none}
+.img-remove{display:none;margin-top:8px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);background:none;border:none;cursor:pointer}
+.img-loading{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:8px;display:none}
+
+/* VIDEO/LINK */
+.link-preview{background:var(--mid);border:1px solid var(--border);padding:12px;margin-top:8px;display:none}
+.link-preview-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.link-preview-val{font-size:13px;color:var(--gold);word-break:break-all}
+
+/* PUBLISH */
+.publish-info{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.status-toggle{display:flex;gap:0;margin-bottom:16px}
+.status-opt{flex:1;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:9px;text-align:center;cursor:pointer;border:1px solid var(--border);color:var(--muted);transition:all 0.2s}
+.status-opt.selected{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.btn-publish{width:100%;background:var(--gold);border:none;color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:14px;cursor:pointer;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-publish:hover{opacity:0.85}
+.btn-publish:disabled{opacity:0.5;cursor:not-allowed}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:white;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 24px;z-index:999;transform:translateY(80px);transition:transform 0.3s;opacity:0}
+#toast.show{transform:translateY(0);opacity:1}
+#toast.error{background:var(--red)}
+
+/* ARTICLES LIST */
+#view-list{padding:32px;max-width:1100px;margin:0 auto}
+.list-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.list-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text)}
+.article-row{background:var(--dark);border:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:16px 20px;margin-bottom:8px;transition:border-color 0.2s}
+.article-row:hover{border-color:rgba(212,168,83,0.3)}
+.row-img{width:64px;height:40px;object-fit:cover;flex-shrink:0}
+.row-img-ph{width:64px;height:40px;background:var(--mid);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.row-img-ph span{font-family:'Bebas Neue',sans-serif;font-size:14px;color:rgba(212,168,83,0.3)}
+.row-info{flex:1;min-width:0}
+.row-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-meta{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:2px}
+.row-status{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px}
+.row-status.pub{background:rgba(46,204,113,0.1);color:var(--green)}
+.row-status.draft{background:rgba(212,168,83,0.1);color:var(--gold)}
+.row-actions{display:flex;gap:8px;flex-shrink:0}
+.row-btn{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all 0.2s}
+.row-btn:hover{border-color:var(--gold);color:var(--gold)}
+.row-btn.del:hover{border-color:var(--red);color:var(--red)}
+.empty-list{text-align:center;padding:64px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:3px;text-transform:uppercase}
+
+@media(max-width:900px){
+  .editor-layout{grid-template-columns:1fr}
+  header{padding:0 16px}
+  #view-editor{padding:16px}
+  #view-list{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">EMIR <span>ALILI</span></div>
+    <div class="login-sub">Editor geopolitico</div>
+    <label class="login-label">Password</label>
+    <input type="password" class="login-input" id="pwd-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Accedi →</button>
+    <div class="login-err" id="login-err">Password errata.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <div class="header-brand">EMIR <span>ALILI</span> · Editor</div>
+    <div class="header-actions">
+      <button class="btn" onclick="newArticle()">+ Nuovo articolo</button>
+      <button class="btn" onclick="doLogout()">Esci</button>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-editor" onclick="showTab('editor')">✏️ Scrivi</div>
+    <div class="tab" id="tab-list" onclick="showTab('list')">📋 Articoli pubblicati</div>
+  </div>
+
+  <!-- EDITOR -->
+  <div id="view-editor">
+    <div class="editor-layout">
+      <div class="editor-main">
+        <div class="field-group">
+          <label class="field-label">Titolo *</label>
+          <input type="text" class="field-input" id="f-title" placeholder="Titolo dell'articolo..." style="font-size:18px;font-weight:600">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Sommario / Lead (opzionale — appare in grassetto prima del testo)</label>
+          <textarea class="field-textarea" id="f-lead" placeholder="Una o due frasi che sintetizzano l'articolo..." rows="2"></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Testo dell'articolo *</label>
+          <div class="toolbar">
+            <button class="toolbar-btn" onclick="fmt('bold')" title="Grassetto"><b>B</b></button>
+            <button class="toolbar-btn" onclick="fmt('italic')" title="Corsivo"><i>I</i></button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" onclick="fmtBlock('h2')">H2</button>
+            <button class="toolbar-btn" onclick="fmtBlock('h3')">H3</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" onclick="fmtBlock('blockquote')">❝</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" onclick="insertLink()">🔗</button>
+          </div>
+          <div id="editor" contenteditable="true" spellcheck="true"></div>
+          <div class="char-count" id="char-count">0 parole</div>
+        </div>
+      </div>
+
+      <div class="editor-sidebar">
+
+        <!-- IMMAGINE -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Immagine di copertina</div>
+          <div class="img-drop" id="img-drop">
+            <input type="file" accept="image/*" id="img-input" onchange="handleImage(this.files[0])">
+            <div class="img-drop-icon">🖼</div>
+            <div class="img-drop-text">Clicca o trascina qui<br>JPG, PNG, WebP</div>
+          </div>
+          <img id="img-preview" class="img-preview">
+          <div class="img-loading" id="img-loading">⟳ Caricamento...</div>
+          <button class="img-remove" id="img-remove" onclick="removeImage()">✕ Rimuovi immagine</button>
+        </div>
+
+        <!-- VIDEO / LINK -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Video YouTube o link esterno</div>
+          <div class="field-group" style="margin-bottom:10px">
+            <label class="field-label">URL (YouTube, sito, articolo fonte)</label>
+            <input type="url" class="field-input" id="f-url" placeholder="https://..." oninput="previewLink(this.value)">
+          </div>
+          <div class="link-preview" id="link-preview">
+            <div class="link-preview-label" id="link-type">Tipo</div>
+            <div class="link-preview-val" id="link-val"></div>
+          </div>
+        </div>
+
+        <!-- CATEGORIA -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Categoria</div>
+          <select class="field-select" id="f-cat">
+            <option value="Analisi">Analisi</option>
+            <option value="Iran">Iran</option>
+            <option value="Europa">Europa</option>
+            <option value="Balcani">Balcani</option>
+            <option value="Macedonia">Macedonia</option>
+            <option value="USA">USA</option>
+            <option value="Medio Oriente">Medio Oriente</option>
+            <option value="Russia">Russia</option>
+            <option value="Cina">Cina</option>
+          </select>
+        </div>
+
+        <!-- PUBBLICA -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Pubblica</div>
+          <div class="publish-info">Scegli se pubblicare subito o salvare come bozza.</div>
+          <div class="status-toggle">
+            <div class="status-opt selected" id="opt-pub" onclick="selectStatus(true)">Pubblica</div>
+            <div class="status-opt" id="opt-draft" onclick="selectStatus(false)">Bozza</div>
+          </div>
+          <button class="btn-publish" id="btn-publish" onclick="saveArticle()">
+            <span id="publish-label">Pubblica ora →</span>
+          </button>
+          <div style="margin-top:10px;text-align:center">
+            <button class="btn btn-red" onclick="clearForm()" style="font-size:11px;padding:6px 12px">Cancella e riparti</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- LIST -->
+  <div id="view-list" style="display:none">
+    <div class="list-header">
+      <div class="list-title">Tutti gli articoli</div>
+      <button class="btn-gold btn" onclick="loadList()">↺ Aggiorna</button>
+    </div>
+    <div id="article-list"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── CONFIG ──
+var SUPABASE_URL = 'INSERISCI_QUI_SUPABASE_URL';
+var SUPABASE_KEY = 'INSERISCI_QUI_SUPABASE_ANON_KEY';
+var ADMIN_PASSWORD = 'INSERISCI_QUI_PASSWORD_ADMIN'; // es: 'Emir2025!'
+// ────────────
+
+var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+var currentImageUrl = null;
+var isPublished = true;
+var editingId = null;
+
+// ── LOGIN ──
+function doLogin(){
+  var pwd = document.getElementById('pwd-input').value;
+  if(pwd === ADMIN_PASSWORD){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='block';
+  } else {
+    document.getElementById('login-err').style.display='block';
+  }
+}
+function doLogout(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('pwd-input').value='';
+}
+
+// ── TABS ──
+function showTab(tab){
+  document.getElementById('view-editor').style.display = tab==='editor' ? 'block' : 'none';
+  document.getElementById('view-list').style.display = tab==='list' ? 'block' : 'none';
+  document.getElementById('tab-editor').classList.toggle('active', tab==='editor');
+  document.getElementById('tab-list').classList.toggle('active', tab==='list');
+  if(tab==='list') loadList();
+}
+
+// ── EDITOR TOOLBAR ──
+function fmt(cmd){ document.execCommand(cmd, false, null); document.getElementById('editor').focus(); }
+function fmtBlock(tag){
+  var sel = window.getSelection();
+  if(!sel.rangeCount) return;
+  var range = sel.getRangeAt(0);
+  var el = document.createElement(tag);
+  try{ range.surroundContents(el); }catch(e){ el.appendChild(range.extractContents()); range.insertNode(el); }
+  document.getElementById('editor').focus();
+}
+function insertLink(){
+  var url = prompt('URL del link:');
+  if(url){ document.execCommand('createLink', false, url); }
+  document.getElementById('editor').focus();
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  var ed = document.getElementById('editor');
+  if(ed){
+    ed.addEventListener('input',function(){
+      var words = ed.innerText.trim().split(/\s+/).filter(function(w){return w.length>0;}).length;
+      document.getElementById('char-count').textContent = words+' parole · ~'+Math.max(1,Math.round(words/200))+' min lettura';
+    });
+  }
+});
+
+// ── IMAGE ──
+function handleImage(file){
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e){
+    // Store as base64 data URL directly — no Supabase storage needed
+    currentImageUrl = e.target.result;
+    showPreview(currentImageUrl);
+  };
+  reader.readAsDataURL(file);
+}
+
+function showPreview(url){
+  var preview = document.getElementById('img-preview');
+  var remove = document.getElementById('img-remove');
+  preview.src = url;
+  preview.style.display='block';
+  remove.style.display='block';
+  document.getElementById('img-drop').style.display='none';
+}
+
+function removeImage(){
+  currentImageUrl = null;
+  document.getElementById('img-preview').style.display='none';
+  document.getElementById('img-remove').style.display='none';
+  document.getElementById('img-drop').style.display='block';
+  document.getElementById('img-input').value='';
+}
+
+// ── DRAG DROP ──
+document.addEventListener('DOMContentLoaded',function(){
+  var drop = document.getElementById('img-drop');
+  if(!drop) return;
+  drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('dragging')});
+  drop.addEventListener('dragleave',function(){drop.classList.remove('dragging')});
+  drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('dragging');var f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/'))handleImage(f);});
+});
+
+// ── LINK PREVIEW ──
+function previewLink(url){
+  var preview = document.getElementById('link-preview');
+  var typeEl = document.getElementById('link-type');
+  var valEl = document.getElementById('link-val');
+  if(!url){ preview.style.display='none'; return; }
+  preview.style.display='block';
+  if(url.includes('youtube.com')||url.includes('youtu.be')){
+    typeEl.textContent='▶ YouTube video';
+    typeEl.style.color='#FF4444';
+  } else {
+    typeEl.textContent='🔗 Link esterno';
+    typeEl.style.color='var(--gold)';
+  }
+  valEl.textContent = url.length>60 ? url.slice(0,60)+'...' : url;
+}
+
+// ── STATUS ──
+function selectStatus(pub){
+  isPublished = pub;
+  document.getElementById('opt-pub').classList.toggle('selected', pub);
+  document.getElementById('opt-draft').classList.toggle('selected', !pub);
+  document.getElementById('publish-label').textContent = pub ? 'Pubblica ora →' : 'Salva bozza →';
+}
+
+// ── SAVE ──
+async function saveArticle(){
+  var title = document.getElementById('f-title').value.trim();
+  var content = document.getElementById('editor').innerHTML.trim();
+  if(!title){ toast('Inserisci il titolo',true); return; }
+  if(!content || content==='<br>'){ toast('Il testo è vuoto',true); return; }
+
+  var btn = document.getElementById('btn-publish');
+  btn.disabled = true;
+  document.getElementById('publish-label').textContent = '⟳ Salvataggio...';
+
+  var payload = {
+    title: title,
+    lead: document.getElementById('f-lead').value.trim() || null,
+    content: content,
+    category: document.getElementById('f-cat').value,
+    image_url: currentImageUrl || null,
+    video_url: document.getElementById('f-url').value.trim() || null,
+    external_url: document.getElementById('f-url').value.trim() || null,
+    published: isPublished
+  };
+
+  var result;
+  if(editingId){
+    result = await sb.from('articles').update(payload).eq('id', editingId);
+  } else {
+    result = await sb.from('articles').insert([payload]).select().single();
+  }
+
+  btn.disabled = false;
+  selectStatus(isPublished);
+
+  if(result.error){
+    toast('Errore: '+result.error.message, true);
+    return;
+  }
+
+  toast(isPublished ? '✓ Articolo pubblicato!' : '✓ Bozza salvata');
+  if(!editingId && result.data){
+    editingId = result.data.id;
+  }
+}
+
+// ── LOAD LIST ──
+async function loadList(){
+  var listEl = document.getElementById('article-list');
+  listEl.innerHTML = '<div class="empty-list">Caricamento...</div>';
+  var result = await sb.from('articles').select('*').order('created_at',{ascending:false});
+  if(result.error || !result.data.length){
+    listEl.innerHTML = '<div class="empty-list">Nessun articolo trovato</div>';
+    return;
+  }
+  listEl.innerHTML = result.data.map(function(a){
+    var imgHtml = a.image_url
+      ? '<img class="row-img" src="'+a.image_url+'" alt="">'
+      : '<div class="row-img-ph"><span>EA</span></div>';
+    var date = new Date(a.created_at).toLocaleDateString('it-IT');
+    return '<div class="article-row">'+
+      imgHtml+
+      '<div class="row-info">'+
+        '<div class="row-title">'+a.title+'</div>'+
+        '<div class="row-meta">'+(a.category||'—')+' · '+date+'</div>'+
+      '</div>'+
+      '<span class="row-status '+(a.published?'pub':'draft')+'">'+(a.published?'Pubblicato':'Bozza')+'</span>'+
+      '<div class="row-actions">'+
+        '<button class="row-btn" onclick="editArticle('+JSON.stringify(a).replace(/"/g,'&quot;')+')" >✏ Modifica</button>'+
+        '<a class="row-btn" href="article.html?id='+a.id+'" target="_blank">↗ Vedi</a>'+
+        '<button class="row-btn del" onclick="deleteArticle(\''+a.id+'\',\''+a.title.replace(/'/g,"\\'")+'\')" >✕</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ── EDIT ──
+function editArticle(a){
+  editingId = a.id;
+  document.getElementById('f-title').value = a.title||'';
+  document.getElementById('f-lead').value = a.lead||'';
+  document.getElementById('editor').innerHTML = a.content||'';
+  document.getElementById('f-cat').value = a.category||'Analisi';
+  document.getElementById('f-url').value = a.video_url||a.external_url||'';
+  previewLink(document.getElementById('f-url').value);
+  if(a.image_url){ currentImageUrl=a.image_url; showPreview(a.image_url); }
+  else removeImage();
+  selectStatus(a.published);
+  showTab('editor');
+  window.scrollTo(0,0);
+  toast('Articolo caricato per la modifica');
+}
+
+// ── DELETE ──
+async function deleteArticle(id, title){
+  if(!confirm('Eliminare "'+title+'"? L\'operazione è irreversibile.')) return;
+  var result = await sb.from('articles').delete().eq('id',id);
+  if(result.error){ toast('Errore eliminazione', true); return; }
+  toast('✓ Articolo eliminato');
+  loadList();
+}
+
+// ── NEW ──
+function newArticle(){
+  editingId = null;
+  clearForm();
+  showTab('editor');
+}
+
+function clearForm(){
+  editingId = null;
+  document.getElementById('f-title').value='';
+  document.getElementById('f-lead').value='';
+  document.getElementById('editor').innerHTML='';
+  document.getElementById('f-url').value='';
+  document.getElementById('link-preview').style.display='none';
+  document.getElementById('f-cat').value='Analisi';
+  removeImage();
+  selectStatus(true);
+  document.getElementById('char-count').textContent='0 parole';
+}
+
+// ── TOAST ──
+function toast(msg, err){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show'+(err?' error':'');
+  setTimeout(function(){ t.className=''; }, 3500);
+}
+</script>
+</body>
+</html>
