@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="meta-title">Articolo — Emir Alili</title>
+<meta name="description" id="meta-desc" content="Analisi geopolitica di Emir Alili">
+<meta property="og:title" id="og-title" content="">
+<meta property="og:description" id="og-desc" content="">
+<meta property="og:image" id="og-image" content="">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Emir Alili — Geopolitica">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--gold:#D4A853;--black:#0A0A08;--dark:#111110;--mid:#1A1A18;--border:rgba(255,255,255,0.07);--text:#EDE8DF;--muted:#7A7670}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;min-height:100vh}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--gold)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(10,10,8,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--text);text-decoration:none}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.nav-back:hover{color:var(--gold)}
+
+.article-hero{padding:100px 0 0;position:relative}
+.article-cover{width:100%;max-height:520px;object-fit:cover;display:block;filter:brightness(0.85)}
+.article-cover-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--black),transparent)}
+
+.article-wrap{max-width:780px;margin:0 auto;padding:0 32px 96px}
+.article-meta-top{display:flex;align-items:center;gap:12px;padding:40px 0 24px}
+.article-cat{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:rgba(212,168,83,0.1);padding:4px 12px}
+.article-date{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:var(--muted)}
+.article-dot{width:3px;height:3px;border-radius:50%;background:var(--border)}
+.article-read-time{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:var(--muted)}
+
+.article-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);line-height:0.95;color:var(--text);margin-bottom:20px}
+
+.article-lead{font-size:19px;line-height:1.75;color:rgba(237,232,223,0.8);font-weight:400;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+
+.article-body{font-size:17px;line-height:1.85;color:rgba(237,232,223,0.75)}
+.article-body p{margin-bottom:24px}
+.article-body h2{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--text);margin:48px 0 16px;letter-spacing:0.5px}
+.article-body h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin:36px 0 12px;letter-spacing:1px;text-transform:uppercase}
+.article-body blockquote{border-left:3px solid var(--gold);padding:16px 24px;margin:32px 0;background:var(--mid);font-style:italic;color:var(--text)}
+.article-body strong{color:var(--text);font-weight:600}
+.article-body a{color:var(--gold);text-decoration:none}
+.article-body a:hover{text-decoration:underline}
+
+.video-embed{margin:40px 0;position:relative;aspect-ratio:16/9;background:var(--dark)}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+
+.external-link-embed{margin:32px 0;border:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;transition:border-color 0.2s}
+.external-link-embed:hover{border-color:var(--gold)}
+.ext-icon{width:36px;height:36px;background:var(--mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.ext-info{}
+.ext-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.ext-url{font-size:14px;color:var(--gold)}
+
+.share-section{margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
+.share-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.share-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.share-btn{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:10px 20px;border:1px solid var(--border);background:none;color:var(--text);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
+.share-btn:hover{border-color:var(--gold);color:var(--gold)}
+.share-btn.fb:hover{border-color:#1877F2;color:#1877F2}
+.share-btn.wa:hover{border-color:#25D366;color:#25D366}
+.share-btn.li:hover{border-color:#0A66C2;color:#0A66C2}
+
+.yt-cta{margin-top:48px;background:var(--mid);border:1px solid var(--border);padding:32px;display:flex;align-items:center;gap:24px}
+.yt-cta-icon{width:52px;height:52px;background:#FF0000;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yt-cta-icon::after{content:'';border-left:22px solid white;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:4px}
+.yt-cta-text{}
+.yt-cta-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.yt-cta-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
+.yt-cta-link{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#FF4444;text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap 0.2s}
+.yt-cta-link:hover{gap:12px}
+
+.loading{padding:120px 48px;text-align:center;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:3px;text-transform:uppercase}
+
+@media(max-width:680px){
+  nav{padding:0 20px}
+  .article-wrap{padding:0 20px 64px}
+  .share-buttons{flex-direction:column}
+  .yt-cta{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">EMIR <span>ALILI</span></a>
+  <a href="blog.html" class="nav-back">← Geopolitica</a>
+</nav>
+
+<div id="content"><div class="loading">Caricamento...</div></div>
+
+<script>
+var SUPABASE_URL = 'INSERISCI_QUI_SUPABASE_URL';
+var SUPABASE_KEY = 'INSERISCI_QUI_SUPABASE_ANON_KEY';
+
+var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+function getYouTubeId(url){
+  if(!url) return null;
+  var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^?&\s]+)/);
+  return m ? m[1] : null;
+}
+
+function formatDate(iso){
+  return new Date(iso).toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'});
+}
+
+function readTime(text){
+  if(!text) return '1';
+  var words = text.replace(/<[^>]+>/g,'').split(/\s+/).length;
+  return Math.max(1, Math.round(words/200));
+}
+
+function getShareUrl(){
+  return encodeURIComponent(window.location.href);
+}
+
+async function load(){
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  if(!id){ document.getElementById('content').innerHTML='<div class="loading">Articolo non trovato.</div>'; return; }
+
+  var result = await sb.from('articles').select('*').eq('id',id).single();
+  if(result.error || !result.data){ document.getElementById('content').innerHTML='<div class="loading">Articolo non trovato.</div>'; return; }
+
+  var a = result.data;
+  var ytId = getYouTubeId(a.video_url);
+  var pageUrl = getShareUrl();
+  var shareTitle = encodeURIComponent(a.title);
+
+  // Meta tags
+  document.getElementById('meta-title').textContent = a.title+' — Emir Alili';
+  document.getElementById('meta-desc').setAttribute('content', a.title);
+  document.getElementById('og-title').setAttribute('content', a.title);
+  document.getElementById('og-desc').setAttribute('content', a.content ? a.content.replace(/<[^>]+>/g,'').slice(0,160) : '');
+  if(a.image_url) document.getElementById('og-image').setAttribute('content', a.image_url);
+
+  var coverHtml = a.image_url
+    ? '<div class="article-hero"><img class="article-cover" src="'+a.image_url+'" alt="'+a.title+'"><div class="article-cover-overlay"></div></div>'
+    : '<div style="height:64px"></div>';
+
+  var videoHtml = ytId
+    ? '<div class="video-label">Video</div><div class="video-embed"><iframe src="https://www.youtube.com/embed/'+ytId+'?rel=0" allowfullscreen loading="lazy"></iframe></div>'
+    : '';
+
+  var extLinkHtml = (a.external_url && !ytId)
+    ? '<a href="'+a.external_url+'" target="_blank" class="external-link-embed"><div class="ext-icon">🔗</div><div class="ext-info"><div class="ext-label">Fonte / Link</div><div class="ext-url">'+a.external_url+'</div></div></a>'
+    : '';
+
+  document.getElementById('content').innerHTML =
+    coverHtml+
+    '<div class="article-wrap">'+
+      '<div class="article-meta-top">'+
+        '<span class="article-cat">'+(a.category||'Analisi')+'</span>'+
+        '<div class="article-dot"></div>'+
+        '<span class="article-date">'+formatDate(a.created_at)+'</span>'+
+        '<div class="article-dot"></div>'+
+        '<span class="article-read-time">'+readTime(a.content)+' min lettura</span>'+
+      '</div>'+
+      '<h1 class="article-title">'+a.title+'</h1>'+
+      (a.lead ? '<div class="article-lead">'+a.lead+'</div>' : '')+
+      videoHtml+
+      extLinkHtml+
+      '<div class="article-body">'+a.content+'</div>'+
+      '<div class="share-section">'+
+        '<div class="share-title">Condividi questo articolo</div>'+
+        '<div class="share-buttons">'+
+          '<a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u='+pageUrl+'" target="_blank">📘 Facebook</a>'+
+          '<a class="share-btn wa" href="https://api.whatsapp.com/send?text='+shareTitle+'%20'+pageUrl+'" target="_blank">💬 WhatsApp</a>'+
+          '<a class="share-btn li" href="https://www.linkedin.com/sharing/share-offsite/?url='+pageUrl+'" target="_blank">💼 LinkedIn</a>'+
+          '<button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copiato\'},function(){}.bind(this))">🔗 Copia link</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="yt-cta">'+
+        '<div class="yt-cta-icon"></div>'+
+        '<div class="yt-cta-text">'+
+          '<div class="yt-cta-label">Video analisi</div>'+
+          '<div class="yt-cta-title">Approfondisci su YouTube</div>'+
+          '<a href="https://youtube.com/@Emir-Alili" target="_blank" class="yt-cta-link">Vai al canale →</a>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+}
+
+load();
+</script>
+</body>
+</html>
