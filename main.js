@@ -5,7 +5,7 @@
   });
 
   // ── Nav scroll shrink ──
-  const navEl = document.querySelector('body > nav:not(.editorial-nav)');
+  const navEl = document.querySelector('nav');
   if (navEl) {
     window.addEventListener('scroll', () => {
       const isMobile = window.innerWidth <= 900;
