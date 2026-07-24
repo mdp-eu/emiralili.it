@@ -1,0 +1,14 @@
+header{position:absolute;z-index:20;top:0;left:4vw;right:4vw;height:94px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid rgba(255,255,255,.35);color:#fff}
+header nav{display:flex;gap:38px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.16em}
+header nav a,.talk{transition:color .2s}header nav a:hover,.talk:hover{color:var(--lime)}
+.talk{justify-self:end;font-size:11px;text-transform:uppercase;letter-spacing:.15em;font-weight:900}
+.menu,.mobile-nav{display:none}.section-head{display:grid;grid-template-columns:.5fr 1.5fr;margin-bottom:80px}
+.section-head h2{font-size:clamp(52px,6.8vw,105px);line-height:.87;letter-spacing:-.07em;text-transform:uppercase;margin:0}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}.reveal.visible{opacity:1;transform:none}
+.role-list article:before{content:"";position:absolute;left:0;width:150px;height:110px;background:var(--preview-image) center/cover;opacity:0;transform:scale(.8) rotate(-4deg);transition:.35s}
+.role-list article:hover:before{opacity:1;transform:scale(1) rotate(-4deg)}
+.role-list article:nth-child(1){--preview-image:url("/assets/img/Emir ufficio.jpg")}.role-list article:nth-child(2){--preview-image:url("/assets/img/emireu.jpeg")}.role-list article:nth-child(3){--preview-image:url("/assets/img/copertinalibro.jpeg")}.role-list article:nth-child(4){--preview-image:url("/assets/img/Emir formatore.jpg")}
+.orbit span{display:block;text-align:center;padding:72px 10px 0;font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.manifesto{overflow:hidden}.manifesto-bg{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){header{left:22px;right:22px;height:78px;grid-template-columns:1fr auto}header nav,.talk{display:none}.menu{display:block;background:none;border:0;width:34px}.menu i{display:block;height:2px;background:#fff;margin:7px 0}.mobile-nav{display:flex;position:fixed;z-index:19;inset:0;background:var(--ink);color:#fff;flex-direction:column;justify-content:center;padding:30px;transform:translateY(-100%);transition:.5s}.mobile-nav.open{transform:none}.mobile-nav a{font-size:12vw;text-transform:uppercase;font-weight:900;letter-spacing:-.06em;border-bottom:1px solid #40505c}.section-head{grid-template-columns:1fr;gap:40px}.section-head h2{font-size:15vw}.role-list article:before{display:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
