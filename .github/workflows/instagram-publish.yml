@@ -1,20 +1,12 @@
 name: Instagram Publisher
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - social/instagram-post.json
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "Verify credentials or publish the approved Instagram post"
-        required: true
-        default: publish
-        type: choice
-        options:
-          - publish
-          - verify
-      confirmation:
-        description: "Required: type PUBLISH to authorize this real post"
-        required: true
-        type: string
 
 permissions:
   contents: read
@@ -36,22 +28,43 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Verify or publish
+      - name: Read social post identifier
+        id: config
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          with open("social/instagram-post.json", encoding="utf-8") as handle:
+              publish_id = str(json.load(handle)["publish_id"]).strip()
+          if not publish_id or any(ch not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_" for ch in publish_id):
+              raise SystemExit("Invalid publish_id")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"publish_id={publish_id}\n")
+          PY
+
+      - name: Check duplicate protection
+        if: github.event_name == 'push'
+        id: published
+        uses: actions/cache@v4
+        with:
+          path: .instagram-published
+          key: instagram-published-${{ steps.config.outputs.publish_id }}
+
+      - name: Publish approved post automatically
+        if: github.event_name == 'push' && steps.published.outputs.cache-hit != 'true'
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
-          PUBLISH_MODE: ${{ inputs.mode }}
-          PUBLISH_CONFIRMATION: ${{ inputs.confirmation }}
-          IMAGE_URL: "https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/social/likud-primarie-instagram.jpg"
-          CAPTION: |-
-            PRIMARIE LIKUD: NETANYAHU CONSOLIDA IL PARTITO, MA RISCHIA DI PERDERE IL CENTRO
+          PUBLISH_MODE: publish
+          AUTO_PUBLISH: "true"
+          SOCIAL_POST_FILE: social/instagram-post.json
+        run: |
+          python scripts/instagram_publish.py
+          mkdir -p .instagram-published
+          printf '%s\n' "${{ steps.config.outputs.publish_id }}" > ".instagram-published/${{ steps.config.outputs.publish_id }}"
 
-            Le primarie hanno rafforzato il controllo interno di Netanyahu, premiando continuità, apparato e fedeltà.
-
-            Ma dominare il partito non significa avere già conquistato la maggioranza del Paese. La sfida elettorale si deciderà tra gestione della guerra a Gaza, Cisgiordania, riforma giudiziaria, voto moderato e dipendenza dai partiti ultranazionalisti e religiosi.
-
-            Nell’analisi completa ricostruisco gli equilibri interni al Likud e le conseguenze per Israele e il Medio Oriente.
-
-            TUTTE LE ANALISI E I DOSSIER NEL LINK IN BIO
-
-            #Geopolitica #Israele #Likud #Netanyahu #MedioOriente
+      - name: Verify Instagram credentials
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          PUBLISH_MODE: verify
         run: python scripts/instagram_publish.py
