@@ -1,0 +1,54 @@
+name: Instagram Publisher
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Verify credentials or publish one image post"
+        required: true
+        default: verify
+        type: choice
+        options:
+          - verify
+          - publish
+      image_url:
+        description: "Public HTTPS image URL (publish mode only)"
+        required: false
+        type: string
+      caption:
+        description: "Instagram caption (publish mode only)"
+        required: false
+        type: string
+      confirmation:
+        description: "Type PUBLISH to authorize a real post"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: instagram-publisher
+  cancel-in-progress: false
+
+jobs:
+  instagram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify or publish
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          PUBLISH_MODE: ${{ inputs.mode }}
+          IMAGE_URL: ${{ inputs.image_url }}
+          CAPTION: ${{ inputs.caption }}
+          PUBLISH_CONFIRMATION: ${{ inputs.confirmation }}
+        run: python scripts/instagram_publish.py
