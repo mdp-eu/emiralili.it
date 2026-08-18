@@ -6,7 +6,7 @@ on:
       mode:
         description: "Verify credentials or publish one image post"
         required: true
-        default: publish
+        default: verify
         type: choice
         options:
           - publish
