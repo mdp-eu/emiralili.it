@@ -6,11 +6,11 @@ on:
       mode:
         description: "Verify credentials or publish one image post"
         required: true
-        default: verify
+        default: publish
         type: choice
         options:
-          - verify
           - publish
+          - verify
       image_url:
         description: "Public HTTPS image URL (publish mode only)"
         required: false
