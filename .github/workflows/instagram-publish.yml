@@ -4,32 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "Verify credentials or publish one image post"
+        description: "Verify credentials or publish the approved Instagram post"
         required: true
         default: publish
         type: choice
         options:
           - publish
           - verify
-      image_url:
-        description: "Public HTTPS image URL (publish mode only)"
-        required: false
-        default: "https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/social/likud-primarie-instagram.jpg"
-        type: string
-      caption:
-        description: "Instagram caption (publish mode only)"
-        required: false
-        default: |-
-          PRIMARIE LIKUD: NETANYAHU CONSOLIDA IL PARTITO, MA RISCHIA DI PERDERE IL CENTRO
-
-          Le primarie hanno rafforzato il controllo interno di Netanyahu, premiando continuità, apparato e fedeltà.
-
-          Ma dominare il partito non significa avere già conquistato la maggioranza del Paese. La sfida elettorale si deciderà tra gestione della guerra a Gaza, Cisgiordania, riforma giudiziaria, voto moderato e dipendenza dai partiti ultranazionalisti e religiosi.
-
-          Nell’analisi completa ricostruisco gli equilibri interni al Likud e le conseguenze per Israele e il Medio Oriente.
-
-          #Geopolitica #Israele #Likud #Netanyahu #MedioOriente
-        type: string
       confirmation:
         description: "Required: type PUBLISH to authorize this real post"
         required: true
@@ -59,7 +40,16 @@ jobs:
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           PUBLISH_MODE: ${{ inputs.mode }}
-          IMAGE_URL: ${{ inputs.image_url }}
-          CAPTION: ${{ inputs.caption }}
           PUBLISH_CONFIRMATION: ${{ inputs.confirmation }}
+          IMAGE_URL: "https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/social/likud-primarie-instagram.jpg"
+          CAPTION: |-
+            PRIMARIE LIKUD: NETANYAHU CONSOLIDA IL PARTITO, MA RISCHIA DI PERDERE IL CENTRO
+
+            Le primarie hanno rafforzato il controllo interno di Netanyahu, premiando continuità, apparato e fedeltà.
+
+            Ma dominare il partito non significa avere già conquistato la maggioranza del Paese. La sfida elettorale si deciderà tra gestione della guerra a Gaza, Cisgiordania, riforma giudiziaria, voto moderato e dipendenza dai partiti ultranazionalisti e religiosi.
+
+            Nell’analisi completa ricostruisco gli equilibri interni al Likud e le conseguenze per Israele e il Medio Oriente.
+
+            #Geopolitica #Israele #Likud #Netanyahu #MedioOriente
         run: python scripts/instagram_publish.py
