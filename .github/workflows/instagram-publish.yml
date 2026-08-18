@@ -36,8 +36,8 @@ on:
           #Geopolitica #Israele #Likud #Netanyahu #MedioOriente
         type: string
       confirmation:
-        description: "Type PUBLISH to authorize a real post"
-        required: false
+        description: "Required: type PUBLISH to authorize this real post"
+        required: true
         type: string
 
 permissions:
