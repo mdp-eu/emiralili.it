@@ -97,9 +97,25 @@ def wait_until_ready(container_id: str, token: str) -> None:
     raise ApiError("Media container was not ready within 60 seconds")
 
 
+def load_post_config(path: str) -> dict[str, str]:
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            config = json.load(handle)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Unable to read social post configuration: {exc}") from exc
+
+    required = ("publish_id", "article_url", "image_url", "caption")
+    missing = [name for name in required if not str(config.get(name, "")).strip()]
+    if missing:
+        raise RuntimeError(f"Social post configuration is missing: {', '.join(missing)}")
+    return {name: str(config[name]).strip() for name in required}
+
+
 def main() -> int:
     token = require_env("INSTAGRAM_ACCESS_TOKEN")
     mode = os.environ.get("PUBLISH_MODE", "verify").strip().lower()
+    config_path = os.environ.get("SOCIAL_POST_FILE", "").strip()
+    config = load_post_config(config_path) if config_path else None
     user_id, username = get_identity(token)
     print(f"Instagram identity verified: @{username or 'unknown'} (user ID {user_id})")
 
@@ -110,15 +126,23 @@ def main() -> int:
     if mode != "publish":
         raise RuntimeError("PUBLISH_MODE must be verify or publish")
 
+    auto_publish = os.environ.get("AUTO_PUBLISH", "").strip().lower() == "true"
     confirmation = os.environ.get("PUBLISH_CONFIRMATION", "").strip().upper()
-    if confirmation != "PUBLISH":
+    if not auto_publish and confirmation != "PUBLISH":
         state = "empty" if not confirmation else "invalid"
         raise RuntimeError(
             f"Publishing blocked: confirmation was {state}; enter PUBLISH in the final field"
         )
 
-    image_url = require_env("IMAGE_URL")
-    caption = require_env("CAPTION")
+    if auto_publish:
+        if not config:
+            raise RuntimeError("Automatic publishing requires SOCIAL_POST_FILE")
+        image_url = config["image_url"]
+        caption = config["caption"]
+        print(f"Automatic post authorized by manifest: {config['publish_id']}")
+    else:
+        image_url = require_env("IMAGE_URL")
+        caption = require_env("CAPTION")
     parsed = urllib.parse.urlparse(image_url)
     if parsed.scheme != "https" or not parsed.netloc:
         raise RuntimeError("IMAGE_URL must be a public HTTPS URL")
