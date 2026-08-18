@@ -51,7 +51,7 @@ jobs:
 
             Nell’analisi completa ricostruisco gli equilibri interni al Likud e le conseguenze per Israele e il Medio Oriente.
 
-            ANALISI COMPLETA NEL LINK IN BIO
+            TUTTE LE ANALISI E I DOSSIER NEL LINK IN BIO
 
             #Geopolitica #Israele #Likud #Netanyahu #MedioOriente
         run: python scripts/instagram_publish.py
