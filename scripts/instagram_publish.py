@@ -110,9 +110,12 @@ def main() -> int:
     if mode != "publish":
         raise RuntimeError("PUBLISH_MODE must be verify or publish")
 
-    confirmation = os.environ.get("PUBLISH_CONFIRMATION", "")
+    confirmation = os.environ.get("PUBLISH_CONFIRMATION", "").strip().upper()
     if confirmation != "PUBLISH":
-        raise RuntimeError("Publishing blocked: confirmation must be exactly PUBLISH")
+        state = "empty" if not confirmation else "invalid"
+        raise RuntimeError(
+            f"Publishing blocked: confirmation was {state}; enter PUBLISH in the final field"
+        )
 
     image_url = require_env("IMAGE_URL")
     caption = require_env("CAPTION")
