@@ -14,10 +14,26 @@ on:
       image_url:
         description: "Public HTTPS image URL (publish mode only)"
         required: false
+        default: "https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/social/likud-primarie-instagram.jpg"
         type: string
       caption:
         description: "Instagram caption (publish mode only)"
         required: false
+        default: |-
+          PRIMARIE LIKUD: NETANYAHU CONSOLIDA IL PARTITO, MA RISCHIA DI PERDERE IL CENTRO
+
+          Le primarie hanno rafforzato il controllo interno di Netanyahu e premiato continuità, apparato e fedeltà. Ma la disciplina del partito non equivale a una maggioranza nazionale.
+
+          La sfida del 27 ottobre si deciderà fuori dal perimetro degli iscritti: tra elettori moderati, gestione di Gaza, Cisgiordania, riforma giudiziaria e dipendenza dai partiti ultranazionalisti e religiosi.
+
+          Analisi completa:
+          https://emiralili.it/primarie-likud-netanyahu-elezioni-israele-2026.html
+
+          Emir Alili — Presidente MDP
+
+          Foto della Knesset: Joshua Paquin, CC BY 2.0.
+
+          #Geopolitica #Israele #Likud #Netanyahu #MedioOriente
         type: string
       confirmation:
         description: "Type PUBLISH to authorize a real post"
