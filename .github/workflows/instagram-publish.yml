@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - social/instagram-post.json
+  schedule:
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -43,7 +45,7 @@ jobs:
           PY
 
       - name: Check duplicate protection
-        if: github.event_name == 'push'
+        if: github.event_name != 'workflow_dispatch'
         id: published
         uses: actions/cache@v4
         with:
@@ -51,7 +53,7 @@ jobs:
           key: instagram-published-${{ steps.config.outputs.publish_id }}
 
       - name: Publish approved post automatically
-        if: github.event_name == 'push' && steps.published.outputs.cache-hit != 'true'
+        if: github.event_name != 'workflow_dispatch' && steps.published.outputs.cache-hit != 'true'
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           PUBLISH_MODE: publish
