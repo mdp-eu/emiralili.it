@@ -1,0 +1,73 @@
+name: Telegram Publisher
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - social/telegram-post.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: telegram-publisher
+  cancel-in-progress: false
+
+jobs:
+  telegram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read Telegram post identifier
+        if: github.event_name == 'push'
+        id: config
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          with open("social/telegram-post.json", encoding="utf-8") as handle:
+              publish_id = str(json.load(handle)["publish_id"]).strip()
+          allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
+          if not publish_id or any(ch not in allowed for ch in publish_id):
+              raise SystemExit("Invalid publish_id")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"publish_id={publish_id}\n")
+          PY
+
+      - name: Check duplicate protection
+        if: github.event_name == 'push'
+        id: published
+        uses: actions/cache@v4
+        with:
+          path: .telegram-published
+          key: telegram-published-${{ steps.config.outputs.publish_id }}
+
+      - name: Publish dossier notification automatically
+        if: github.event_name == 'push' && steps.published.outputs.cache-hit != 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: "@emiralili"
+          PUBLISH_MODE: publish
+          SOCIAL_POST_FILE: social/telegram-post.json
+        run: |
+          python scripts/telegram_publish.py
+          mkdir -p .telegram-published
+          printf '%s\n' "${{ steps.config.outputs.publish_id }}" > ".telegram-published/${{ steps.config.outputs.publish_id }}"
+
+      - name: Verify Telegram bot and channel
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: "@emiralili"
+          PUBLISH_MODE: verify
+        run: python scripts/telegram_publish.py
