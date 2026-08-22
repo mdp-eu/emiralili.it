@@ -83,3 +83,19 @@ header nav a,.talk{transition:color .2s}header nav a:hover,.talk:hover{color:var
 
 /* Dati e collegamenti nei dossier */
 .data-table{width:100%;border-collapse:collapse;margin:38px 0;font:14px/1.5 Arial,sans-serif;background:#fff}.data-table caption{text-align:left;padding:0 0 14px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}.data-table th,.data-table td{padding:16px 14px;border:1px solid var(--line);text-align:left;vertical-align:top}.data-table th{background:var(--ink);color:#fff;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.internal-links{border-top:3px solid var(--ink);padding-top:30px}.internal-links li{margin:13px 0}.internal-links a{text-decoration:underline}@media(max-width:650px){.data-table{display:block;overflow-x:auto;white-space:normal}.data-table th,.data-table td{min-width:145px;padding:12px 10px}}
+
+/* Compatibilita per i dossier generati con <main class="report">. */
+main.report{max-width:1180px;margin:auto;padding:95px 32px 120px;background:var(--paper)}
+@media(max-width:900px){
+  main.report{width:100%;padding:58px 24px 84px;overflow-wrap:break-word}
+  main.report .report-head{padding-bottom:45px}
+  main.report .report-head h1{font-size:clamp(42px,11vw,58px);line-height:.94;overflow-wrap:break-word}
+  main.report .report-body{width:100%;max-width:100%}
+  main.report .report-body h2{font-size:clamp(29px,8.2vw,34px);line-height:1.12;letter-spacing:-.025em;overflow-wrap:break-word;word-break:normal}
+  main.report .report-body p{font-size:17px;line-height:1.72}
+  main.report .document-box{overflow-wrap:anywhere}
+}
+@media(max-width:380px){
+  main.report{padding-left:20px;padding-right:20px}
+  main.report .report-body h2{font-size:28px}
+}
