@@ -10,3 +10,11 @@ const normalize=value=>value.toLocaleLowerCase('it').normalize('NFD').replace(/[
 const update=()=>{const term=normalize(query.value);let visible=0;archiveEntries.forEach(entry=>{const areaMatch=activeArea==='tutte'||entry.dataset.area===activeArea;const textMatch=!term||normalize(entry.dataset.search+' '+entry.textContent).includes(term);const show=areaMatch&&textMatch;entry.hidden=!show;if(show)visible++});areaLabel.textContent=labels[activeArea];count.textContent=`${visible} dossier`;empty.hidden=visible!==0;searchLabel.classList.toggle('has-value',Boolean(query.value))};
 filters.forEach(filter=>filter.addEventListener('click',()=>{activeArea=filter.dataset.area;filters.forEach(item=>{const selected=item===filter;item.classList.toggle('active',selected);item.setAttribute('aria-selected',String(selected))});update()}));query.addEventListener('input',update);clear.addEventListener('click',()=>{query.value='';query.focus();update()});update();
 }
+
+if(!document.querySelector('script[data-analytics-loader]')){
+const analytics=document.createElement('script');
+analytics.src='/analytics.js?v=1';
+analytics.defer=true;
+analytics.dataset.analyticsLoader='true';
+document.head.appendChild(analytics);
+}
