@@ -19,85 +19,48 @@ analytics.dataset.analyticsLoader='true';
 document.head.appendChild(analytics);
 }
 
-/* Article sharing: direct channels plus the device's native share sheet */
+/* Article sharing: compact icons plus the device share sheet */
 (() => {
-  const article = document.querySelector('main.report .report-body');
-  if (!article || document.querySelector('.article-share')) return;
-
-  const canonical = document.querySelector('link[rel="canonical"]')?.href || location.href.split('#')[0];
-  const title = document.querySelector('meta[property="og:title"]')?.content
-    || document.querySelector('main.report h1')?.textContent?.trim()
-    || document.title;
-  const encodedUrl = encodeURIComponent(canonical);
-  const encodedTitle = encodeURIComponent(title);
-  const encodedMessage = encodeURIComponent(title + '\n' + canonical);
-
-  const share = document.createElement('section');
-  share.className = 'article-share';
-  share.setAttribute('aria-labelledby', 'article-share-title');
-  share.innerHTML = [
-    '<div class="article-share-copy">',
-      '<p class="kicker">Diffondi l’analisi</p>',
-      '<h2 id="article-share-title">Condividi questo dossier</h2>',
-      '<p>Se ritieni utile questo approfondimento, aiutalo a raggiungere altri lettori.</p>',
-    '</div>',
-    '<div class="article-share-actions">',
-      '<a class="share-button share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '" target="_blank" rel="noopener noreferrer" aria-label="Condividi su Facebook"><span aria-hidden="true">f</span><b>Facebook</b></a>',
-      '<a class="share-button share-whatsapp" href="https://wa.me/?text=' + encodedMessage + '" target="_blank" rel="noopener noreferrer" aria-label="Condividi su WhatsApp"><span aria-hidden="true">WA</span><b>WhatsApp</b></a>',
-      '<a class="share-button share-telegram" href="https://t.me/share/url?url=' + encodedUrl + '&text=' + encodedTitle + '" target="_blank" rel="noopener noreferrer" aria-label="Condividi su Telegram"><span aria-hidden="true">↗</span><b>Telegram</b></a>',
-      '<button class="share-button share-native" type="button" aria-describedby="share-feedback"><span aria-hidden="true">⌁</span><b>Condividi</b></button>',
-    '</div>',
-    '<p class="share-feedback" id="share-feedback" role="status" aria-live="polite"></p>'
-  ].join('');
-
-  article.insertAdjacentElement('afterend', share);
-
-  const nativeButton = share.querySelector('.share-native');
-  const feedback = share.querySelector('.share-feedback');
-  let feedbackTimer;
-
-  const announce = message => {
-    feedback.textContent = message;
-    clearTimeout(feedbackTimer);
-    feedbackTimer = setTimeout(() => { feedback.textContent = ''; }, 3500);
+  const article=document.querySelector('main.report .report-body');
+  if(!article||document.querySelector('.article-share'))return;
+  const url=document.querySelector('link[rel="canonical"]')?.href||location.href.split('#')[0];
+  const title=document.querySelector('meta[property="og:title"]')?.content||document.querySelector('main.report h1')?.textContent?.trim()||document.title;
+  const eu=encodeURIComponent(url),et=encodeURIComponent(title),em=encodeURIComponent(title+'\n'+url);
+  const svg={
+    f:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 22v-9h3l.5-3.5h-3.5V7.3c0-1 .3-1.7 1.8-1.7h1.9V2.5c-.3 0-1.5-.2-2.8-.2-2.8 0-4.7 1.7-4.7 4.8v2.4H6.7V13h3.1v9h3.8Z"/></svg>',
+    w:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.4-1.7a11.8 11.8 0 0 0 5.5 1.4c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.4-8.4Zm-8.4 18.2c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.3 4.6Zm5.4-7.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-2-.9-3.3-1.8-4.6-4-.3-.6.3-.6.9-1.3.1-.2.1-.3.2-.5 0-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.4 1.8.8 2.5.8 3.4.7 1-.1 1.8-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.2-.2-.4-.3-.7-.4Z"/></svg>',
+    t:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.6 2.3 20 20.9c-.3 1.3-1 1.6-2.1 1l-5.5-4-2.7 2.6c-.3.3-.5.6-1.1.6l.4-5.6L19.2 6c.4-.4-.1-.6-.7-.2L5.9 13.7.5 12c-1.2-.4-1.2-1.2.3-1.8L22 2c1-.4 1.9.2 1.6.3Z"/></svg>',
+    s:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.1c-.8 0-1.5.3-2.1.8l-7.7-4.5c.1-.3.1-.6.1-.9s0-.6-.1-.9l7.6-4.4A3.5 3.5 0 1 0 15 4c0 .3 0 .6.1.9L7.5 9.3A3.5 3.5 0 1 0 7.5 14l7.6 4.4c-.1.2-.1.5-.1.8a3.5 3.5 0 1 0 3-3.1Z"/></svg>'
   };
-
-  nativeButton.addEventListener('click', async () => {
-    const data = { title, text: title, url: canonical };
-    try {
-      if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
-        await navigator.share(data);
-        if (typeof window.gtag === 'function') window.gtag('event', 'share', { method: 'native', content_type: 'article', item_id: canonical });
-        return;
-      }
-      await navigator.clipboard.writeText(canonical);
-      announce('Link copiato: ora puoi condividerlo dove preferisci.');
-      if (typeof window.gtag === 'function') window.gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: canonical });
-    } catch (error) {
-      if (error?.name === 'AbortError') return;
-      const input = document.createElement('textarea');
-      input.value = canonical;
-      input.setAttribute('readonly', '');
-      input.style.position = 'fixed';
-      input.style.opacity = '0';
-      document.body.appendChild(input);
-      input.select();
-      const copied = document.execCommand('copy');
-      input.remove();
-      announce(copied ? 'Link copiato: ora puoi condividerlo dove preferisci.' : 'Copia il link dalla barra del browser per condividerlo.');
-    }
+  const nav=document.createElement('nav');
+  nav.className='article-share';nav.setAttribute('aria-label','Condividi questo dossier');
+  nav.innerHTML=
+    '<a class="share-icon share-facebook" href="https://www.facebook.com/sharer/sharer.php?u='+eu+'&quote='+et+'" aria-label="Condividi su Facebook" title="Facebook">'+svg.f+'</a>'+
+    '<a class="share-icon share-whatsapp" href="https://wa.me/?text='+em+'" target="_blank" rel="noopener noreferrer" aria-label="Condividi su WhatsApp" title="WhatsApp">'+svg.w+'</a>'+
+    '<a class="share-icon share-telegram" href="https://t.me/share/url?url='+eu+'&text='+et+'" target="_blank" rel="noopener noreferrer" aria-label="Condividi su Telegram" title="Telegram">'+svg.t+'</a>'+
+    '<button class="share-icon share-native" type="button" aria-label="Condividi con un’altra applicazione" title="Condividi">'+svg.s+'</button>'+
+    '<span class="share-feedback" role="status" aria-live="polite"></span>';
+  article.insertAdjacentElement('afterend',nav);
+  const feedback=nav.querySelector('.share-feedback');let timer;
+  const say=m=>{feedback.textContent=m;clearTimeout(timer);timer=setTimeout(()=>feedback.textContent='',3000)};
+  const track=method=>{if(typeof window.gtag==='function')window.gtag('event','share',{method,content_type:'article',item_id:url})};
+  nav.querySelector('.share-facebook').addEventListener('click',e=>{
+    e.preventDefault();track('facebook');
+    const popup=window.open(e.currentTarget.href,'facebook-share','width=680,height=560,resizable=yes,scrollbars=yes');
+    if(!popup)location.href=e.currentTarget.href;
   });
-
-  share.querySelectorAll('a.share-button').forEach(link => {
-    link.addEventListener('click', () => {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'share', {
-          method: link.classList.contains('share-facebook') ? 'facebook' : link.classList.contains('share-whatsapp') ? 'whatsapp' : 'telegram',
-          content_type: 'article',
-          item_id: canonical
-        });
-      }
-    });
+  nav.querySelector('.share-whatsapp').addEventListener('click',()=>track('whatsapp'));
+  nav.querySelector('.share-telegram').addEventListener('click',()=>track('telegram'));
+  nav.querySelector('.share-native').addEventListener('click',async()=>{
+    const data={title,text:title,url};
+    try{
+      if(navigator.share&&(!navigator.canShare||navigator.canShare(data))){await navigator.share(data);track('native');return}
+      await navigator.clipboard.writeText(url);say('Link copiato');track('copy_link');
+    }catch(error){
+      if(error?.name==='AbortError')return;
+      const input=document.createElement('textarea');input.value=url;input.setAttribute('readonly','');input.style.position='fixed';input.style.opacity='0';document.body.appendChild(input);input.select();
+      const copied=document.execCommand('copy');input.remove();say(copied?'Link copiato':'Copia il link dalla barra del browser');
+    }
   });
 })();
 
