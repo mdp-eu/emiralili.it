@@ -35,7 +35,7 @@ document.head.appendChild(analytics);
   const nav=document.createElement('nav');
   nav.className='article-share';nav.setAttribute('aria-label','Condividi questo dossier');
   nav.innerHTML=
-    '<a class="share-icon share-facebook" href="https://www.facebook.com/sharer/sharer.php?u='+eu+'&quote='+et+'" aria-label="Condividi su Facebook" title="Facebook">'+svg.f+'</a>'+
+    '<button class="share-icon share-facebook" type="button" aria-label="Condividi su Facebook" title="Facebook">'+svg.f+'</button>'+
     '<a class="share-icon share-whatsapp" href="https://wa.me/?text='+em+'" target="_blank" rel="noopener noreferrer" aria-label="Condividi su WhatsApp" title="WhatsApp">'+svg.w+'</a>'+
     '<a class="share-icon share-telegram" href="https://t.me/share/url?url='+eu+'&text='+et+'" target="_blank" rel="noopener noreferrer" aria-label="Condividi su Telegram" title="Telegram">'+svg.t+'</a>'+
     '<button class="share-icon share-native" type="button" aria-label="Condividi con un’altra applicazione" title="Condividi">'+svg.s+'</button>'+
@@ -44,10 +44,16 @@ document.head.appendChild(analytics);
   const feedback=nav.querySelector('.share-feedback');let timer;
   const say=m=>{feedback.textContent=m;clearTimeout(timer);timer=setTimeout(()=>feedback.textContent='',3000)};
   const track=method=>{if(typeof window.gtag==='function')window.gtag('event','share',{method,content_type:'article',item_id:url})};
-  nav.querySelector('.share-facebook').addEventListener('click',e=>{
-    e.preventDefault();track('facebook');
-    const popup=window.open(e.currentTarget.href,'facebook-share','width=680,height=560,resizable=yes,scrollbars=yes');
-    if(!popup)location.href=e.currentTarget.href;
+  nav.querySelector('.share-facebook').addEventListener('click',async()=>{
+    const data={title,text:title,url};
+    const webFallback='https://m.facebook.com/sharer.php?u='+eu+'&quote='+et;
+    try{
+      if(navigator.share&&(!navigator.canShare||navigator.canShare(data))){await navigator.share(data);track('facebook_native');return}
+      location.href=webFallback;
+    }catch(error){
+      if(error?.name==='AbortError')return;
+      location.href=webFallback;
+    }
   });
   nav.querySelector('.share-whatsapp').addEventListener('click',()=>track('whatsapp'));
   nav.querySelector('.share-telegram').addEventListener('click',()=>track('telegram'));
