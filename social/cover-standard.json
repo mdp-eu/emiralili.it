@@ -1,0 +1,30 @@
+{
+  "template_id": "emir-alili-dossier-cover-v1",
+  "status": "mandatory_for_future_dossiers",
+  "reference_asset": "assets/social/macedonia-israele-accordi-mucunski-instagram.jpg",
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "aspect_ratio": "4:5"
+  },
+  "fixed_elements": {
+    "headline": "Titolo principale in alto, mai oltre i margini di sicurezza",
+    "visual": "Immagine o collage centrale coerente con il dossier",
+    "signature": "EMIR ALILI",
+    "cta": "LEGGI IL DOSSIER SU WWW.EMIRALILI.IT"
+  },
+  "safe_area": {
+    "left": 54,
+    "right": 54,
+    "top": 48,
+    "bottom": 42
+  },
+  "rules": [
+    "Mantenere identiche posizione, gerarchia e stile della firma e della CTA del riferimento Macedonia-Israele.",
+    "Usare fondo scuro, titoli ad alto contrasto e accenti ocra o rosso coerenti con il riferimento.",
+    "Adattare soltanto titolo, sottotitolo e immagini al nuovo dossier.",
+    "Non deformare le fotografie: usare crop proporzionale e preservare i volti.",
+    "Verificare sempre la leggibilita a 390 px prima della pubblicazione.",
+    "Non pubblicare una copertina priva della firma EMIR ALILI o della CTA esatta."
+  ]
+}
