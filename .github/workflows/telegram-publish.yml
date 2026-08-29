@@ -50,7 +50,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .telegram-published
-          key: telegram-published-${{ steps.config.outputs.publish_id }}-retry-url-fix
+          key: telegram-published-${{ steps.config.outputs.publish_id }}
 
       - name: Publish dossier notification automatically
         if: github.event_name == 'push' && steps.published.outputs.cache-hit != 'true'
