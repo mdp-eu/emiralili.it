@@ -1,30 +1,106 @@
 {
-  "template_id": "emir-alili-dossier-cover-v1",
-  "status": "mandatory_for_future_dossiers",
-  "reference_asset": "assets/social/macedonia-israele-accordi-mucunski-instagram.jpg",
+  "template_id": "emir-alili-dossier-cover-v2-locked",
+  "status": "mandatory_pixel_locked_template",
+  "reference_asset": "assets/social/serbia-nis-ofac-petrolio-instagram.jpg",
   "canvas": {
     "width": 1080,
     "height": 1350,
     "aspect_ratio": "4:5"
   },
-  "fixed_elements": {
-    "headline": "Titolo principale in alto, mai oltre i margini di sicurezza",
-    "visual": "Immagine o collage centrale coerente con il dossier",
-    "signature": "EMIR ALILI",
-    "cta": "LEGGI IL DOSSIER SU WWW.EMIRALILI.IT"
+  "immutable_layout": {
+    "background": "#091720",
+    "top_rule": {
+      "x": 56,
+      "y": 44,
+      "width": 968,
+      "height": 6,
+      "color": "#c91f2d"
+    },
+    "category": {
+      "x": 56,
+      "y": 75,
+      "width": 968,
+      "height": 40,
+      "color": "#d6b16b",
+      "uppercase": true
+    },
+    "headline": {
+      "x": 56,
+      "y": 120,
+      "width": 968,
+      "height": 170,
+      "color": "#ffffff"
+    },
+    "subtitle": {
+      "x": 56,
+      "y": 292,
+      "width": 968,
+      "height": 58,
+      "color": "#d6dde2"
+    },
+    "image_frame": {
+      "x": 56,
+      "y": 350,
+      "width": 968,
+      "height": 600,
+      "radius": 16,
+      "border": "#52616d"
+    },
+    "image_caption": {
+      "x": 82,
+      "y": 875,
+      "width": 900,
+      "height": 64
+    },
+    "mechanism_box": {
+      "x": 56,
+      "y": 990,
+      "width": 968,
+      "height": 112,
+      "background": "#071219",
+      "border": "#32414b"
+    },
+    "signature": {
+      "x": 56,
+      "y": 1140,
+      "width": 968,
+      "height": 55,
+      "text": "EMIR ALILI"
+    },
+    "cta_bar": {
+      "x": 56,
+      "y": 1230,
+      "width": 968,
+      "height": 75,
+      "background": "#c91f2d",
+      "text": "LEGGI IL DOSSIER SU WWW.EMIRALILI.IT"
+    }
   },
-  "safe_area": {
-    "left": 54,
-    "right": 54,
-    "top": 48,
-    "bottom": 42
-  },
-  "rules": [
-    "Mantenere identiche posizione, gerarchia e stile della firma e della CTA del riferimento Macedonia-Israele.",
-    "Usare fondo scuro, titoli ad alto contrasto e accenti ocra o rosso coerenti con il riferimento.",
-    "Adattare soltanto titolo, sottotitolo e immagini al nuovo dossier.",
-    "Non deformare le fotografie: usare crop proporzionale e preservare i volti.",
-    "Verificare sempre la leggibilita a 390 px prima della pubblicazione.",
-    "Non pubblicare una copertina priva della firma EMIR ALILI o della CTA esatta."
+  "mutable_elements": [
+    "category",
+    "headline",
+    "subtitle",
+    "central_image",
+    "image_caption",
+    "image_note",
+    "mechanism_text"
+  ],
+  "forbidden_changes": [
+    "layout",
+    "coordinates",
+    "colors",
+    "signature",
+    "cta",
+    "type_hierarchy",
+    "margins",
+    "component_order"
+  ],
+  "validation": [
+    "Canvas must be exactly 1080x1350.",
+    "All immutable elements must match the locked coordinates.",
+    "Cover must include category, headline, subtitle, framed image, image caption, IL MECCANISMO box, signature and red CTA bar.",
+    "No free-form full-cover generation is permitted.",
+    "Only the central image may be generated or replaced.",
+    "Verify the complete composition at 390px before publication."
   ]
 }
