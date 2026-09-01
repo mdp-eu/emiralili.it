@@ -97,7 +97,7 @@ def wait_until_ready(container_id: str, token: str) -> None:
     raise ApiError("Media container was not ready within 60 seconds")
 
 
-def load_post_config(path: str) -> dict[str, str]:
+def load_post_config(path: str) -> dict[str, object]:
     try:
         with open(path, "r", encoding="utf-8") as handle:
             config = json.load(handle)
@@ -108,7 +108,12 @@ def load_post_config(path: str) -> dict[str, str]:
     missing = [name for name in required if not str(config.get(name, "")).strip()]
     if missing:
         raise RuntimeError(f"Social post configuration is missing: {', '.join(missing)}")
-    return {name: str(config[name]).strip() for name in required}
+    normalized: dict[str, object] = {name: str(config[name]).strip() for name in required}
+    delete_ids = config.get("delete_media_ids", [])
+    if not isinstance(delete_ids, list):
+        raise RuntimeError("delete_media_ids must be a list")
+    normalized["delete_media_ids"] = [str(value).strip() for value in delete_ids if str(value).strip()]
+    return normalized
 
 
 def main() -> int:
@@ -143,6 +148,10 @@ def main() -> int:
     else:
         image_url = require_env("IMAGE_URL")
         caption = require_env("CAPTION")
+    for media_id in config.get("delete_media_ids", []) if config else []:
+        api_request("DELETE", f"/{media_id}", {"access_token": token})
+        print(f"Instagram post deleted successfully (media ID {media_id})")
+
     parsed = urllib.parse.urlparse(image_url)
     if parsed.scheme != "https" or not parsed.netloc:
         raise RuntimeError("IMAGE_URL must be a public HTTPS URL")

@@ -60,7 +60,7 @@ def api_request(token: str, method: str, params: dict[str, str]) -> dict:
     return dict(result.get("result") or {})
 
 
-def load_post_config(path: str) -> dict[str, str]:
+def load_post_config(path: str) -> dict[str, object]:
     try:
         with open(path, "r", encoding="utf-8") as handle:
             config = json.load(handle)
@@ -82,6 +82,10 @@ def load_post_config(path: str) -> dict[str, str]:
         raise RuntimeError("Telegram title must not exceed 220 characters")
     if len(normalized["summary"]) > 650:
         raise RuntimeError("Telegram summary must not exceed 650 characters")
+    delete_ids = config.get("delete_message_ids", [])
+    if not isinstance(delete_ids, list):
+        raise RuntimeError("delete_message_ids must be a list")
+    normalized["delete_message_ids"] = [int(value) for value in delete_ids]
     return normalized
 
 
@@ -139,6 +143,10 @@ def main() -> int:
 
     config_path = require_env("SOCIAL_POST_FILE")
     config = load_post_config(config_path)
+    for message_id in config.get("delete_message_ids", []):
+        api_request(token, "deleteMessage", {"chat_id": chat_id, "message_id": str(message_id)})
+        print(f"Telegram message deleted successfully (message ID {message_id})")
+
     reply_markup = json.dumps(
         {
             "inline_keyboard": [

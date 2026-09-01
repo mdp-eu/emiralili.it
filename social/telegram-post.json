@@ -1,8 +1,11 @@
 {
-  "publish_id": "macedonia-eximbank-ungheria-inchiesta-2026-v1",
-  "title": "Il miliardo sotto inchiesta",
-  "summary": "La polizia ungherese indaga sul credito Eximbank da un miliardo alla Macedonia del Nord. Due contratti, garanzia pubblica e debito bilaterale costruiscono influenza regionale. L’inchiesta non prova reati; la pista cinese resta un’ipotesi da verificare.",
-  "article_url": "https://emiralili.it/macedonia-eximbank-ungheria-prestito-inchiesta.html",
-  "image_url": "https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/social/macedonia-eximbank-ungheria-inchiesta-instagram.jpg",
-  "author": "Emir Alili — Presidente MDP"
+  "publish_id": "hormuz-due-vlcc-saudite-colpite-cover-v2-2026",
+  "title": "Due superpetroliere sotto tiro a Hormuz",
+  "summary": "Sidr e Senegal Prosperity trasportavano complessivamente quattro milioni di barili sauditi. UKMTO conferma l’attacco a una nave; il secondo episodio è riferito da Marisks. Autore e arma restano ignoti.",
+  "article_url": "https://emiralili.it/usa-larak-hormuz-attacco-mine.html",
+  "image_url": "https://raw.githubusercontent.com/mdp-eu/emiralili.it/main/assets/social/hormuz-due-vlcc-saudite-colpite-instagram-v2.jpg",
+  "author": "Emir Alili — Presidente MDP",
+  "delete_message_ids": [
+    57
+  ]
 }
