@@ -1,0 +1,12 @@
+{
+  "publish_id": "egitto-cina-suez-industria-2026-v1",
+  "cover": "assets/social/egitto-cina-suez-industria-instagram.jpg",
+  "central_image_type": "generated editorial reconstruction",
+  "prompt_summary": "Wide Suez industrial hall combining an electric-vehicle assembly line and photovoltaic panels, with Egyptian and Chinese engineers, container cranes, canal traffic and new factory construction; no politicians, flags, maps, weapons or text.",
+  "disclosure": "The cover and article identify the scene as a generated editorial reconstruction, not documentary photography of the agreements or industrial zone.",
+  "visual_uniqueness_check": {
+    "lookback": 12,
+    "result": "pass",
+    "reason": "The combined EV assembly, photovoltaic inventory and Suez container terminal is absent from the previous 12 covers and remains distinct at 390px from warships, drones, tankers, missiles, airports and substations."
+  }
+}
