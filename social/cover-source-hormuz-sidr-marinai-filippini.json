@@ -1,0 +1,12 @@
+{
+  "publish_id": "hormuz-sidr-marinai-filippini-2026-v4",
+  "cover": "assets/social/hormuz-sidr-marinai-filippini-instagram.jpg",
+  "central_image_type": "generated editorial reconstruction",
+  "prompt_summary": "Nighttime emergency response on the deck of a commercial oil tanker in Hormuz, with two empty safety helmets, high-visibility jackets and a rescue crew; no bodies, blood, explosions, weapons, flags, logos or text.",
+  "disclosure": "The cover and article identify the scene as a generated editorial reconstruction, not a documentary image of the Sidr or the incident.",
+  "visual_uniqueness_check": {
+    "lookback": 12,
+    "result": "pass",
+    "reason": "Deck-level emergency response, paired helmets and rescue lighting are absent from the previous 12 covers and remain distinct at 390px."
+  }
+}
