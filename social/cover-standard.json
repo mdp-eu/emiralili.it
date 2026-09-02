@@ -101,6 +101,31 @@
     "Cover must include category, headline, subtitle, framed image, image caption, IL MECCANISMO box, signature and red CTA bar.",
     "No free-form full-cover generation is permitted.",
     "Only the central image may be generated or replaced.",
+    "The central image must pass the mandatory 12-cover visual uniqueness check.",
     "Verify the complete composition at 390px before publication."
-  ]
+  ],
+  "visual_uniqueness_policy": {
+    "status": "mandatory",
+    "principle": "The layout is uniform; the editorial image is unique to the specific event.",
+    "lookback_covers": 12,
+    "forbidden_reuse": [
+      "the same source photograph",
+      "the same generated image",
+      "the same crop of a previously used photograph",
+      "the same collage with only text or color changes",
+      "a visually equivalent composition dominated by the same people, ship, explosion, flags or skyline"
+    ],
+    "required_before_render": [
+      "Inspect the central images used in the previous 12 published covers.",
+      "Choose a subject that identifies the new event rather than its generic geopolitical theatre.",
+      "Record the source asset or generation prompt used for the new central image.",
+      "Reject the cover when its central image could be mistaken for any of the previous 12 covers at thumbnail size."
+    ],
+    "series_rule": "An update to an existing dossier still requires a new central image when it is redistributed as a new Instagram or Telegram post.",
+    "topic_examples": {
+      "hormuz": "Rotate among the specific port, vessel, military asset, insurance or market actor documented by the update; do not default to a generic tanker or burning sea.",
+      "iran": "Use the person, institution, bank, facility or operation central to the verified development; do not default to flags, missiles or generic Tehran imagery.",
+      "defence": "Use the documented platform, factory, institution or procurement object; do not default to generic soldiers or NATO flags."
+    }
+  }
 }
