@@ -1,0 +1,8 @@
+{
+  "publish_id": "leipzig-drone-russia-nato-2026-v1",
+  "cover": "assets/social/leipzig-drone-russia-instagram.jpg",
+  "central_image_type": "generated editorial reconstruction",
+  "prompt_summary": "Night at Leipzig/Halle cargo airport: explosive-equipped quadcopter on wet tarmac, Ukrainian Antonov in the background, German security and EOD robot; no explosion, politicians, ships, missiles, maps or text.",
+  "disclosure": "The cover and article identify the image as a generated editorial reconstruction, not a documentary photograph.",
+  "visual_uniqueness_check": {"lookback": 12, "result": "pass", "reason": "Airport tarmac, quadcopter and Antonov composition is absent from the previous 12 covers and distinct at thumbnail size."}
+}
