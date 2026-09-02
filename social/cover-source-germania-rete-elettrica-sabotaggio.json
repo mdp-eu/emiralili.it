@@ -1,0 +1,12 @@
+{
+  "publish_id": "germania-rete-elettrica-sabotaggio-2026-v1",
+  "cover": "assets/social/germania-rete-elettrica-sabotaggio-instagram.jpg",
+  "central_image_type": "generated editorial reconstruction",
+  "prompt_summary": "Blue-hour German extra-high-voltage substation with a deliberately placed conductive cable, a damaged insulator, forensic marker and distant police investigation lights; no flags, people, weapons, explosion, ships, airport or text.",
+  "disclosure": "The cover and article identify the scene as a generated editorial reconstruction, not a documentary image of either sabotage site.",
+  "visual_uniqueness_check": {
+    "lookback": 12,
+    "result": "pass",
+    "reason": "Ground-level damaged insulator and conductive cable inside a power substation are absent from the previous 12 covers and remain unmistakable at 390px."
+  }
+}
