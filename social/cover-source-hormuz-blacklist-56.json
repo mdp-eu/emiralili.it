@@ -1,0 +1,13 @@
+{
+  "publish_id": "hormuz-lista-nera-fuoco-2026-v3",
+  "cover": "assets/social/hormuz-lista-nera-fuoco-instagram.jpg",
+  "central_image": "assets/social/hormuz-blacklist-56-central.jpg",
+  "central_image_type": "generated editorial reconstruction",
+  "prompt_summary": "Wide maritime operations room monitoring the Strait of Hormuz during an escalation, with anonymous vessel markers, alert screens, printed ship silhouettes and tankers offshore; no official document, flags, logos or readable text.",
+  "disclosure": "The cover and article identify the scene as a generated editorial reconstruction, not documentary photography, an official Iranian blacklist or evidence of a specific strike.",
+  "visual_uniqueness_check": {
+    "lookback": 12,
+    "result": "pass",
+    "reason": "The vessel-tracking operations room and compliance documents are absent from the previous 12 covers and remain distinct at 390px from tanker rescue, warship, missile, airport, substation and Suez industrial imagery."
+  }
+}
