@@ -1,7 +1,10 @@
 {
-  "template_id": "emir-alili-dossier-cover-v2-locked",
+  "template_id": "emir-alili-dossier-cover-v3-social-locked",
   "status": "mandatory_pixel_locked_template",
-  "reference_asset": "assets/social/serbia-nis-ofac-petrolio-instagram.jpg",
+  "reference_assets": [
+    "assets/social/tumen-ponte-russia-corea-nord-instagram.jpg",
+    "assets/social/turchia-golden-global-ofac-iran-instagram.jpg"
+  ],
   "canvas": {
     "width": 1080,
     "height": 1350,
@@ -40,38 +43,63 @@
     },
     "image_frame": {
       "x": 56,
-      "y": 350,
+      "y": 330,
       "width": 968,
-      "height": 600,
+      "height": 520,
       "radius": 16,
       "border": "#52616d"
     },
     "image_caption": {
       "x": 82,
-      "y": 875,
+      "y": 786,
       "width": 900,
       "height": 64
     },
     "mechanism_box": {
       "x": 56,
-      "y": 990,
+      "y": 870,
       "width": 968,
-      "height": 112,
+      "height": 100,
       "background": "#071219",
       "border": "#32414b"
     },
     "signature": {
       "x": 56,
-      "y": 1140,
+      "y": 990,
       "width": 968,
       "height": 55,
       "text": "EMIR ALILI"
     },
+    "social_header": {
+      "x": 56,
+      "y": 1044,
+      "width": 968,
+      "height": 28,
+      "text": "SEGUIMI SUI CANALI UFFICIALI",
+      "color": "#d6b16b"
+    },
+    "social_bar": {
+      "x": 56,
+      "y": 1072,
+      "width": 968,
+      "height": 152,
+      "background": "#071219",
+      "border": "#d6b16b",
+      "items": [
+        {"platform": "WhatsApp", "handle": "Emir Alili"},
+        {"platform": "Instagram", "handle": "@emir_alili"},
+        {"platform": "Facebook", "handle": "Emir Alili"},
+        {"platform": "Telegram", "handle": "@emiralili"},
+        {"platform": "TikTok", "handle": "@em.al.25"},
+        {"platform": "YouTube", "handle": "@Emir-Alili"},
+        {"platform": "Sito web", "handle": "emiralili.it"}
+      ]
+    },
     "cta_bar": {
       "x": 56,
-      "y": 1230,
+      "y": 1242,
       "width": 968,
-      "height": 75,
+      "height": 64,
       "background": "#c91f2d",
       "text": "LEGGI IL DOSSIER SU WWW.EMIRALILI.IT"
     }
@@ -98,11 +126,13 @@
   "validation": [
     "Canvas must be exactly 1080x1350.",
     "All immutable elements must match the locked coordinates.",
-    "Cover must include category, headline, subtitle, framed image, image caption, IL MECCANISMO box, signature and red CTA bar.",
+    "Cover must include category, headline, subtitle, framed image, image caption, IL MECCANISMO box, signature, social header, all seven social references and red CTA bar.",
+    "The mandatory social references are WhatsApp Emir Alili, Instagram @emir_alili, Facebook Emir Alili, Telegram @emiralili, TikTok @em.al.25, YouTube @Emir-Alili and emiralili.it.",
     "No free-form full-cover generation is permitted.",
     "Only the central image may be generated or replaced.",
     "The central image must pass the mandatory 12-cover visual uniqueness check.",
-    "Verify the complete composition at 390px before publication."
+    "Use the same cover as the article hero image and for Instagram and Telegram.",
+    "Verify the complete composition and every social handle at 390px before publication."
   ],
   "visual_uniqueness_policy": {
     "status": "mandatory",
