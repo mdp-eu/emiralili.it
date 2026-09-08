@@ -19,9 +19,9 @@ d = ImageDraw.Draw(im)
 d.rectangle((44, 34, W-44, H-34), outline=GOLD, width=3)
 d.rectangle((88, 72, W-88, 80), fill=RED)
 d.text((88, 103), "ISRAELE · 7 OTTOBRE · LIBRO", fill=GOLD, font=font(FONT_B, 27))
-d.text((88, 145), "IL LIBRO AVEVA", fill=WHITE, font=font(FONT_B, 62))
-d.text((88, 208), "VISTO IL METODO", fill=WHITE, font=font(FONT_B, 62))
-d.text((88, 284), "Nuovi avvertimenti incrinano la versione della sorpresa totale", fill=MUTED, font=font(FONT_R, 24))
+d.text((88, 145), "GLI AVVERTIMENTI", fill=WHITE, font=font(FONT_B, 58))
+d.text((88, 205), "C'ERANO", fill=WHITE, font=font(FONT_B, 58))
+d.text((88, 276), "7/10 aveva già descritto il metodo", fill=MUTED, font=font(FONT_R, 27))
 
 # Central editorial still life: the real book cover, lifted from the site asset.
 d.rounded_rectangle((87, 332, 993, 832), radius=18, fill="#0c222b", outline="#788b95", width=3)
