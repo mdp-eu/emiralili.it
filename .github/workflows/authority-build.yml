@@ -7,6 +7,7 @@ on:
       - '*.html'
       - '.github/workflows/authority-build.yml'
       - 'scripts/build_authority.py'
+      - 'scripts/normalize_navigation.py'
       - 'authority.css'
       - 'menu.js'
   workflow_dispatch:
@@ -35,6 +36,8 @@ jobs:
           PY
       - name: Build entity SEO and topic hubs
         run: python scripts/build_authority.py
+      - name: Normalize site-wide navigation
+        run: python scripts/normalize_navigation.py
       - name: Commit generated authority structure
         run: |
           if git diff --quiet; then
@@ -44,5 +47,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add scripts/build_authority.py '*.html' sitemap.xml
-          git commit -m 'Build topic authority pages and author linking'
+          git commit -m 'Build authority structure and normalize navigation'
           git push
