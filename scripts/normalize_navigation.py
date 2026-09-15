@@ -20,6 +20,7 @@ TOPIC_PAGES = {
 HEADER_RE = re.compile(r'(<header\b[^>]*>)(.*?)(</header>)', re.I | re.S)
 NAV_RE = re.compile(r'<nav\b[^>]*>.*?</nav>', re.I | re.S)
 MOBILE_RE = re.compile(r'<div\b(?=[^>]*\bclass=["\'][^"\']*\bmobile-nav\b[^"\']*["\'])[^>]*>.*?</div>', re.I | re.S)
+MENU_SCRIPT_RE = re.compile(r'<script\b[^>]*\bsrc=["\']/?menu\.js(?:\?v=[^"\']*)?["\'][^>]*></script>', re.I | re.S)
 A_RE = re.compile(r'<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', re.I | re.S)
 TAG_RE = re.compile(r'<[^>]+>')
 
@@ -77,9 +78,15 @@ def normalize(path: Path):
         h2 = HEADER_RE.search(source)
         source = source[:h2.end()] + canonical_mobile + source[h2.end():]
         changed = True
-    if '</body>' in source and 'menu.js' not in source:
-        source = source.replace('</body>', '<script src="/menu.js?v=3"></script></body>', 1)
+
+    canonical_script = '<script src="/menu.js?v=4"></script>'
+    if MENU_SCRIPT_RE.search(source):
+        new_source = MENU_SCRIPT_RE.sub(canonical_script, source)
+        if new_source != source: source, changed = new_source, True
+    elif '</body>' in source:
+        source = source.replace('</body>', canonical_script + '</body>', 1)
         changed = True
+
     if changed: path.write_text(source, encoding="utf-8")
     return changed
 
