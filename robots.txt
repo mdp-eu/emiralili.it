@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://emiralili.it/sitemap.xml
+Sitemap: https://emiralili.it/news-sitemap.xml
