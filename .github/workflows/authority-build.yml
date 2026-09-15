@@ -23,6 +23,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+      - name: Normalize ambiguous short terms
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/build_authority.py')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('"pentagono","usa","stati uniti"','"pentagono","stati uniti"')
+          s=s.replace('"eximbank","mladic","nis"','"eximbank","mladic"')
+          p.write_text(s,encoding='utf-8')
+          PY
       - name: Build entity SEO and topic hubs
         run: python scripts/build_authority.py
       - name: Commit generated authority structure
@@ -33,6 +43,6 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '*.html' sitemap.xml
+          git add scripts/build_authority.py '*.html' sitemap.xml
           git commit -m 'Build topic authority pages and author linking'
           git push
