@@ -56,7 +56,7 @@ TOPICS = {
         "title": "Russia, Cina e NATO — Analisi di Emir Alili",
         "description": "Dossier di Emir Alili su Russia, Cina, NATO, Ucraina, Stati Uniti, riarmo, tecnologia e trasformazione dell'ordine internazionale.",
         "intro": "Analisi dei rapporti di forza tra Russia, Cina, NATO, Stati Uniti ed Europa, dalle guerre alla tecnologia strategica.",
-        "terms": ["russia","mosca","ucrain","cina","pechino","nato","pentagono","usa","stati uniti","brics","riarmo","drone","semicondutt","chip","artico","corea del nord","pyongyang"],
+        "terms": ["russia","mosca","ucrain","cina","pechino","nato","pentagono","stati uniti","brics","riarmo","drone","semicondutt","chip","artico","corea del nord","pyongyang"],
     },
     "balcani-macedonia": {
         "name": "Balcani e Macedonia",
@@ -64,7 +64,7 @@ TOPICS = {
         "title": "Balcani e Macedonia — Dossier di Emir Alili",
         "description": "Analisi di Emir Alili su Macedonia del Nord, Serbia, Kosovo, Bosnia, Albania, Balcani, diaspora e rapporti regionali.",
         "intro": "Un archivio dedicato ai Balcani e alla Macedonia del Nord: finanza, sicurezza, identità, integrazione europea e rapporti regionali.",
-        "terms": ["macedonia","skopje","serbia","serbo","kosovo","bosnia","balcan","albania","bulgaria","grecia","mavrovo","ungheria","eximbank","mladic","nis"],
+        "terms": ["macedonia","skopje","serbia","serbo","kosovo","bosnia","balcan","albania","bulgaria","grecia","mavrovo","ungheria","eximbank","mladic"],
     },
 }
 EXCLUDE = {"index.html","analisi.html","chi-sono.html","contatti.html","libri-media.html","metodo.html","impegno.html","cosa-faccio.html","news.html","privacy-cookie.html","admin.html","article.html"}
