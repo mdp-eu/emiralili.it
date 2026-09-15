@@ -3,22 +3,24 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-TODAY = "2026-09-15"
+TODAY = "2026-09-16"
 
 NOINDEX = {
     "admin.html": "noindex,nofollow",
     "preventivi.html": "noindex,nofollow",
     "blog.html": "noindex,follow",
     "share.html": "noindex,follow",
+    "libri-media.html": "noindex,follow",
+    "metodo.html": "noindex,follow",
+    "press.html": "noindex,follow",
+    "cosa-faccio.html": "noindex,follow",
+    "impegno.html": "noindex,follow",
 }
 
 CORE_URLS = [
     ("https://emiralili.it/", "1.0"),
     ("https://emiralili.it/analisi.html", "0.9"),
     ("https://emiralili.it/chi-sono.html", "0.9"),
-    ("https://emiralili.it/libri-media.html", "0.8"),
-    ("https://emiralili.it/metodo.html", "0.8"),
-    ("https://emiralili.it/press.html", "0.9"),
     ("https://emiralili.it/contatti.html", "0.7"),
     ("https://emiralili.it/medio-oriente.html", "0.9"),
     ("https://emiralili.it/palestina-israele.html", "0.9"),
@@ -27,6 +29,14 @@ CORE_URLS = [
     ("https://emiralili.it/russia-cina-nato.html", "0.9"),
     ("https://emiralili.it/balcani-macedonia.html", "0.9"),
 ]
+
+REDIRECT_URLS = {
+    "https://emiralili.it/libri-media.html",
+    "https://emiralili.it/metodo.html",
+    "https://emiralili.it/press.html",
+    "https://emiralili.it/cosa-faccio.html",
+    "https://emiralili.it/impegno.html",
+}
 
 def set_noindex(filename, directive):
     path = ROOT / filename
@@ -46,24 +56,30 @@ def set_noindex(filename, directive):
 
 def ensure_sitemap():
     path = ROOT / 'sitemap.xml'
-    if not path.exists(): return 0
+    if not path.exists(): return 0, 0
     s = path.read_text(encoding='utf-8')
+    removed = 0
+    for url in REDIRECT_URLS:
+        pattern = re.compile(r'\s*<url>.*?<loc>' + re.escape(url) + r'</loc>.*?</url>', re.S)
+        s, n = pattern.subn('', s)
+        removed += n
     added=[]
     for url, priority in CORE_URLS:
         if f'<loc>{url}</loc>' in s: continue
         added.append(f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>{priority}</priority></url>')
     if added:
-        block='\n' + '\n'.join(added) + '\n'
-        s=s.replace('</urlset>', block + '</urlset>')
+        s=s.replace('</urlset>', '\n' + '\n'.join(added) + '\n</urlset>')
+    if added or removed:
         path.write_text(s, encoding='utf-8')
-    return len(added)
+    return len(added), removed
 
 def main():
     changed=[]
     for filename,directive in NOINDEX.items():
         if set_noindex(filename,directive): changed.append(filename)
-    added=ensure_sitemap()
+    added,removed=ensure_sitemap()
     print('SEO hygiene: noindex updated:', ', '.join(changed) if changed else 'none')
     print('SEO hygiene: core sitemap URLs added:', added)
+    print('SEO hygiene: redirect URLs removed from sitemap:', removed)
 
 if __name__ == '__main__': main()
