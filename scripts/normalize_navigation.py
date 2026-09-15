@@ -119,10 +119,12 @@ def main():
     print(f'Desktop menu variants before: {len(before)}')
     for i,(sig,names) in enumerate(sorted(before.items(), key=lambda x: -len(x[1])),1):
         print(f'  before {i}: {len(names)} pages -> {sig}')
+        if sig is None: print('    no-header/no-nav:', ', '.join(names))
     print(f'Pages normalized: {changed}')
     print(f'Desktop menu variants after: {len(after)}')
     for i,(sig,names) in enumerate(sorted(after.items(), key=lambda x: -len(x[1])),1):
         print(f'  after {i}: {len(names)} pages -> {sig}')
+        if sig is None: print('    no-header/no-nav:', ', '.join(names))
 
 if __name__ == '__main__':
     main()
