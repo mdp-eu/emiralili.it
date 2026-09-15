@@ -70,3 +70,36 @@ document.head.appendChild(analytics);
   });
 })();
 
+/* Site-wide Search metadata normalization for legacy static pages */
+(() => {
+  if(!document.querySelector('link[rel="icon"]')){
+    const icon=document.createElement('link');icon.rel='icon';icon.href='/favicon.ico';document.head.appendChild(icon);
+  }
+  if(!document.querySelector('link[rel="manifest"]')){
+    const manifest=document.createElement('link');manifest.rel='manifest';manifest.href='/manifest.json';document.head.appendChild(manifest);
+  }
+  const logo={"@type":"ImageObject","url":"https://emiralili.it/assets/brand/emir-alili-logo.png","width":512,"height":512};
+  const patch=node=>{
+    if(!node||typeof node!=='object')return;
+    const types=Array.isArray(node['@type'])?node['@type']:[node['@type']];
+    if(types.includes('NewsArticle')||types.includes('Article')||types.includes('BlogPosting')){
+      if(node.publisher&&node.publisher['@type']==='Organization'&&!node.publisher.logo)node.publisher.logo=logo;
+      const authors=Array.isArray(node.author)?node.author:[node.author];
+      authors.filter(Boolean).forEach(author=>{
+        if(author['@type']==='Person'&&typeof author.name==='string'&&author.name.startsWith('Emir Alili')){
+          const parts=author.name.split(' — ');author.name='Emir Alili';if(parts[1]&&!author.jobTitle)author.jobTitle=parts.slice(1).join(' — ');
+        }
+      });
+    }
+    if(Array.isArray(node['@graph'])){
+      const graph=node['@graph'];
+      if(graph.some(item=>item&&item['@type']==='WebSite')&&!graph.some(item=>item&&item['@type']==='Organization')){
+        graph.push({'@type':'Organization','@id':'https://emiralili.it/#organization','name':'Emir Alili','url':'https://emiralili.it/','logo':logo});
+      }
+      graph.forEach(patch);
+    }
+  };
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(script=>{
+    try{const data=JSON.parse(script.textContent);patch(data);script.textContent=JSON.stringify(data)}catch(_){/* leave invalid third-party JSON-LD untouched */}
+  });
+})();
