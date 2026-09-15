@@ -21,6 +21,7 @@ HEADER_RE = re.compile(r'(<header\b[^>]*>)(.*?)(</header>)', re.I | re.S)
 NAV_RE = re.compile(r'<nav\b[^>]*>.*?</nav>', re.I | re.S)
 MOBILE_RE = re.compile(r'<div\b(?=[^>]*\bclass=["\'][^"\']*\bmobile-nav\b[^"\']*["\'])[^>]*>.*?</div>', re.I | re.S)
 MENU_SCRIPT_RE = re.compile(r'<script\b[^>]*\bsrc=["\']/?menu\.js(?:\?v=[^"\']*)?["\'][^>]*></script>', re.I | re.S)
+FIX_CSS_RE = re.compile(r'<link\b[^>]*\bhref=["\']/?site-fixes\.css(?:\?v=[^"\']*)?["\'][^>]*>', re.I | re.S)
 A_RE = re.compile(r'<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', re.I | re.S)
 TAG_RE = re.compile(r'<[^>]+>')
 
@@ -77,6 +78,14 @@ def normalize(path: Path):
     elif h:
         h2 = HEADER_RE.search(source)
         source = source[:h2.end()] + canonical_mobile + source[h2.end():]
+        changed = True
+
+    canonical_css = '<link rel="stylesheet" href="/site-fixes.css?v=1">'
+    if FIX_CSS_RE.search(source):
+        new_source = FIX_CSS_RE.sub(canonical_css, source)
+        if new_source != source: source, changed = new_source, True
+    elif '</head>' in source:
+        source = source.replace('</head>', canonical_css + '</head>', 1)
         changed = True
 
     canonical_script = '<script src="/menu.js?v=4"></script>'
