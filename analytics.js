@@ -43,18 +43,20 @@
   }
 
   function addPreferencesControl() {
+    if (document.querySelector('.analytics-preferences')) return;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'analytics-preferences';
     button.textContent = 'Preferenze cookie';
     button.addEventListener('click', showBanner);
-    document.body.appendChild(button);
+    const host = document.querySelector('footer') || document.body;
+    host.appendChild(button);
   }
 
   function init() {
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
-    stylesheet.href = '/analytics.css?v=1';
+    stylesheet.href = '/analytics.css?v=2';
     document.head.appendChild(stylesheet);
 
     let choice = null;
