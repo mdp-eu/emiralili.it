@@ -1,0 +1,100 @@
+name: IndexNow Notify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'sitemap.xml'
+      - 'news-sitemap.xml'
+      - 'robots.txt'
+      - '081f48cba317e553ecf8a71633116ac6.txt'
+      - '.github/workflows/indexnow.yml'
+  schedule:
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Wait for public key file
+        shell: bash
+        run: |
+          KEY='081f48cba317e553ecf8a71633116ac6'
+          URL="https://emiralili.it/${KEY}.txt"
+          for i in {1..12}; do
+            if curl -fsSL "$URL" | grep -qx "$KEY"; then
+              echo 'IndexNow key is public.'
+              exit 0
+            fi
+            sleep 15
+          done
+          echo 'IndexNow key file is not public yet.' >&2
+          exit 1
+
+      - name: Build URL batch
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os, subprocess, xml.etree.ElementTree as ET
+
+          base='https://emiralili.it/'
+          urls={base}
+
+          # Always include current Google News URLs (recent editorial output).
+          try:
+              root=ET.parse('news-sitemap.xml').getroot()
+              ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+              for loc in root.findall('.//s:loc', ns):
+                  if loc.text and loc.text.startswith(base):
+                      urls.add(loc.text.strip())
+          except Exception as exc:
+              print(f'news-sitemap parse warning: {exc}')
+
+          # Include HTML files changed by this push.
+          try:
+              names=subprocess.check_output(['git','diff','--name-only','HEAD^','HEAD'], text=True).splitlines()
+              for name in names:
+                  if name == 'index.html':
+                      urls.add(base)
+                  elif name.endswith('.html') and '/' not in name:
+                      urls.add(base + name)
+          except Exception as exc:
+              print(f'git diff warning: {exc}')
+
+          urls=sorted(urls)[:100]
+          key='081f48cba317e553ecf8a71633116ac6'
+          payload={
+              'host':'emiralili.it',
+              'key':key,
+              'keyLocation':f'{base}{key}.txt',
+              'urlList':urls,
+          }
+          with open('/tmp/indexnow.json','w',encoding='utf-8') as f:
+              json.dump(payload,f,ensure_ascii=False)
+          print(f'Prepared {len(urls)} URLs for IndexNow')
+          for url in urls:
+              print(url)
+          PY
+
+      - name: Submit to IndexNow
+        shell: bash
+        run: |
+          code=$(curl -sS -o /tmp/indexnow-response.txt -w '%{http_code}' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data-binary @/tmp/indexnow.json \
+            https://api.indexnow.org/indexnow)
+          echo "IndexNow HTTP status: $code"
+          cat /tmp/indexnow-response.txt || true
+          if [ "$code" != '200' ] && [ "$code" != '202' ]; then
+            exit 1
+          fi
