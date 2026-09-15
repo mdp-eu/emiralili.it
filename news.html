@@ -6,4 +6,4 @@
 <footer><a class="logo" href="index.html"><span>EA</span><b>Emir Alili</b></a><p>© 2026 — Costruire. Decidere. Rispondere.</p><a href="#">Torna su ↑</a></footer><script src="modern.js?v=2"></script><script>
 const sb=supabase.createClient('https://kbsamcygzupiubiskxhk.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtic2FtY3lnenVwaXViaXNreGhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNjQzNzksImV4cCI6MjA4OTg0MDM3OX0.VK0AdZAR_tpphy-MtUWeybXGEuz5w0w-cs4z72QsliI');
 sb.from('articles').select('id,title,lead,image_url,category,created_at').eq('status','published').order('created_at',{ascending:false}).limit(6).then(({data})=>{if(!data||!data.length)return;document.getElementById('live-news').innerHTML=data.map(a=>`<a class="news-card reveal visible" href="article.html?id=${encodeURIComponent(a.id)}"><img src="${a.image_url||'assets/img/emir-radio.jpg'}" alt=""><div><span>${a.category||'Analisi'}</span><h3>${a.title}</h3><p>${a.lead||''}</p></div></a>`).join('')});
-</script><script src="/menu.js?v=3"></script></body></html>
+</script><script src="/menu.js?v=4"></script></body></html>
