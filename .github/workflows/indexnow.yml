@@ -45,10 +45,18 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          import json, os, subprocess, xml.etree.ElementTree as ET
+          import json, subprocess, xml.etree.ElementTree as ET
 
           base='https://emiralili.it/'
-          urls={base}
+          urls={
+              base,
+              base+'medio-oriente.html',
+              base+'palestina-israele.html',
+              base+'sanzioni-lawfare.html',
+              base+'energia-rotte.html',
+              base+'russia-cina-nato.html',
+              base+'balcani-macedonia.html',
+          }
 
           # Always include current Google News URLs (recent editorial output).
           try:
