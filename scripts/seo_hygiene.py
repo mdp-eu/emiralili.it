@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import re
+from html import escape
 
 ROOT = Path(__file__).resolve().parents[1]
 TODAY = "2026-09-16"
@@ -10,6 +11,7 @@ NOINDEX = {
     "preventivi.html": "noindex,nofollow",
     "blog.html": "noindex,follow",
     "share.html": "noindex,follow",
+    "article.html": "noindex,follow",
     "libri-media.html": "noindex,follow",
     "metodo.html": "noindex,follow",
     "press.html": "noindex,follow",
@@ -17,25 +19,10 @@ NOINDEX = {
     "impegno.html": "noindex,follow",
 }
 
-CORE_URLS = [
-    ("https://emiralili.it/", "1.0"),
-    ("https://emiralili.it/analisi.html", "0.9"),
-    ("https://emiralili.it/chi-sono.html", "0.9"),
-    ("https://emiralili.it/contatti.html", "0.7"),
-    ("https://emiralili.it/medio-oriente.html", "0.9"),
-    ("https://emiralili.it/palestina-israele.html", "0.9"),
-    ("https://emiralili.it/sanzioni-lawfare.html", "0.9"),
-    ("https://emiralili.it/energia-rotte.html", "0.9"),
-    ("https://emiralili.it/russia-cina-nato.html", "0.9"),
-    ("https://emiralili.it/balcani-macedonia.html", "0.9"),
-]
-
-REDIRECT_URLS = {
-    "https://emiralili.it/libri-media.html",
-    "https://emiralili.it/metodo.html",
-    "https://emiralili.it/press.html",
-    "https://emiralili.it/cosa-faccio.html",
-    "https://emiralili.it/impegno.html",
+EXCLUDE_FROM_SITEMAP = set(NOINDEX) | {"404.html"}
+TOPIC_PAGES = {
+    "medio-oriente.html", "palestina-israele.html", "sanzioni-lawfare.html",
+    "energia-rotte.html", "russia-cina-nato.html", "balcani-macedonia.html",
 }
 
 def set_noindex(filename, directive):
@@ -54,32 +41,64 @@ def set_noindex(filename, directive):
         return True
     return False
 
-def ensure_sitemap():
+def canonical_for(path, source):
+    if path.name == "index.html":
+        return "https://emiralili.it/"
+    m = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']', source, re.I)
+    if not m:
+        m = re.search(r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']canonical["\']', source, re.I)
+    if m and m.group(1).startswith("https://emiralili.it/"):
+        return m.group(1).split('#')[0]
+    return f"https://emiralili.it/{path.name}"
+
+def lastmod_for(source):
+    for key in ("dateModified", "datePublished"):
+        m = re.search(rf'["\']{key}["\']\s*:\s*["\'](\d{{4}}-\d{{2}}-\d{{2}})', source)
+        if m: return m.group(1)
+    m = re.search(r'<time[^>]+datetime=["\'](\d{4}-\d{2}-\d{2})', source, re.I)
+    return m.group(1) if m else TODAY
+
+def priority_for(name):
+    if name == "index.html": return "1.0"
+    if name in {"analisi.html", "chi-sono.html"} or name in TOPIC_PAGES: return "0.9"
+    if name == "contatti.html": return "0.6"
+    if name == "privacy-cookie.html": return "0.3"
+    return "0.8"
+
+def rebuild_sitemap():
+    entries = []
+    seen = set()
+    for path in sorted(ROOT.glob("*.html")):
+        if path.name in EXCLUDE_FROM_SITEMAP:
+            continue
+        source = path.read_text(encoding="utf-8", errors="ignore")
+        if re.search(r'<meta\s+name=["\']robots["\'][^>]*content=["\'][^"\']*noindex', source, re.I):
+            continue
+        url = canonical_for(path, source)
+        if url in seen:
+            continue
+        seen.add(url)
+        entries.append((url, lastmod_for(source), priority_for(path.name)))
+    entries.sort(key=lambda x: (0 if x[0] == "https://emiralili.it/" else 1, x[0]))
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for url, lastmod, priority in entries:
+        lines.append(f'  <url><loc>{escape(url)}</loc><lastmod>{lastmod}</lastmod><changefreq>weekly</changefreq><priority>{priority}</priority></url>')
+    lines.append('</urlset>')
+    content = '\n'.join(lines) + '\n'
     path = ROOT / 'sitemap.xml'
-    if not path.exists(): return 0, 0
-    s = path.read_text(encoding='utf-8')
-    removed = 0
-    for url in REDIRECT_URLS:
-        pattern = re.compile(r'\s*<url>.*?<loc>' + re.escape(url) + r'</loc>.*?</url>', re.S)
-        s, n = pattern.subn('', s)
-        removed += n
-    added=[]
-    for url, priority in CORE_URLS:
-        if f'<loc>{url}</loc>' in s: continue
-        added.append(f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>{priority}</priority></url>')
-    if added:
-        s=s.replace('</urlset>', '\n' + '\n'.join(added) + '\n</urlset>')
-    if added or removed:
-        path.write_text(s, encoding='utf-8')
-    return len(added), removed
+    old = path.read_text(encoding='utf-8') if path.exists() else ''
+    if content != old:
+        path.write_text(content, encoding='utf-8')
+        return len(entries), True
+    return len(entries), False
 
 def main():
     changed=[]
     for filename,directive in NOINDEX.items():
         if set_noindex(filename,directive): changed.append(filename)
-    added,removed=ensure_sitemap()
+    count, sitemap_changed = rebuild_sitemap()
     print('SEO hygiene: noindex updated:', ', '.join(changed) if changed else 'none')
-    print('SEO hygiene: core sitemap URLs added:', added)
-    print('SEO hygiene: redirect URLs removed from sitemap:', removed)
+    print('SEO hygiene: sitemap URLs:', count)
+    print('SEO hygiene: sitemap rebuilt:', sitemap_changed)
 
 if __name__ == '__main__': main()
