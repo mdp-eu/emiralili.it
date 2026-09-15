@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Emir Alili</title>
+  <desc id="desc">Logo editoriale Emir Alili</desc>
+  <rect width="512" height="512" rx="48" fill="#0a101c"/>
+  <rect x="24" y="24" width="464" height="464" rx="34" fill="none" stroke="#c7a34d" stroke-width="12"/>
+  <text x="256" y="315" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="206" font-weight="700" fill="#f5f5f5">EA</text>
+</svg>
