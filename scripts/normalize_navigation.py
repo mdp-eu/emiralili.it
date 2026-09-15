@@ -3,14 +3,14 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-EXCLUDE = {"admin.html", "article.html", "blog.html", "preventivi.html", "share.html"}
+EXCLUDE = {
+    "admin.html", "article.html", "blog.html", "preventivi.html", "share.html",
+    "libri-media.html", "metodo.html", "press.html", "cosa-faccio.html", "impegno.html"
+}
 LINKS = [
     ("Home", "/"),
     ("Analisi", "/analisi.html"),
-    ("Autore", "/chi-sono.html"),
-    ("Libri", "/libri-media.html"),
-    ("Metodo", "/metodo.html"),
-    ("Press", "/press.html"),
+    ("Chi sono", "/chi-sono.html"),
     ("Contatti", "/contatti.html"),
 ]
 TOPIC_PAGES = {
@@ -29,10 +29,7 @@ def active_label(path: Path, source: str):
     name = path.name
     if name == "index.html": return "Home"
     if name == "analisi.html" or name in TOPIC_PAGES or 'class="report-body"' in source or 'class="report"' in source: return "Analisi"
-    if name in {"chi-sono.html", "cosa-faccio.html", "impegno.html"}: return "Autore"
-    if name == "libri-media.html": return "Libri"
-    if name == "metodo.html": return "Metodo"
-    if name == "press.html": return "Press"
+    if name == "chi-sono.html": return "Chi sono"
     if name == "contatti.html": return "Contatti"
     return None
 
@@ -112,13 +109,9 @@ def main():
         after.setdefault(sig, []).append(p.name)
     print(f'Navigation audit: {len(pages)} editorial/public root HTML pages')
     print(f'Desktop menu variants before: {len(before)}')
-    for i,(sig,names) in enumerate(sorted(before.items(), key=lambda x: -len(x[1])),1):
-        print(f'  before {i}: {len(names)} pages -> {sig}')
-        if sig is None: print('    no-header/no-nav:', ', '.join(names))
     print(f'Pages normalized: {changed}')
     print(f'Desktop menu variants after: {len(after)}')
     for i,(sig,names) in enumerate(sorted(after.items(), key=lambda x: -len(x[1])),1):
         print(f'  after {i}: {len(names)} pages -> {sig}')
-        if sig is None: print('    no-header/no-nav:', ', '.join(names))
 
 if __name__ == '__main__': main()
