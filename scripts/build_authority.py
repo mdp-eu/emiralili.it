@@ -101,7 +101,7 @@ AUTHOR_BOX = '''<aside class="author-entity-box" aria-label="Informazioni sull'a
 <img src="/assets/img/Emir primo piano.jpg" alt="Emir Alili, autore e analista geopolitico" width="640" height="640" loading="lazy">
 <div><p class="author-kicker">Autore</p><h2>Emir Alili</h2>
 <p>Autore e analista geopolitico. Su emiralili.it pubblica dossier documentati su rapporti di forza, Medio Oriente, sanzioni, energia, sicurezza internazionale e Balcani.</p>
-<div class="author-links"><a href="/chi-sono.html">Profilo autore</a><a href="/libri-media.html">Libri e media</a><a href="/contatti.html">Canali ufficiali</a></div></div>
+<div class="author-links"><a href="/chi-sono.html">Profilo autore</a><a href="/chi-sono.html#libri">Libri e media</a><a href="/contatti.html">Canali ufficiali</a></div></div>
 </aside>'''
 
 def normalize_jsonld(s, topics):
@@ -165,8 +165,8 @@ def pillar_page(key, articles):
 <link rel="canonical" href="https://emiralili.it/{cfg["file"]}"><meta property="og:type" content="website"><meta property="og:site_name" content="Emir Alili"><meta property="og:title" content="{html.escape(cfg["title"])}"><meta property="og:description" content="{html.escape(cfg["description"])}"><meta property="og:url" content="https://emiralili.it/{cfg["file"]}">
 <link rel="icon" href="/favicon.ico"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/editorial.css?v=5"><link rel="stylesheet" href="/authority.css?v=1">
 <script type="application/ld+json">{json.dumps(data,ensure_ascii=False,separators=(",",":"))}</script></head><body class="hub-page authority-hub">
-<header><a class="logo" href="/"><span>EA</span><b>Emir Alili</b></a><nav><a href="/">Home</a><a href="/chi-sono.html">Chi sono</a><a href="/analisi.html">Geopolitica</a><a href="/libri-media.html">Libri</a><a href="/contatti.html">Contatti</a></nav><button class="menu" aria-label="Apri menu" aria-expanded="false"><i></i><i></i></button></header>
-<div class="mobile-nav"><a href="/">Home</a><a href="/chi-sono.html">Chi sono</a><a href="/analisi.html">Geopolitica</a><a href="/libri-media.html">Libri</a><a href="/contatti.html">Contatti</a></div>
+<header><a class="logo" href="/"><span>EA</span><b>Emir Alili</b></a><nav><a href="/">Home</a><a href="/chi-sono.html">Chi sono</a><a href="/analisi.html">Geopolitica</a><a href="/chi-sono.html#libri">Libri</a><a href="/contatti.html">Contatti</a></nav><button class="menu" aria-label="Apri menu" aria-expanded="false"><i></i><i></i></button></header>
+<div class="mobile-nav"><a href="/">Home</a><a href="/chi-sono.html">Chi sono</a><a href="/analisi.html">Geopolitica</a><a href="/chi-sono.html#libri">Libri</a><a href="/contatti.html">Contatti</a></div>
 <main><section class="hub-hero authority-hero"><p class="kicker">Percorso tematico · Emir Alili</p><h1>{html.escape(cfg["name"])}</h1><p>{html.escape(cfg["intro"])}</p><div class="authority-byline"><a href="/chi-sono.html">A cura di Emir Alili — profilo autore ↗</a></div></section>
 <section class="authority-related"><p class="section-tag">Dossier collegati</p><h2>{len(ordered)} analisi nel percorso</h2><div class="geo-grid authority-grid">{cards}</div></section>{AUTHOR_BOX}</main>
 <footer><p>© 2026 Emir Alili</p><a href="/analisi.html">Tutte le analisi ↑</a></footer><script src="/menu.js?v=2"></script></body></html>'''

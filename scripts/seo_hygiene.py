@@ -4,7 +4,7 @@ import re
 from html import escape
 
 ROOT = Path(__file__).resolve().parents[1]
-TODAY = "2026-09-16"
+TODAY = "2026-09-20"
 
 NOINDEX = {
     "admin.html": "noindex,nofollow",
@@ -12,6 +12,7 @@ NOINDEX = {
     "blog.html": "noindex,follow",
     "share.html": "noindex,follow",
     "article.html": "noindex,follow",
+    "news.html": "noindex,follow",
     "libri-media.html": "noindex,follow",
     "metodo.html": "noindex,follow",
     "press.html": "noindex,follow",
