@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 from pathlib import Path
+from datetime import date
 import re, json, html
 
 ROOT = Path(__file__).resolve().parents[1]
-TODAY = "2026-09-15"
+TODAY = date.today().isoformat()
 PERSON_ID = "https://emiralili.it/#person"
 AUTHOR = {
     "@type": "Person",
@@ -165,8 +166,8 @@ def pillar_page(key, articles):
 <link rel="canonical" href="https://emiralili.it/{cfg["file"]}"><meta property="og:type" content="website"><meta property="og:site_name" content="Emir Alili"><meta property="og:title" content="{html.escape(cfg["title"])}"><meta property="og:description" content="{html.escape(cfg["description"])}"><meta property="og:url" content="https://emiralili.it/{cfg["file"]}">
 <link rel="icon" href="/favicon.ico"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/editorial.css?v=5"><link rel="stylesheet" href="/authority.css?v=1">
 <script type="application/ld+json">{json.dumps(data,ensure_ascii=False,separators=(",",":"))}</script></head><body class="hub-page authority-hub">
-<header><a class="logo" href="/"><span>EA</span><b>Emir Alili</b></a><nav><a href="/">Home</a><a href="/chi-sono.html">Chi sono</a><a href="/analisi.html">Geopolitica</a><a href="/chi-sono.html#libri">Libri</a><a href="/contatti.html">Contatti</a></nav><button class="menu" aria-label="Apri menu" aria-expanded="false"><i></i><i></i></button></header>
-<div class="mobile-nav"><a href="/">Home</a><a href="/chi-sono.html">Chi sono</a><a href="/analisi.html">Geopolitica</a><a href="/chi-sono.html#libri">Libri</a><a href="/contatti.html">Contatti</a></div>
+<header><a class="logo" href="/"><span>EA</span><b>Emir Alili</b></a><nav><a href="/">Home</a><a href="/analisi.html">Analisi</a><a href="/chi-sono.html">Chi sono</a><a href="/contatti.html">Contatti</a></nav><button class="menu" aria-label="Apri menu" aria-expanded="false"><i></i><i></i></button></header>
+<div class="mobile-nav"><a href="/">Home</a><a href="/analisi.html">Analisi</a><a href="/chi-sono.html">Chi sono</a><a href="/contatti.html">Contatti</a></div>
 <main><section class="hub-hero authority-hero"><p class="kicker">Percorso tematico · Emir Alili</p><h1>{html.escape(cfg["name"])}</h1><p>{html.escape(cfg["intro"])}</p><div class="authority-byline"><a href="/chi-sono.html">A cura di Emir Alili — profilo autore ↗</a></div></section>
 <section class="authority-related"><p class="section-tag">Dossier collegati</p><h2>{len(ordered)} analisi nel percorso</h2><div class="geo-grid authority-grid">{cards}</div></section>{AUTHOR_BOX}</main>
 <footer><p>© 2026 Emir Alili</p><a href="/analisi.html">Tutte le analisi ↑</a></footer><script src="/menu.js?v=2"></script></body></html>'''
