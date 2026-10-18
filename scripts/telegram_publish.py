@@ -86,6 +86,11 @@ def load_post_config(path: str) -> dict[str, object]:
     if not isinstance(delete_ids, list):
         raise RuntimeError("delete_message_ids must be a list")
     normalized["delete_message_ids"] = [int(value) for value in delete_ids]
+    if config.get("edit_message_id") is not None:
+        message_id = int(config["edit_message_id"])
+        if message_id <= 0:
+            raise RuntimeError("edit_message_id must be positive")
+        normalized["edit_message_id"] = message_id
     return normalized
 
 
@@ -155,6 +160,20 @@ def main() -> int:
         },
         ensure_ascii=False,
     )
+    if config.get("edit_message_id"):
+        edited = api_request(token, "editMessageMedia", {
+            "chat_id": chat_id,
+            "message_id": str(config["edit_message_id"]),
+            "media": json.dumps({"type": "photo", "media": config["image_url"],
+                                 "caption": build_caption(config), "parse_mode": "HTML"},
+                                ensure_ascii=False),
+            "reply_markup": reply_markup,
+        })
+        if int(edited.get("message_id") or 0) != config["edit_message_id"]:
+            raise TelegramError("Telegram did not confirm the edited message")
+        print(f"Telegram cover updated successfully (message ID {config['edit_message_id']})")
+        return 0
+
     sent = api_request(
         token,
         "sendPhoto",
