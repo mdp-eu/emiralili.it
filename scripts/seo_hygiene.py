@@ -101,7 +101,7 @@ def apply_editorial_theme():
     for path in sorted(ROOT.glob("*.html")):
         source = path.read_bytes().decode("utf-8")
         if "site-contact-bar" in source or (
-            re.search(r'http-equiv=["']refresh', source, re.I)
+            re.search(r"""http-equiv=["']refresh""", source, re.I)
             and not re.search(r'<main\b', source, re.I)
         ):
             continue
