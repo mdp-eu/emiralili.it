@@ -93,7 +93,41 @@ def rebuild_sitemap():
         return len(entries), True
     return len(entries), False
 
+
+def apply_editorial_theme():
+    """Keep branding and contact links on new and regenerated pages."""
+    bar = (ROOT / "scripts" / "site-contact.fragment").read_text(encoding="utf-8").strip()
+    stylesheet = '<link rel="stylesheet" href="/site-edition.css?v=1">'
+    for path in sorted(ROOT.glob("*.html")):
+        source = path.read_bytes().decode("utf-8")
+        if "site-contact-bar" in source or (
+            re.search(r'http-equiv=["']refresh', source, re.I)
+            and not re.search(r'<main\b', source, re.I)
+        ):
+            continue
+
+        def add_class(match):
+            attributes = match.group(1)
+            css_class = re.search(r"""\bclass=(["'])(.*?)\1""", attributes, re.I)
+            if css_class:
+                end = css_class.end(2)
+                attributes = attributes[:end] + " site-edition" + attributes[end:]
+            else:
+                attributes += ' class="site-edition"'
+            return "<body" + attributes + ">"
+
+        result = re.sub(r"<body\b([^>]*)>", add_class, source, count=1, flags=re.I)
+        if result == source:
+            continue
+        newline = "\r\n" if "\r\n" in source else "\n"
+        result = re.sub(r"</head>", lambda _: stylesheet + newline + "</head>", result, count=1, flags=re.I)
+        after = r"</header>" if re.search(r"</header>", result, re.I) else r"<body\b[^>]*>"
+        result = re.sub(after, lambda match: match.group(0) + newline + bar, result, count=1, flags=re.I)
+        path.write_bytes(result.encode("utf-8"))
+
+
 def main():
+    apply_editorial_theme()
     changed=[]
     for filename,directive in NOINDEX.items():
         if set_noindex(filename,directive): changed.append(filename)

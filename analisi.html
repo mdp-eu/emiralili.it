@@ -17,22 +17,187 @@
 <link href="/favicon.ico" rel="icon"/><link href="/manifest.json" rel="manifest"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "@id": "https://emiralili.it/analisi.html#page", "url": "https://emiralili.it/analisi.html", "name": "Geopolitica — Analisi e dossier di Emir Alili", "description": "Archivio cronologico delle analisi geopolitiche di Emir Alili e del Team Analisi Geopolitica MDP.", "inLanguage": "it-IT", "isPartOf": {"@type": "WebSite", "@id": "https://emiralili.it/#website", "url": "https://emiralili.it/", "name": "Emir Alili"}, "author": {"@type": "Person", "@id": "https://emiralili.it/#person", "name": "Emir Alili", "url": "https://emiralili.it/chi-sono.html"}, "mainEntity": {"@type": "ItemList", "numberOfItems": 125}}</script>
 <link href="editorial.css?v=3" rel="stylesheet"/>
-<link href="/authority.css?v=1" rel="stylesheet"/><link rel="stylesheet" href="/site-fixes.css?v=1"></head>
-<body class="hub-page archive-page">
+<link href="/authority.css?v=1" rel="stylesheet"/><link rel="stylesheet" href="/site-fixes.css?v=1"><style>
+.analisi-editoriale {
+  --navy:#111519; --navy2:#20272e; --ivory:#f4f0e8; --paper:#fffaf2;
+  --acid:#ff805f; --rust:#923427; --text:#171b1e; --muted:#515657;
+  --margin:max(5vw,calc((100vw - 1360px)/2));
+}
+.analisi-editoriale header {
+  padding-inline:var(--margin);height:75px;grid-template-columns:1fr auto;
+  background:#111519;border-bottom:1px solid #ffffff30;
+}
+.analisi-editoriale .logo {font:700 20px/1 Georgia,serif;text-transform:none;letter-spacing:-.02em}
+.analisi-editoriale .logo span {width:37px;height:37px;border-radius:0;font:800 12px/1 Arial,sans-serif}
+.analisi-editoriale header [aria-current=page] {border-color:var(--acid)}
+.analisi-editoriale :focus-visible {outline:3px solid #a84232;outline-offset:4px}
+.analisi-editoriale .archive-hero {
+  position:relative;isolation:isolate;overflow:hidden;min-height:290px;
+  padding:clamp(45px,7vw,105px) var(--margin);background:#111519;color:#fff4e6;
+}
+.analisi-editoriale .archive-hero picture {position:absolute;inset:0;z-index:-2}
+.analisi-editoriale .archive-hero picture img {width:100%;height:100%;object-fit:cover;object-position:60% 43%}
+.analisi-editoriale .archive-hero::after {
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,#111519 0%,#111519f0 25%,#1115195e 72%);
+}
+.analisi-editoriale .archive-hero .kicker {color:#ff9c86;letter-spacing:.14em;margin-bottom:17px}
+.analisi-editoriale .archive-hero h1 {
+  font:400 clamp(56px,9.3vw,136px)/.9 Georgia,serif;letter-spacing:-.07em;text-transform:none;
+  color:#fff4e6;margin:0 0 21px;
+}
+.analisi-editoriale .archive-hero>p:not(.kicker) {color:#f0e1d6;margin:0;max-width:48ch;font:17px/1.6 Arial,sans-serif}
+.analisi-editoriale .topic-hub-strip {
+  padding:26px var(--margin);display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.75fr);gap:25px;
+  background:#211d1c;color:#fff4e6;border-top:1px solid #bb533f;border-bottom:0;
+}
+.analisi-editoriale .topic-hub-strip :is(.section-tag,nav span) {color:#ffab95}
+.analisi-editoriale .topic-hub-strip h2 {color:#fff4e6;font:400 34px/.98 Georgia,serif;letter-spacing:-.045em;margin:5px 0 9px}
+.analisi-editoriale .topic-hub-strip p {color:#eddbce;font-size:13px;line-height:1.5;margin:0}
+.analisi-editoriale .topic-hub-strip nav {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#ffffff35;
+  border:1px solid #ffffff35;
+}
+.analisi-editoriale .topic-hub-strip nav a {
+  display:flex;flex-direction:column;gap:5px;justify-content:center;min-height:53px;
+  padding:9px 13px;background:#25201e;color:#fff5e9;border:0;border-radius:0;
+}
+.analisi-editoriale .topic-hub-strip nav a:hover {background:#3b2b26;color:#fff}
+.analisi-editoriale .topic-hub-strip nav strong {font:700 14px/1.2 Arial,sans-serif}
+.analisi-editoriale .topic-hub-strip nav span {font-size:10px}
+.analisi-editoriale .archive-browser {
+  position:relative;top:auto;padding:34px var(--margin) 0;background:#f4f0e8;
+  border:0;display:grid;grid-template-columns:minmax(0,1fr);gap:15px;
+}
+.analisi-editoriale .archive-search {grid-row:1;width:100%;max-width:680px;margin:0}
+.analisi-editoriale .archive-search>span {font-size:13px;color:#342a26}
+.analisi-editoriale .archive-search>div {
+  border:1px solid #82756b;border-radius:0;min-height:51px;background:#fffaf2;
+  box-shadow:none;
+}
+.analisi-editoriale .archive-search input {font-size:16px;min-width:0}
+.analisi-editoriale .archive-search #clear-search {min-width:44px;min-height:44px}
+.analisi-editoriale .archive-macros {padding:0;margin:0;display:flex;flex-wrap:wrap;gap:7px}
+.analisi-editoriale .macro-filter {
+  min-height:44px;padding:8px 13px;border-radius:0;border:1px solid #82756b;
+  background:transparent;color:#241b18;text-transform:none;font-size:13px;letter-spacing:0;
+}
+.analisi-editoriale .macro-filter:hover,.analisi-editoriale .macro-filter.active {
+  background:#211d1c;border-color:#211d1c;color:#fff4e6;
+}
+.analisi-editoriale .archive-status {
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:13px 0;border-top:1px solid #9a8e80;margin:4px 0 0;
+}
+.analisi-editoriale .archive-status p {font:400 clamp(21px,3vw,32px)/1 Georgia,serif;letter-spacing:-.035em;color:#1a1b1d}
+.analisi-editoriale .archive-status span {color:#5a4a40}
+.analisi-editoriale .archive-list {
+  padding:0 var(--margin) clamp(48px,7vw,110px);display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#f4f0e8;
+}
+.analisi-editoriale .archive-entry {
+  display:flex;flex-direction:column;align-items:stretch;gap:10px;min-width:0;min-height:0;
+  background:#fffaf2;border:1px solid #c9bcad;padding:clamp(15px,2.1vw,26px);
+  transition:background-color .18s,color .18s;
+}
+.analisi-editoriale .archive-entry:hover {background:#f0e5d8;transform:none}
+.analisi-editoriale .archive-entry[hidden],.analisi-editoriale .archive-empty[hidden] {display:none!important}
+.analisi-editoriale .archive-entry .entry-meta {display:flex;flex-wrap:wrap;gap:4px 10px;margin:0;color:#714439}
+.analisi-editoriale .archive-entry .entry-meta time {color:#554c45;font-size:11px}
+.analisi-editoriale .archive-entry .entry-meta span {color:#923427;font-size:10px;font-weight:750;line-height:1.35}
+.analisi-editoriale .archive-entry .entry-copy h2 {
+  color:#1c1917;margin:0 0 7px;font:400 clamp(22px,2vw,33px)/1.05 Georgia,serif;letter-spacing:-.035em;
+  overflow-wrap:anywhere;
+}
+.analisi-editoriale .archive-entry .entry-copy p {margin:0;color:#49443f;font:14px/1.5 Arial,sans-serif}
+.analisi-editoriale .archive-entry b {margin-top:auto;padding-top:5px;color:#923427;font-size:11px;align-self:flex-start}
+.analisi-editoriale .archive-entry:hover b {text-decoration:underline;text-underline-offset:3px}
+.analisi-editoriale .entry-cover {
+  margin:0 0 3px;aspect-ratio:16/11;background:#171b20;overflow:hidden;display:grid;place-items:center;
+}
+.analisi-editoriale .entry-cover img {width:100%;height:100%;min-height:0;object-fit:contain;transition:transform .25s}
+.analisi-editoriale .archive-entry:hover .entry-cover img {transform:scale(1.025)}
+.analisi-editoriale .archive-entry.lead-dossier {grid-column:span 2;background:#1b2024;border-color:#1b2024}
+.analisi-editoriale .archive-entry.lead-dossier:hover {background:#272e33}
+.analisi-editoriale .lead-dossier .entry-cover {aspect-ratio:2.15}
+.analisi-editoriale .lead-dossier .entry-copy h2 {font-size:clamp(29px,4.4vw,61px);color:#fff4e6}
+.analisi-editoriale .lead-dossier .entry-copy p,.analisi-editoriale .lead-dossier .entry-meta time {color:#e3d5c8}
+.analisi-editoriale .lead-dossier :is(.entry-meta span,b) {color:#ffad98}
+.analisi-editoriale .archive-empty {grid-column:1/-1}
+.analisi-editoriale footer {padding-inline:var(--margin)}
+@media(max-width:1080px){
+  .analisi-editoriale .archive-list {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .analisi-editoriale .topic-hub-strip {grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+}
+@media(max-width:760px){
+  .analisi-editoriale .archive-hero {min-height:0}
+  .analisi-editoriale .archive-hero::after {background:linear-gradient(90deg,#111519e8,#11151979)}
+  .analisi-editoriale .archive-hero picture img {object-position:71% 54%}
+  .analisi-editoriale .topic-hub-strip {grid-template-columns:1fr;gap:14px;padding-block:20px}
+  .analisi-editoriale .topic-hub-strip nav {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .analisi-editoriale .archive-list {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .analisi-editoriale .archive-browser {padding-top:22px}
+}
+@media(max-width:480px){
+  .analisi-editoriale .archive-entry:not(.has-cover) {grid-column:1/-1}
+  .analisi-editoriale .archive-entry {padding:13px;gap:7px}
+  .analisi-editoriale .archive-entry.has-cover:not(.lead-dossier) .entry-copy h2 {font-size:20px}
+  .analisi-editoriale .archive-entry.has-cover:not(.lead-dossier) .entry-copy p {font-size:13px}
+  .analisi-editoriale .lead-dossier .entry-cover {aspect-ratio:1.55}
+  .analisi-editoriale .macro-filter {padding-inline:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  html:has(.analisi-editoriale) {scroll-behavior:auto}
+  .analisi-editoriale * {transition:none!important}
+}
+.analisi-editoriale .archive-list.is-filtered .archive-entry {grid-column:auto}
+.analisi-editoriale .archive-list.is-filtered .lead-dossier .entry-cover {aspect-ratio:16/11}
+.analisi-editoriale .archive-list.is-filtered .lead-dossier .entry-copy h2 {font-size:clamp(22px,2.4vw,37px)}
+@media(max-width:480px){.analisi-editoriale .archive-list.is-filtered .archive-entry {grid-column:1/-1}}
+
+.analisi-editoriale .topic-hub-strip>div>p:last-child {color:#eddbce;font-size:13px;line-height:1.5}
+.analisi-editoriale .topic-hub-strip h2 {text-transform:none}
+.analisi-editoriale .archive-entry .entry-meta,
+.analisi-editoriale .archive-entry .entry-meta :is(time,span) {
+  min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;
+}
+.analisi-editoriale .archive-entry .entry-meta :is(time,span) {width:auto}
+.analisi-editoriale .archive-search input::placeholder {color:#686760}
+
+.analisi-editoriale .archive-entry :is(.entry-copy,.entry-meta),
+.analisi-editoriale .topic-hub-strip nav a,
+.analisi-editoriale .archive-status > * {
+  min-width:0;
+  max-width:100%;
+  overflow-wrap:anywhere;
+}
+.analisi-editoriale .archive-entry :is(.entry-copy p,b),
+.analisi-editoriale .topic-hub-strip nav :is(strong,span),
+.analisi-editoriale .macro-filter {
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+.analisi-editoriale .macro-filter {max-width:100%}
+
+</style>
+<link rel="stylesheet" href="/site-edition.css?v=1">
+</head>
+<body class="hub-page archive-page analisi-editoriale site-edition">
 <header>
 <a class="logo" href="/"><span>EA</span><b>Emir Alili</b></a>
 <nav aria-label="Navigazione principale"><a href="/">Home</a><a href="/analisi.html" aria-current="page">Analisi</a><a href="/chi-sono.html">Chi sono</a><a href="/contatti.html">Contatti</a></nav>
 <button aria-label="Apri menu" class="menu"><i></i><i></i></button>
 </header>
+<aside class="site-contact-bar" aria-label="Segui e contatta Emir Alili"><a href="https://www.facebook.com/emir.alili.81"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg><span>Seguimi su Facebook</span></a><a href="https://wa.me/393282290062"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Scrivimi su WhatsApp</span></a></aside>
 <div class="mobile-nav" aria-label="Navigazione mobile"><a href="/">Home</a><a href="/analisi.html" aria-current="page">Analisi</a><a href="/chi-sono.html">Chi sono</a><a href="/contatti.html">Contatti</a></div>
 <main>
-<section class="hub-hero archive-hero">
+<section class="hub-hero archive-hero"><picture><source media="(max-width: 760px)" srcset="/assets/img/home-atlante-720.jpg"><img src="/assets/img/home-atlante-1536.jpg" alt="" width="1536" height="1024" fetchpriority="high"></picture>
 <p class="kicker">Geopolitica e relazioni internazionali</p>
 <h1>Geopolitica.</h1>
 <p>Scegli una macroarea oppure cerca una parola chiave. I risultati sono sempre ordinati dalla pubblicazione più recente.</p>
 </section>
 <!-- TOPIC-HUBS:START --><section class="topic-hub-strip" aria-labelledby="topic-hubs-title"><div><p class="section-tag">Percorsi tematici</p><h2 id="topic-hubs-title">Segui un tema.</h2><p>Sei archivi ragionati collegano i dossier per area e aiutano a seguire nel tempo gli stessi rapporti di forza.</p></div><nav aria-label="Percorsi tematici principali"><a href="/medio-oriente.html"><strong>Medio Oriente</strong><span>Apri il percorso →</span></a><a href="/palestina-israele.html"><strong>Palestina e Israele</strong><span>Apri il percorso →</span></a><a href="/sanzioni-lawfare.html"><strong>Sanzioni e lawfare</strong><span>Apri il percorso →</span></a><a href="/energia-rotte.html"><strong>Energia, Hormuz e rotte</strong><span>Apri il percorso →</span></a><a href="/russia-cina-nato.html"><strong>Russia, Cina e NATO</strong><span>Apri il percorso →</span></a><a href="/balcani-macedonia.html"><strong>Balcani e Macedonia</strong><span>Apri il percorso →</span></a></nav></section><!-- TOPIC-HUBS:END --><section aria-label="Ricerca nell'archivio" class="archive-browser">
-<div aria-label="Macroaree" class="archive-macros" role="tablist">
+<div aria-label="Macroaree" class="archive-macros" role="group">
 <button aria-selected="true" class="macro-filter active" data-area="tutte" type="button">Tutte</button>
 <button aria-selected="false" class="macro-filter" data-area="europa" type="button">Europa</button>
 <button aria-selected="false" class="macro-filter" data-area="medio-oriente" type="button">Medio Oriente</button>
@@ -46,12 +211,12 @@
 </label>
 <div aria-live="polite" class="archive-status"><p id="active-area">Tutte le pubblicazioni</p><span id="result-count">125 dossier</span></div>
 </section>
-<section class="archive-list" id="archive-results"><a class="archive-entry" data-area="ordine-mondiale" data-search="stati uniti usa midterm 2026 trump camera senato congresso iran netanyahu escalation elezioni" href="midterm-usa-2026-trump-congresso-iran-netanyahu.html"><div class="entry-meta"><time datetime="2026-11-04T09:37:34+01:00">4 novembre 2026 · 09:37</time><span>Stati Uniti · Midterm 2026 · Iran</span></div><div class="entry-copy"><h2>Trump perde il Congresso: la cantonata è arrivata</h2><p>Camera e Senato ai democratici: i limiti al potere di Trump e il rischio di escalation con Iran e Netanyahu dopo le elezioni USA 2026.</p></div><b>Leggi ↗</b></a>
-<a class="archive-entry" data-area="europa" data-search="serbia studenti elezioni vucic balcani albania giovani cambiamento generazionale corruzione" href="serbia-studenti-vittoria-cambiamento-generazionale.html"><div class="entry-meta"><time datetime="2026-10-25T22:25:00+01:00">25 ottobre 2026 · 22:25</time><span>Serbia · Studenti · Cambiamento generazionale</span></div><div class="entry-copy"><h2>Serbia, gli studenti hanno vinto: il futuro si riprende</h2><p>La Lista studentesca vince le elezioni serbe. Dalla protesta al Parlamento: perché il voto può aprire un cambiamento generazionale nei Balcani e oltre.</p></div><b>Leggi ↗</b></a>
-<a class="archive-entry" data-area="europa" data-search="albania tirana diaspora balcani corruzione proteste edi rama" href="albania-proteste-deriva-autoritaria-diaspora.html"><div class="entry-meta"><time datetime="2026-10-18T13:03:30+02:00">18 ottobre 2026</time><span>Albania · Balcani · Diaspora</span></div><div class="entry-copy"><h2>Albania, proteste e deriva autoritaria: il ruolo della diaspora</h2><p>Proteste in Albania, clientelismo e interessi internazionali: un’analisi delle tensioni democratiche e del ruolo politico della diaspora.</p></div><b>Leggi ↗</b></a>
-<a class="archive-entry" data-area="medio-oriente" data-search="israele 7 ottobre netanyahu avi gil tzachi braverman verbali intelligence hamas libro 710" href="7-ottobre-verbali-avi-gil-netanyahu.html"><div class="entry-meta"><time datetime="2026-10-09T18:05:00+02:00">9 ottobre 2026 · 18:05</time><span>Israele · 7 ottobre · Intelligence</span></div><div class="entry-copy"><h2>7 ottobre, undici minuti per riscrivere la storia</h2><p>La testimonianza sui verbali dell’ufficio Netanyahu: fatti, limiti della prova e il collegamento con il libro 7/10.</p></div><b>Leggi ↗</b></a>
-<a class="archive-entry" data-area="europa" data-search="germania russia bnd intelligence guerra ombra ibrida sabotaggi cyber baltico nato martin jaeger" href="germania-russia-guerra-ombra-intelligence.html"><div class="entry-meta"><time datetime="2026-10-06T19:05:00+02:00">6 ottobre 2026 · 19:05</time><span>Germania · Russia · Intelligence</span></div><div class="entry-copy"><h2>La Germania considera già iniziata la guerra sotto soglia</h2><p>Il BND parla di guerra ombra: minacce reali, attribuzioni difficili e nessuna prova di un imminente attacco convenzionale.</p></div><b>Leggi ↗</b></a>
-<a class="archive-entry" data-area="medio-oriente" data-search="port shuaiba kuwait iran stati uniti usa droni epic fury centcom esercito responsabilita difesa aerea golfo" href="port-shuaiba-kuwait-difesa-usa.html"><div class="entry-meta"><time datetime="2026-10-06T12:10:00+02:00">6 ottobre 2026 · 12:10</time><span>Iran · Stati Uniti · Golfo</span></div><div class="entry-copy"><h2>Port Shuaiba, la retrovia americana lasciata senza difesa</h2><p>Sei morti, allarmi prima dell’attacco e una protezione anti-drone inadeguata: il costo della vulnerabilità logistica USA nel Golfo.</p></div><b>Leggi ↗</b></a>
+<section class="archive-list" id="archive-results"><a class="archive-entry has-cover lead-dossier" data-area="ordine-mondiale" data-search="stati uniti usa midterm 2026 trump camera senato congresso iran netanyahu escalation elezioni" href="midterm-usa-2026-trump-congresso-iran-netanyahu.html"><figure class="entry-cover"><img src="/assets/archive/midterm-usa-2026-trump-congresso-iran-netanyahu.jpg" alt="" loading="lazy" decoding="async"></figure><div class="entry-meta"><time datetime="2026-11-04T09:37:34+01:00">4 novembre 2026 · 09:37</time><span>Stati Uniti · Midterm 2026 · Iran</span></div><div class="entry-copy"><h2>Trump perde il Congresso: la cantonata è arrivata</h2><p>Camera e Senato ai democratici: i limiti al potere di Trump e il rischio di escalation con Iran e Netanyahu dopo le elezioni USA 2026.</p></div><b>Leggi ↗</b></a>
+<a class="archive-entry has-cover" data-area="europa" data-search="serbia studenti elezioni vucic balcani albania giovani cambiamento generazionale corruzione" href="serbia-studenti-vittoria-cambiamento-generazionale.html"><figure class="entry-cover"><img src="/assets/archive/serbia-studenti-vittoria-cambiamento-generazionale.jpg" alt="" loading="lazy" decoding="async"></figure><div class="entry-meta"><time datetime="2026-10-25T22:25:00+01:00">25 ottobre 2026 · 22:25</time><span>Serbia · Studenti · Cambiamento generazionale</span></div><div class="entry-copy"><h2>Serbia, gli studenti hanno vinto: il futuro si riprende</h2><p>La Lista studentesca vince le elezioni serbe. Dalla protesta al Parlamento: perché il voto può aprire un cambiamento generazionale nei Balcani e oltre.</p></div><b>Leggi ↗</b></a>
+<a class="archive-entry has-cover" data-area="europa" data-search="albania tirana diaspora balcani corruzione proteste edi rama" href="albania-proteste-deriva-autoritaria-diaspora.html"><figure class="entry-cover"><img src="/assets/archive/albania-proteste-deriva-autoritaria-diaspora.jpg" alt="" loading="lazy" decoding="async"></figure><div class="entry-meta"><time datetime="2026-10-18T13:03:30+02:00">18 ottobre 2026</time><span>Albania · Balcani · Diaspora</span></div><div class="entry-copy"><h2>Albania, proteste e deriva autoritaria: il ruolo della diaspora</h2><p>Proteste in Albania, clientelismo e interessi internazionali: un’analisi delle tensioni democratiche e del ruolo politico della diaspora.</p></div><b>Leggi ↗</b></a>
+<a class="archive-entry has-cover" data-area="medio-oriente" data-search="israele 7 ottobre netanyahu avi gil tzachi braverman verbali intelligence hamas libro 710" href="7-ottobre-verbali-avi-gil-netanyahu.html"><figure class="entry-cover"><img src="/assets/archive/7-ottobre-verbali-avi-gil-netanyahu.jpg" alt="" loading="lazy" decoding="async"></figure><div class="entry-meta"><time datetime="2026-10-09T18:05:00+02:00">9 ottobre 2026 · 18:05</time><span>Israele · 7 ottobre · Intelligence</span></div><div class="entry-copy"><h2>7 ottobre, undici minuti per riscrivere la storia</h2><p>La testimonianza sui verbali dell’ufficio Netanyahu: fatti, limiti della prova e il collegamento con il libro 7/10.</p></div><b>Leggi ↗</b></a>
+<a class="archive-entry has-cover" data-area="europa" data-search="germania russia bnd intelligence guerra ombra ibrida sabotaggi cyber baltico nato martin jaeger" href="germania-russia-guerra-ombra-intelligence.html"><figure class="entry-cover"><img src="/assets/archive/germania-russia-guerra-ombra-intelligence.jpg" alt="" loading="lazy" decoding="async"></figure><div class="entry-meta"><time datetime="2026-10-06T19:05:00+02:00">6 ottobre 2026 · 19:05</time><span>Germania · Russia · Intelligence</span></div><div class="entry-copy"><h2>La Germania considera già iniziata la guerra sotto soglia</h2><p>Il BND parla di guerra ombra: minacce reali, attribuzioni difficili e nessuna prova di un imminente attacco convenzionale.</p></div><b>Leggi ↗</b></a>
+<a class="archive-entry has-cover" data-area="medio-oriente" data-search="port shuaiba kuwait iran stati uniti usa droni epic fury centcom esercito responsabilita difesa aerea golfo" href="port-shuaiba-kuwait-difesa-usa.html"><figure class="entry-cover"><img src="/assets/archive/port-shuaiba-kuwait-difesa-usa.jpg" alt="" loading="lazy" decoding="async"></figure><div class="entry-meta"><time datetime="2026-10-06T12:10:00+02:00">6 ottobre 2026 · 12:10</time><span>Iran · Stati Uniti · Golfo</span></div><div class="entry-copy"><h2>Port Shuaiba, la retrovia americana lasciata senza difesa</h2><p>Sei morti, allarmi prima dell’attacco e una protezione anti-drone inadeguata: il costo della vulnerabilità logistica USA nel Golfo.</p></div><b>Leggi ↗</b></a>
 <a class="archive-entry" data-area="ordine-mondiale" data-search="brasile elezioni ballottaggio flavio bolsonaro lula stati uniti washington trump cina brics dazi autonomia america latina" href="brasile-ballottaggio-washington.html"><div class="entry-meta"><time datetime="2026-10-05T19:05:00+02:00">5 ottobre 2026 · 19:05</time><span>Brasile · BRICS · Stati Uniti</span></div><div class="entry-copy"><h2>Il Brasile va al ballottaggio con Washington dentro la campagna</h2><p>Bolsonaro precede Lula di meno di due punti: il 25 ottobre il Brasile voterà anche sul proprio margine di autonomia strategica.</p></div><b>Leggi ↗</b></a>
 <a class="archive-entry" data-area="medio-oriente" data-search="yemen yemen dawn arabia saudita riyadh houthi bab el-mandeb dhubab taiz mar rosso sanaa" href="yemen-dawn-guerra-bab-el-mandeb.html"><div class="entry-meta"><time datetime="2026-10-05T12:05:00+02:00">5 ottobre 2026 · 12:05</time><span>Yemen · Arabia Saudita · Bab el-Mandeb</span></div><div class="entry-copy"><h2>Yemen Dawn: Riyadh riapre la guerra per Bab el-Mandeb</h2><p>L’offensiva nazionale parte dallo stretto: avanzata a Dhubab, copertura aerea saudita e promessa di riconquistare Sana’a.</p></div><b>Leggi ↗</b></a>
 <a class="archive-entry" data-area="europa" data-search="germania ucraina merz zelensky industria difesa droni missili iris-t hensoldt quantum systems produzione" href="germania-ucraina-industria-difesa-droni.html"><div class="entry-meta"><time datetime="2026-10-04T19:05:00+02:00">4 ottobre 2026 · 19:05</time><span>Germania · Ucraina · Industria militare</span></div><div class="entry-copy"><h2>Kiev entra nell’industria militare tedesca: la guerra diventa produzione comune</h2><p>Sedici accordi su difesa aerea, radar e droni trasformano l’aiuto tedesco in integrazione industriale.</p></div><b>Leggi ↗</b></a>
@@ -179,6 +344,46 @@
 </main>
 <footer><a class="logo" href="/"><span>EA</span><b>Emir Alili</b></a><p>© 2026 Emir Alili</p><a href="/">Homepage ↑</a></footer>
 <script src="modern.js?v=2"></script>
-<script src="/menu.js?v=4"></script></body>
+<script src="/menu.js?v=4"></script><script>
+(() => {
+  const menu = document.querySelector('.menu');
+  const nav = document.querySelector('.mobile-nav');
+  function syncMenu() {
+    const open = nav.classList.contains('open');
+    menu.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('open', open);
+    document.documentElement.classList.toggle('nav-open', open);
+    document.body.classList.toggle('nav-open', open);
+  }
+  menu.addEventListener('click', syncMenu);
+  nav.addEventListener('click', syncMenu);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      syncMenu();
+      menu.focus();
+    }
+  });
+  syncMenu();
+
+  const filters = [...document.querySelectorAll('.macro-filter')];
+  const archive = document.querySelector('#archive-results');
+  const query = document.querySelector('#archive-query');
+  function syncFilters() {
+    const active = filters.find(button => button.classList.contains('active'));
+    for (const button of filters) {
+      button.removeAttribute('aria-selected');
+      button.setAttribute('aria-pressed', String(button === active));
+    }
+    if (active.dataset.area === 'europa') document.querySelector('#active-area').textContent = active.textContent;
+    archive.classList.toggle('is-filtered', active.dataset.area !== 'tutte' || Boolean(query.value.trim()));
+  }
+  filters.forEach(button => button.addEventListener('click', syncFilters));
+  query.addEventListener('input', syncFilters);
+  document.querySelector('#clear-search').addEventListener('click', syncFilters);
+  syncFilters();
+})();
+
+</script></body>
 </html>
 
