@@ -1,0 +1,70 @@
+.profile-edition{--profile-gutter:max(5vw,calc((100vw - 1320px)/2))}
+.profile-edition .page-hero{
+  display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(20px,6vw,95px);
+  align-items:center;position:relative;isolation:isolate;padding:clamp(34px,6.5vw,100px) var(--profile-gutter);
+  background:radial-gradient(ellipse at 76% 60%,#48312c,#111519 65%);color:#fff5e9;
+  border-bottom:2px solid #a74b38;
+}
+.profile-edition .page-hero-copy{padding:0;min-width:0}
+.profile-edition .page-hero h1{
+  font:400 clamp(59px,9.5vw,145px)/.88 Georgia,serif;letter-spacing:-.075em;
+  margin:0 0 28px;color:#fff5e9;
+}
+.profile-edition .page-hero h1 em{
+  display:block;margin-top:18px;color:#ffb49d;font:italic 400 .35em/1.1 Georgia,serif;letter-spacing:-.03em;
+}
+.profile-edition .page-hero-copy>p:last-of-type{max-width:37ch;color:#f0dfd3;font:clamp(16px,1.6vw,21px)/1.6 Arial,sans-serif}
+.profile-edition .page-hero-copy .tag{color:#ffab93}
+.profile-edition .profile-hero-photo{
+  margin:0;position:relative;min-width:0;max-width:450px;justify-self:center;
+}
+.profile-edition .profile-hero-photo::before{
+  content:"";position:absolute;inset:12px -12px -12px 12px;border:1px solid #cf765d;z-index:-1;
+}
+.profile-edition .profile-hero-photo img{
+  box-sizing:border-box;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 28%;
+  border:1px solid #927366;
+}
+.profile-edition .profile-hero-photo figcaption,.profile-edition .profile-image figcaption{
+  font:12px/1.45 Arial,sans-serif;letter-spacing:.02em;padding:8px 11px;
+}
+.profile-edition .profile-hero-photo figcaption{color:#eee0d7;background:#231c1b}
+.profile-edition .profile-jump{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:3px 17px;
+  padding:6px var(--profile-gutter);background:#241d1a;color:#fff5e9;border-bottom:1px solid #ad5745;
+}
+.profile-edition .profile-jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 5px;font:700 13px Arial,sans-serif}
+.profile-edition .profile-jump a:hover{text-decoration:underline;text-underline-offset:4px;color:#ffad98}
+.profile-edition main section[id]{scroll-margin-top:92px}
+.profile-edition main :is(.page-heading h2,.profile-overview h2,.split-content h2){
+  font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.045em;overflow-wrap:anywhere;
+}
+.profile-edition main :is(.page-block,.profile-overview){padding-inline:var(--profile-gutter)}
+.profile-edition .profile-prologue .big-copy{color:#8e382b;font:italic 400 clamp(27px,3.7vw,53px)/1.13 Georgia,serif}
+.profile-edition .profile-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px}
+.profile-edition .profile-photo-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.profile-edition .profile-image{min-width:0;margin:0;background:#e8ded1;border:1px solid #cdbdaf}
+.profile-edition .profile-image img{
+  width:100%;height:auto;aspect-ratio:16/10;object-fit:contain;background:#201e1e;display:block;
+}
+.profile-edition .profile-image figcaption{color:#3e302a}
+.profile-edition .profile-biography{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.56fr);gap:clamp(25px,5vw,70px);align-items:start;
+}
+.profile-edition .profile-biography>.profile-image{align-self:start}
+.profile-edition .profile-biography>.profile-image img{aspect-ratio:1;object-fit:cover}
+.profile-edition .timeline-modern article{border-color:#b4a094}
+.profile-edition .timeline-modern h3{font-family:Georgia,serif;color:#241f1d}
+.profile-edition #libri .media-library article{box-shadow:0 10px 22px #21191614;border:1px solid #ccbaab}
+@media(max-width:760px){
+  .profile-edition .page-hero,.profile-edition .profile-biography{grid-template-columns:minmax(0,1fr)}
+  .profile-edition .profile-hero-photo{width:min(82%,345px)}
+  .profile-edition .page-hero h1{font-size:clamp(53px,13vw,82px)}
+  .profile-edition .page-hero h1 em{font-size:.42em}
+  .profile-edition .profile-jump{justify-content:flex-start;gap:2px 8px}
+  .profile-edition .profile-biography>.profile-image{width:min(100%,380px)}
+  .profile-edition .profile-photo-grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:420px){
+  .profile-edition .profile-photo-grid,.profile-edition .profile-photo-grid.three{grid-template-columns:minmax(0,1fr)}
+}
