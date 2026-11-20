@@ -1,0 +1,42 @@
+.report.dossier-edition{max-width:1360px;padding:0 max(18px,4vw) 84px;background:#fffaf2}
+.dossier-edition .dossier-opening{
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.7fr);gap:clamp(24px,5vw,72px);
+  align-items:center;background:#111519;color:#fff5e9;
+  margin:0 calc(-1 * max(18px,4vw));padding:clamp(30px,6vw,86px) max(18px,4vw);
+}
+.dossier-edition .dossier-opening .report-head{padding:0;border:0;min-width:0}
+.dossier-edition .dossier-opening .kicker{color:#ff9c86}
+.dossier-edition .dossier-opening h1{
+  font:400 clamp(44px,5.5vw,88px)/.99 Georgia,serif;color:#fff5e9;
+  letter-spacing:-.055em;text-transform:none;margin:12px 0 22px;overflow-wrap:anywhere;
+}
+.dossier-edition .dossier-opening .report-deck{color:#e9dace;font:clamp(16px,1.5vw,21px)/1.58 Arial,sans-serif}
+.dossier-edition .dossier-opening .report-meta{display:flex;flex-wrap:wrap;gap:10px 17px;color:#ffad98}
+.dossier-edition .dossier-opening .report-meta a{color:inherit}
+.dossier-edition .dossier-opening .report-cover{
+  margin:0;width:100%;max-width:375px;min-width:0;justify-self:center;background:transparent;
+}
+.dossier-edition .dossier-opening .report-cover img{width:100%;height:auto;max-height:490px;object-fit:contain}
+.dossier-edition .dossier-opening figcaption{color:#ddcec4;margin-top:8px;font:12px/1.45 Arial,sans-serif}
+.dossier-edition .dossier-index{
+  max-width:760px;margin:32px auto 0;border-block:1px solid #c9bcad;background:#f4f0e8;
+  padding:0 18px;color:#241b18;
+}
+.dossier-edition .dossier-index summary{min-height:48px;padding-block:14px;cursor:pointer;font:700 16px/1.25 Arial,sans-serif}
+.dossier-edition .dossier-index ol{margin:0;padding:0 0 12px 20px}
+.dossier-edition .dossier-index a{display:inline-block;padding-block:8px;color:#923427;text-decoration:underline;text-underline-offset:3px}
+.dossier-edition .report-body{max-width:760px;min-width:0;margin:26px auto 0}
+.dossier-edition .report-body p{font:clamp(17px,2vw,20px)/1.7 Georgia,serif}
+.dossier-edition .report-body h2{font-family:Georgia,serif;overflow-wrap:anywhere;scroll-margin-top:100px}
+.dossier-edition .report-body .table-scroll{width:100%;max-width:100%;overflow:auto}
+.dossier-edition :focus-visible{outline:2px solid #a84232;outline-offset:3px}
+@media(max-width:740px){
+  .dossier-edition .dossier-opening{grid-template-columns:1fr;gap:23px}
+  .dossier-edition .dossier-opening h1{font-size:clamp(37px,8.7vw,62px)}
+  .dossier-edition .dossier-opening .report-cover{max-width:260px}
+  .dossier-edition .report-body section{margin-block:42px}
+}
+.report-main.dossier-edition{box-sizing:border-box;max-width:1360px;width:100%;margin-inline:auto;padding:0 max(18px,4vw) 84px;background:#fffaf2}
+.dossier-edition .dossier-opening .section-tag{color:#ff9c86}
+.dossier-edition .dossier-opening figcaption a{color:#ffad98;text-decoration:underline}
+.dossier-edition .report-body :is(p,li,h2,h3),.dossier-edition .dossier-index a{overflow-wrap:anywhere}
